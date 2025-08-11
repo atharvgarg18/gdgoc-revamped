@@ -90,7 +90,8 @@ export default function EventsPage() {
                 style={{ animationDelay: "0.2s" }}
               >
                 Join us for exciting workshops, seminars, and hands-on sessions
-                designed to enhance your technical skills and expand your network.
+                designed to enhance your technical skills and expand your
+                network.
               </p>
               <div
                 className="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up"

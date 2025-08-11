@@ -225,7 +225,6 @@ export default function Navigation() {
                 >
                   Contact
                 </Link>
-
               </div>
             </div>
           </div>
