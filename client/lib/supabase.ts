@@ -171,7 +171,8 @@ const mockProjects: Project[] = [
   {
     id: "1",
     title: "GDGoC Website",
-    description: "Modern, responsive website for our community built with React and TypeScript",
+    description:
+      "Modern, responsive website for our community built with React and TypeScript",
     image: "https://via.placeholder.com/600x400",
     github_url: "https://github.com/gdgoc-iet-davv/website",
     live_url: "https://gdgoc-iet-davv.netlify.app",
@@ -623,10 +624,7 @@ export const createProject = async (
   }
 };
 
-export const updateProject = async (
-  id: string,
-  updates: Partial<Project>,
-) => {
+export const updateProject = async (id: string, updates: Partial<Project>) => {
   try {
     if (supabase) {
       const { data, error } = await supabase
@@ -642,8 +640,7 @@ export const updateProject = async (
       // Use local storage in development
       const projects = getFromStorage(STORAGE_KEYS.projects, mockProjects);
       const index = projects.findIndex((p) => p.id === id);
-      if (index === -1)
-        return { success: false, error: "Project not found" };
+      if (index === -1) return { success: false, error: "Project not found" };
 
       projects[index] = {
         ...projects[index],
@@ -662,10 +659,7 @@ export const updateProject = async (
 export const deleteProject = async (id: string) => {
   try {
     if (supabase) {
-      const { error } = await supabase
-        .from("projects")
-        .delete()
-        .eq("id", id);
+      const { error } = await supabase.from("projects").delete().eq("id", id);
 
       if (error) throw error;
       return { success: true };

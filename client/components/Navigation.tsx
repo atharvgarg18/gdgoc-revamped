@@ -104,7 +104,9 @@ export default function Navigation() {
               <Link
                 to="/projects"
                 className={`relative text-sm xl:text-base font-medium transition-all duration-300 hover:text-gdsc-blue ${
-                  isActiveRoute("/projects") ? "text-gdsc-blue" : "text-gray-700"
+                  isActiveRoute("/projects")
+                    ? "text-gdsc-blue"
+                    : "text-gray-700"
                 } group`}
               >
                 Projects

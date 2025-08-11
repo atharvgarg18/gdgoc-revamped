@@ -185,7 +185,8 @@ export default function ProjectsManager() {
                   <p className="text-gray-600 mb-3">{project.description}</p>
                   <div className="text-sm text-gray-500 space-y-1">
                     <p>
-                      <strong>Tech Stack:</strong> {project.tech_stack.join(", ")}
+                      <strong>Tech Stack:</strong>{" "}
+                      {project.tech_stack.join(", ")}
                     </p>
                     <p>
                       <strong>Team:</strong> {project.team_members.join(", ")}
