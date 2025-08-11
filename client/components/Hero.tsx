@@ -49,7 +49,7 @@ export default function Hero() {
           {/* Main Heading */}
           <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight">
             <span className="block">Google Developer</span>
-            <span className="block text-gdsc-blue">Student Clubs</span>
+            <span className="block text-gdsc-blue">Groups on Campus</span>
             <span className="block text-lg sm:text-xl lg:text-2xl font-normal mt-4 text-gray-600">
               IET DAVV, Indore
             </span>
