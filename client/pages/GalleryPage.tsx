@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { getGalleryItems, GalleryItem } from "@/lib/supabase";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 
 export default function GalleryPage() {
   const [galleryItems, setGalleryItems] = useState<GalleryItem[]>([]);
@@ -108,6 +109,12 @@ export default function GalleryPage() {
 
   return (
     <div className="min-h-screen">
+      <SEO
+        title="Gallery"
+        description="Browse through our photo gallery showcasing memorable moments from GDGoC IET DAVV events, workshops, competitions, and community gatherings."
+        keywords="GDGoC gallery, event photos, workshop images, tech events, community photos, IET DAVV events, programming competitions, meetup photos"
+      />
+
       <Navigation />
       <main className="pt-16">
         {/* Enhanced Hero Section */}
