@@ -37,5 +37,55 @@ export function createServer() {
 
   app.get("/api/demo", handleDemo);
 
+  // Public API routes (for frontend to fetch data)
+  app.get("/api/events", (_req, res) => {
+    try {
+      const events = getEvents();
+      res.json({ success: true, data: events });
+    } catch (error) {
+      res.status(500).json({ success: false, message: "Error fetching events" });
+    }
+  });
+
+  app.get("/api/team", (_req, res) => {
+    try {
+      const team = getTeamMembers();
+      res.json({ success: true, data: team });
+    } catch (error) {
+      res.status(500).json({ success: false, message: "Error fetching team" });
+    }
+  });
+
+  app.get("/api/gallery", (_req, res) => {
+    try {
+      const gallery = getGalleryItems();
+      res.json({ success: true, data: gallery });
+    } catch (error) {
+      res.status(500).json({ success: false, message: "Error fetching gallery" });
+    }
+  });
+
+  // Admin authentication
+  app.post("/api/admin/login", adminLogin);
+  app.post("/api/admin/logout", requireAuth, adminLogout);
+
+  // Admin events routes
+  app.get("/api/admin/events", requireAuth, getEventsAdmin);
+  app.post("/api/admin/events", requireAuth, createEvent);
+  app.put("/api/admin/events/:id", requireAuth, updateEventAdmin);
+  app.delete("/api/admin/events/:id", requireAuth, deleteEventAdmin);
+
+  // Admin team routes
+  app.get("/api/admin/team", requireAuth, getTeamAdmin);
+  app.post("/api/admin/team", requireAuth, createTeamMember);
+  app.put("/api/admin/team/:id", requireAuth, updateTeamMemberAdmin);
+  app.delete("/api/admin/team/:id", requireAuth, deleteTeamMemberAdmin);
+
+  // Admin gallery routes
+  app.get("/api/admin/gallery", requireAuth, getGalleryAdmin);
+  app.post("/api/admin/gallery", requireAuth, createGalleryItem);
+  app.put("/api/admin/gallery/:id", requireAuth, updateGalleryItemAdmin);
+  app.delete("/api/admin/gallery/:id", requireAuth, deleteGalleryItemAdmin);
+
   return app;
 }
