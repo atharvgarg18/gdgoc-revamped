@@ -97,6 +97,9 @@ export default function Navigation() {
               <Link to="/team" className="block px-3 py-2 text-gray-700 hover:text-gdsc-blue">
                 Team
               </Link>
+              <Link to="/gallery" className="block px-3 py-2 text-gray-700 hover:text-gdsc-blue">
+                Gallery
+              </Link>
               <Link to="/contact" className="block px-3 py-2 text-gray-700 hover:text-gdsc-blue">
                 Contact
               </Link>
