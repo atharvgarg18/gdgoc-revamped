@@ -11,6 +11,7 @@ import Team from "./pages/Team";
 import AboutPage from "./pages/AboutPage";
 import EventsPage from "./pages/EventsPage";
 import ContactPage from "./pages/ContactPage";
+import AdminPage from "./pages/AdminPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
