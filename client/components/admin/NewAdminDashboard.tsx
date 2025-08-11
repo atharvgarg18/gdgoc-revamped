@@ -7,10 +7,12 @@ interface NewAdminDashboardProps {
   onLogout: () => void;
 }
 
-type Section = 'events' | 'team' | 'gallery';
+type Section = "events" | "team" | "gallery";
 
-export default function NewAdminDashboard({ onLogout }: NewAdminDashboardProps) {
-  const [activeSection, setActiveSection] = useState<Section>('events');
+export default function NewAdminDashboard({
+  onLogout,
+}: NewAdminDashboardProps) {
+  const [activeSection, setActiveSection] = useState<Section>("events");
 
   const handleLogout = () => {
     localStorage.removeItem("gdgoc-admin-auth");
@@ -19,11 +21,11 @@ export default function NewAdminDashboard({ onLogout }: NewAdminDashboardProps) 
 
   const renderContent = () => {
     switch (activeSection) {
-      case 'events':
+      case "events":
         return <EventsManager />;
-      case 'team':
+      case "team":
         return <TeamManager />;
-      case 'gallery':
+      case "gallery":
         return <GalleryManager />;
       default:
         return <EventsManager />;
@@ -50,31 +52,31 @@ export default function NewAdminDashboard({ onLogout }: NewAdminDashboardProps) 
             {/* Navigation */}
             <nav className="flex space-x-1">
               <button
-                onClick={() => setActiveSection('events')}
+                onClick={() => setActiveSection("events")}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                  activeSection === 'events'
-                    ? 'bg-gdsc-blue text-white'
-                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
+                  activeSection === "events"
+                    ? "bg-gdsc-blue text-white"
+                    : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
                 }`}
               >
                 📅 Events
               </button>
               <button
-                onClick={() => setActiveSection('team')}
+                onClick={() => setActiveSection("team")}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                  activeSection === 'team'
-                    ? 'bg-gdsc-green text-white'
-                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
+                  activeSection === "team"
+                    ? "bg-gdsc-green text-white"
+                    : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
                 }`}
               >
                 👥 Team
               </button>
               <button
-                onClick={() => setActiveSection('gallery')}
+                onClick={() => setActiveSection("gallery")}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                  activeSection === 'gallery'
-                    ? 'bg-gdsc-yellow text-white'
-                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
+                  activeSection === "gallery"
+                    ? "bg-gdsc-yellow text-white"
+                    : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
                 }`}
               >
                 🖼️ Gallery

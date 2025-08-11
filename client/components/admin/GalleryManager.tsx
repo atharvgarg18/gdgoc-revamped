@@ -1,5 +1,11 @@
 import { useState, useEffect } from "react";
-import { getGalleryItems, createGalleryItem, updateGalleryItem, deleteGalleryItem, GalleryItem } from "@/lib/supabase";
+import {
+  getGalleryItems,
+  createGalleryItem,
+  updateGalleryItem,
+  deleteGalleryItem,
+  GalleryItem,
+} from "@/lib/supabase";
 
 export default function GalleryManager() {
   const [galleryItems, setGalleryItems] = useState<GalleryItem[]>([]);
@@ -89,7 +95,7 @@ export default function GalleryManager() {
       title: "",
       description: "",
       image: "",
-      date: new Date().toISOString().split('T')[0],
+      date: new Date().toISOString().split("T")[0],
       category: "workshop",
       display_order: galleryItems.length + 1,
     });
@@ -97,11 +103,16 @@ export default function GalleryManager() {
 
   const getCategoryColor = (category: string) => {
     switch (category) {
-      case 'workshop': return 'bg-gdsc-blue text-white';
-      case 'event': return 'bg-gdsc-red text-white';
-      case 'competition': return 'bg-gdsc-yellow text-white';
-      case 'community': return 'bg-gdsc-green text-white';
-      default: return 'bg-gray-500 text-white';
+      case "workshop":
+        return "bg-gdsc-blue text-white";
+      case "event":
+        return "bg-gdsc-red text-white";
+      case "competition":
+        return "bg-gdsc-yellow text-white";
+      case "community":
+        return "bg-gdsc-green text-white";
+      default:
+        return "bg-gray-500 text-white";
     }
   };
 
@@ -110,9 +121,18 @@ export default function GalleryManager() {
       <div className="flex justify-center items-center h-64">
         <div className="flex space-x-2">
           <div className="w-3 h-3 bg-gdsc-blue rounded-full animate-pulse"></div>
-          <div className="w-3 h-3 bg-gdsc-red rounded-full animate-pulse" style={{ animationDelay: "0.1s" }}></div>
-          <div className="w-3 h-3 bg-gdsc-yellow rounded-full animate-pulse" style={{ animationDelay: "0.2s" }}></div>
-          <div className="w-3 h-3 bg-gdsc-green rounded-full animate-pulse" style={{ animationDelay: "0.3s" }}></div>
+          <div
+            className="w-3 h-3 bg-gdsc-red rounded-full animate-pulse"
+            style={{ animationDelay: "0.1s" }}
+          ></div>
+          <div
+            className="w-3 h-3 bg-gdsc-yellow rounded-full animate-pulse"
+            style={{ animationDelay: "0.2s" }}
+          ></div>
+          <div
+            className="w-3 h-3 bg-gdsc-green rounded-full animate-pulse"
+            style={{ animationDelay: "0.3s" }}
+          ></div>
         </div>
       </div>
     );
@@ -133,33 +153,45 @@ export default function GalleryManager() {
       {/* Gallery Items Grid */}
       <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {galleryItems.map((item) => (
-          <div key={item.id} className="bg-white rounded-lg shadow hover:shadow-lg transition-shadow">
+          <div
+            key={item.id}
+            className="bg-white rounded-lg shadow hover:shadow-lg transition-shadow"
+          >
             <div className="aspect-video overflow-hidden rounded-t-lg">
-              <img 
-                src={item.image} 
+              <img
+                src={item.image}
                 alt={item.title}
                 className="w-full h-full object-cover"
                 onError={(e) => {
-                  e.currentTarget.src = 'https://via.placeholder.com/400x300?text=No+Image';
+                  e.currentTarget.src =
+                    "https://via.placeholder.com/400x300?text=No+Image";
                 }}
               />
             </div>
             <div className="p-4">
               <div className="flex justify-between items-start mb-2">
-                <h3 className="font-semibold text-gray-900 text-sm line-clamp-1">{item.title}</h3>
-                <span className={`text-xs px-2 py-1 rounded-full ${getCategoryColor(item.category)}`}>
+                <h3 className="font-semibold text-gray-900 text-sm line-clamp-1">
+                  {item.title}
+                </h3>
+                <span
+                  className={`text-xs px-2 py-1 rounded-full ${getCategoryColor(item.category)}`}
+                >
                   {item.category}
                 </span>
               </div>
-              
-              <p className="text-gray-600 text-xs line-clamp-2 mb-3">{item.description}</p>
-              
+
+              <p className="text-gray-600 text-xs line-clamp-2 mb-3">
+                {item.description}
+              </p>
+
               <div className="flex justify-between items-center">
                 <div>
                   <div className="text-xs text-gray-500">
                     {new Date(item.date).toLocaleDateString()}
                   </div>
-                  <div className="text-xs text-gray-500">Order: {item.display_order}</div>
+                  <div className="text-xs text-gray-500">
+                    Order: {item.display_order}
+                  </div>
                 </div>
                 <div className="space-x-2">
                   <button
@@ -179,10 +211,12 @@ export default function GalleryManager() {
             </div>
           </div>
         ))}
-        
+
         {galleryItems.length === 0 && (
           <div className="col-span-full text-center py-12">
-            <p className="text-gray-500">No gallery items found. Add your first gallery item!</p>
+            <p className="text-gray-500">
+              No gallery items found. Add your first gallery item!
+            </p>
           </div>
         )}
       </div>
@@ -215,7 +249,9 @@ export default function GalleryManager() {
                     placeholder="Gallery item title"
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gdsc-yellow"
                     value={formData.title}
-                    onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, title: e.target.value })
+                    }
                   />
                 </div>
 
@@ -229,7 +265,9 @@ export default function GalleryManager() {
                     placeholder="Brief description of the gallery item"
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gdsc-yellow"
                     value={formData.description}
-                    onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, description: e.target.value })
+                    }
                   />
                 </div>
 
@@ -243,7 +281,9 @@ export default function GalleryManager() {
                     placeholder="https://example.com/image.jpg"
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gdsc-yellow"
                     value={formData.image}
-                    onChange={(e) => setFormData({ ...formData, image: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, image: e.target.value })
+                    }
                   />
                 </div>
 
@@ -257,7 +297,9 @@ export default function GalleryManager() {
                       required
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gdsc-yellow"
                       value={formData.date}
-                      onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, date: e.target.value })
+                      }
                     />
                   </div>
                   <div>
@@ -268,7 +310,12 @@ export default function GalleryManager() {
                       required
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gdsc-yellow"
                       value={formData.category}
-                      onChange={(e) => setFormData({ ...formData, category: e.target.value as any })}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          category: e.target.value as any,
+                        })
+                      }
                     >
                       <option value="workshop">Workshop</option>
                       <option value="event">Event</option>
@@ -287,9 +334,16 @@ export default function GalleryManager() {
                     min="1"
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gdsc-yellow"
                     value={formData.display_order}
-                    onChange={(e) => setFormData({ ...formData, display_order: parseInt(e.target.value) || 1 })}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        display_order: parseInt(e.target.value) || 1,
+                      })
+                    }
                   />
-                  <p className="text-xs text-gray-500 mt-1">Higher numbers appear first</p>
+                  <p className="text-xs text-gray-500 mt-1">
+                    Higher numbers appear first
+                  </p>
                 </div>
 
                 <div className="flex justify-end space-x-3 pt-4">
@@ -305,7 +359,11 @@ export default function GalleryManager() {
                     disabled={isSubmitting}
                     className="px-4 py-2 text-sm font-medium text-white bg-gdsc-yellow rounded-lg hover:bg-yellow-600 disabled:opacity-50"
                   >
-                    {isSubmitting ? "Saving..." : editingItem ? "Update Item" : "Add Item"}
+                    {isSubmitting
+                      ? "Saving..."
+                      : editingItem
+                        ? "Update Item"
+                        : "Add Item"}
                   </button>
                 </div>
               </form>

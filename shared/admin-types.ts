@@ -5,7 +5,7 @@ export interface Event {
   time: string;
   type: string;
   description: string;
-  color: 'gdsc-blue' | 'gdsc-red' | 'gdsc-yellow' | 'gdsc-green';
+  color: "gdsc-blue" | "gdsc-red" | "gdsc-yellow" | "gdsc-green";
   attendees: number;
   image?: string;
   registrationLink?: string;
@@ -32,7 +32,7 @@ export interface GalleryItem {
   description: string;
   image: string;
   date: string;
-  category: 'workshop' | 'event' | 'competition' | 'community';
+  category: "workshop" | "event" | "competition" | "community";
   order: number;
 }
 

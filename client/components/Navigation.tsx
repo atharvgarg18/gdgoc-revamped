@@ -14,9 +14,11 @@ export default function Navigation() {
   }, []);
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-      isScrolled ? "bg-white/90 backdrop-blur-md shadow-lg" : "bg-transparent"
-    }`}>
+    <nav
+      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+        isScrolled ? "bg-white/90 backdrop-blur-md shadow-lg" : "bg-transparent"
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
@@ -34,22 +36,40 @@ export default function Navigation() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <Link to="/" className="text-gray-700 hover:text-gdsc-blue transition-colors">
+            <Link
+              to="/"
+              className="text-gray-700 hover:text-gdsc-blue transition-colors"
+            >
               Home
             </Link>
-            <Link to="/about" className="text-gray-700 hover:text-gdsc-blue transition-colors">
+            <Link
+              to="/about"
+              className="text-gray-700 hover:text-gdsc-blue transition-colors"
+            >
               About
             </Link>
-            <Link to="/events" className="text-gray-700 hover:text-gdsc-blue transition-colors">
+            <Link
+              to="/events"
+              className="text-gray-700 hover:text-gdsc-blue transition-colors"
+            >
               Events
             </Link>
-            <Link to="/team" className="text-gray-700 hover:text-gdsc-blue transition-colors">
+            <Link
+              to="/team"
+              className="text-gray-700 hover:text-gdsc-blue transition-colors"
+            >
               Team
             </Link>
-            <Link to="/gallery" className="text-gray-700 hover:text-gdsc-blue transition-colors">
+            <Link
+              to="/gallery"
+              className="text-gray-700 hover:text-gdsc-blue transition-colors"
+            >
               Gallery
             </Link>
-            <Link to="/contact" className="text-gray-700 hover:text-gdsc-blue transition-colors">
+            <Link
+              to="/contact"
+              className="text-gray-700 hover:text-gdsc-blue transition-colors"
+            >
               Contact
             </Link>
             <a
@@ -68,15 +88,21 @@ export default function Navigation() {
             className="md:hidden p-2"
           >
             <div className="w-6 h-6 relative">
-              <span className={`absolute block h-0.5 w-6 bg-gray-800 transform transition-all duration-300 ${
-                isMobileMenuOpen ? "rotate-45 top-2.5" : "top-1"
-              }`} />
-              <span className={`absolute block h-0.5 w-6 bg-gray-800 transition-all duration-300 ${
-                isMobileMenuOpen ? "opacity-0" : "top-2.5"
-              }`} />
-              <span className={`absolute block h-0.5 w-6 bg-gray-800 transform transition-all duration-300 ${
-                isMobileMenuOpen ? "-rotate-45 top-2.5" : "top-4"
-              }`} />
+              <span
+                className={`absolute block h-0.5 w-6 bg-gray-800 transform transition-all duration-300 ${
+                  isMobileMenuOpen ? "rotate-45 top-2.5" : "top-1"
+                }`}
+              />
+              <span
+                className={`absolute block h-0.5 w-6 bg-gray-800 transition-all duration-300 ${
+                  isMobileMenuOpen ? "opacity-0" : "top-2.5"
+                }`}
+              />
+              <span
+                className={`absolute block h-0.5 w-6 bg-gray-800 transform transition-all duration-300 ${
+                  isMobileMenuOpen ? "-rotate-45 top-2.5" : "top-4"
+                }`}
+              />
             </div>
           </button>
         </div>
@@ -85,22 +111,40 @@ export default function Navigation() {
         {isMobileMenuOpen && (
           <div className="md:hidden bg-white border-t border-gray-200">
             <div className="px-2 pt-2 pb-3 space-y-1">
-              <Link to="/" className="block px-3 py-2 text-gray-700 hover:text-gdsc-blue">
+              <Link
+                to="/"
+                className="block px-3 py-2 text-gray-700 hover:text-gdsc-blue"
+              >
                 Home
               </Link>
-              <Link to="/about" className="block px-3 py-2 text-gray-700 hover:text-gdsc-blue">
+              <Link
+                to="/about"
+                className="block px-3 py-2 text-gray-700 hover:text-gdsc-blue"
+              >
                 About
               </Link>
-              <Link to="/events" className="block px-3 py-2 text-gray-700 hover:text-gdsc-blue">
+              <Link
+                to="/events"
+                className="block px-3 py-2 text-gray-700 hover:text-gdsc-blue"
+              >
                 Events
               </Link>
-              <Link to="/team" className="block px-3 py-2 text-gray-700 hover:text-gdsc-blue">
+              <Link
+                to="/team"
+                className="block px-3 py-2 text-gray-700 hover:text-gdsc-blue"
+              >
                 Team
               </Link>
-              <Link to="/gallery" className="block px-3 py-2 text-gray-700 hover:text-gdsc-blue">
+              <Link
+                to="/gallery"
+                className="block px-3 py-2 text-gray-700 hover:text-gdsc-blue"
+              >
                 Gallery
               </Link>
-              <Link to="/contact" className="block px-3 py-2 text-gray-700 hover:text-gdsc-blue">
+              <Link
+                to="/contact"
+                className="block px-3 py-2 text-gray-700 hover:text-gdsc-blue"
+              >
                 Contact
               </Link>
               <a

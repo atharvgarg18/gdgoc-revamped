@@ -17,7 +17,7 @@ export default function NewAdminLogin({ onLogin }: NewAdminLoginProps) {
 
     try {
       const isValid = checkAdminPassword(password);
-      
+
       if (isValid) {
         localStorage.setItem("gdgoc-admin-auth", "authenticated");
         onLogin(true);
@@ -50,11 +50,14 @@ export default function NewAdminLogin({ onLogin }: NewAdminLoginProps) {
             Enter your admin password to continue
           </p>
         </div>
-        
+
         <div className="bg-white rounded-xl shadow-lg p-8">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium text-gray-700 mb-2"
+              >
                 Admin Password
               </label>
               <input
@@ -84,7 +87,7 @@ export default function NewAdminLogin({ onLogin }: NewAdminLoginProps) {
               {isLoading ? "Signing in..." : "Sign in"}
             </button>
           </form>
-          
+
           <div className="mt-6 text-center">
             <p className="text-xs text-gray-500">
               Default password: gdgoc2024admin

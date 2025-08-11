@@ -43,7 +43,9 @@ export function createServer() {
       const events = getEvents();
       res.json({ success: true, data: events });
     } catch (error) {
-      res.status(500).json({ success: false, message: "Error fetching events" });
+      res
+        .status(500)
+        .json({ success: false, message: "Error fetching events" });
     }
   });
 
@@ -61,7 +63,9 @@ export function createServer() {
       const gallery = getGalleryItems();
       res.json({ success: true, data: gallery });
     } catch (error) {
-      res.status(500).json({ success: false, message: "Error fetching gallery" });
+      res
+        .status(500)
+        .json({ success: false, message: "Error fetching gallery" });
     }
   });
 

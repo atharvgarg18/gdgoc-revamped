@@ -1,5 +1,11 @@
 import { useState, useEffect } from "react";
-import { getEvents, createEvent, updateEvent, deleteEvent, Event } from "@/lib/supabase";
+import {
+  getEvents,
+  createEvent,
+  updateEvent,
+  deleteEvent,
+  Event,
+} from "@/lib/supabase";
 
 export default function EventsManager() {
   const [events, setEvents] = useState<Event[]>([]);
@@ -109,9 +115,18 @@ export default function EventsManager() {
       <div className="flex justify-center items-center h-64">
         <div className="flex space-x-2">
           <div className="w-3 h-3 bg-gdsc-blue rounded-full animate-pulse"></div>
-          <div className="w-3 h-3 bg-gdsc-red rounded-full animate-pulse" style={{ animationDelay: "0.1s" }}></div>
-          <div className="w-3 h-3 bg-gdsc-yellow rounded-full animate-pulse" style={{ animationDelay: "0.2s" }}></div>
-          <div className="w-3 h-3 bg-gdsc-green rounded-full animate-pulse" style={{ animationDelay: "0.3s" }}></div>
+          <div
+            className="w-3 h-3 bg-gdsc-red rounded-full animate-pulse"
+            style={{ animationDelay: "0.1s" }}
+          ></div>
+          <div
+            className="w-3 h-3 bg-gdsc-yellow rounded-full animate-pulse"
+            style={{ animationDelay: "0.2s" }}
+          ></div>
+          <div
+            className="w-3 h-3 bg-gdsc-green rounded-full animate-pulse"
+            style={{ animationDelay: "0.3s" }}
+          ></div>
         </div>
       </div>
     );
@@ -162,8 +177,12 @@ export default function EventsManager() {
                   <tr key={event.id} className="hover:bg-gray-50">
                     <td className="px-6 py-4">
                       <div>
-                        <div className="text-sm font-medium text-gray-900">{event.title}</div>
-                        <div className="text-sm text-gray-500 max-w-xs truncate">{event.description}</div>
+                        <div className="text-sm font-medium text-gray-900">
+                          {event.title}
+                        </div>
+                        <div className="text-sm text-gray-500 max-w-xs truncate">
+                          {event.description}
+                        </div>
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
@@ -171,12 +190,17 @@ export default function EventsManager() {
                       <div className="text-gray-500">{event.time}</div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
-                        event.color === "gdsc-blue" ? "bg-blue-100 text-blue-800" :
-                        event.color === "gdsc-red" ? "bg-red-100 text-red-800" :
-                        event.color === "gdsc-yellow" ? "bg-yellow-100 text-yellow-800" :
-                        "bg-green-100 text-green-800"
-                      }`}>
+                      <span
+                        className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
+                          event.color === "gdsc-blue"
+                            ? "bg-blue-100 text-blue-800"
+                            : event.color === "gdsc-red"
+                              ? "bg-red-100 text-red-800"
+                              : event.color === "gdsc-yellow"
+                                ? "bg-yellow-100 text-yellow-800"
+                                : "bg-green-100 text-green-800"
+                        }`}
+                      >
                         {event.type}
                       </span>
                     </td>
@@ -232,7 +256,9 @@ export default function EventsManager() {
                     required
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gdsc-blue"
                     value={formData.title}
-                    onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, title: e.target.value })
+                    }
                   />
                 </div>
 
@@ -247,7 +273,9 @@ export default function EventsManager() {
                       placeholder="Dec 15, 2024"
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gdsc-blue"
                       value={formData.date}
-                      onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, date: e.target.value })
+                      }
                     />
                   </div>
                   <div>
@@ -260,7 +288,9 @@ export default function EventsManager() {
                       placeholder="2:00 PM - 5:00 PM"
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gdsc-blue"
                       value={formData.time}
-                      onChange={(e) => setFormData({ ...formData, time: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, time: e.target.value })
+                      }
                     />
                   </div>
                 </div>
@@ -276,7 +306,9 @@ export default function EventsManager() {
                       placeholder="Workshop, Seminar, etc."
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gdsc-blue"
                       value={formData.type}
-                      onChange={(e) => setFormData({ ...formData, type: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, type: e.target.value })
+                      }
                     />
                   </div>
                   <div>
@@ -286,7 +318,12 @@ export default function EventsManager() {
                     <select
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gdsc-blue"
                       value={formData.color}
-                      onChange={(e) => setFormData({ ...formData, color: e.target.value as any })}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          color: e.target.value as any,
+                        })
+                      }
                     >
                       <option value="gdsc-blue">Blue</option>
                       <option value="gdsc-red">Red</option>
@@ -305,7 +342,9 @@ export default function EventsManager() {
                     rows={3}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gdsc-blue"
                     value={formData.description}
-                    onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, description: e.target.value })
+                    }
                   />
                 </div>
 
@@ -318,7 +357,12 @@ export default function EventsManager() {
                     min="0"
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gdsc-blue"
                     value={formData.attendees}
-                    onChange={(e) => setFormData({ ...formData, attendees: parseInt(e.target.value) || 0 })}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        attendees: parseInt(e.target.value) || 0,
+                      })
+                    }
                   />
                 </div>
 
@@ -330,7 +374,9 @@ export default function EventsManager() {
                     type="url"
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gdsc-blue"
                     value={formData.image}
-                    onChange={(e) => setFormData({ ...formData, image: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, image: e.target.value })
+                    }
                   />
                 </div>
 
@@ -342,7 +388,12 @@ export default function EventsManager() {
                     type="url"
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gdsc-blue"
                     value={formData.registration_link}
-                    onChange={(e) => setFormData({ ...formData, registration_link: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        registration_link: e.target.value,
+                      })
+                    }
                   />
                 </div>
 
@@ -359,7 +410,11 @@ export default function EventsManager() {
                     disabled={isSubmitting}
                     className="px-4 py-2 text-sm font-medium text-white bg-gdsc-blue rounded-lg hover:bg-blue-600 disabled:opacity-50"
                   >
-                    {isSubmitting ? "Saving..." : editingEvent ? "Update Event" : "Create Event"}
+                    {isSubmitting
+                      ? "Saving..."
+                      : editingEvent
+                        ? "Update Event"
+                        : "Create Event"}
                   </button>
                 </div>
               </form>

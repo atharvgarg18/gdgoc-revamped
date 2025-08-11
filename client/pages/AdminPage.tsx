@@ -28,9 +28,18 @@ export default function AdminPage() {
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="flex space-x-2">
           <div className="w-4 h-4 bg-gdsc-blue rounded-full animate-pulse"></div>
-          <div className="w-4 h-4 bg-gdsc-red rounded-full animate-pulse" style={{ animationDelay: "0.2s" }}></div>
-          <div className="w-4 h-4 bg-gdsc-yellow rounded-full animate-pulse" style={{ animationDelay: "0.4s" }}></div>
-          <div className="w-4 h-4 bg-gdsc-green rounded-full animate-pulse" style={{ animationDelay: "0.6s" }}></div>
+          <div
+            className="w-4 h-4 bg-gdsc-red rounded-full animate-pulse"
+            style={{ animationDelay: "0.2s" }}
+          ></div>
+          <div
+            className="w-4 h-4 bg-gdsc-yellow rounded-full animate-pulse"
+            style={{ animationDelay: "0.4s" }}
+          ></div>
+          <div
+            className="w-4 h-4 bg-gdsc-green rounded-full animate-pulse"
+            style={{ animationDelay: "0.6s" }}
+          ></div>
         </div>
       </div>
     );

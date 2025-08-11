@@ -19,9 +19,11 @@ export default function Index() {
     <div className="min-h-screen">
       {/* Loader */}
       {showLoader && <Loader onComplete={handleLoaderComplete} />}
-      
+
       {/* Main Content */}
-      <div className={`transition-opacity duration-500 ${showContent ? "opacity-100" : "opacity-0"}`}>
+      <div
+        className={`transition-opacity duration-500 ${showContent ? "opacity-100" : "opacity-0"}`}
+      >
         <Navigation />
         <main>
           <Hero />

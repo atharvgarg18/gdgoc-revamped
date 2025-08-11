@@ -42,14 +42,14 @@ export default function GalleryAdmin({ token }: GalleryAdminProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     try {
-      const url = editingItem 
+      const url = editingItem
         ? `/api/admin/gallery/${editingItem.id}`
         : "/api/admin/gallery";
-      
+
       const method = editingItem ? "PUT" : "POST";
-      
+
       const response = await fetch(url, {
         method,
         headers: {
@@ -106,7 +106,7 @@ export default function GalleryAdmin({ token }: GalleryAdminProps) {
       title: "",
       description: "",
       image: "",
-      date: new Date().toISOString().split('T')[0],
+      date: new Date().toISOString().split("T")[0],
       category: "workshop",
       order: galleryItems.length + 1,
     });
@@ -114,11 +114,16 @@ export default function GalleryAdmin({ token }: GalleryAdminProps) {
 
   const getCategoryColor = (category: string) => {
     switch (category) {
-      case 'workshop': return 'bg-gdsc-blue text-white';
-      case 'event': return 'bg-gdsc-red text-white';
-      case 'competition': return 'bg-gdsc-yellow text-white';
-      case 'community': return 'bg-gdsc-green text-white';
-      default: return 'bg-gray-500 text-white';
+      case "workshop":
+        return "bg-gdsc-blue text-white";
+      case "event":
+        return "bg-gdsc-red text-white";
+      case "competition":
+        return "bg-gdsc-yellow text-white";
+      case "community":
+        return "bg-gdsc-green text-white";
+      default:
+        return "bg-gray-500 text-white";
     }
   };
 
@@ -145,28 +150,39 @@ export default function GalleryAdmin({ token }: GalleryAdminProps) {
       {/* Gallery Items Grid */}
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {galleryItems.map((item) => (
-          <div key={item.id} className="bg-white rounded-lg shadow overflow-hidden">
+          <div
+            key={item.id}
+            className="bg-white rounded-lg shadow overflow-hidden"
+          >
             <div className="aspect-video overflow-hidden">
-              <img 
-                src={item.image} 
+              <img
+                src={item.image}
                 alt={item.title}
                 className="w-full h-full object-cover"
               />
             </div>
             <div className="p-4">
               <div className="flex justify-between items-start mb-2">
-                <h3 className="text-lg font-semibold text-gray-900 line-clamp-1">{item.title}</h3>
-                <span className={`text-xs px-2 py-1 rounded-full ${getCategoryColor(item.category)}`}>
+                <h3 className="text-lg font-semibold text-gray-900 line-clamp-1">
+                  {item.title}
+                </h3>
+                <span
+                  className={`text-xs px-2 py-1 rounded-full ${getCategoryColor(item.category)}`}
+                >
                   {item.category}
                 </span>
               </div>
-              
-              <p className="text-sm text-gray-600 mb-3 line-clamp-2">{item.description}</p>
-              
+
+              <p className="text-sm text-gray-600 mb-3 line-clamp-2">
+                {item.description}
+              </p>
+
               <div className="flex justify-between items-center">
                 <div>
                   <div className="text-xs text-gray-500">{item.date}</div>
-                  <div className="text-xs text-gray-500">Order: {item.order}</div>
+                  <div className="text-xs text-gray-500">
+                    Order: {item.order}
+                  </div>
                 </div>
                 <div className="space-x-2">
                   <button
@@ -216,7 +232,9 @@ export default function GalleryAdmin({ token }: GalleryAdminProps) {
                     placeholder="Gallery item title"
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-gdsc-yellow focus:border-gdsc-yellow"
                     value={formData.title}
-                    onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, title: e.target.value })
+                    }
                   />
                 </div>
 
@@ -230,7 +248,9 @@ export default function GalleryAdmin({ token }: GalleryAdminProps) {
                     placeholder="Brief description of the gallery item"
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-gdsc-yellow focus:border-gdsc-yellow"
                     value={formData.description}
-                    onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, description: e.target.value })
+                    }
                   />
                 </div>
 
@@ -244,7 +264,9 @@ export default function GalleryAdmin({ token }: GalleryAdminProps) {
                     placeholder="https://example.com/image.jpg"
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-gdsc-yellow focus:border-gdsc-yellow"
                     value={formData.image}
-                    onChange={(e) => setFormData({ ...formData, image: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, image: e.target.value })
+                    }
                   />
                 </div>
 
@@ -258,7 +280,9 @@ export default function GalleryAdmin({ token }: GalleryAdminProps) {
                       required
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-gdsc-yellow focus:border-gdsc-yellow"
                       value={formData.date}
-                      onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, date: e.target.value })
+                      }
                     />
                   </div>
                   <div>
@@ -269,7 +293,12 @@ export default function GalleryAdmin({ token }: GalleryAdminProps) {
                       required
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-gdsc-yellow focus:border-gdsc-yellow"
                       value={formData.category}
-                      onChange={(e) => setFormData({ ...formData, category: e.target.value as any })}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          category: e.target.value as any,
+                        })
+                      }
                     >
                       <option value="workshop">Workshop</option>
                       <option value="event">Event</option>
@@ -288,9 +317,16 @@ export default function GalleryAdmin({ token }: GalleryAdminProps) {
                     min="1"
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-gdsc-yellow focus:border-gdsc-yellow"
                     value={formData.order}
-                    onChange={(e) => setFormData({ ...formData, order: parseInt(e.target.value) || 1 })}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        order: parseInt(e.target.value) || 1,
+                      })
+                    }
                   />
-                  <p className="text-xs text-gray-500 mt-1">Higher numbers appear first</p>
+                  <p className="text-xs text-gray-500 mt-1">
+                    Higher numbers appear first
+                  </p>
                 </div>
 
                 <div className="flex justify-end space-x-3 pt-4">

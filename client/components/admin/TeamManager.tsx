@@ -1,5 +1,11 @@
 import { useState, useEffect } from "react";
-import { getTeamMembers, createTeamMember, updateTeamMember, deleteTeamMember, TeamMember } from "@/lib/supabase";
+import {
+  getTeamMembers,
+  createTeamMember,
+  updateTeamMember,
+  deleteTeamMember,
+  TeamMember,
+} from "@/lib/supabase";
 
 export default function TeamManager() {
   const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
@@ -109,9 +115,18 @@ export default function TeamManager() {
       <div className="flex justify-center items-center h-64">
         <div className="flex space-x-2">
           <div className="w-3 h-3 bg-gdsc-blue rounded-full animate-pulse"></div>
-          <div className="w-3 h-3 bg-gdsc-red rounded-full animate-pulse" style={{ animationDelay: "0.1s" }}></div>
-          <div className="w-3 h-3 bg-gdsc-yellow rounded-full animate-pulse" style={{ animationDelay: "0.2s" }}></div>
-          <div className="w-3 h-3 bg-gdsc-green rounded-full animate-pulse" style={{ animationDelay: "0.3s" }}></div>
+          <div
+            className="w-3 h-3 bg-gdsc-red rounded-full animate-pulse"
+            style={{ animationDelay: "0.1s" }}
+          ></div>
+          <div
+            className="w-3 h-3 bg-gdsc-yellow rounded-full animate-pulse"
+            style={{ animationDelay: "0.2s" }}
+          ></div>
+          <div
+            className="w-3 h-3 bg-gdsc-green rounded-full animate-pulse"
+            style={{ animationDelay: "0.3s" }}
+          ></div>
         </div>
       </div>
     );
@@ -132,40 +147,60 @@ export default function TeamManager() {
       {/* Team Members Grid */}
       <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {teamMembers.map((member) => (
-          <div key={member.id} className="bg-white rounded-lg shadow hover:shadow-lg transition-shadow">
+          <div
+            key={member.id}
+            className="bg-white rounded-lg shadow hover:shadow-lg transition-shadow"
+          >
             <div className="aspect-square overflow-hidden rounded-t-lg">
-              <img 
-                src={member.image} 
+              <img
+                src={member.image}
                 alt={member.name}
                 className="w-full h-full object-cover"
                 onError={(e) => {
-                  e.currentTarget.src = 'https://via.placeholder.com/300x300?text=No+Image';
+                  e.currentTarget.src =
+                    "https://via.placeholder.com/300x300?text=No+Image";
                 }}
               />
             </div>
             <div className="p-4">
-              <h3 className="font-semibold text-gray-900 mb-1">{member.name}</h3>
-              <p className="text-gdsc-green font-medium text-sm mb-2">{member.role}</p>
-              <p className="text-gray-600 text-xs line-clamp-2 mb-3">{member.bio}</p>
-              
+              <h3 className="font-semibold text-gray-900 mb-1">
+                {member.name}
+              </h3>
+              <p className="text-gdsc-green font-medium text-sm mb-2">
+                {member.role}
+              </p>
+              <p className="text-gray-600 text-xs line-clamp-2 mb-3">
+                {member.bio}
+              </p>
+
               {/* Social Links */}
               <div className="flex space-x-2 mb-3">
                 {member.linkedin && (
-                  <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">LinkedIn</span>
+                  <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">
+                    LinkedIn
+                  </span>
                 )}
                 {member.github && (
-                  <span className="text-xs bg-gray-100 text-gray-800 px-2 py-1 rounded">GitHub</span>
+                  <span className="text-xs bg-gray-100 text-gray-800 px-2 py-1 rounded">
+                    GitHub
+                  </span>
                 )}
                 {member.twitter && (
-                  <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">Twitter</span>
+                  <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">
+                    Twitter
+                  </span>
                 )}
                 {member.instagram && (
-                  <span className="text-xs bg-pink-100 text-pink-800 px-2 py-1 rounded">Instagram</span>
+                  <span className="text-xs bg-pink-100 text-pink-800 px-2 py-1 rounded">
+                    Instagram
+                  </span>
                 )}
               </div>
-              
+
               <div className="flex justify-between items-center">
-                <span className="text-xs text-gray-500">Order: {member.display_order}</span>
+                <span className="text-xs text-gray-500">
+                  Order: {member.display_order}
+                </span>
                 <div className="space-x-2">
                   <button
                     onClick={() => handleEdit(member)}
@@ -184,10 +219,12 @@ export default function TeamManager() {
             </div>
           </div>
         ))}
-        
+
         {teamMembers.length === 0 && (
           <div className="col-span-full text-center py-12">
-            <p className="text-gray-500">No team members found. Add your first team member!</p>
+            <p className="text-gray-500">
+              No team members found. Add your first team member!
+            </p>
           </div>
         )}
       </div>
@@ -220,7 +257,9 @@ export default function TeamManager() {
                       required
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gdsc-green"
                       value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, name: e.target.value })
+                      }
                     />
                   </div>
                   <div>
@@ -233,7 +272,9 @@ export default function TeamManager() {
                       placeholder="Lead, Technical Lead, etc."
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gdsc-green"
                       value={formData.role}
-                      onChange={(e) => setFormData({ ...formData, role: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, role: e.target.value })
+                      }
                     />
                   </div>
                 </div>
@@ -248,7 +289,9 @@ export default function TeamManager() {
                     placeholder="https://example.com/image.jpg"
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gdsc-green"
                     value={formData.image}
-                    onChange={(e) => setFormData({ ...formData, image: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, image: e.target.value })
+                    }
                   />
                 </div>
 
@@ -262,7 +305,9 @@ export default function TeamManager() {
                     placeholder="Brief description about the team member"
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gdsc-green"
                     value={formData.bio}
-                    onChange={(e) => setFormData({ ...formData, bio: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, bio: e.target.value })
+                    }
                   />
                 </div>
 
@@ -275,52 +320,78 @@ export default function TeamManager() {
                     min="1"
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gdsc-green"
                     value={formData.display_order}
-                    onChange={(e) => setFormData({ ...formData, display_order: parseInt(e.target.value) || 1 })}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        display_order: parseInt(e.target.value) || 1,
+                      })
+                    }
                   />
                 </div>
 
                 <div className="space-y-3">
-                  <h4 className="text-sm font-medium text-gray-700">Social Links (Optional)</h4>
-                  
+                  <h4 className="text-sm font-medium text-gray-700">
+                    Social Links (Optional)
+                  </h4>
+
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs text-gray-600 mb-1">LinkedIn URL</label>
+                      <label className="block text-xs text-gray-600 mb-1">
+                        LinkedIn URL
+                      </label>
                       <input
                         type="url"
                         placeholder="https://linkedin.com/in/username"
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gdsc-green"
                         value={formData.linkedin}
-                        onChange={(e) => setFormData({ ...formData, linkedin: e.target.value })}
+                        onChange={(e) =>
+                          setFormData({ ...formData, linkedin: e.target.value })
+                        }
                       />
                     </div>
                     <div>
-                      <label className="block text-xs text-gray-600 mb-1">GitHub URL</label>
+                      <label className="block text-xs text-gray-600 mb-1">
+                        GitHub URL
+                      </label>
                       <input
                         type="url"
                         placeholder="https://github.com/username"
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gdsc-green"
                         value={formData.github}
-                        onChange={(e) => setFormData({ ...formData, github: e.target.value })}
+                        onChange={(e) =>
+                          setFormData({ ...formData, github: e.target.value })
+                        }
                       />
                     </div>
                     <div>
-                      <label className="block text-xs text-gray-600 mb-1">Twitter URL</label>
+                      <label className="block text-xs text-gray-600 mb-1">
+                        Twitter URL
+                      </label>
                       <input
                         type="url"
                         placeholder="https://twitter.com/username"
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gdsc-green"
                         value={formData.twitter}
-                        onChange={(e) => setFormData({ ...formData, twitter: e.target.value })}
+                        onChange={(e) =>
+                          setFormData({ ...formData, twitter: e.target.value })
+                        }
                       />
                     </div>
                     <div>
-                      <label className="block text-xs text-gray-600 mb-1">Instagram URL</label>
+                      <label className="block text-xs text-gray-600 mb-1">
+                        Instagram URL
+                      </label>
                       <input
                         type="url"
                         placeholder="https://instagram.com/username"
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gdsc-green"
                         value={formData.instagram}
-                        onChange={(e) => setFormData({ ...formData, instagram: e.target.value })}
+                        onChange={(e) =>
+                          setFormData({
+                            ...formData,
+                            instagram: e.target.value,
+                          })
+                        }
                       />
                     </div>
                   </div>
@@ -339,7 +410,11 @@ export default function TeamManager() {
                     disabled={isSubmitting}
                     className="px-4 py-2 text-sm font-medium text-white bg-gdsc-green rounded-lg hover:bg-green-600 disabled:opacity-50"
                   >
-                    {isSubmitting ? "Saving..." : editingMember ? "Update Member" : "Add Member"}
+                    {isSubmitting
+                      ? "Saving..."
+                      : editingMember
+                        ? "Update Member"
+                        : "Add Member"}
                   </button>
                 </div>
               </form>

@@ -9,18 +9,21 @@ interface AdminDashboardProps {
   onLogout: () => void;
 }
 
-type AdminSection = 'events' | 'team' | 'gallery';
+type AdminSection = "events" | "team" | "gallery";
 
-export default function AdminDashboard({ token, onLogout }: AdminDashboardProps) {
-  const [activeSection, setActiveSection] = useState<AdminSection>('events');
+export default function AdminDashboard({
+  token,
+  onLogout,
+}: AdminDashboardProps) {
+  const [activeSection, setActiveSection] = useState<AdminSection>("events");
 
   const renderContent = () => {
     switch (activeSection) {
-      case 'events':
+      case "events":
         return <EventsAdmin token={token} onLogout={onLogout} />;
-      case 'team':
+      case "team":
         return <TeamAdmin token={token} onLogout={onLogout} />;
-      case 'gallery':
+      case "gallery":
         return <GalleryAdmin token={token} onLogout={onLogout} />;
       default:
         return <EventsAdmin token={token} onLogout={onLogout} />;
@@ -47,31 +50,31 @@ export default function AdminDashboard({ token, onLogout }: AdminDashboardProps)
             {/* Navigation Tabs */}
             <div className="flex space-x-1">
               <button
-                onClick={() => setActiveSection('events')}
+                onClick={() => setActiveSection("events")}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                  activeSection === 'events'
-                    ? 'bg-gdsc-blue text-white'
-                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
+                  activeSection === "events"
+                    ? "bg-gdsc-blue text-white"
+                    : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
                 }`}
               >
                 Events
               </button>
               <button
-                onClick={() => setActiveSection('team')}
+                onClick={() => setActiveSection("team")}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                  activeSection === 'team'
-                    ? 'bg-gdsc-green text-white'
-                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
+                  activeSection === "team"
+                    ? "bg-gdsc-green text-white"
+                    : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
                 }`}
               >
                 Team
               </button>
               <button
-                onClick={() => setActiveSection('gallery')}
+                onClick={() => setActiveSection("gallery")}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                  activeSection === 'gallery'
-                    ? 'bg-gdsc-yellow text-white'
-                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
+                  activeSection === "gallery"
+                    ? "bg-gdsc-yellow text-white"
+                    : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
                 }`}
               >
                 Gallery

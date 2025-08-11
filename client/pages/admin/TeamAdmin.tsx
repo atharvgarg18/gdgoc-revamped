@@ -47,14 +47,14 @@ export default function TeamAdmin({ token }: TeamAdminProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     try {
-      const url = editingMember 
+      const url = editingMember
         ? `/api/admin/team/${editingMember.id}`
         : "/api/admin/team";
-      
+
       const method = editingMember ? "PUT" : "POST";
-      
+
       const response = await fetch(url, {
         method,
         headers: {
@@ -145,37 +145,54 @@ export default function TeamAdmin({ token }: TeamAdminProps) {
       {/* Team Members Grid */}
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {teamMembers.map((member) => (
-          <div key={member.id} className="bg-white rounded-lg shadow overflow-hidden">
+          <div
+            key={member.id}
+            className="bg-white rounded-lg shadow overflow-hidden"
+          >
             <div className="aspect-square overflow-hidden">
-              <img 
-                src={member.image} 
+              <img
+                src={member.image}
                 alt={member.name}
                 className="w-full h-full object-cover"
               />
             </div>
             <div className="p-4">
-              <h3 className="text-lg font-semibold text-gray-900">{member.name}</h3>
+              <h3 className="text-lg font-semibold text-gray-900">
+                {member.name}
+              </h3>
               <p className="text-gdsc-green font-medium">{member.role}</p>
-              <p className="text-sm text-gray-600 mt-2 line-clamp-2">{member.bio}</p>
-              
+              <p className="text-sm text-gray-600 mt-2 line-clamp-2">
+                {member.bio}
+              </p>
+
               {/* Social Links */}
               <div className="flex space-x-2 mt-3">
                 {member.social.linkedin && (
-                  <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">LinkedIn</span>
+                  <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">
+                    LinkedIn
+                  </span>
                 )}
                 {member.social.github && (
-                  <span className="text-xs bg-gray-100 text-gray-800 px-2 py-1 rounded">GitHub</span>
+                  <span className="text-xs bg-gray-100 text-gray-800 px-2 py-1 rounded">
+                    GitHub
+                  </span>
                 )}
                 {member.social.twitter && (
-                  <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">Twitter</span>
+                  <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">
+                    Twitter
+                  </span>
                 )}
                 {member.social.instagram && (
-                  <span className="text-xs bg-pink-100 text-pink-800 px-2 py-1 rounded">Instagram</span>
+                  <span className="text-xs bg-pink-100 text-pink-800 px-2 py-1 rounded">
+                    Instagram
+                  </span>
                 )}
               </div>
-              
+
               <div className="flex justify-between items-center mt-4">
-                <span className="text-xs text-gray-500">Order: {member.order}</span>
+                <span className="text-xs text-gray-500">
+                  Order: {member.order}
+                </span>
                 <div className="space-x-2">
                   <button
                     onClick={() => handleEdit(member)}
@@ -224,7 +241,9 @@ export default function TeamAdmin({ token }: TeamAdminProps) {
                       required
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-gdsc-green focus:border-gdsc-green"
                       value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, name: e.target.value })
+                      }
                     />
                   </div>
                   <div>
@@ -237,7 +256,9 @@ export default function TeamAdmin({ token }: TeamAdminProps) {
                       placeholder="Lead, Technical Lead, etc."
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-gdsc-green focus:border-gdsc-green"
                       value={formData.role}
-                      onChange={(e) => setFormData({ ...formData, role: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, role: e.target.value })
+                      }
                     />
                   </div>
                 </div>
@@ -252,7 +273,9 @@ export default function TeamAdmin({ token }: TeamAdminProps) {
                     placeholder="https://example.com/image.jpg"
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-gdsc-green focus:border-gdsc-green"
                     value={formData.image}
-                    onChange={(e) => setFormData({ ...formData, image: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, image: e.target.value })
+                    }
                   />
                 </div>
 
@@ -266,7 +289,9 @@ export default function TeamAdmin({ token }: TeamAdminProps) {
                     placeholder="Brief description about the team member"
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-gdsc-green focus:border-gdsc-green"
                     value={formData.bio}
-                    onChange={(e) => setFormData({ ...formData, bio: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, bio: e.target.value })
+                    }
                   />
                 </div>
 
@@ -279,64 +304,99 @@ export default function TeamAdmin({ token }: TeamAdminProps) {
                     min="1"
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-gdsc-green focus:border-gdsc-green"
                     value={formData.order}
-                    onChange={(e) => setFormData({ ...formData, order: parseInt(e.target.value) || 1 })}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        order: parseInt(e.target.value) || 1,
+                      })
+                    }
                   />
                 </div>
 
                 <div className="space-y-3">
-                  <h3 className="text-sm font-medium text-gray-700">Social Links (Optional)</h3>
-                  
+                  <h3 className="text-sm font-medium text-gray-700">
+                    Social Links (Optional)
+                  </h3>
+
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs text-gray-600 mb-1">LinkedIn</label>
+                      <label className="block text-xs text-gray-600 mb-1">
+                        LinkedIn
+                      </label>
                       <input
                         type="url"
                         placeholder="https://linkedin.com/in/username"
                         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-gdsc-green focus:border-gdsc-green"
                         value={formData.social?.linkedin || ""}
-                        onChange={(e) => setFormData({ 
-                          ...formData, 
-                          social: { ...formData.social, linkedin: e.target.value }
-                        })}
+                        onChange={(e) =>
+                          setFormData({
+                            ...formData,
+                            social: {
+                              ...formData.social,
+                              linkedin: e.target.value,
+                            },
+                          })
+                        }
                       />
                     </div>
                     <div>
-                      <label className="block text-xs text-gray-600 mb-1">GitHub</label>
+                      <label className="block text-xs text-gray-600 mb-1">
+                        GitHub
+                      </label>
                       <input
                         type="url"
                         placeholder="https://github.com/username"
                         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-gdsc-green focus:border-gdsc-green"
                         value={formData.social?.github || ""}
-                        onChange={(e) => setFormData({ 
-                          ...formData, 
-                          social: { ...formData.social, github: e.target.value }
-                        })}
+                        onChange={(e) =>
+                          setFormData({
+                            ...formData,
+                            social: {
+                              ...formData.social,
+                              github: e.target.value,
+                            },
+                          })
+                        }
                       />
                     </div>
                     <div>
-                      <label className="block text-xs text-gray-600 mb-1">Twitter</label>
+                      <label className="block text-xs text-gray-600 mb-1">
+                        Twitter
+                      </label>
                       <input
                         type="url"
                         placeholder="https://twitter.com/username"
                         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-gdsc-green focus:border-gdsc-green"
                         value={formData.social?.twitter || ""}
-                        onChange={(e) => setFormData({ 
-                          ...formData, 
-                          social: { ...formData.social, twitter: e.target.value }
-                        })}
+                        onChange={(e) =>
+                          setFormData({
+                            ...formData,
+                            social: {
+                              ...formData.social,
+                              twitter: e.target.value,
+                            },
+                          })
+                        }
                       />
                     </div>
                     <div>
-                      <label className="block text-xs text-gray-600 mb-1">Instagram</label>
+                      <label className="block text-xs text-gray-600 mb-1">
+                        Instagram
+                      </label>
                       <input
                         type="url"
                         placeholder="https://instagram.com/username"
                         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-gdsc-green focus:border-gdsc-green"
                         value={formData.social?.instagram || ""}
-                        onChange={(e) => setFormData({ 
-                          ...formData, 
-                          social: { ...formData.social, instagram: e.target.value }
-                        })}
+                        onChange={(e) =>
+                          setFormData({
+                            ...formData,
+                            social: {
+                              ...formData.social,
+                              instagram: e.target.value,
+                            },
+                          })
+                        }
                       />
                     </div>
                   </div>

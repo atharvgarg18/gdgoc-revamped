@@ -46,14 +46,14 @@ export default function EventsAdmin({ token, onLogout }: EventsAdminProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     try {
-      const url = editingEvent 
+      const url = editingEvent
         ? `/api/admin/events/${editingEvent.id}`
         : "/api/admin/events";
-      
+
       const method = editingEvent ? "PUT" : "POST";
-      
+
       const response = await fetch(url, {
         method,
         headers: {
@@ -133,7 +133,9 @@ export default function EventsAdmin({ token, onLogout }: EventsAdminProps) {
     <AdminLayout onLogout={onLogout}>
       <div className="space-y-6">
         <div className="flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-gray-900">Events Management</h1>
+          <h1 className="text-2xl font-bold text-gray-900">
+            Events Management
+          </h1>
           <button
             onClick={() => setShowForm(true)}
             className="bg-gdsc-blue text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors"
@@ -169,8 +171,12 @@ export default function EventsAdmin({ token, onLogout }: EventsAdminProps) {
                 <tr key={event.id}>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div>
-                      <div className="text-sm font-medium text-gray-900">{event.title}</div>
-                      <div className="text-sm text-gray-500 max-w-xs truncate">{event.description}</div>
+                      <div className="text-sm font-medium text-gray-900">
+                        {event.title}
+                      </div>
+                      <div className="text-sm text-gray-500 max-w-xs truncate">
+                        {event.description}
+                      </div>
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
@@ -178,12 +184,17 @@ export default function EventsAdmin({ token, onLogout }: EventsAdminProps) {
                     <div className="text-gray-500">{event.time}</div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
-                      event.color === "gdsc-blue" ? "bg-blue-100 text-blue-800" :
-                      event.color === "gdsc-red" ? "bg-red-100 text-red-800" :
-                      event.color === "gdsc-yellow" ? "bg-yellow-100 text-yellow-800" :
-                      "bg-green-100 text-green-800"
-                    }`}>
+                    <span
+                      className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
+                        event.color === "gdsc-blue"
+                          ? "bg-blue-100 text-blue-800"
+                          : event.color === "gdsc-red"
+                            ? "bg-red-100 text-red-800"
+                            : event.color === "gdsc-yellow"
+                              ? "bg-yellow-100 text-yellow-800"
+                              : "bg-green-100 text-green-800"
+                      }`}
+                    >
                       {event.type}
                     </span>
                   </td>
@@ -237,7 +248,9 @@ export default function EventsAdmin({ token, onLogout }: EventsAdminProps) {
                       required
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-gdsc-blue focus:border-gdsc-blue"
                       value={formData.title}
-                      onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, title: e.target.value })
+                      }
                     />
                   </div>
 
@@ -252,7 +265,9 @@ export default function EventsAdmin({ token, onLogout }: EventsAdminProps) {
                         placeholder="Dec 15, 2024"
                         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-gdsc-blue focus:border-gdsc-blue"
                         value={formData.date}
-                        onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+                        onChange={(e) =>
+                          setFormData({ ...formData, date: e.target.value })
+                        }
                       />
                     </div>
                     <div>
@@ -265,7 +280,9 @@ export default function EventsAdmin({ token, onLogout }: EventsAdminProps) {
                         placeholder="2:00 PM - 5:00 PM"
                         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-gdsc-blue focus:border-gdsc-blue"
                         value={formData.time}
-                        onChange={(e) => setFormData({ ...formData, time: e.target.value })}
+                        onChange={(e) =>
+                          setFormData({ ...formData, time: e.target.value })
+                        }
                       />
                     </div>
                   </div>
@@ -281,7 +298,9 @@ export default function EventsAdmin({ token, onLogout }: EventsAdminProps) {
                         placeholder="Workshop, Seminar, etc."
                         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-gdsc-blue focus:border-gdsc-blue"
                         value={formData.type}
-                        onChange={(e) => setFormData({ ...formData, type: e.target.value })}
+                        onChange={(e) =>
+                          setFormData({ ...formData, type: e.target.value })
+                        }
                       />
                     </div>
                     <div>
@@ -291,7 +310,12 @@ export default function EventsAdmin({ token, onLogout }: EventsAdminProps) {
                       <select
                         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-gdsc-blue focus:border-gdsc-blue"
                         value={formData.color}
-                        onChange={(e) => setFormData({ ...formData, color: e.target.value as any })}
+                        onChange={(e) =>
+                          setFormData({
+                            ...formData,
+                            color: e.target.value as any,
+                          })
+                        }
                       >
                         <option value="gdsc-blue">Blue</option>
                         <option value="gdsc-red">Red</option>
@@ -310,7 +334,12 @@ export default function EventsAdmin({ token, onLogout }: EventsAdminProps) {
                       rows={3}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-gdsc-blue focus:border-gdsc-blue"
                       value={formData.description}
-                      onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          description: e.target.value,
+                        })
+                      }
                     />
                   </div>
 
@@ -324,7 +353,12 @@ export default function EventsAdmin({ token, onLogout }: EventsAdminProps) {
                       min="0"
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-gdsc-blue focus:border-gdsc-blue"
                       value={formData.attendees}
-                      onChange={(e) => setFormData({ ...formData, attendees: parseInt(e.target.value) || 0 })}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          attendees: parseInt(e.target.value) || 0,
+                        })
+                      }
                     />
                   </div>
 
@@ -336,7 +370,9 @@ export default function EventsAdmin({ token, onLogout }: EventsAdminProps) {
                       type="url"
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-gdsc-blue focus:border-gdsc-blue"
                       value={formData.image}
-                      onChange={(e) => setFormData({ ...formData, image: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, image: e.target.value })
+                      }
                     />
                   </div>
 
@@ -348,7 +384,12 @@ export default function EventsAdmin({ token, onLogout }: EventsAdminProps) {
                       type="url"
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-gdsc-blue focus:border-gdsc-blue"
                       value={formData.registrationLink}
-                      onChange={(e) => setFormData({ ...formData, registrationLink: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          registrationLink: e.target.value,
+                        })
+                      }
                     />
                   </div>
 

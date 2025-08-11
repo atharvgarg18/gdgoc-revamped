@@ -12,7 +12,7 @@ export default function Footer() {
           setIsVisible(true);
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     if (footerRef.current) {
@@ -23,17 +23,31 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer ref={footerRef} className="relative bg-gray-900 text-white overflow-hidden">
+    <footer
+      ref={footerRef}
+      className="relative bg-gray-900 text-white overflow-hidden"
+    >
       {/* Animated Background */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-10 left-10 w-32 h-32 bg-gdsc-blue/10 rounded-full animate-float"></div>
-        <div className="absolute top-20 right-20 w-24 h-24 bg-gdsc-red/10 rounded-full animate-float" style={{ animationDelay: "1s" }}></div>
-        <div className="absolute bottom-20 left-1/4 w-16 h-16 bg-gdsc-yellow/10 rounded-full animate-float" style={{ animationDelay: "2s" }}></div>
-        <div className="absolute bottom-10 right-1/3 w-40 h-40 bg-gdsc-green/10 rounded-full animate-float" style={{ animationDelay: "0.5s" }}></div>
+        <div
+          className="absolute top-20 right-20 w-24 h-24 bg-gdsc-red/10 rounded-full animate-float"
+          style={{ animationDelay: "1s" }}
+        ></div>
+        <div
+          className="absolute bottom-20 left-1/4 w-16 h-16 bg-gdsc-yellow/10 rounded-full animate-float"
+          style={{ animationDelay: "2s" }}
+        ></div>
+        <div
+          className="absolute bottom-10 right-1/3 w-40 h-40 bg-gdsc-green/10 rounded-full animate-float"
+          style={{ animationDelay: "0.5s" }}
+        ></div>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className={`transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
+        <div
+          className={`transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+        >
           {/* Main Footer Content */}
           <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-8 mb-12">
             {/* Logo and Description */}
@@ -50,10 +64,11 @@ export default function Footer() {
                 </span>
               </Link>
               <p className="text-gray-300 leading-relaxed max-w-md mb-6">
-                Building the future one developer at a time. Join our community of passionate 
-                students learning and growing together through technology.
+                Building the future one developer at a time. Join our community
+                of passionate students learning and growing together through
+                technology.
               </p>
-              
+
               {/* Social Links */}
               <div className="flex space-x-4">
                 <a
@@ -85,38 +100,122 @@ export default function Footer() {
 
             {/* Quick Links */}
             <div>
-              <h3 className="font-bold text-lg mb-6 text-gdsc-blue">Quick Links</h3>
+              <h3 className="font-bold text-lg mb-6 text-gdsc-blue">
+                Quick Links
+              </h3>
               <ul className="space-y-3">
-                <li><Link to="/about" className="text-gray-300 hover:text-white transition-colors">About Us</Link></li>
-                <li><Link to="/events" className="text-gray-300 hover:text-white transition-colors">Events</Link></li>
-                <li><Link to="/team" className="text-gray-300 hover:text-white transition-colors">Our Team</Link></li>
-                <li><Link to="/projects" className="text-gray-300 hover:text-white transition-colors">Projects</Link></li>
-                <li><Link to="/contact" className="text-gray-300 hover:text-white transition-colors">Contact</Link></li>
+                <li>
+                  <Link
+                    to="/about"
+                    className="text-gray-300 hover:text-white transition-colors"
+                  >
+                    About Us
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/events"
+                    className="text-gray-300 hover:text-white transition-colors"
+                  >
+                    Events
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/team"
+                    className="text-gray-300 hover:text-white transition-colors"
+                  >
+                    Our Team
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/projects"
+                    className="text-gray-300 hover:text-white transition-colors"
+                  >
+                    Projects
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/contact"
+                    className="text-gray-300 hover:text-white transition-colors"
+                  >
+                    Contact
+                  </Link>
+                </li>
               </ul>
             </div>
 
             {/* Resources */}
             <div>
-              <h3 className="font-bold text-lg mb-6 text-gdsc-green">Resources</h3>
+              <h3 className="font-bold text-lg mb-6 text-gdsc-green">
+                Resources
+              </h3>
               <ul className="space-y-3">
-                <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Learning Path</a></li>
-                <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Code of Conduct</a></li>
-                <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Community Guidelines</a></li>
-                <li><a href="#" className="text-gray-300 hover:text-white transition-colors">FAQ</a></li>
-                <li><a href="#" className="text-gray-300 hover:text-white transition-colors">Support</a></li>
+                <li>
+                  <a
+                    href="#"
+                    className="text-gray-300 hover:text-white transition-colors"
+                  >
+                    Learning Path
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="text-gray-300 hover:text-white transition-colors"
+                  >
+                    Code of Conduct
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="text-gray-300 hover:text-white transition-colors"
+                  >
+                    Community Guidelines
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="text-gray-300 hover:text-white transition-colors"
+                  >
+                    FAQ
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="text-gray-300 hover:text-white transition-colors"
+                  >
+                    Support
+                  </a>
+                </li>
               </ul>
             </div>
           </div>
 
-
           {/* Bottom Bar */}
           <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 text-sm">
-              © 2024 Google Developer Groups on Campus IET DAVV. All rights reserved.
+              © 2024 Google Developer Groups on Campus IET DAVV. All rights
+              reserved.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
-              <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">Privacy Policy</a>
-              <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">Terms of Service</a>
+              <a
+                href="#"
+                className="text-gray-400 hover:text-white text-sm transition-colors"
+              >
+                Privacy Policy
+              </a>
+              <a
+                href="#"
+                className="text-gray-400 hover:text-white text-sm transition-colors"
+              >
+                Terms of Service
+              </a>
             </div>
           </div>
         </div>

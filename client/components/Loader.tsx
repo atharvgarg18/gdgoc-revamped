@@ -24,13 +24,13 @@ export default function Loader({ onComplete }: { onComplete: () => void }) {
       <div className="text-center">
         {/* GDSC IIITA Loader GIF */}
         <div className="flex justify-center mb-8">
-          <img 
-            src="https://gdsc.iiita.ac.in/static/media/gdsc-loader.c4dc897894a7a1e2b603.gif" 
+          <img
+            src="https://gdsc.iiita.ac.in/static/media/gdsc-loader.c4dc897894a7a1e2b603.gif"
             alt="GDGoC Loading Animation"
             className="w-64 h-auto"
           />
         </div>
-        
+
         {/* Loading Text */}
         <div className="text-2xl font-bold text-gray-800">
           <span className="text-gdsc-blue">GDGoC</span> IET DAVV
