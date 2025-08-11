@@ -93,7 +93,12 @@ export default function Events() {
                 }`}></div>
                 <div className="p-6">
                   <div className="flex justify-between items-start mb-4">
-                    <span className={`px-3 py-1 text-xs font-semibold rounded-full bg-${event.color}/10 text-${event.color}`}>
+                    <span className={`px-3 py-1 text-xs font-semibold rounded-full ${
+                      event.color === "gdsc-blue" ? "bg-gdsc-blue/10 text-gdsc-blue" :
+                      event.color === "gdsc-red" ? "bg-gdsc-red/10 text-gdsc-red" :
+                      event.color === "gdsc-yellow" ? "bg-gdsc-yellow/10 text-gdsc-yellow" :
+                      "bg-gdsc-green/10 text-gdsc-green"
+                    }`}>
                       {event.type}
                     </span>
                     <div className="text-right text-sm text-gray-500">
