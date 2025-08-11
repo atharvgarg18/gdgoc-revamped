@@ -50,21 +50,11 @@ export default function Navigation() {
               to="/"
               className="flex items-center space-x-2 md:space-x-3 group"
             >
-              <div className="flex space-x-1">
-                <div className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-gdsc-blue group-hover:animate-pulse"></div>
-                <div
-                  className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-gdsc-red group-hover:animate-pulse"
-                  style={{ animationDelay: "0.1s" }}
-                ></div>
-                <div
-                  className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-gdsc-yellow group-hover:animate-pulse"
-                  style={{ animationDelay: "0.2s" }}
-                ></div>
-                <div
-                  className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-gdsc-green group-hover:animate-pulse"
-                  style={{ animationDelay: "0.3s" }}
-                ></div>
-              </div>
+              <img
+                src="https://www.dscvit.com/newlogo.svg"
+                alt="GDGoC IET DAVV Logo"
+                className="w-8 h-8 md:w-10 md:h-10 group-hover:scale-110 transition-transform duration-300"
+              />
               <span className="font-bold text-base md:text-lg text-gray-800">
                 GDGoC <span className="text-gdsc-blue">IET DAVV</span>
               </span>
@@ -82,19 +72,6 @@ export default function Navigation() {
                 <span
                   className={`absolute -bottom-1 left-0 w-0 h-0.5 bg-gdsc-blue transition-all duration-300 group-hover:w-full ${
                     isActiveRoute("/") ? "w-full" : ""
-                  }`}
-                ></span>
-              </Link>
-              <Link
-                to="/about"
-                className={`relative text-sm xl:text-base font-medium transition-all duration-300 hover:text-gdsc-blue ${
-                  isActiveRoute("/about") ? "text-gdsc-blue" : "text-gray-700"
-                } group`}
-              >
-                About
-                <span
-                  className={`absolute -bottom-1 left-0 w-0 h-0.5 bg-gdsc-blue transition-all duration-300 group-hover:w-full ${
-                    isActiveRoute("/about") ? "w-full" : ""
                   }`}
                 ></span>
               </Link>
@@ -150,14 +127,6 @@ export default function Navigation() {
                   }`}
                 ></span>
               </Link>
-              <a
-                href="https://chat.whatsapp.com/CcTjDYXNfQMEoLUHzB3hwa"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-animate bg-gdsc-blue text-white px-4 xl:px-6 py-2 xl:py-2.5 rounded-full hover:bg-blue-600 transition-all duration-300 text-sm xl:text-base font-medium shadow-lg hover:shadow-xl touch-target"
-              >
-                Join Us
-              </a>
             </div>
 
             {/* Mobile Menu Button */}
@@ -217,16 +186,6 @@ export default function Navigation() {
                   Home
                 </Link>
                 <Link
-                  to="/about"
-                  className={`block px-4 py-3 rounded-lg font-medium transition-all duration-300 touch-target ${
-                    isActiveRoute("/about")
-                      ? "bg-gdsc-blue text-white"
-                      : "text-gray-700 hover:bg-gray-100 hover:text-gdsc-blue"
-                  }`}
-                >
-                  About
-                </Link>
-                <Link
                   to="/events"
                   className={`block px-4 py-3 rounded-lg font-medium transition-all duration-300 touch-target ${
                     isActiveRoute("/events")
@@ -267,17 +226,6 @@ export default function Navigation() {
                   Contact
                 </Link>
 
-                {/* Mobile CTA */}
-                <div className="pt-4 border-t border-gray-200">
-                  <a
-                    href="https://chat.whatsapp.com/CcTjDYXNfQMEoLUHzB3hwa"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block w-full text-center bg-gdsc-blue text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-600 transition-colors touch-target"
-                  >
-                    Join Our Community
-                  </a>
-                </div>
               </div>
             </div>
           </div>
