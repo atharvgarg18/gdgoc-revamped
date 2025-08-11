@@ -102,6 +102,19 @@ export default function Navigation() {
                 ></span>
               </Link>
               <Link
+                to="/projects"
+                className={`relative text-sm xl:text-base font-medium transition-all duration-300 hover:text-gdsc-blue ${
+                  isActiveRoute("/projects") ? "text-gdsc-blue" : "text-gray-700"
+                } group`}
+              >
+                Projects
+                <span
+                  className={`absolute -bottom-1 left-0 w-0 h-0.5 bg-gdsc-blue transition-all duration-300 group-hover:w-full ${
+                    isActiveRoute("/projects") ? "w-full" : ""
+                  }`}
+                ></span>
+              </Link>
+              <Link
                 to="/gallery"
                 className={`relative text-sm xl:text-base font-medium transition-all duration-300 hover:text-gdsc-blue ${
                   isActiveRoute("/gallery") ? "text-gdsc-blue" : "text-gray-700"
@@ -204,6 +217,16 @@ export default function Navigation() {
                   }`}
                 >
                   Team
+                </Link>
+                <Link
+                  to="/projects"
+                  className={`block px-4 py-3 rounded-lg font-medium transition-all duration-300 touch-target ${
+                    isActiveRoute("/projects")
+                      ? "bg-gdsc-blue text-white"
+                      : "text-gray-700 hover:bg-gray-100 hover:text-gdsc-blue"
+                  }`}
+                >
+                  Projects
                 </Link>
                 <Link
                   to="/gallery"

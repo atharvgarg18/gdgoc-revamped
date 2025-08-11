@@ -36,6 +36,20 @@ export interface GalleryItem {
   order: number;
 }
 
+export interface Project {
+  id: string;
+  title: string;
+  description: string;
+  image?: string;
+  github_url?: string;
+  live_url?: string;
+  tech_stack: string[];
+  category: "web" | "mobile" | "ai" | "blockchain" | "iot" | "other";
+  status: "completed" | "in_progress" | "planned";
+  team_members: string[];
+  order: number;
+}
+
 export interface AdminLoginRequest {
   password: string;
 }
