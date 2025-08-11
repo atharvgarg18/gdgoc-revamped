@@ -46,11 +46,11 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Main Heading */}
+          {/* Main Heading with enhanced effects */}
           <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight">
-            <span className="block">Google Developer</span>
-            <span className="block text-gdsc-blue">Groups on Campus</span>
-            <span className="block text-lg sm:text-xl lg:text-2xl font-normal mt-4 text-gray-600">
+            <span className="block animate-slide-in-left">Google Developer</span>
+            <span className="block text-gradient-multi animate-slide-in-right" style={{ animationDelay: "0.3s" }}>Groups on Campus</span>
+            <span className="block text-lg sm:text-xl lg:text-2xl font-normal mt-4 text-gray-600 animate-fade-in-up" style={{ animationDelay: "0.6s" }}>
               IET DAVV, Indore
             </span>
           </h1>
