@@ -85,6 +85,15 @@ export default function EventsPage() {
     setIsLoading(false);
   };
 
+  // Auto-refresh events every 30 seconds to pick up real-time changes
+  useEffect(() => {
+    const interval = setInterval(() => {
+      loadEvents();
+    }, 30000); // 30 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
   const handleFilterChange = (filterType: string) => {
     setActiveFilter(filterType);
   };
