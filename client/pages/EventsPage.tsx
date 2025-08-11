@@ -24,6 +24,7 @@ export default function EventsPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [isVisible, setIsVisible] = useState(false);
   const [visibleCards, setVisibleCards] = useState<Set<number>>(new Set());
+  const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
