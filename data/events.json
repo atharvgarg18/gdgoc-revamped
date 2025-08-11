@@ -5,9 +5,10 @@
     "date": "Dec 15, 2024",
     "time": "2:00 PM - 5:00 PM",
     "type": "Workshop",
-    "description": "Learn the fundamentals of ML with hands-on exercises",
+    "description": "Learn the fundamentals of ML with hands-on exercises using Python and popular libraries like scikit-learn.",
     "color": "gdsc-blue",
-    "attendees": 85
+    "attendees": 85,
+    "registration_link": "https://forms.gle/example1"
   },
   {
     "id": "2",
@@ -15,8 +16,152 @@
     "date": "Dec 20, 2024",
     "time": "10:00 AM - 4:00 PM",
     "type": "Bootcamp",
-    "description": "Build your first Android app from scratch",
+    "description": "Build your first Android app from scratch using Kotlin and Android Studio with modern development practices.",
     "color": "gdsc-green",
-    "attendees": 120
+    "attendees": 120,
+    "registration_link": "https://forms.gle/example2"
+  },
+  {
+    "id": "3",
+    "title": "Web Development with React",
+    "date": "Jan 8, 2025",
+    "time": "11:00 AM - 3:00 PM",
+    "type": "Workshop",
+    "description": "Master modern web development with React, hooks, and component-based architecture. Perfect for beginners.",
+    "color": "gdsc-blue",
+    "attendees": 95,
+    "registration_link": "https://forms.gle/example3"
+  },
+  {
+    "id": "4",
+    "title": "Cloud Computing with Google Cloud",
+    "date": "Jan 12, 2025",
+    "time": "3:00 PM - 6:00 PM",
+    "type": "Seminar",
+    "description": "Explore cloud services, deployment strategies, and serverless computing with Google Cloud Platform.",
+    "color": "gdsc-red",
+    "attendees": 75,
+    "registration_link": "https://forms.gle/example4"
+  },
+  {
+    "id": "5",
+    "title": "Winter Hackathon 2025",
+    "date": "Jan 18-19, 2025",
+    "time": "9:00 AM - 9:00 PM",
+    "type": "Hackathon",
+    "description": "48-hour coding challenge to build innovative solutions for real-world problems. Teams of 2-4 members.",
+    "color": "gdsc-yellow",
+    "attendees": 150,
+    "registration_link": "https://forms.gle/example5"
+  },
+  {
+    "id": "6",
+    "title": "Data Science & Analytics",
+    "date": "Jan 25, 2025",
+    "time": "1:00 PM - 5:00 PM",
+    "type": "Workshop",
+    "description": "Dive into data analysis, visualization, and predictive modeling using Python, pandas, and matplotlib.",
+    "color": "gdsc-blue",
+    "attendees": 68,
+    "registration_link": "https://forms.gle/example6"
+  },
+  {
+    "id": "7",
+    "title": "Flutter Cross-Platform Development",
+    "date": "Feb 2, 2025",
+    "time": "10:00 AM - 5:00 PM",
+    "type": "Bootcamp",
+    "description": "Build beautiful mobile apps for both iOS and Android using Flutter and Dart programming language.",
+    "color": "gdsc-green",
+    "attendees": 110,
+    "registration_link": "https://forms.gle/example7"
+  },
+  {
+    "id": "8",
+    "title": "AI & Ethics in Technology",
+    "date": "Feb 8, 2025",
+    "time": "4:00 PM - 6:00 PM",
+    "type": "Seminar",
+    "description": "Discuss the ethical implications of AI, responsible development practices, and the future of technology.",
+    "color": "gdsc-red",
+    "attendees": 45,
+    "registration_link": "https://forms.gle/example8"
+  },
+  {
+    "id": "9",
+    "title": "DevOps & CI/CD Pipeline",
+    "date": "Feb 15, 2025",
+    "time": "2:00 PM - 6:00 PM",
+    "type": "Workshop",
+    "description": "Learn modern DevOps practices, containerization with Docker, and automated deployment pipelines.",
+    "color": "gdsc-blue",
+    "attendees": 82,
+    "registration_link": "https://forms.gle/example9"
+  },
+  {
+    "id": "10",
+    "title": "UI/UX Design Fundamentals",
+    "date": "Feb 22, 2025",
+    "time": "11:00 AM - 4:00 PM",
+    "type": "Workshop",
+    "description": "Master design thinking, user research, prototyping, and creating intuitive user interfaces.",
+    "color": "gdsc-green",
+    "attendees": 105,
+    "registration_link": "https://forms.gle/example10"
+  },
+  {
+    "id": "11",
+    "title": "Cybersecurity Awareness",
+    "date": "Mar 1, 2025",
+    "time": "3:00 PM - 5:00 PM",
+    "type": "Seminar",
+    "description": "Understanding common security threats, best practices for secure coding, and protecting digital assets.",
+    "color": "gdsc-red",
+    "attendees": 60,
+    "registration_link": "https://forms.gle/example11"
+  },
+  {
+    "id": "12",
+    "title": "Spring Innovation Challenge",
+    "date": "Mar 8-9, 2025",
+    "time": "8:00 AM - 8:00 PM",
+    "type": "Hackathon",
+    "description": "Create innovative solutions for sustainability and green technology. Focus on environmental impact.",
+    "color": "gdsc-yellow",
+    "attendees": 180,
+    "registration_link": "https://forms.gle/example12"
+  },
+  {
+    "id": "13",
+    "title": "Blockchain & Web3 Development",
+    "date": "Mar 15, 2025",
+    "time": "1:00 PM - 6:00 PM",
+    "type": "Workshop",
+    "description": "Introduction to blockchain technology, smart contracts, and decentralized application development.",
+    "color": "gdsc-blue",
+    "attendees": 78,
+    "registration_link": "https://forms.gle/example13"
+  },
+  {
+    "id": "14",
+    "title": "Game Development with Unity",
+    "date": "Mar 22, 2025",
+    "time": "10:00 AM - 5:00 PM",
+    "type": "Bootcamp",
+    "description": "Create your first 2D and 3D games using Unity engine with C# scripting and game design principles.",
+    "color": "gdsc-green",
+    "attendees": 92,
+    "registration_link": "https://forms.gle/example14"
+  },
+  {
+    "id": "15",
+    "title": "Open Source Contribution",
+    "date": "Mar 29, 2025",
+    "time": "2:00 PM - 5:00 PM",
+    "type": "Workshop",
+    "description": "Learn how to contribute to open source projects, Git workflows, and building your developer portfolio.",
+    "color": "gdsc-blue",
+    "attendees": 65,
+    "registration_link": "https://forms.gle/example15"
   }
 ]
