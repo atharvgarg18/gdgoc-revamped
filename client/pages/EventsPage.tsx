@@ -258,7 +258,7 @@ export default function EventsPage() {
                 Explore Our <span className="text-gdsc-blue">Events</span>
               </h2>
               
-              <div className="flex flex-wrap justify-center gap-3 md:gap-4 mb-8">
+              <div className="flex flex-wrap justify-center gap-3 md:gap-4 mb-6">
                 {eventFilters.map((filter) => (
                   <button
                     key={filter.type}
@@ -284,6 +284,15 @@ export default function EventsPage() {
                   </button>
                 ))}
               </div>
+
+              {/* Last Updated Indicator */}
+              {lastUpdated && (
+                <div className="text-center mb-8">
+                  <p className="text-sm text-gray-500">
+                    Last updated: {lastUpdated.toLocaleTimeString()} • Auto-refreshes every 30 seconds
+                  </p>
+                </div>
+              )}
             </div>
 
             {/* Events Grid */}
