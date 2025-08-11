@@ -56,17 +56,29 @@ export default function Footer() {
               
               {/* Social Links */}
               <div className="flex space-x-4">
-                <a href="#" className="w-10 h-10 bg-gdsc-blue rounded-full flex items-center justify-center hover:scale-110 transition-transform">
-                  <span className="text-white font-bold">📧</span>
+                <a
+                  href="https://www.instagram.com/gdgoc.ietdavv/?hl=en"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center hover:scale-110 transition-transform"
+                >
+                  <span className="text-white font-bold">📷</span>
                 </a>
-                <a href="#" className="w-10 h-10 bg-gdsc-red rounded-full flex items-center justify-center hover:scale-110 transition-transform">
-                  <span className="text-white font-bold">📱</span>
+                <a
+                  href="https://in.linkedin.com/company/gdgoc-iet-davv"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 bg-gdsc-blue rounded-full flex items-center justify-center hover:scale-110 transition-transform"
+                >
+                  <span className="text-white font-bold">in</span>
                 </a>
-                <a href="#" className="w-10 h-10 bg-gdsc-yellow rounded-full flex items-center justify-center hover:scale-110 transition-transform">
+                <a
+                  href="https://chat.whatsapp.com/CcTjDYXNfQMEoLUHzB3hwa"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 bg-gdsc-green rounded-full flex items-center justify-center hover:scale-110 transition-transform"
+                >
                   <span className="text-white font-bold">💬</span>
-                </a>
-                <a href="#" className="w-10 h-10 bg-gdsc-green rounded-full flex items-center justify-center hover:scale-110 transition-transform">
-                  <span className="text-white font-bold">🌐</span>
                 </a>
               </div>
             </div>
@@ -96,23 +108,6 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Newsletter Signup */}
-          <div className="border-t border-gray-800 pt-8 mb-8">
-            <div className="max-w-md mx-auto text-center">
-              <h3 className="font-bold text-lg mb-4">Stay in the Loop</h3>
-              <p className="text-gray-300 mb-6">Get notified about our latest events and workshops</p>
-              <div className="flex gap-3">
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  className="flex-1 px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-gdsc-blue text-white"
-                />
-                <button className="bg-gdsc-blue px-6 py-3 rounded-lg hover:bg-blue-600 transition-colors font-semibold">
-                  Subscribe
-                </button>
-              </div>
-            </div>
-          </div>
 
           {/* Bottom Bar */}
           <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
