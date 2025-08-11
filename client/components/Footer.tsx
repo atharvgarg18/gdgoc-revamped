@@ -46,7 +46,7 @@ export default function Footer() {
                   <div className="w-4 h-4 rounded-full bg-gdsc-green"></div>
                 </div>
                 <span className="font-bold text-xl">
-                  GDSC <span className="text-gdsc-blue">IET DAVV</span>
+                  GDGoC <span className="text-gdsc-blue">IET DAVV</span>
                 </span>
               </Link>
               <p className="text-gray-300 leading-relaxed max-w-md mb-6">
@@ -117,7 +117,7 @@ export default function Footer() {
           {/* Bottom Bar */}
           <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 text-sm">
-              © 2024 Google Developer Student Clubs IET DAVV. All rights reserved.
+              © 2024 Google Developer Groups on Campus IET DAVV. All rights reserved.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">Privacy Policy</a>
