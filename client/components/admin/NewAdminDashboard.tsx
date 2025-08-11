@@ -2,12 +2,13 @@ import { useState } from "react";
 import EventsManager from "./EventsManager";
 import TeamManager from "./TeamManager";
 import GalleryManager from "./GalleryManager";
+import ProjectsManager from "./ProjectsManager";
 
 interface NewAdminDashboardProps {
   onLogout: () => void;
 }
 
-type Section = "events" | "team" | "gallery";
+type Section = "events" | "team" | "projects" | "gallery";
 
 export default function NewAdminDashboard({
   onLogout,
@@ -25,6 +26,8 @@ export default function NewAdminDashboard({
         return <EventsManager />;
       case "team":
         return <TeamManager />;
+      case "projects":
+        return <ProjectsManager />;
       case "gallery":
         return <GalleryManager />;
       default:
