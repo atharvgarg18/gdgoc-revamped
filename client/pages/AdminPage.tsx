@@ -1,57 +1,26 @@
 import { useState, useEffect } from "react";
-import AdminLogin from "@/components/admin/AdminLogin";
-import AdminDashboard from "./admin/AdminDashboard";
+import NewAdminLogin from "@/components/admin/NewAdminLogin";
+import NewAdminDashboard from "@/components/admin/NewAdminDashboard";
 
 export default function AdminPage() {
-  const [token, setToken] = useState<string | null>(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Check if user is already logged in
-    const savedToken = localStorage.getItem("admin-token");
-    if (savedToken) {
-      // Verify token is still valid
-      verifyToken(savedToken);
-    } else {
-      setIsLoading(false);
+    // Check if user is already authenticated
+    const auth = localStorage.getItem("gdgoc-admin-auth");
+    if (auth === "authenticated") {
+      setIsAuthenticated(true);
     }
+    setIsLoading(false);
   }, []);
 
-  const verifyToken = async (token: string) => {
-    try {
-      const response = await fetch("/api/admin/events", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      if (response.ok) {
-        setToken(token);
-      } else {
-        localStorage.removeItem("admin-token");
-      }
-    } catch (error) {
-      localStorage.removeItem("admin-token");
-    } finally {
-      setIsLoading(false);
-    }
+  const handleLogin = (authenticated: boolean) => {
+    setIsAuthenticated(authenticated);
   };
 
-  const handleLogin = (newToken: string) => {
-    setToken(newToken);
-  };
-
-  const handleLogout = async () => {
-    try {
-      if (token) {
-        await fetch("/api/admin/logout", {
-          method: "POST",
-          headers: { Authorization: `Bearer ${token}` },
-        });
-      }
-    } catch (error) {
-      console.error("Logout error:", error);
-    } finally {
-      localStorage.removeItem("admin-token");
-      setToken(null);
-    }
+  const handleLogout = () => {
+    setIsAuthenticated(false);
   };
 
   if (isLoading) {
@@ -67,9 +36,9 @@ export default function AdminPage() {
     );
   }
 
-  if (!token) {
-    return <AdminLogin onLogin={handleLogin} />;
+  if (!isAuthenticated) {
+    return <NewAdminLogin onLogin={handleLogin} />;
   }
 
-  return <AdminDashboard token={token} onLogout={handleLogout} />;
+  return <NewAdminDashboard onLogout={handleLogout} />;
 }
