@@ -28,7 +28,7 @@ export default function Navigation() {
               <div className="w-3 h-3 rounded-full bg-gdsc-green"></div>
             </div>
             <span className="font-bold text-lg text-gray-800">
-              GDSC <span className="text-gdsc-blue">IET DAVV</span>
+              GDGoC <span className="text-gdsc-blue">IET DAVV</span>
             </span>
           </Link>
 
