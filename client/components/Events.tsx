@@ -85,7 +85,12 @@ export default function Events() {
                 }`}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className={`h-2 bg-${event.color}`}></div>
+                <div className={`h-2 ${
+                  event.color === "gdsc-blue" ? "bg-gdsc-blue" :
+                  event.color === "gdsc-red" ? "bg-gdsc-red" :
+                  event.color === "gdsc-yellow" ? "bg-gdsc-yellow" :
+                  "bg-gdsc-green"
+                }`}></div>
                 <div className="p-6">
                   <div className="flex justify-between items-start mb-4">
                     <span className={`px-3 py-1 text-xs font-semibold rounded-full bg-${event.color}/10 text-${event.color}`}>
