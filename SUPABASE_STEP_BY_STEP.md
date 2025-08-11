@@ -3,11 +3,13 @@
 ## Phase 1: Create Supabase Account & Project
 
 ### Step 1: Sign Up for Supabase
+
 1. Go to **https://supabase.com**
 2. Click **"Start your project"**
 3. Sign up with GitHub (recommended) or email
 
 ### Step 2: Create New Project
+
 1. Click **"New Project"**
 2. Select your organization
 3. Fill project details:
@@ -20,6 +22,7 @@
 ## Phase 2: Get Your Project Credentials
 
 ### Step 3: Copy Project Details
+
 1. In Supabase dashboard, click **Settings** (gear icon)
 2. Click **API** in left sidebar
 3. Copy these values:
@@ -32,10 +35,12 @@
 ## Phase 3: Create Database Schema
 
 ### Step 4: Open SQL Editor
+
 1. In Supabase dashboard, click **SQL Editor**
 2. Click **"New Query"**
 
 ### Step 5: Run Database Setup Script
+
 Copy and paste this complete SQL script:
 
 ```sql
@@ -138,6 +143,7 @@ CREATE POLICY "Allow public read access on projects" ON projects FOR SELECT USIN
 ```
 
 ### Step 6: Execute the Script
+
 1. Click **"Run"** button
 2. You should see success messages
 3. Check **Table Editor** to verify tables were created
@@ -145,17 +151,21 @@ CREATE POLICY "Allow public read access on projects" ON projects FOR SELECT USIN
 ## Phase 4: Connect Your Website
 
 ### Step 7: Set Environment Variables
+
 **Option A - I can set them for you:**
 Share your Supabase URL and API key with me, I'll use DevServerControl to set them securely.
 
 **Option B - Manual setup:**
+
 1. Create `.env` file in your project root:
+
 ```env
 VITE_SUPABASE_URL=https://your-project-id.supabase.co
 VITE_SUPABASE_ANON_KEY=your-anon-key-here
 ```
 
 ### Step 8: Test Connection
+
 1. Restart your development server
 2. Visit your website
 3. Go to `/admin` (password: `gdgoc2024admin`)
@@ -165,6 +175,7 @@ VITE_SUPABASE_ANON_KEY=your-anon-key-here
 ## Phase 5: Production Deployment
 
 ### Step 9: Deploy to Netlify
+
 1. In Netlify dashboard, go to your site
 2. Go to **Site configuration** → **Environment variables**
 3. Add:
@@ -173,6 +184,7 @@ VITE_SUPABASE_ANON_KEY=your-anon-key-here
 4. Redeploy your site
 
 ## ✅ Verification Checklist
+
 - [ ] Supabase project created
 - [ ] All 4 tables exist with sample data
 - [ ] Environment variables set

@@ -82,7 +82,11 @@ export default function GalleryManager() {
       description: item.description,
       image: item.image,
       date: item.date,
-      category: item.category as "workshop" | "event" | "competition" | "community",
+      category: item.category as
+        | "workshop"
+        | "event"
+        | "competition"
+        | "community",
       display_order: item.display_order,
     });
     setShowForm(true);

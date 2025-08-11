@@ -19,7 +19,11 @@ export default function EventsManager() {
     time: "",
     type: "",
     description: "",
-    color: "gdsc-blue" as "gdsc-blue" | "gdsc-red" | "gdsc-yellow" | "gdsc-green",
+    color: "gdsc-blue" as
+      | "gdsc-blue"
+      | "gdsc-red"
+      | "gdsc-yellow"
+      | "gdsc-green",
     attendees: 0,
     image: "",
     registration_link: "",
@@ -86,7 +90,11 @@ export default function EventsManager() {
       time: event.time,
       type: event.type,
       description: event.description,
-      color: event.color as "gdsc-blue" | "gdsc-red" | "gdsc-yellow" | "gdsc-green",
+      color: event.color as
+        | "gdsc-blue"
+        | "gdsc-red"
+        | "gdsc-yellow"
+        | "gdsc-green",
       attendees: event.attendees,
       image: event.image || "",
       registration_link: event.registration_link || "",
