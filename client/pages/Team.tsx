@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { TeamMember } from "@shared/admin-types";
+import { getTeamMembers, TeamMember } from "@/lib/supabase";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 
@@ -8,21 +8,15 @@ export default function Team() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetchTeamMembers();
+    loadTeamMembers();
   }, []);
 
-  const fetchTeamMembers = async () => {
-    try {
-      const response = await fetch("/api/team");
-      const data = await response.json();
-      if (data.success) {
-        setTeamMembers(data.data);
-      }
-    } catch (error) {
-      console.error("Error fetching team members:", error);
-    } finally {
-      setIsLoading(false);
+  const loadTeamMembers = async () => {
+    const result = await getTeamMembers();
+    if (result.success) {
+      setTeamMembers(result.data);
     }
+    setIsLoading(false);
   };
 
   return (
@@ -54,6 +48,11 @@ export default function Team() {
                   <div className="w-4 h-4 bg-gdsc-green rounded-full animate-pulse" style={{ animationDelay: "0.6s" }}></div>
                 </div>
               </div>
+            ) : teamMembers.length === 0 ? (
+              <div className="text-center py-16">
+                <h3 className="text-lg font-medium text-gray-900 mb-2">No team members found</h3>
+                <p className="text-gray-600">Check back later to meet our team!</p>
+              </div>
             ) : (
               <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                 {teamMembers.map((member, index) => (
@@ -66,6 +65,9 @@ export default function Team() {
                         src={member.image} 
                         alt={member.name}
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                        onError={(e) => {
+                          e.currentTarget.src = 'https://via.placeholder.com/300x300?text=No+Image';
+                        }}
                       />
                     </div>
                     <div className="p-6">
@@ -73,23 +75,23 @@ export default function Team() {
                       <p className="text-gdsc-blue font-semibold mb-3">{member.role}</p>
                       <p className="text-gray-600 text-sm mb-4">{member.bio}</p>
                       <div className="flex space-x-3">
-                        {member.social.linkedin && (
-                          <a href={member.social.linkedin} target="_blank" rel="noopener noreferrer" className="w-8 h-8 bg-gdsc-blue rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform">
+                        {member.linkedin && (
+                          <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="w-8 h-8 bg-gdsc-blue rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform">
                             <span className="text-xs">in</span>
                           </a>
                         )}
-                        {member.social.github && (
-                          <a href={member.social.github} target="_blank" rel="noopener noreferrer" className="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform">
+                        {member.github && (
+                          <a href={member.github} target="_blank" rel="noopener noreferrer" className="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform">
                             <span className="text-xs">gh</span>
                           </a>
                         )}
-                        {member.social.twitter && (
-                          <a href={member.social.twitter} target="_blank" rel="noopener noreferrer" className="w-8 h-8 bg-gdsc-red rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform">
+                        {member.twitter && (
+                          <a href={member.twitter} target="_blank" rel="noopener noreferrer" className="w-8 h-8 bg-gdsc-red rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform">
                             <span className="text-xs">tw</span>
                           </a>
                         )}
-                        {member.social.instagram && (
-                          <a href={member.social.instagram} target="_blank" rel="noopener noreferrer" className="w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform">
+                        {member.instagram && (
+                          <a href={member.instagram} target="_blank" rel="noopener noreferrer" className="w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform">
                             <span className="text-xs">ig</span>
                           </a>
                         )}
