@@ -63,9 +63,14 @@ export default function Hero() {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <button className="bg-gdsc-blue text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-blue-600 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
+            <a
+              href="https://chat.whatsapp.com/CcTjDYXNfQMEoLUHzB3hwa"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-gdsc-blue text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-blue-600 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl inline-block"
+            >
               Join Our Community
-            </button>
+            </a>
             <button className="border-2 border-gdsc-blue text-gdsc-blue px-8 py-4 rounded-full text-lg font-semibold hover:bg-gdsc-blue hover:text-white transition-all duration-300">
               Explore Events
             </button>
