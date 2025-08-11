@@ -34,14 +34,14 @@ export default function Hero() {
       {/* Main Content */}
       <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
         <div className={`transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
-          {/* Google Developer Logo */}
+          {/* Google Developer Logo with enhanced animations */}
           <div className="flex justify-center mb-8">
             <div className="flex items-center space-x-3">
               <div className="flex space-x-1">
-                <div className="w-8 h-8 rounded-full bg-gdsc-blue animate-pulse"></div>
-                <div className="w-8 h-8 rounded-full bg-gdsc-red animate-pulse" style={{ animationDelay: "0.2s" }}></div>
-                <div className="w-8 h-8 rounded-full bg-gdsc-yellow animate-pulse" style={{ animationDelay: "0.4s" }}></div>
-                <div className="w-8 h-8 rounded-full bg-gdsc-green animate-pulse" style={{ animationDelay: "0.6s" }}></div>
+                <div className="w-8 h-8 rounded-full bg-gdsc-blue animate-bounce-in hover:animate-wiggle cursor-pointer" style={{ animationDelay: "0.1s" }}></div>
+                <div className="w-8 h-8 rounded-full bg-gdsc-red animate-bounce-in hover:animate-wiggle cursor-pointer" style={{ animationDelay: "0.3s" }}></div>
+                <div className="w-8 h-8 rounded-full bg-gdsc-yellow animate-bounce-in hover:animate-wiggle cursor-pointer" style={{ animationDelay: "0.5s" }}></div>
+                <div className="w-8 h-8 rounded-full bg-gdsc-green animate-bounce-in hover:animate-wiggle cursor-pointer" style={{ animationDelay: "0.7s" }}></div>
               </div>
             </div>
           </div>
