@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import AdminLogin from "@/components/admin/AdminLogin";
-import EventsAdmin from "./admin/EventsAdmin";
+import AdminDashboard from "./admin/AdminDashboard";
 
 export default function AdminPage() {
   const [token, setToken] = useState<string | null>(null);
@@ -38,8 +38,20 @@ export default function AdminPage() {
     setToken(newToken);
   };
 
-  const handleLogout = () => {
-    setToken(null);
+  const handleLogout = async () => {
+    try {
+      if (token) {
+        await fetch("/api/admin/logout", {
+          method: "POST",
+          headers: { Authorization: `Bearer ${token}` },
+        });
+      }
+    } catch (error) {
+      console.error("Logout error:", error);
+    } finally {
+      localStorage.removeItem("admin-token");
+      setToken(null);
+    }
   };
 
   if (isLoading) {
@@ -59,6 +71,5 @@ export default function AdminPage() {
     return <AdminLogin onLogin={handleLogin} />;
   }
 
-  // For now, just show events admin. In a full implementation, you'd have routing here
-  return <EventsAdmin token={token} onLogout={handleLogout} />;
+  return <AdminDashboard token={token} onLogout={handleLogout} />;
 }
