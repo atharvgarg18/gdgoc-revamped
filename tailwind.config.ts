@@ -23,6 +23,19 @@ export default {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
         },
+        google: {
+          blue: "#4285F4",
+          red: "#EA4335",
+          yellow: "#FBBC04",
+          green: "#34A853",
+        },
+        gdsc: {
+          blue: "#4285F4",
+          red: "#EA4335",
+          yellow: "#FBBC04",
+          green: "#34A853",
+          gray: "#9AA0A6",
+        },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
@@ -80,10 +93,30 @@ export default {
             height: "0",
           },
         },
+        "float": {
+          "0%, 100%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(-20px)" },
+        },
+        "slide-up": {
+          "0%": { opacity: "0", transform: "translateY(50px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        "scale-in": {
+          "0%": { opacity: "0", transform: "scale(0.8)" },
+          "100%": { opacity: "1", transform: "scale(1)" },
+        },
+        "gradient-x": {
+          "0%, 100%": { "background-position": "0% 50%" },
+          "50%": { "background-position": "100% 50%" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "float": "float 6s ease-in-out infinite",
+        "slide-up": "slide-up 0.8s ease-out",
+        "scale-in": "scale-in 0.6s ease-out",
+        "gradient-x": "gradient-x 3s ease infinite",
       },
     },
   },
