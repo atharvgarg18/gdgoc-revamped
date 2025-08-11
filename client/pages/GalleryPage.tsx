@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { GalleryItem } from "@shared/admin-types";
+import { getGalleryItems, GalleryItem } from "@/lib/supabase";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 
@@ -9,21 +9,15 @@ export default function GalleryPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
 
   useEffect(() => {
-    fetchGalleryItems();
+    loadGalleryItems();
   }, []);
 
-  const fetchGalleryItems = async () => {
-    try {
-      const response = await fetch("/api/gallery");
-      const data = await response.json();
-      if (data.success) {
-        setGalleryItems(data.data);
-      }
-    } catch (error) {
-      console.error("Error fetching gallery items:", error);
-    } finally {
-      setIsLoading(false);
+  const loadGalleryItems = async () => {
+    const result = await getGalleryItems();
+    if (result.success) {
+      setGalleryItems(result.data);
     }
+    setIsLoading(false);
   };
 
   const filteredItems = selectedCategory === 'all' 
@@ -115,6 +109,9 @@ export default function GalleryPage() {
                         src={item.image} 
                         alt={item.title}
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                        onError={(e) => {
+                          e.currentTarget.src = 'https://via.placeholder.com/400x300?text=No+Image';
+                        }}
                       />
                     </div>
                     <div className="p-6">
