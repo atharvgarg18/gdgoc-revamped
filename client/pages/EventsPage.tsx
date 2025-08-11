@@ -205,15 +205,24 @@ export default function EventsPage() {
               </div>
             </div>
 
-            {/* CTA Button */}
-            <a
-              href="https://chat.whatsapp.com/CcTjDYXNfQMEoLUHzB3hwa"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-animate bg-gdsc-blue text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-blue-600 transition-all duration-300 shadow-lg hover:shadow-xl inline-block"
-            >
-              Join Our Community
-            </a>
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="https://chat.whatsapp.com/CcTjDYXNfQMEoLUHzB3hwa"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-animate bg-gdsc-blue text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-blue-600 transition-all duration-300 shadow-lg hover:shadow-xl inline-block text-center"
+              >
+                Join Our Community
+              </a>
+              <button
+                onClick={loadEvents}
+                disabled={isLoading}
+                className="btn-animate border-2 border-gdsc-blue text-gdsc-blue px-8 py-4 rounded-full text-lg font-semibold hover:bg-gdsc-blue hover:text-white transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {isLoading ? "Refreshing..." : "Refresh Events"}
+              </button>
+            </div>
           </div>
         </div>
       </section>
