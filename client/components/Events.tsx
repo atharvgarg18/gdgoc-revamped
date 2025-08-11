@@ -120,7 +120,12 @@ export default function Events() {
                       <span className="mr-1">👥</span>
                       {event.attendees} registered
                     </div>
-                    <button className={`bg-${event.color} text-white px-4 py-2 rounded-lg hover:opacity-90 transition-opacity`}>
+                    <button className={`text-white px-4 py-2 rounded-lg hover:opacity-90 transition-opacity ${
+                      event.color === "gdsc-blue" ? "bg-gdsc-blue" :
+                      event.color === "gdsc-red" ? "bg-gdsc-red" :
+                      event.color === "gdsc-yellow" ? "bg-gdsc-yellow" :
+                      "bg-gdsc-green"
+                    }`}>
                       Register
                     </button>
                   </div>
