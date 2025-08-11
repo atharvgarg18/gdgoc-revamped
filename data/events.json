@@ -1,0 +1,22 @@
+[
+  {
+    "id": "1",
+    "title": "Introduction to Machine Learning",
+    "date": "Dec 15, 2024",
+    "time": "2:00 PM - 5:00 PM",
+    "type": "Workshop",
+    "description": "Learn the fundamentals of ML with hands-on exercises",
+    "color": "gdsc-blue",
+    "attendees": 85
+  },
+  {
+    "id": "2",
+    "title": "Android Development Bootcamp",
+    "date": "Dec 20, 2024",
+    "time": "10:00 AM - 4:00 PM",
+    "type": "Bootcamp",
+    "description": "Build your first Android app from scratch",
+    "color": "gdsc-green",
+    "attendees": 120
+  }
+]

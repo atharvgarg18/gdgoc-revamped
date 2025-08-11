@@ -1,0 +1,20 @@
+[
+  {
+    "id": "1",
+    "title": "Web Development Workshop",
+    "description": "Students learning React and modern web technologies",
+    "image": "https://via.placeholder.com/400x300",
+    "date": "2024-11-15",
+    "category": "workshop",
+    "order": 1
+  },
+  {
+    "id": "2",
+    "title": "Community Meetup",
+    "description": "Our monthly community gathering and networking event",
+    "image": "https://via.placeholder.com/400x300",
+    "date": "2024-11-20",
+    "category": "community",
+    "order": 2
+  }
+]

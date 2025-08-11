@@ -1,0 +1,28 @@
+[
+  {
+    "id": "1",
+    "name": "Atharv Garg",
+    "role": "Lead",
+    "image": "https://via.placeholder.com/300x300",
+    "bio": "Passionate about full-stack development and community building",
+    "social": {
+      "linkedin": "#",
+      "github": "#",
+      "twitter": "#"
+    },
+    "order": 1
+  },
+  {
+    "id": "2",
+    "name": "Core Member 1",
+    "role": "Technical Lead",
+    "image": "https://via.placeholder.com/300x300",
+    "bio": "Specializes in machine learning and data science",
+    "social": {
+      "linkedin": "#",
+      "github": "#",
+      "twitter": "#"
+    },
+    "order": 2
+  }
+]
