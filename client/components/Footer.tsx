@@ -126,6 +126,14 @@ export default function Footer() {
                 </li>
                 <li>
                   <Link
+                    to="/projects"
+                    className="text-gray-300 hover:text-white transition-colors duration-300 text-sm md:text-base hover:translate-x-1 transform inline-block"
+                  >
+                    Projects
+                  </Link>
+                </li>
+                <li>
+                  <Link
                     to="/gallery"
                     className="text-gray-300 hover:text-white transition-colors duration-300 text-sm md:text-base hover:translate-x-1 transform inline-block"
                   >

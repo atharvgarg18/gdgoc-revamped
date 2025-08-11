@@ -75,6 +75,16 @@ export default function NewAdminDashboard({
                 👥 Team
               </button>
               <button
+                onClick={() => setActiveSection("projects")}
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                  activeSection === "projects"
+                    ? "bg-gdsc-red text-white"
+                    : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+                }`}
+              >
+                🚀 Projects
+              </button>
+              <button
                 onClick={() => setActiveSection("gallery")}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                   activeSection === "gallery"
