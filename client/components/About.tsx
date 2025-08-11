@@ -28,11 +28,11 @@ export default function About() {
           {/* Section Header */}
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              About <span className="text-gdsc-blue">GDSC IET DAVV</span>
+              About <span className="text-gdsc-blue">GDGoC IET DAVV</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Google Developer Student Clubs are university-based community groups for students 
-              interested in Google developer technologies.
+              Google Developer Groups on Campus are university-based community groups for students
+              interested in Google developer technologies and building the future together.
             </p>
           </div>
 
@@ -44,7 +44,7 @@ export default function About() {
                 Building the Future, One Developer at a Time
               </h3>
               <p className="text-gray-600 leading-relaxed">
-                At GDSC IET DAVV, we believe in the power of learning together. Our community 
+                At GDGoC IET DAVV, we believe in the power of learning together. Our community 
                 is designed to help students bridge the gap between theory and practice through 
                 hands-on workshops, projects, and events.
               </p>
