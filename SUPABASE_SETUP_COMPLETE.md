@@ -1,16 +1,19 @@
 # 🚀 Complete Supabase Setup Guide for GDGoC Website
 
 ## 📋 Prerequisites
+
 - GitHub account
 - Email account for Supabase registration
 
 ## 🏗️ Step 1: Create Supabase Project
 
 1. **Visit Supabase**
+
    - Go to [https://supabase.com](https://supabase.com)
    - Click **"Start your project"**
 
 2. **Sign Up/Login**
+
    - Use your GitHub account for easy integration
    - Or create account with email
 
@@ -27,20 +30,23 @@
 ## 🔑 Step 2: Get Your Credentials
 
 1. **Navigate to Project Settings**
+
    - In your Supabase dashboard, click **Settings** (gear icon in sidebar)
    - Click **API** in the settings menu
 
 2. **Copy Required Values**
+
    ```
    Project URL: https://[your-project-id].supabase.co
    Project API Keys → anon/public: eyJ... (starts with eyJ)
    ```
-   
+
    **⚠️ Important**: Keep these credentials safe and never share publicly!
 
 ## 📊 Step 3: Create Database Tables
 
 1. **Open SQL Editor**
+
    - In Supabase dashboard, click **SQL Editor** in sidebar
    - Click **"New Query"**
 
@@ -167,14 +173,17 @@ CREATE POLICY "Allow public read access on projects" ON projects FOR SELECT USIN
 ## 🔧 Step 4: Configure Your Project
 
 ### Option A: Using DevServerControl (Recommended)
+
 I can set up your environment variables automatically:
 
 1. **Provide Your Credentials**
    Share your Supabase URL and API key with me, and I'll configure them securely using DevServerControl.
 
 ### Option B: Manual Setup
+
 1. **Create Environment File**
    Create `.env` file in your project root:
+
    ```env
    VITE_SUPABASE_URL=https://your-project-id.supabase.co
    VITE_SUPABASE_ANON_KEY=your-anon-key-here
@@ -188,6 +197,7 @@ I can set up your environment variables automatically:
 ## 🧪 Step 5: Test Your Setup
 
 1. **Visit Your Admin Panel**
+
    - Go to `/admin` on your website
    - Password: `gdgoc2024admin`
    - Try adding/editing events, team members, gallery items, and projects
@@ -199,6 +209,7 @@ I can set up your environment variables automatically:
 ## 🌐 Step 6: Production Deployment
 
 ### For Netlify Deployment:
+
 1. **Environment Variables in Netlify**
    - Go to Site settings → Environment variables
    - Add:
@@ -206,6 +217,7 @@ I can set up your environment variables automatically:
      - `VITE_SUPABASE_ANON_KEY` = your anon key
 
 ### Database Backup & Maintenance:
+
 - **Automatic Backups**: Supabase automatically backs up your data
 - **Manual Backup**: Use SQL Editor to export data if needed
 - **Monitoring**: Check Supabase dashboard for performance metrics
@@ -213,11 +225,14 @@ I can set up your environment variables automatically:
 ## 🔍 Troubleshooting
 
 ### Common Issues:
+
 1. **"Failed to fetch" errors**
+
    - Check your credentials are correct
    - Verify RLS policies allow public read access
 
 2. **Environment variables not working**
+
    - Ensure variables start with `VITE_`
    - Restart your development server after adding env vars
 
@@ -226,6 +241,7 @@ I can set up your environment variables automatically:
    - For localhost, no additional config needed
 
 ### Getting Help:
+
 - Check Supabase docs: [https://supabase.com/docs](https://supabase.com/docs)
 - Contact me if you need assistance with any step
 
