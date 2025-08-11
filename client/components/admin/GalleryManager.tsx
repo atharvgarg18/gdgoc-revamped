@@ -18,7 +18,7 @@ export default function GalleryManager() {
     description: "",
     image: "",
     date: "",
-    category: "workshop" as const,
+    category: "workshop" as "workshop" | "event" | "competition" | "community",
     display_order: 1,
   });
 
@@ -82,7 +82,7 @@ export default function GalleryManager() {
       description: item.description,
       image: item.image,
       date: item.date,
-      category: item.category,
+      category: item.category as "workshop" | "event" | "competition" | "community",
       display_order: item.display_order,
     });
     setShowForm(true);
