@@ -59,6 +59,22 @@ export interface GalleryItem {
   updated_at: string;
 }
 
+export interface Project {
+  id: string;
+  title: string;
+  description: string;
+  image?: string;
+  github_url?: string;
+  live_url?: string;
+  tech_stack: string[];
+  category: "web" | "mobile" | "ai" | "blockchain" | "iot" | "other";
+  status: "completed" | "in_progress" | "planned";
+  team_members: string[];
+  display_order: number;
+  created_at: string;
+  updated_at: string;
+}
+
 // Mock data for development
 const mockEvents: Event[] = [
   {
@@ -151,11 +167,44 @@ const mockGalleryItems: GalleryItem[] = [
   },
 ];
 
+const mockProjects: Project[] = [
+  {
+    id: "1",
+    title: "GDGoC Website",
+    description: "Modern, responsive website for our community built with React and TypeScript",
+    image: "https://via.placeholder.com/600x400",
+    github_url: "https://github.com/gdgoc-iet-davv/website",
+    live_url: "https://gdgoc-iet-davv.netlify.app",
+    tech_stack: ["React", "TypeScript", "Tailwind CSS", "Supabase"],
+    category: "web",
+    status: "completed",
+    team_members: ["Atharv Garg", "Core Team"],
+    display_order: 1,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+  {
+    id: "2",
+    title: "Event Management App",
+    description: "Mobile app for managing community events and registrations",
+    image: "https://via.placeholder.com/600x400",
+    github_url: "https://github.com/gdgoc-iet-davv/event-app",
+    tech_stack: ["React Native", "Firebase", "Node.js"],
+    category: "mobile",
+    status: "in_progress",
+    team_members: ["Tech Team", "Mobile Development Squad"],
+    display_order: 2,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+];
+
 // Local storage keys
 const STORAGE_KEYS = {
   events: "gdgoc-events",
   teamMembers: "gdgoc-team-members",
   galleryItems: "gdgoc-gallery-items",
+  projects: "gdgoc-projects",
 };
 
 // Helper functions for local storage
@@ -513,6 +562,122 @@ export const deleteGalleryItem = async (id: string) => {
     }
   } catch (error) {
     console.error("Error deleting gallery item:", error);
+    return { success: false, error: error.message };
+  }
+};
+
+// Projects API
+export const getProjects = async () => {
+  try {
+    if (supabase) {
+      const { data, error } = await supabase
+        .from("projects")
+        .select("*")
+        .order("display_order", { ascending: false });
+
+      if (error) throw error;
+      return { success: true, data: data || [] };
+    } else {
+      // Use local storage in development
+      const data = getFromStorage(STORAGE_KEYS.projects, mockProjects);
+      return {
+        success: true,
+        data: data.sort((a, b) => b.display_order - a.display_order),
+      };
+    }
+  } catch (error) {
+    console.error("Error fetching projects:", error);
+    return { success: false, data: [], error: error.message };
+  }
+};
+
+export const createProject = async (
+  project: Omit<Project, "id" | "created_at" | "updated_at">,
+) => {
+  try {
+    if (supabase) {
+      const { data, error } = await supabase
+        .from("projects")
+        .insert([project])
+        .select()
+        .single();
+
+      if (error) throw error;
+      return { success: true, data };
+    } else {
+      // Use local storage in development
+      const projects = getFromStorage(STORAGE_KEYS.projects, mockProjects);
+      const newProject: Project = {
+        ...project,
+        id: Date.now().toString(),
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+      };
+      projects.push(newProject);
+      saveToStorage(STORAGE_KEYS.projects, projects);
+      return { success: true, data: newProject };
+    }
+  } catch (error) {
+    console.error("Error creating project:", error);
+    return { success: false, error: error.message };
+  }
+};
+
+export const updateProject = async (
+  id: string,
+  updates: Partial<Project>,
+) => {
+  try {
+    if (supabase) {
+      const { data, error } = await supabase
+        .from("projects")
+        .update({ ...updates, updated_at: new Date().toISOString() })
+        .eq("id", id)
+        .select()
+        .single();
+
+      if (error) throw error;
+      return { success: true, data };
+    } else {
+      // Use local storage in development
+      const projects = getFromStorage(STORAGE_KEYS.projects, mockProjects);
+      const index = projects.findIndex((p) => p.id === id);
+      if (index === -1)
+        return { success: false, error: "Project not found" };
+
+      projects[index] = {
+        ...projects[index],
+        ...updates,
+        updated_at: new Date().toISOString(),
+      };
+      saveToStorage(STORAGE_KEYS.projects, projects);
+      return { success: true, data: projects[index] };
+    }
+  } catch (error) {
+    console.error("Error updating project:", error);
+    return { success: false, error: error.message };
+  }
+};
+
+export const deleteProject = async (id: string) => {
+  try {
+    if (supabase) {
+      const { error } = await supabase
+        .from("projects")
+        .delete()
+        .eq("id", id);
+
+      if (error) throw error;
+      return { success: true };
+    } else {
+      // Use local storage in development
+      const projects = getFromStorage(STORAGE_KEYS.projects, mockProjects);
+      const filtered = projects.filter((p) => p.id !== id);
+      saveToStorage(STORAGE_KEYS.projects, filtered);
+      return { success: true };
+    }
+  } catch (error) {
+    console.error("Error deleting project:", error);
     return { success: false, error: error.message };
   }
 };
