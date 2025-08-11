@@ -44,7 +44,7 @@ export default function Team() {
               Meet Our <span className="text-gdsc-blue">Team</span>
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              The passionate individuals who make GDSC IET DAVV a thriving community 
+              The passionate individuals who make GDGoC IET DAVV a thriving community 
               of learners and innovators.
             </p>
           </div>
