@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Event } from "@shared/admin-types";
+import { getEvents, Event } from "@/lib/supabase";
 
 export default function Events() {
   const [events, setEvents] = useState<Event[]>([]);
@@ -20,21 +20,16 @@ export default function Events() {
       observer.observe(sectionRef.current);
     }
 
-    // Fetch events
-    fetchEvents();
+    // Fetch events from Supabase
+    loadEvents();
 
     return () => observer.disconnect();
   }, []);
 
-  const fetchEvents = async () => {
-    try {
-      const response = await fetch("/api/events");
-      const data = await response.json();
-      if (data.success) {
-        setEvents(data.data);
-      }
-    } catch (error) {
-      console.error("Error fetching events:", error);
+  const loadEvents = async () => {
+    const result = await getEvents();
+    if (result.success) {
+      setEvents(result.data);
     }
   };
 
@@ -98,19 +93,42 @@ export default function Events() {
                       <span className="mr-1">👥</span>
                       {event.attendees} registered
                     </div>
-                    <button className={`text-white px-4 py-2 rounded-lg hover:opacity-90 transition-opacity ${
-                      event.color === "gdsc-blue" ? "bg-gdsc-blue" :
-                      event.color === "gdsc-red" ? "bg-gdsc-red" :
-                      event.color === "gdsc-yellow" ? "bg-gdsc-yellow" :
-                      "bg-gdsc-green"
-                    }`}>
-                      Register
-                    </button>
+                    {event.registration_link ? (
+                      <a 
+                        href={event.registration_link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`text-white px-4 py-2 rounded-lg hover:opacity-90 transition-opacity ${
+                          event.color === "gdsc-blue" ? "bg-gdsc-blue" :
+                          event.color === "gdsc-red" ? "bg-gdsc-red" :
+                          event.color === "gdsc-yellow" ? "bg-gdsc-yellow" :
+                          "bg-gdsc-green"
+                        }`}
+                      >
+                        Register
+                      </a>
+                    ) : (
+                      <button className={`text-white px-4 py-2 rounded-lg hover:opacity-90 transition-opacity ${
+                        event.color === "gdsc-blue" ? "bg-gdsc-blue" :
+                        event.color === "gdsc-red" ? "bg-gdsc-red" :
+                        event.color === "gdsc-yellow" ? "bg-gdsc-yellow" :
+                        "bg-gdsc-green"
+                      }`}>
+                        Register
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>
             ))}
           </div>
+
+          {events.length === 0 && (
+            <div className="text-center py-16">
+              <h3 className="text-lg font-medium text-gray-900 mb-2">No events scheduled</h3>
+              <p className="text-gray-600">Check back later for upcoming events!</p>
+            </div>
+          )}
 
           {/* CTA Section */}
           <div className="text-center mt-16">
