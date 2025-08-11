@@ -2,6 +2,24 @@ import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import { handleDemo } from "./routes/demo";
+import { requireAuth } from "./middleware/auth";
+import {
+  adminLogin,
+  adminLogout,
+  getEventsAdmin,
+  createEvent,
+  updateEventAdmin,
+  deleteEventAdmin,
+  getTeamAdmin,
+  createTeamMember,
+  updateTeamMemberAdmin,
+  deleteTeamMemberAdmin,
+  getGalleryAdmin,
+  createGalleryItem,
+  updateGalleryItemAdmin,
+  deleteGalleryItemAdmin,
+} from "./routes/admin";
+import { getEvents, getTeamMembers, getGalleryItems } from "./utils/data-store";
 
 export function createServer() {
   const app = express();
