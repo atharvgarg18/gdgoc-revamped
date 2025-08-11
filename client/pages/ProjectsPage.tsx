@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { getProjects, Project } from "@/lib/supabase";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 
 export default function ProjectsPage() {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -108,6 +109,12 @@ export default function ProjectsPage() {
 
   return (
     <div className="min-h-screen">
+      <SEO
+        title="Projects"
+        description="Explore innovative projects built by GDGoC IET DAVV community members. From web applications to mobile apps, AI solutions, and more. Discover our open-source contributions."
+        keywords="GDGoC projects, student projects, open source, web development, mobile apps, AI projects, blockchain, IoT, programming projects, IET DAVV"
+      />
+
       <Navigation />
       <main className="pt-16">
         {/* Enhanced Hero Section */}

@@ -3,6 +3,7 @@ import { getTeamMembers, TeamMember } from "@/lib/supabase";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SocialIcons from "@/components/SocialIcons";
+import SEO from "@/components/SEO";
 
 export default function Team() {
   const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
@@ -44,6 +45,12 @@ export default function Team() {
 
   return (
     <div className="min-h-screen">
+      <SEO
+        title="Team"
+        description="Meet the passionate team behind GDGoC IET DAVV. Our diverse group of student leaders, developers, and innovators work together to build an amazing tech community."
+        keywords="GDGoC team, student leaders, tech team, developers, IET DAVV students, community leaders, programming team, tech enthusiasts"
+      />
+
       <Navigation />
       <main className="pt-16">
         {/* Enhanced Hero Section with background elements */}

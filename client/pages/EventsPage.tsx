@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { getEvents, Event } from "@/lib/supabase";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 
 export default function EventsPage() {
   const [events, setEvents] = useState<Event[]>([]);
@@ -43,6 +44,12 @@ export default function EventsPage() {
 
   return (
     <div className="min-h-screen">
+      <SEO
+        title="Events"
+        description="Discover exciting workshops, seminars, and hands-on sessions organized by GDGoC IET DAVV. Join our tech events to enhance your skills and expand your network in the developer community."
+        keywords="GDGoC events, tech workshops, programming seminars, coding bootcamps, developer meetups, IET DAVV events, technology workshops, student events"
+      />
+
       <Navigation />
       <main className="pt-16">
         {/* Enhanced Hero Section with background elements */}
