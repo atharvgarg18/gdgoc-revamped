@@ -72,7 +72,7 @@ export default function EventsPage() {
     if (activeFilter === "all") {
       setFilteredEvents(events);
     } else {
-      setFilteredEvents(events.filter(event => event.type === activeFilter));
+      setFilteredEvents(events.filter((event) => event.type === activeFilter));
     }
     setVisibleCards(new Set()); // Reset visible cards when filter changes
   }, [events, activeFilter]);
@@ -102,7 +102,7 @@ export default function EventsPage() {
 
   const getEventTypeStats = () => {
     const stats: { [key: string]: number } = {};
-    events.forEach(event => {
+    events.forEach((event) => {
       stats[event.type] = (stats[event.type] || 0) + 1;
     });
     return stats;
@@ -113,7 +113,7 @@ export default function EventsPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       <Navigation />
-      
+
       {/* Hero Section */}
       <section className="relative pt-20 pb-16 md:pt-24 md:pb-20 bg-gradient-to-br from-gray-50 to-white overflow-hidden">
         {/* Background Elements */}
@@ -174,9 +174,11 @@ export default function EventsPage() {
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 md:mb-6 leading-tight">
               Events & <span className="text-gdsc-blue">Workshops</span>
             </h1>
-            
+
             <p className="text-base sm:text-lg md:text-xl text-gray-600 mb-8 md:mb-12 max-w-3xl mx-auto leading-relaxed">
-              Join us for exciting workshops, seminars, hackathons, and hands-on sessions designed to enhance your technical skills and expand your network in the developer community.
+              Join us for exciting workshops, seminars, hackathons, and hands-on
+              sessions designed to enhance your technical skills and expand your
+              network in the developer community.
             </p>
 
             {/* Stats */}
@@ -185,25 +187,33 @@ export default function EventsPage() {
                 <div className="text-2xl md:text-3xl font-bold text-gdsc-blue group-hover:scale-110 transition-transform duration-300">
                   {events.length}+
                 </div>
-                <div className="text-gray-600 text-sm md:text-base">Total Events</div>
+                <div className="text-gray-600 text-sm md:text-base">
+                  Total Events
+                </div>
               </div>
               <div className="group">
                 <div className="text-2xl md:text-3xl font-bold text-gdsc-red group-hover:scale-110 transition-transform duration-300">
                   {stats.Workshop || 0}
                 </div>
-                <div className="text-gray-600 text-sm md:text-base">Workshops</div>
+                <div className="text-gray-600 text-sm md:text-base">
+                  Workshops
+                </div>
               </div>
               <div className="group">
                 <div className="text-2xl md:text-3xl font-bold text-gdsc-yellow group-hover:scale-110 transition-transform duration-300">
                   {stats.Bootcamp || 0}
                 </div>
-                <div className="text-gray-600 text-sm md:text-base">Bootcamps</div>
+                <div className="text-gray-600 text-sm md:text-base">
+                  Bootcamps
+                </div>
               </div>
               <div className="group">
                 <div className="text-2xl md:text-3xl font-bold text-gdsc-green group-hover:scale-110 transition-transform duration-300">
                   {stats.Hackathon || 0}
                 </div>
-                <div className="text-gray-600 text-sm md:text-base">Hackathons</div>
+                <div className="text-gray-600 text-sm md:text-base">
+                  Hackathons
+                </div>
               </div>
             </div>
 
@@ -230,7 +240,10 @@ export default function EventsPage() {
       </section>
 
       {/* Events Section */}
-      <section ref={sectionRef} className="py-16 md:py-20 relative overflow-hidden">
+      <section
+        ref={sectionRef}
+        className="py-16 md:py-20 relative overflow-hidden"
+      >
         {/* Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-16 md:top-20 left-4 md:left-10 w-20 md:w-32 h-20 md:h-32 bg-gdsc-blue/5 rounded-full animate-float"></div>
@@ -257,7 +270,7 @@ export default function EventsPage() {
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-6 md:mb-8">
                 Explore Our <span className="text-gdsc-blue">Events</span>
               </h2>
-              
+
               <div className="flex flex-wrap justify-center gap-3 md:gap-4 mb-6">
                 {eventFilters.map((filter) => (
                   <button
@@ -279,7 +292,9 @@ export default function EventsPage() {
                   >
                     {filter.label}
                     {filter.type !== "all" && stats[filter.type] && (
-                      <span className="ml-2 text-sm">({stats[filter.type]})</span>
+                      <span className="ml-2 text-sm">
+                        ({stats[filter.type]})
+                      </span>
                     )}
                   </button>
                 ))}
@@ -289,7 +304,8 @@ export default function EventsPage() {
               {lastUpdated && (
                 <div className="text-center mb-8">
                   <p className="text-sm text-gray-500">
-                    Last updated: {lastUpdated.toLocaleTimeString()} • Auto-refreshes every 30 seconds
+                    Last updated: {lastUpdated.toLocaleTimeString()} •
+                    Auto-refreshes every 30 seconds
                   </p>
                 </div>
               )}
@@ -339,11 +355,13 @@ export default function EventsPage() {
                   </div>
                 </div>
                 <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-4">
-                  {activeFilter === "all" ? "Exciting Events Coming Soon!" : `No ${activeFilter}s Found`}
+                  {activeFilter === "all"
+                    ? "Exciting Events Coming Soon!"
+                    : `No ${activeFilter}s Found`}
                 </h3>
                 <p className="text-gray-600 text-lg mb-6">
-                  {activeFilter === "all" 
-                    ? "We're planning amazing workshops and events for our community." 
+                  {activeFilter === "all"
+                    ? "We're planning amazing workshops and events for our community."
                     : `We're working on organizing ${activeFilter.toLowerCase()}s. Check back soon!`}
                 </p>
                 {activeFilter !== "all" && (
@@ -481,15 +499,18 @@ export default function EventsPage() {
             <div className="text-center mt-16 md:mt-20">
               <div className="relative bg-white rounded-3xl p-8 md:p-12 shadow-xl">
                 <div className="absolute inset-0 bg-gradient-to-br from-gdsc-blue/5 to-gdsc-green/5 rounded-3xl"></div>
-                
+
                 <div className="relative z-10">
                   <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                    Don't Miss Out on Our <span className="text-gdsc-blue">Events</span>!
+                    Don't Miss Out on Our{" "}
+                    <span className="text-gdsc-blue">Events</span>!
                   </h3>
                   <p className="text-gray-600 mb-8 max-w-2xl mx-auto text-lg leading-relaxed">
-                    Stay updated with our latest events and workshops. Join our community to receive notifications about upcoming sessions and be part of our growing developer network.
+                    Stay updated with our latest events and workshops. Join our
+                    community to receive notifications about upcoming sessions
+                    and be part of our growing developer network.
                   </p>
-                  
+
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <a
                       href="https://chat.whatsapp.com/CcTjDYXNfQMEoLUHzB3hwa"

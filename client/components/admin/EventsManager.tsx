@@ -100,14 +100,22 @@ export default function EventsManager() {
         }
       }
     } catch (error) {
-      showNotification("error", "An unexpected error occurred. Please try again.");
+      showNotification(
+        "error",
+        "An unexpected error occurred. Please try again.",
+      );
     } finally {
       setIsSubmitting(false);
     }
   };
 
   const handleDelete = async (id: string, title: string) => {
-    if (!confirm(`Are you sure you want to delete "${title}"? This action cannot be undone.`)) return;
+    if (
+      !confirm(
+        `Are you sure you want to delete "${title}"? This action cannot be undone.`,
+      )
+    )
+      return;
 
     const result = await deleteEvent(id);
     if (result.success) {
@@ -154,7 +162,7 @@ export default function EventsManager() {
     // Convert "Dec 15, 2024" to "2024-12-15" format
     try {
       const date = new Date(dateString);
-      return date.toISOString().split('T')[0];
+      return date.toISOString().split("T")[0];
     } catch {
       return "";
     }
@@ -164,32 +172,41 @@ export default function EventsManager() {
     // Convert "2024-12-15" to "Dec 15, 2024" format
     try {
       const date = new Date(inputDate);
-      return date.toLocaleDateString('en-US', { 
-        year: 'numeric', 
-        month: 'short', 
-        day: 'numeric' 
+      return date.toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
       });
     } catch {
       return inputDate;
     }
   };
 
-  const filteredEvents = events.filter(event => {
-    const matchesSearch = event.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         event.description.toLowerCase().includes(searchTerm.toLowerCase());
+  const filteredEvents = events.filter((event) => {
+    const matchesSearch =
+      event.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      event.description.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesType = filterType === "all" || event.type === filterType;
     return matchesSearch && matchesType;
   });
 
   const getEventStats = () => {
     const total = events.length;
-    const upcoming = events.filter(event => new Date(event.date) >= new Date()).length;
-    const totalAttendees = events.reduce((sum, event) => sum + event.attendees, 0);
-    const typeCount = events.reduce((acc, event) => {
-      acc[event.type] = (acc[event.type] || 0) + 1;
-      return acc;
-    }, {} as Record<string, number>);
-    
+    const upcoming = events.filter(
+      (event) => new Date(event.date) >= new Date(),
+    ).length;
+    const totalAttendees = events.reduce(
+      (sum, event) => sum + event.attendees,
+      0,
+    );
+    const typeCount = events.reduce(
+      (acc, event) => {
+        acc[event.type] = (acc[event.type] || 0) + 1;
+        return acc;
+      },
+      {} as Record<string, number>,
+    );
+
     return { total, upcoming, totalAttendees, typeCount };
   };
 
@@ -200,9 +217,18 @@ export default function EventsManager() {
       <div className="flex justify-center items-center h-64">
         <div className="flex space-x-2">
           <div className="w-4 h-4 bg-gdsc-blue rounded-full animate-pulse"></div>
-          <div className="w-4 h-4 bg-gdsc-red rounded-full animate-pulse" style={{ animationDelay: "0.1s" }}></div>
-          <div className="w-4 h-4 bg-gdsc-yellow rounded-full animate-pulse" style={{ animationDelay: "0.2s" }}></div>
-          <div className="w-4 h-4 bg-gdsc-green rounded-full animate-pulse" style={{ animationDelay: "0.3s" }}></div>
+          <div
+            className="w-4 h-4 bg-gdsc-red rounded-full animate-pulse"
+            style={{ animationDelay: "0.1s" }}
+          ></div>
+          <div
+            className="w-4 h-4 bg-gdsc-yellow rounded-full animate-pulse"
+            style={{ animationDelay: "0.2s" }}
+          ></div>
+          <div
+            className="w-4 h-4 bg-gdsc-green rounded-full animate-pulse"
+            style={{ animationDelay: "0.3s" }}
+          ></div>
         </div>
       </div>
     );
@@ -235,8 +261,12 @@ export default function EventsManager() {
       {/* Header */}
       <div className="flex flex-col md:flex-row md:justify-between md:items-center space-y-4 md:space-y-0">
         <div>
-          <h2 className="text-3xl font-bold text-gray-900">Events Management</h2>
-          <p className="text-gray-600 mt-1">Create and manage events that appear on your website</p>
+          <h2 className="text-3xl font-bold text-gray-900">
+            Events Management
+          </h2>
+          <p className="text-gray-600 mt-1">
+            Create and manage events that appear on your website
+          </p>
         </div>
         <button
           onClick={() => setShowForm(true)}
@@ -260,7 +290,7 @@ export default function EventsManager() {
             </div>
           </div>
         </div>
-        
+
         <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
           <div className="flex items-center">
             <div className="p-3 rounded-lg bg-gdsc-green/10">
@@ -268,23 +298,29 @@ export default function EventsManager() {
             </div>
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600">Upcoming</p>
-              <p className="text-2xl font-bold text-gray-900">{stats.upcoming}</p>
+              <p className="text-2xl font-bold text-gray-900">
+                {stats.upcoming}
+              </p>
             </div>
           </div>
         </div>
-        
+
         <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
           <div className="flex items-center">
             <div className="p-3 rounded-lg bg-gdsc-yellow/10">
               <span className="text-2xl">👥</span>
             </div>
             <div className="ml-4">
-              <p className="text-sm font-medium text-gray-600">Total Attendees</p>
-              <p className="text-2xl font-bold text-gray-900">{stats.totalAttendees}</p>
+              <p className="text-sm font-medium text-gray-600">
+                Total Attendees
+              </p>
+              <p className="text-2xl font-bold text-gray-900">
+                {stats.totalAttendees}
+              </p>
             </div>
           </div>
         </div>
-        
+
         <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
           <div className="flex items-center">
             <div className="p-3 rounded-lg bg-gdsc-red/10">
@@ -293,7 +329,9 @@ export default function EventsManager() {
             <div className="ml-4">
               <p className="text-sm font-medium text-gray-600">Most Popular</p>
               <p className="text-lg font-bold text-gray-900">
-                {Object.entries(stats.typeCount).sort(([,a], [,b]) => b - a)[0]?.[0] || "N/A"}
+                {Object.entries(stats.typeCount).sort(
+                  ([, a], [, b]) => b - a,
+                )[0]?.[0] || "N/A"}
               </p>
             </div>
           </div>
@@ -319,7 +357,7 @@ export default function EventsManager() {
               onChange={(e) => setFilterType(e.target.value)}
             >
               <option value="all">All Types</option>
-              {eventTypes.map(type => (
+              {eventTypes.map((type) => (
                 <option key={type.value} value={type.value}>
                   {type.label}
                 </option>
@@ -344,13 +382,14 @@ export default function EventsManager() {
           <div className="p-12 text-center text-gray-500">
             <div className="text-6xl mb-4">📅</div>
             <h3 className="text-xl font-semibold text-gray-900 mb-2">
-              {searchTerm || filterType !== "all" ? "No events match your criteria" : "No events found"}
+              {searchTerm || filterType !== "all"
+                ? "No events match your criteria"
+                : "No events found"}
             </h3>
             <p className="text-gray-600 mb-6">
-              {searchTerm || filterType !== "all" 
+              {searchTerm || filterType !== "all"
                 ? "Try adjusting your search or filter criteria"
-                : "Create your first event to get started!"
-              }
+                : "Create your first event to get started!"}
             </p>
             {!searchTerm && filterType === "all" && (
               <button
@@ -381,7 +420,8 @@ export default function EventsManager() {
                               : "bg-green-100 text-green-800"
                       }`}
                     >
-                      {eventTypes.find(t => t.value === event.type)?.icon} {event.type}
+                      {eventTypes.find((t) => t.value === event.type)?.icon}{" "}
+                      {event.type}
                     </span>
                     <div className="flex space-x-2">
                       <button
@@ -400,10 +440,14 @@ export default function EventsManager() {
                       </button>
                     </div>
                   </div>
-                  
-                  <h3 className="text-lg font-bold text-gray-900 mb-2">{event.title}</h3>
-                  <p className="text-gray-600 text-sm mb-4 line-clamp-2">{event.description}</p>
-                  
+
+                  <h3 className="text-lg font-bold text-gray-900 mb-2">
+                    {event.title}
+                  </h3>
+                  <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+                    {event.description}
+                  </p>
+
                   <div className="space-y-2 text-sm text-gray-500">
                     <div className="flex items-center">
                       <span className="w-4">📅</span>
@@ -420,9 +464,9 @@ export default function EventsManager() {
                     {event.registration_link && (
                       <div className="flex items-center">
                         <span className="w-4">🔗</span>
-                        <a 
-                          href={event.registration_link} 
-                          target="_blank" 
+                        <a
+                          href={event.registration_link}
+                          target="_blank"
                           rel="noopener noreferrer"
                           className="ml-2 text-gdsc-blue hover:underline truncate"
                         >
@@ -466,7 +510,9 @@ export default function EventsManager() {
                     placeholder="Enter event title..."
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gdsc-blue"
                     value={formData.title}
-                    onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, title: e.target.value })
+                    }
                   />
                 </div>
 
@@ -479,11 +525,17 @@ export default function EventsManager() {
                       type="date"
                       required
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gdsc-blue"
-                      value={formData.date ? formatDateForInput(formData.date) : ""}
-                      onChange={(e) => setFormData({ 
-                        ...formData, 
-                        date: e.target.value ? formatDateForDisplay(e.target.value) : ""
-                      })}
+                      value={
+                        formData.date ? formatDateForInput(formData.date) : ""
+                      }
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          date: e.target.value
+                            ? formatDateForDisplay(e.target.value)
+                            : "",
+                        })
+                      }
                     />
                   </div>
                   <div>
@@ -496,7 +548,9 @@ export default function EventsManager() {
                       placeholder="e.g., 2:00 PM - 5:00 PM"
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gdsc-blue"
                       value={formData.time}
-                      onChange={(e) => setFormData({ ...formData, time: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, time: e.target.value })
+                      }
                     />
                   </div>
                 </div>
@@ -510,10 +564,12 @@ export default function EventsManager() {
                       required
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gdsc-blue"
                       value={formData.type}
-                      onChange={(e) => setFormData({ ...formData, type: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, type: e.target.value })
+                      }
                     >
                       <option value="">Select event type...</option>
-                      {eventTypes.map(type => (
+                      {eventTypes.map((type) => (
                         <option key={type.value} value={type.value}>
                           {type.icon} {type.label}
                         </option>
@@ -525,11 +581,16 @@ export default function EventsManager() {
                       Color Theme *
                     </label>
                     <div className="flex space-x-3">
-                      {colorThemes.map(theme => (
+                      {colorThemes.map((theme) => (
                         <button
                           key={theme.value}
                           type="button"
-                          onClick={() => setFormData({ ...formData, color: theme.value as any })}
+                          onClick={() =>
+                            setFormData({
+                              ...formData,
+                              color: theme.value as any,
+                            })
+                          }
                           className={`flex-1 px-3 py-3 rounded-lg border-2 transition-all ${
                             formData.color === theme.value
                               ? "border-gray-800 shadow-lg"
@@ -541,7 +602,9 @@ export default function EventsManager() {
                             className="w-4 h-4 rounded-full mx-auto mb-1"
                             style={{ backgroundColor: theme.color }}
                           ></div>
-                          <span className="text-xs font-medium">{theme.label}</span>
+                          <span className="text-xs font-medium">
+                            {theme.label}
+                          </span>
                         </button>
                       ))}
                     </div>
@@ -558,7 +621,9 @@ export default function EventsManager() {
                     placeholder="Describe your event..."
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gdsc-blue"
                     value={formData.description}
-                    onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, description: e.target.value })
+                    }
                   />
                 </div>
 
@@ -573,10 +638,12 @@ export default function EventsManager() {
                       placeholder="0"
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gdsc-blue"
                       value={formData.attendees || ""}
-                      onChange={(e) => setFormData({
-                        ...formData,
-                        attendees: parseInt(e.target.value) || 0,
-                      })}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          attendees: parseInt(e.target.value) || 0,
+                        })
+                      }
                     />
                   </div>
                   <div>
@@ -588,7 +655,12 @@ export default function EventsManager() {
                       placeholder="https://forms.gle/..."
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gdsc-blue"
                       value={formData.registration_link}
-                      onChange={(e) => setFormData({ ...formData, registration_link: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          registration_link: e.target.value,
+                        })
+                      }
                     />
                   </div>
                 </div>
@@ -602,7 +674,9 @@ export default function EventsManager() {
                     placeholder="https://example.com/image.jpg"
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gdsc-blue"
                     value={formData.image}
-                    onChange={(e) => setFormData({ ...formData, image: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, image: e.target.value })
+                    }
                   />
                 </div>
 
