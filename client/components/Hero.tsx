@@ -9,7 +9,7 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-50 to-white">
-      {/* Animated Background Elements */}
+      {/* Simple Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Floating Geometric Shapes */}
         <div className="absolute top-20 left-10 w-4 h-4 bg-gdsc-blue rounded-full animate-float opacity-60"></div>
@@ -20,37 +20,28 @@ export default function Hero() {
         {/* Large decorative circles */}
         <div className="absolute -top-10 -right-10 w-40 h-40 bg-gradient-to-br from-gdsc-blue/10 to-gdsc-blue/5 rounded-full"></div>
         <div className="absolute -bottom-10 -left-10 w-60 h-60 bg-gradient-to-tr from-gdsc-green/10 to-gdsc-green/5 rounded-full"></div>
-        
-        {/* Grid pattern */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="grid grid-cols-12 h-full">
-            {Array.from({ length: 12 }).map((_, i) => (
-              <div key={i} className="border-r border-gray-400"></div>
-            ))}
-          </div>
-        </div>
       </div>
 
       {/* Main Content */}
       <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
         <div className={`transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
-          {/* Google Developer Logo with enhanced animations */}
+          {/* Google Developer Logo */}
           <div className="flex justify-center mb-8">
             <div className="flex items-center space-x-3">
               <div className="flex space-x-1">
-                <div className="w-8 h-8 rounded-full bg-gdsc-blue animate-bounce-in hover:animate-wiggle cursor-pointer" style={{ animationDelay: "0.1s" }}></div>
-                <div className="w-8 h-8 rounded-full bg-gdsc-red animate-bounce-in hover:animate-wiggle cursor-pointer" style={{ animationDelay: "0.3s" }}></div>
-                <div className="w-8 h-8 rounded-full bg-gdsc-yellow animate-bounce-in hover:animate-wiggle cursor-pointer" style={{ animationDelay: "0.5s" }}></div>
-                <div className="w-8 h-8 rounded-full bg-gdsc-green animate-bounce-in hover:animate-wiggle cursor-pointer" style={{ animationDelay: "0.7s" }}></div>
+                <div className="w-8 h-8 rounded-full bg-gdsc-blue animate-pulse"></div>
+                <div className="w-8 h-8 rounded-full bg-gdsc-red animate-pulse" style={{ animationDelay: "0.2s" }}></div>
+                <div className="w-8 h-8 rounded-full bg-gdsc-yellow animate-pulse" style={{ animationDelay: "0.4s" }}></div>
+                <div className="w-8 h-8 rounded-full bg-gdsc-green animate-pulse" style={{ animationDelay: "0.6s" }}></div>
               </div>
             </div>
           </div>
 
-          {/* Main Heading with enhanced effects */}
+          {/* Main Heading */}
           <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight">
-            <span className="block animate-slide-in-left">Google Developer</span>
-            <span className="block text-gradient-multi animate-slide-in-right" style={{ animationDelay: "0.3s" }}>Groups on Campus</span>
-            <span className="block text-lg sm:text-xl lg:text-2xl font-normal mt-4 text-gray-600 animate-fade-in-up" style={{ animationDelay: "0.6s" }}>
+            <span className="block">Google Developer</span>
+            <span className="block text-gdsc-blue">Groups on Campus</span>
+            <span className="block text-lg sm:text-xl lg:text-2xl font-normal mt-4 text-gray-600">
               IET DAVV, Indore
             </span>
           </h1>
@@ -63,9 +54,9 @@ export default function Hero() {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <a
-              href="https://chat.whatsapp.com/CcTjDYXNfQMEoLUHzB3hwa"
-              target="_blank"
+            <a 
+              href="https://chat.whatsapp.com/CcTjDYXNfQMEoLUHzB3hwa" 
+              target="_blank" 
               rel="noopener noreferrer"
               className="bg-gdsc-blue text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-blue-600 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl inline-block"
             >
