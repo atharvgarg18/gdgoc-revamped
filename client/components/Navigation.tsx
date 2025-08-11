@@ -49,9 +49,14 @@ export default function Navigation() {
             <Link to="/contact" className="text-gray-700 hover:text-gdsc-blue transition-colors">
               Contact
             </Link>
-            <button className="bg-gdsc-blue text-white px-6 py-2 rounded-full hover:bg-blue-600 transition-colors">
+            <a
+              href="https://chat.whatsapp.com/CcTjDYXNfQMEoLUHzB3hwa"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-gdsc-blue text-white px-6 py-2 rounded-full hover:bg-blue-600 transition-colors inline-block"
+            >
               Join Us
-            </button>
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -92,9 +97,14 @@ export default function Navigation() {
               <Link to="/contact" className="block px-3 py-2 text-gray-700 hover:text-gdsc-blue">
                 Contact
               </Link>
-              <button className="w-full text-left px-3 py-2 bg-gdsc-blue text-white rounded-lg">
+              <a
+                href="https://chat.whatsapp.com/CcTjDYXNfQMEoLUHzB3hwa"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full text-left px-3 py-2 bg-gdsc-blue text-white rounded-lg"
+              >
                 Join Us
-              </button>
+              </a>
             </div>
           </div>
         )}
