@@ -82,6 +82,7 @@ export default function EventsPage() {
     const result = await getEvents();
     if (result.success) {
       setEvents(result.data);
+      setLastUpdated(new Date());
     }
     setIsLoading(false);
   };
