@@ -104,3 +104,50 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  .animate-opacity {
+    animation: opacity 0.5s ease-out;
+  }
+
+  @keyframes opacity {
+    from { opacity: 1; }
+    to { opacity: 0; }
+  }
+
+  .bg-gdsc-blue {
+    background-color: #4285F4;
+  }
+
+  .bg-gdsc-red {
+    background-color: #EA4335;
+  }
+
+  .bg-gdsc-yellow {
+    background-color: #FBBC04;
+  }
+
+  .bg-gdsc-green {
+    background-color: #34A853;
+  }
+
+  .text-gdsc-blue {
+    color: #4285F4;
+  }
+
+  .text-gdsc-red {
+    color: #EA4335;
+  }
+
+  .text-gdsc-yellow {
+    color: #FBBC04;
+  }
+
+  .text-gdsc-green {
+    color: #34A853;
+  }
+
+  .border-gdsc-blue {
+    border-color: #4285F4;
+  }
+}
