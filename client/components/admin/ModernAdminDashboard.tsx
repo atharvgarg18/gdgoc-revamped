@@ -75,9 +75,9 @@ export default function ModernAdminDashboard({
             {/* Logo Section */}
             <div className="flex items-center space-x-4">
               <div className="flex items-center space-x-3">
-                <img 
-                  src="https://www.dscvit.com/newlogo.svg" 
-                  alt="GDGoC Logo" 
+                <img
+                  src="https://www.dscvit.com/newlogo.svg"
+                  alt="GDGoC Logo"
                   className="w-8 h-8"
                 />
                 <div>
@@ -150,15 +150,18 @@ export default function ModernAdminDashboard({
         {/* Page Header */}
         <div className="mb-8">
           <div className="flex items-center space-x-3 mb-2">
-            <div className={`
-              w-12 h-12 rounded-xl bg-gradient-to-r ${menuItems.find(item => item.id === activeSection)?.color} 
+            <div
+              className={`
+              w-12 h-12 rounded-xl bg-gradient-to-r ${menuItems.find((item) => item.id === activeSection)?.color} 
               flex items-center justify-center text-white text-xl shadow-lg
-            `}>
-              {menuItems.find(item => item.id === activeSection)?.icon}
+            `}
+            >
+              {menuItems.find((item) => item.id === activeSection)?.icon}
             </div>
             <div>
               <h2 className="text-2xl font-bold text-gray-900">
-                {menuItems.find(item => item.id === activeSection)?.label} Management
+                {menuItems.find((item) => item.id === activeSection)?.label}{" "}
+                Management
               </h2>
               <p className="text-gray-600">
                 Manage your {activeSection} content and data
@@ -169,9 +172,7 @@ export default function ModernAdminDashboard({
 
         {/* Content Container */}
         <div className="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
-          <div className="p-6">
-            {renderContent()}
-          </div>
+          <div className="p-6">{renderContent()}</div>
         </div>
       </main>
 

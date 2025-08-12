@@ -114,12 +114,12 @@ export default function ProjectsPage() {
 
   return (
     <div className="min-h-screen">
-      <SEO 
+      <SEO
         title="Projects"
         description="Explore innovative projects built by GDGoC IET DAVV community members. From web applications to mobile apps, AI solutions, and more."
         keywords="GDGoC projects, student projects, open source, web development, mobile apps, AI projects, blockchain, IoT, programming projects, IET DAVV"
       />
-      
+
       <Navigation />
       <main className="pt-16">
         {/* Hero Section - Inspired by homepage design */}
@@ -178,7 +178,8 @@ export default function ProjectsPage() {
                 style={{ animationDelay: "0.2s" }}
               >
                 Discover the innovative projects built by our community members.
-                From web applications to mobile apps, AI solutions, and cutting-edge tech.
+                From web applications to mobile apps, AI solutions, and
+                cutting-edge tech.
               </p>
 
               {/* Stats */}
@@ -200,7 +201,7 @@ export default function ProjectsPage() {
                 </div>
                 <div className="text-center">
                   <div className="text-3xl md:text-4xl font-bold text-red-600">
-                    {projects.filter(p => p.status === "completed").length}
+                    {projects.filter((p) => p.status === "completed").length}
                   </div>
                   <div className="text-gray-600">Completed</div>
                 </div>
@@ -220,7 +221,11 @@ export default function ProjectsPage() {
                   View on GitHub
                 </a>
                 <button
-                  onClick={() => document.getElementById('projects-section')?.scrollIntoView({ behavior: 'smooth' })}
+                  onClick={() =>
+                    document
+                      .getElementById("projects-section")
+                      ?.scrollIntoView({ behavior: "smooth" })
+                  }
                   className="btn-animate border-2 border-blue-600 text-blue-600 px-8 py-4 rounded-full hover:bg-blue-600 hover:text-white transition-all duration-300 font-medium transform hover:scale-105"
                 >
                   Explore Projects
@@ -238,7 +243,10 @@ export default function ProjectsPage() {
         </section>
 
         {/* Projects Section */}
-        <section id="projects-section" className="py-16 md:py-20 relative overflow-hidden bg-white">
+        <section
+          id="projects-section"
+          className="py-16 md:py-20 relative overflow-hidden bg-white"
+        >
           <div className="relative z-10 container-responsive">
             {/* Category Filter */}
             <div className="mb-12">
@@ -340,15 +348,19 @@ export default function ProjectsPage() {
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                        
+
                         {/* Status Badge */}
-                        <div className={`absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-medium border ${getStatusColor(project.status)}`}>
+                        <div
+                          className={`absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-medium border ${getStatusColor(project.status)}`}
+                        >
                           {project.status.replace("_", " ").toUpperCase()}
                         </div>
 
                         {/* Category Dot */}
                         <div className="absolute top-4 right-4">
-                          <div className={`w-4 h-4 rounded-full ${getCategoryColor(project.category)} shadow-lg`}></div>
+                          <div
+                            className={`w-4 h-4 rounded-full ${getCategoryColor(project.category)} shadow-lg`}
+                          ></div>
                         </div>
                       </div>
                     )}
@@ -441,8 +453,8 @@ export default function ProjectsPage() {
               Want to Build Something Amazing?
             </h2>
             <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-              Join our community of passionate developers and bring your ideas to life.
-              Let's build the future together!
+              Join our community of passionate developers and bring your ideas
+              to life. Let's build the future together!
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
@@ -465,7 +477,7 @@ export default function ProjectsPage() {
           </div>
         </section>
       </main>
-      
+
       <Footer />
     </div>
   );
