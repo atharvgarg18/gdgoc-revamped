@@ -5,7 +5,7 @@ import {
   updateGalleryItem,
   deleteGalleryItem,
   GalleryItem,
-} from "@/lib/firebase";
+} from "@/lib/supabase";
 
 export default function GalleryManager() {
   const [galleryItems, setGalleryItems] = useState<GalleryItem[]>([]);

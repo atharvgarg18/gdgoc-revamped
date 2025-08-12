@@ -5,7 +5,7 @@ import {
   updateEvent,
   deleteEvent,
   Event,
-} from "@/lib/firebase";
+} from "@/lib/supabase";
 
 export default function EventsManager() {
   const [events, setEvents] = useState<Event[]>([]);

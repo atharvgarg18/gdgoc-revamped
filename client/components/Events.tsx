@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { getEvents, Event } from "@/lib/firebase";
+import { getEvents, Event } from "@/lib/supabase";
 
 export default function Events() {
   const [events, setEvents] = useState<Event[]>([]);
@@ -22,7 +22,7 @@ export default function Events() {
       observer.observe(sectionRef.current);
     }
 
-    // Load events from Firebase
+    // Load events from Supabase
     loadEvents();
 
     return () => observer.disconnect();

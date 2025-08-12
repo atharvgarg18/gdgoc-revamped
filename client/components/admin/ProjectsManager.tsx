@@ -5,7 +5,7 @@ import {
   updateProject,
   deleteProject,
   Project,
-} from "@/lib/firebase";
+} from "@/lib/supabase";
 
 export default function ProjectsManager() {
   const [projects, setProjects] = useState<Project[]>([]);
