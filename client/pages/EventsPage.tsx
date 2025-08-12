@@ -54,12 +54,12 @@ export default function EventsPage() {
 
   const eventTypes = [
     { value: "all", label: "All Events", count: events.length },
-    ...Array.from(new Set(events.map(e => e.type))).map(type => ({
+    ...Array.from(new Set(events.map((e) => e.type))).map((type) => ({
       value: type,
       label: type,
-      count: events.filter(e => e.type === type).length,
-    }))
-  ].filter(type => type.count > 0);
+      count: events.filter((e) => e.type === type).length,
+    })),
+  ].filter((type) => type.count > 0);
 
   const getEventTypeColor = (type: string) => {
     const colors = {
@@ -148,8 +148,9 @@ export default function EventsPage() {
                 className="text-lg sm:text-xl md:text-2xl text-gray-600 mb-8 max-w-4xl mx-auto leading-relaxed animate-slide-up"
                 style={{ animationDelay: "0.2s" }}
               >
-                Join us for exciting workshops, seminars, and hands-on sessions designed
-                to enhance your technical skills and expand your professional network.
+                Join us for exciting workshops, seminars, and hands-on sessions
+                designed to enhance your technical skills and expand your
+                professional network.
               </p>
 
               {/* Stats */}
@@ -191,7 +192,11 @@ export default function EventsPage() {
                   Join Our Community
                 </a>
                 <button
-                  onClick={() => document.getElementById('events-section')?.scrollIntoView({ behavior: 'smooth' })}
+                  onClick={() =>
+                    document
+                      .getElementById("events-section")
+                      ?.scrollIntoView({ behavior: "smooth" })
+                  }
                   className="btn-animate border-2 border-green-600 text-green-600 px-8 py-4 rounded-full hover:bg-green-600 hover:text-white transition-all duration-300 font-medium transform hover:scale-105"
                 >
                   Explore Events
@@ -209,7 +214,10 @@ export default function EventsPage() {
         </section>
 
         {/* Events Section */}
-        <section id="events-section" className="py-16 md:py-20 bg-white relative overflow-hidden">
+        <section
+          id="events-section"
+          className="py-16 md:py-20 bg-white relative overflow-hidden"
+        >
           <div className="relative z-10 container-responsive">
             {/* Filter Section */}
             <div className="mb-12">
@@ -303,7 +311,9 @@ export default function EventsPage() {
                     style={{ animationDelay: `${index * 0.1}s` }}
                   >
                     {/* Event Header Bar */}
-                    <div className={`h-2 bg-gradient-to-r ${getEventTypeColor(event.type)} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left`}></div>
+                    <div
+                      className={`h-2 bg-gradient-to-r ${getEventTypeColor(event.type)} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left`}
+                    ></div>
 
                     {/* Event Image */}
                     {event.image && (
@@ -314,9 +324,11 @@ export default function EventsPage() {
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                        
+
                         {/* Event Type Badge */}
-                        <div className={`absolute top-4 left-4 inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r ${getEventTypeColor(event.type)} text-white shadow-lg`}>
+                        <div
+                          className={`absolute top-4 left-4 inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r ${getEventTypeColor(event.type)} text-white shadow-lg`}
+                        >
                           <span className="mr-1">
                             {event.type === "Workshop" && "🛠️"}
                             {event.type === "Bootcamp" && "🚀"}
@@ -333,7 +345,9 @@ export default function EventsPage() {
                       {/* Event Meta */}
                       <div className="flex justify-between items-start mb-4">
                         {!event.image && (
-                          <div className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r ${getEventTypeColor(event.type)} text-white shadow-lg`}>
+                          <div
+                            className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r ${getEventTypeColor(event.type)} text-white shadow-lg`}
+                          >
                             <span className="mr-1">
                               {event.type === "Workshop" && "🛠️"}
                               {event.type === "Bootcamp" && "🚀"}
@@ -345,7 +359,9 @@ export default function EventsPage() {
                           </div>
                         )}
                         <div className="text-right text-gray-600">
-                          <div className="font-semibold text-gray-900">{event.date}</div>
+                          <div className="font-semibold text-gray-900">
+                            {event.date}
+                          </div>
                           <div className="text-sm">{event.time}</div>
                         </div>
                       </div>
@@ -354,7 +370,7 @@ export default function EventsPage() {
                       <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-300 leading-tight line-clamp-2">
                         {event.title}
                       </h3>
-                      
+
                       <p className="text-gray-600 mb-4 leading-relaxed text-sm line-clamp-3">
                         {event.description}
                       </p>
@@ -363,9 +379,11 @@ export default function EventsPage() {
                       <div className="flex justify-between items-center">
                         <div className="flex items-center text-gray-500 group-hover:text-gray-700 transition-colors duration-300">
                           <span className="mr-1 text-lg">👥</span>
-                          <span className="text-sm font-medium">{event.attendees} registered</span>
+                          <span className="text-sm font-medium">
+                            {event.attendees} registered
+                          </span>
                         </div>
-                        
+
                         {event.registration_link ? (
                           <a
                             href={event.registration_link}
@@ -377,7 +395,9 @@ export default function EventsPage() {
                             Register
                           </a>
                         ) : (
-                          <button className={`inline-flex items-center px-4 py-2 rounded-lg text-white text-sm font-medium bg-gradient-to-r ${getEventTypeColor(event.type)} hover:shadow-lg transition-all duration-300 transform hover:scale-105`}>
+                          <button
+                            className={`inline-flex items-center px-4 py-2 rounded-lg text-white text-sm font-medium bg-gradient-to-r ${getEventTypeColor(event.type)} hover:shadow-lg transition-all duration-300 transform hover:scale-105`}
+                          >
                             <span className="mr-1">🎯</span>
                             Register
                           </button>
@@ -386,7 +406,9 @@ export default function EventsPage() {
                     </div>
 
                     {/* Hover Effect Overlay */}
-                    <div className={`absolute inset-0 bg-gradient-to-r ${getEventTypeColor(event.type)} opacity-0 group-hover:opacity-5 transition-opacity duration-300 rounded-2xl`}></div>
+                    <div
+                      className={`absolute inset-0 bg-gradient-to-r ${getEventTypeColor(event.type)} opacity-0 group-hover:opacity-5 transition-opacity duration-300 rounded-2xl`}
+                    ></div>
 
                     {/* Floating Decorative Element */}
                     <div
@@ -407,8 +429,9 @@ export default function EventsPage() {
               Ready to Level Up Your Skills?
             </h2>
             <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-              Join our community of passionate developers and participate in hands-on learning experiences 
-              that will accelerate your career growth.
+              Join our community of passionate developers and participate in
+              hands-on learning experiences that will accelerate your career
+              growth.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a

@@ -50,7 +50,7 @@ export default function Team() {
 
   const getRoleColor = (role: string) => {
     const colors = {
-      "Lead": "from-blue-500 to-blue-600",
+      Lead: "from-blue-500 to-blue-600",
       "Technical Lead": "from-green-500 to-green-600",
       "Design Lead": "from-purple-500 to-purple-600",
       "Community Manager": "from-yellow-500 to-yellow-600",
@@ -62,7 +62,7 @@ export default function Team() {
 
   const getRoleBgColor = (role: string) => {
     const colors = {
-      "Lead": "bg-blue-50",
+      Lead: "bg-blue-50",
       "Technical Lead": "bg-green-50",
       "Design Lead": "bg-purple-50",
       "Community Manager": "bg-yellow-50",
@@ -137,8 +137,9 @@ export default function Team() {
                 className="text-lg sm:text-xl md:text-2xl text-gray-600 mb-8 max-w-4xl mx-auto leading-relaxed animate-slide-up"
                 style={{ animationDelay: "0.2s" }}
               >
-                Meet the passionate individuals behind GDGoC IET DAVV. Our diverse team of 
-                student leaders, developers, and innovators work together to build an amazing tech community.
+                Meet the passionate individuals behind GDGoC IET DAVV. Our
+                diverse team of student leaders, developers, and innovators work
+                together to build an amazing tech community.
               </p>
 
               {/* Stats */}
@@ -154,7 +155,7 @@ export default function Team() {
                 </div>
                 <div className="text-center">
                   <div className="text-3xl md:text-4xl font-bold text-blue-600">
-                    {Array.from(new Set(teamMembers.map(m => m.role))).length}
+                    {Array.from(new Set(teamMembers.map((m) => m.role))).length}
                   </div>
                   <div className="text-gray-600">Roles</div>
                 </div>
@@ -180,7 +181,11 @@ export default function Team() {
                   Join Our Team
                 </a>
                 <button
-                  onClick={() => document.getElementById('team-section')?.scrollIntoView({ behavior: 'smooth' })}
+                  onClick={() =>
+                    document
+                      .getElementById("team-section")
+                      ?.scrollIntoView({ behavior: "smooth" })
+                  }
                   className="btn-animate border-2 border-purple-600 text-purple-600 px-8 py-4 rounded-full hover:bg-purple-600 hover:text-white transition-all duration-300 font-medium transform hover:scale-105"
                 >
                   Meet the Team
@@ -198,7 +203,10 @@ export default function Team() {
         </section>
 
         {/* Team Section */}
-        <section id="team-section" className="py-16 md:py-20 bg-white relative overflow-hidden">
+        <section
+          id="team-section"
+          className="py-16 md:py-20 bg-white relative overflow-hidden"
+        >
           <div className="relative z-10 container-responsive">
             {/* Section Header */}
             <div className="text-center mb-16">
@@ -206,8 +214,9 @@ export default function Team() {
                 Our Amazing Team
               </h2>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                Each member brings unique skills, perspectives, and passion to our community. 
-                Together, we're building the future of technology at IET DAVV.
+                Each member brings unique skills, perspectives, and passion to
+                our community. Together, we're building the future of technology
+                at IET DAVV.
               </p>
             </div>
 
@@ -243,8 +252,9 @@ export default function Team() {
                   Our Amazing Team Members Will Be Featured Here Soon!
                 </h3>
                 <p className="text-gray-600 text-lg max-w-2xl mx-auto mb-8">
-                  We're assembling an incredible team of passionate developers and innovators. 
-                  Stay tuned to meet the people behind GDGoC IET DAVV!
+                  We're assembling an incredible team of passionate developers
+                  and innovators. Stay tuned to meet the people behind GDGoC IET
+                  DAVV!
                 </p>
                 <a
                   href="https://chat.whatsapp.com/CcTjDYXNfQMEoLUHzB3hwa"
@@ -275,7 +285,9 @@ export default function Team() {
                     style={{ animationDelay: `${index * 0.1}s` }}
                   >
                     {/* Role Header Bar */}
-                    <div className={`h-2 bg-gradient-to-r ${getRoleColor(member.role)} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left`}></div>
+                    <div
+                      className={`h-2 bg-gradient-to-r ${getRoleColor(member.role)} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left`}
+                    ></div>
 
                     {/* Member Image */}
                     <div className="relative p-6 pb-0">
@@ -285,13 +297,16 @@ export default function Team() {
                           alt={member.name}
                           className="w-full h-full object-cover rounded-2xl shadow-lg group-hover:scale-110 transition-transform duration-500"
                           onError={(e) => {
-                            e.currentTarget.src = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400";
+                            e.currentTarget.src =
+                              "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400";
                           }}
                         />
                         <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-black/20 to-transparent group-hover:from-black/30 transition-all duration-300"></div>
-                        
+
                         {/* Role Badge */}
-                        <div className={`absolute -bottom-3 left-1/2 transform -translate-x-1/2 px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r ${getRoleColor(member.role)} text-white shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                        <div
+                          className={`absolute -bottom-3 left-1/2 transform -translate-x-1/2 px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r ${getRoleColor(member.role)} text-white shadow-lg group-hover:scale-110 transition-transform duration-300`}
+                        >
                           {member.role}
                         </div>
                       </div>
@@ -323,7 +338,9 @@ export default function Team() {
                     </div>
 
                     {/* Hover Effect Overlay */}
-                    <div className={`absolute inset-0 bg-gradient-to-r ${getRoleColor(member.role)} opacity-0 group-hover:opacity-5 transition-opacity duration-300 rounded-2xl`}></div>
+                    <div
+                      className={`absolute inset-0 bg-gradient-to-r ${getRoleColor(member.role)} opacity-0 group-hover:opacity-5 transition-opacity duration-300 rounded-2xl`}
+                    ></div>
 
                     {/* Floating Decorative Element */}
                     <div
@@ -344,8 +361,9 @@ export default function Team() {
               Want to Join Our Team?
             </h2>
             <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-              We're always looking for passionate individuals who want to make a difference 
-              in the tech community. Join us and be part of something amazing!
+              We're always looking for passionate individuals who want to make a
+              difference in the tech community. Join us and be part of something
+              amazing!
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a

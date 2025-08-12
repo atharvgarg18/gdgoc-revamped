@@ -54,12 +54,14 @@ export default function GalleryPage() {
 
   const categories = [
     { value: "all", label: "All Photos", count: galleryItems.length },
-    ...Array.from(new Set(galleryItems.map(item => item.category))).map(category => ({
-      value: category,
-      label: category.charAt(0).toUpperCase() + category.slice(1),
-      count: galleryItems.filter(item => item.category === category).length,
-    }))
-  ].filter(cat => cat.count > 0);
+    ...Array.from(new Set(galleryItems.map((item) => item.category))).map(
+      (category) => ({
+        value: category,
+        label: category.charAt(0).toUpperCase() + category.slice(1),
+        count: galleryItems.filter((item) => item.category === category).length,
+      }),
+    ),
+  ].filter((cat) => cat.count > 0);
 
   const getCategoryColor = (category: string) => {
     const colors = {
@@ -68,7 +70,9 @@ export default function GalleryPage() {
       competition: "from-red-500 to-red-600",
       community: "from-purple-500 to-purple-600",
     };
-    return colors[category as keyof typeof colors] || "from-gray-500 to-gray-600";
+    return (
+      colors[category as keyof typeof colors] || "from-gray-500 to-gray-600"
+    );
   };
 
   const getCategoryBgColor = (category: string) => {
@@ -156,8 +160,9 @@ export default function GalleryPage() {
                 className="text-lg sm:text-xl md:text-2xl text-gray-600 mb-8 max-w-4xl mx-auto leading-relaxed animate-slide-up"
                 style={{ animationDelay: "0.2s" }}
               >
-                Explore memorable moments from our events, workshops, competitions, and community gatherings. 
-                Each photo tells a story of learning, collaboration, and innovation.
+                Explore memorable moments from our events, workshops,
+                competitions, and community gatherings. Each photo tells a story
+                of learning, collaboration, and innovation.
               </p>
 
               {/* Stats */}
@@ -199,7 +204,11 @@ export default function GalleryPage() {
                   Join Our Community
                 </a>
                 <button
-                  onClick={() => document.getElementById('gallery-section')?.scrollIntoView({ behavior: 'smooth' })}
+                  onClick={() =>
+                    document
+                      .getElementById("gallery-section")
+                      ?.scrollIntoView({ behavior: "smooth" })
+                  }
                   className="btn-animate border-2 border-pink-600 text-pink-600 px-8 py-4 rounded-full hover:bg-pink-600 hover:text-white transition-all duration-300 font-medium transform hover:scale-105"
                 >
                   Explore Gallery
@@ -217,7 +226,10 @@ export default function GalleryPage() {
         </section>
 
         {/* Gallery Section */}
-        <section id="gallery-section" className="py-16 md:py-20 bg-white relative overflow-hidden">
+        <section
+          id="gallery-section"
+          className="py-16 md:py-20 bg-white relative overflow-hidden"
+        >
           <div className="relative z-10 container-responsive">
             {/* Filter Section */}
             <div className="mb-12">
@@ -238,7 +250,9 @@ export default function GalleryPage() {
                       }
                     `}
                   >
-                    <span className="mr-2">{getCategoryIcon(category.value)}</span>
+                    <span className="mr-2">
+                      {getCategoryIcon(category.value)}
+                    </span>
                     {category.label}
                     <span className="ml-2 text-xs opacity-75">
                       ({category.count})
@@ -280,8 +294,8 @@ export default function GalleryPage() {
                   Amazing Photos Coming Soon!
                 </h3>
                 <p className="text-gray-600 text-lg max-w-2xl mx-auto mb-8">
-                  We're capturing incredible moments from our events and activities. 
-                  Stay tuned for our photo gallery updates!
+                  We're capturing incredible moments from our events and
+                  activities. Stay tuned for our photo gallery updates!
                 </p>
                 <a
                   href="https://chat.whatsapp.com/CcTjDYXNfQMEoLUHzB3hwa"
@@ -313,7 +327,9 @@ export default function GalleryPage() {
                     style={{ animationDelay: `${index * 0.1}s` }}
                   >
                     {/* Category Header Bar */}
-                    <div className={`h-2 bg-gradient-to-r ${getCategoryColor(item.category)} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left`}></div>
+                    <div
+                      className={`h-2 bg-gradient-to-r ${getCategoryColor(item.category)} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left`}
+                    ></div>
 
                     {/* Image */}
                     <div className="relative overflow-hidden">
@@ -322,15 +338,21 @@ export default function GalleryPage() {
                         alt={item.title}
                         className="w-full h-auto object-cover group-hover:scale-110 transition-transform duration-700"
                         onError={(e) => {
-                          e.currentTarget.src = "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800";
+                          e.currentTarget.src =
+                            "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800";
                         }}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                      
+
                       {/* Category Badge */}
-                      <div className={`absolute top-4 left-4 inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r ${getCategoryColor(item.category)} text-white shadow-lg`}>
-                        <span className="mr-1">{getCategoryIcon(item.category)}</span>
-                        {item.category.charAt(0).toUpperCase() + item.category.slice(1)}
+                      <div
+                        className={`absolute top-4 left-4 inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r ${getCategoryColor(item.category)} text-white shadow-lg`}
+                      >
+                        <span className="mr-1">
+                          {getCategoryIcon(item.category)}
+                        </span>
+                        {item.category.charAt(0).toUpperCase() +
+                          item.category.slice(1)}
                       </div>
 
                       {/* Date Badge */}
@@ -354,7 +376,9 @@ export default function GalleryPage() {
                     </div>
 
                     {/* Hover Effect Overlay */}
-                    <div className={`absolute inset-0 bg-gradient-to-r ${getCategoryColor(item.category)} opacity-0 group-hover:opacity-5 transition-opacity duration-300 rounded-2xl`}></div>
+                    <div
+                      className={`absolute inset-0 bg-gradient-to-r ${getCategoryColor(item.category)} opacity-0 group-hover:opacity-5 transition-opacity duration-300 rounded-2xl`}
+                    ></div>
 
                     {/* Floating Decorative Element */}
                     <div
@@ -375,8 +399,9 @@ export default function GalleryPage() {
               Want to Be Part of Our Story?
             </h2>
             <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-              Join our community and be part of the memories we create together. 
-              Every event is an opportunity to learn, grow, and connect with amazing people.
+              Join our community and be part of the memories we create together.
+              Every event is an opportunity to learn, grow, and connect with
+              amazing people.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a

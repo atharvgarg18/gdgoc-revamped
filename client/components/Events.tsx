@@ -137,8 +137,9 @@ export default function Events() {
               className="text-lg md:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed animate-slide-up"
               style={{ animationDelay: "0.2s" }}
             >
-              Join us for exciting workshops, seminars, and hands-on sessions designed 
-              to enhance your technical skills and expand your professional network.
+              Join us for exciting workshops, seminars, and hands-on sessions
+              designed to enhance your technical skills and expand your
+              professional network.
             </p>
           </div>
 
@@ -206,12 +207,16 @@ export default function Events() {
                   style={{ animationDelay: `${index * 0.15}s` }}
                 >
                   {/* Event Header Bar */}
-                  <div className={`h-2 bg-gradient-to-r ${getEventTypeColor(event.type)} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left`}></div>
+                  <div
+                    className={`h-2 bg-gradient-to-r ${getEventTypeColor(event.type)} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left`}
+                  ></div>
 
                   <div className="p-8">
                     {/* Event Meta */}
                     <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-6 gap-4 sm:gap-0">
-                      <div className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold bg-gradient-to-r ${getEventTypeColor(event.type)} text-white shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                      <div
+                        className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold bg-gradient-to-r ${getEventTypeColor(event.type)} text-white shadow-lg group-hover:scale-110 transition-transform duration-300`}
+                      >
                         <span className="mr-2">
                           {event.type === "Workshop" && "🛠️"}
                           {event.type === "Bootcamp" && "🚀"}
@@ -222,7 +227,9 @@ export default function Events() {
                         {event.type}
                       </div>
                       <div className="text-right text-gray-600">
-                        <div className="font-semibold text-gray-900">{event.date}</div>
+                        <div className="font-semibold text-gray-900">
+                          {event.date}
+                        </div>
                         <div className="text-sm">{event.time}</div>
                       </div>
                     </div>
@@ -231,7 +238,7 @@ export default function Events() {
                     <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors duration-300 leading-tight">
                       {event.title}
                     </h3>
-                    
+
                     <p className="text-gray-600 mb-6 leading-relaxed">
                       {event.description}
                     </p>
@@ -240,9 +247,11 @@ export default function Events() {
                     <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
                       <div className="flex items-center text-gray-500 group-hover:text-gray-700 transition-colors duration-300">
                         <span className="mr-2 text-xl">👥</span>
-                        <span className="font-medium">{event.attendees} registered</span>
+                        <span className="font-medium">
+                          {event.attendees} registered
+                        </span>
                       </div>
-                      
+
                       {event.registration_link ? (
                         <a
                           href={event.registration_link}
@@ -254,7 +263,9 @@ export default function Events() {
                           Register Now
                         </a>
                       ) : (
-                        <button className={`inline-flex items-center px-6 py-3 rounded-full text-white font-medium bg-gradient-to-r ${getEventTypeColor(event.type)} hover:shadow-xl transition-all duration-300 transform hover:scale-105`}>
+                        <button
+                          className={`inline-flex items-center px-6 py-3 rounded-full text-white font-medium bg-gradient-to-r ${getEventTypeColor(event.type)} hover:shadow-xl transition-all duration-300 transform hover:scale-105`}
+                        >
                           <span className="mr-2">🎯</span>
                           Register Now
                         </button>
@@ -263,7 +274,9 @@ export default function Events() {
                   </div>
 
                   {/* Hover Effect Overlay */}
-                  <div className={`absolute inset-0 bg-gradient-to-r ${getEventTypeColor(event.type)} opacity-0 group-hover:opacity-5 transition-opacity duration-300 rounded-2xl`}></div>
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-r ${getEventTypeColor(event.type)} opacity-0 group-hover:opacity-5 transition-opacity duration-300 rounded-2xl`}
+                  ></div>
 
                   {/* Floating Decorative Element */}
                   <div
@@ -284,8 +297,9 @@ export default function Events() {
               Don't Miss Out on Our Events!
             </h3>
             <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mb-8 leading-relaxed">
-              Stay updated with our latest events and workshops. Join our community 
-              to receive notifications about upcoming sessions and exclusive opportunities.
+              Stay updated with our latest events and workshops. Join our
+              community to receive notifications about upcoming sessions and
+              exclusive opportunities.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a

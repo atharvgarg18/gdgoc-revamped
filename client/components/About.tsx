@@ -47,28 +47,32 @@ export default function About() {
     {
       icon: "🚀",
       title: "Innovation First",
-      description: "We embrace cutting-edge technologies and innovative solutions to solve real-world problems.",
+      description:
+        "We embrace cutting-edge technologies and innovative solutions to solve real-world problems.",
       color: "from-blue-500 to-blue-600",
       bg: "bg-blue-50",
     },
     {
       icon: "🤝",
       title: "Community Driven",
-      description: "Building a strong network of developers who support and learn from each other.",
+      description:
+        "Building a strong network of developers who support and learn from each other.",
       color: "from-green-500 to-green-600",
       bg: "bg-green-50",
     },
     {
       icon: "🎯",
       title: "Skill Development",
-      description: "Providing hands-on workshops and real-world projects to enhance technical skills.",
+      description:
+        "Providing hands-on workshops and real-world projects to enhance technical skills.",
       color: "from-red-500 to-red-600",
       bg: "bg-red-50",
     },
     {
       icon: "🌟",
       title: "Excellence",
-      description: "Striving for excellence in everything we do, from events to projects to community building.",
+      description:
+        "Striving for excellence in everything we do, from events to projects to community building.",
       color: "from-yellow-500 to-yellow-600",
       bg: "bg-yellow-50",
     },
@@ -134,8 +138,9 @@ export default function About() {
               className="text-lg md:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed animate-slide-up"
               style={{ animationDelay: "0.2s" }}
             >
-              Google Developer Groups on Campus at IET DAVV is a vibrant community of passionate students 
-              building the future through technology, innovation, and collaborative learning.
+              Google Developer Groups on Campus at IET DAVV is a vibrant
+              community of passionate students building the future through
+              technology, innovation, and collaborative learning.
             </p>
           </div>
 
@@ -149,10 +154,14 @@ export default function About() {
                 key={index}
                 className="text-center p-6 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
               >
-                <div className={`text-3xl md:text-4xl font-bold ${stat.color} mb-2`}>
+                <div
+                  className={`text-3xl md:text-4xl font-bold ${stat.color} mb-2`}
+                >
                   {stat.number}
                 </div>
-                <div className="text-gray-600 text-sm md:text-base">{stat.label}</div>
+                <div className="text-gray-600 text-sm md:text-base">
+                  {stat.label}
+                </div>
               </div>
             ))}
           </div>
@@ -175,7 +184,9 @@ export default function About() {
                 style={{ animationDelay: `${index * 0.2}s` }}
               >
                 {/* Icon */}
-                <div className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-r ${feature.color} text-white text-2xl mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                <div
+                  className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-r ${feature.color} text-white text-2xl mb-6 group-hover:scale-110 transition-transform duration-300`}
+                >
                   {feature.icon}
                 </div>
 
@@ -188,7 +199,9 @@ export default function About() {
                 </p>
 
                 {/* Hover Effect */}
-                <div className={`absolute inset-0 bg-gradient-to-r ${feature.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300 rounded-2xl`}></div>
+                <div
+                  className={`absolute inset-0 bg-gradient-to-r ${feature.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300 rounded-2xl`}
+                ></div>
               </div>
             ))}
           </div>
@@ -202,9 +215,10 @@ export default function About() {
               Our Mission
             </h3>
             <p className="text-lg md:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed mb-8">
-              To create an inclusive environment where students can learn, build, and grow together. 
-              We believe in the power of collaboration, continuous learning, and using technology 
-              to make a positive impact in our community and beyond.
+              To create an inclusive environment where students can learn,
+              build, and grow together. We believe in the power of
+              collaboration, continuous learning, and using technology to make a
+              positive impact in our community and beyond.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
@@ -233,7 +247,13 @@ export default function About() {
               Our Core Values
             </h3>
             <div className="flex flex-wrap justify-center gap-4">
-              {["Innovation", "Collaboration", "Learning", "Inclusivity", "Excellence"].map((value, index) => (
+              {[
+                "Innovation",
+                "Collaboration",
+                "Learning",
+                "Inclusivity",
+                "Excellence",
+              ].map((value, index) => (
                 <span
                   key={index}
                   className="px-6 py-3 bg-gradient-to-r from-blue-600 to-green-600 text-white rounded-full text-lg font-medium hover:shadow-lg transition-all duration-300 transform hover:scale-105"
