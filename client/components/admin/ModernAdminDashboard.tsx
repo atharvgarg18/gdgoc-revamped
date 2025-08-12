@@ -3,6 +3,7 @@ import EventsManager from "./EventsManager";
 import TeamManager from "./TeamManager";
 import GalleryManager from "./GalleryManager";
 import ProjectsManager from "./ProjectsManager";
+import AdminConnectionStatus from "./AdminConnectionStatus";
 
 interface ModernAdminDashboardProps {
   onLogout: () => void;
