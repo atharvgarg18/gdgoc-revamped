@@ -171,6 +171,9 @@ export default function ModernAdminDashboard({
           </div>
         </div>
 
+        {/* Connection Status */}
+        <AdminConnectionStatus />
+
         {/* Content Container */}
         <div className="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden">
           <div className="p-6">{renderContent()}</div>
