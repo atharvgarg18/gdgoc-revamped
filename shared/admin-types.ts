@@ -7,8 +7,17 @@ export interface Event {
   description: string;
   color: "gdsc-blue" | "gdsc-red" | "gdsc-yellow" | "gdsc-green";
   attendees: number;
+  max_attendees?: number;
   image?: string;
-  registrationLink?: string;
+  registration_link?: string;
+  location?: string;
+  event_url?: string;
+  tags?: string[];
+  status?: "draft" | "published" | "archived";
+  featured?: boolean;
+  display_order?: number;
+  created_at?: string;
+  updated_at?: string;
 }
 
 export interface TeamMember {

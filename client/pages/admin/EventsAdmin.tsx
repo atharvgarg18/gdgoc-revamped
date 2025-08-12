@@ -167,7 +167,7 @@ export default function EventsAdmin({ token, onLogout }: EventsAdminProps) {
       color: event.color,
       attendees: event.attendees,
       image: event.image || "",
-      registration_link: event.registrationLink || "",
+      registration_link: event.registration_link || "",
     });
     setShowForm(true);
   };
@@ -405,10 +405,10 @@ export default function EventsAdmin({ token, onLogout }: EventsAdminProps) {
                       {event.attendees} expected attendees
                     </div>
                   </div>
-                  {event.registrationLink && (
+                  {event.registration_link && (
                     <div className="mt-3">
                       <a 
-                        href={event.registrationLink} 
+                        href={event.registration_link} 
                         target="_blank" 
                         rel="noopener noreferrer"
                         className="text-blue-600 hover:text-blue-800 text-sm underline"
