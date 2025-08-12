@@ -8,8 +8,20 @@ import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 
 export default function Index() {
-  const [showLoader, setShowLoader] = useState(true);
-  const [showContent, setShowContent] = useState(false);
+  const [showLoader, setShowLoader] = useState(false);
+  const [showContent, setShowContent] = useState(true);
+
+  useEffect(() => {
+    // Check if this is the first visit in this session
+    const hasSeenLoader = sessionStorage.getItem("gdgoc-loader-seen");
+
+    if (!hasSeenLoader) {
+      setShowLoader(true);
+      setShowContent(false);
+      // Mark that user has seen the loader in this session
+      sessionStorage.setItem("gdgoc-loader-seen", "true");
+    }
+  }, []);
 
   const handleLoaderComplete = () => {
     setShowLoader(false);
