@@ -38,9 +38,9 @@ export function createServer() {
   app.get("/api/demo", handleDemo);
 
   // Public API routes (for frontend to fetch data)
-  app.get("/api/events", (_req, res) => {
+  app.get("/api/events", async (_req, res) => {
     try {
-      const events = getEvents();
+      const events = await getEvents();
       res.json({ success: true, data: events });
     } catch (error) {
       res
@@ -49,18 +49,18 @@ export function createServer() {
     }
   });
 
-  app.get("/api/team", (_req, res) => {
+  app.get("/api/team", async (_req, res) => {
     try {
-      const team = getTeamMembers();
+      const team = await getTeamMembers();
       res.json({ success: true, data: team });
     } catch (error) {
       res.status(500).json({ success: false, message: "Error fetching team" });
     }
   });
 
-  app.get("/api/gallery", (_req, res) => {
+  app.get("/api/gallery", async (_req, res) => {
     try {
-      const gallery = getGalleryItems();
+      const gallery = await getGalleryItems();
       res.json({ success: true, data: gallery });
     } catch (error) {
       res

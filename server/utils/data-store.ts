@@ -1,6 +1,21 @@
 import fs from "fs";
 import path from "path";
 import { Event, TeamMember, GalleryItem } from "@shared/admin-types";
+import {
+  getEventsFromSupabase,
+  createEventInSupabase,
+  updateEventInSupabase,
+  deleteEventFromSupabase,
+  getTeamMembersFromSupabase,
+  createTeamMemberInSupabase,
+  updateTeamMemberInSupabase,
+  deleteTeamMemberFromSupabase,
+  getGalleryItemsFromSupabase,
+  createGalleryItemInSupabase,
+  updateGalleryItemInSupabase,
+  deleteGalleryItemFromSupabase,
+  supabase
+} from "./supabase-store";
 
 const DATA_DIR = path.join(process.cwd(), "data");
 const EVENTS_FILE = path.join(DATA_DIR, "events.json");
@@ -110,7 +125,20 @@ function writeData<T>(filePath: string, data: T[]): void {
 }
 
 // Events operations
-export function getEvents(): Event[] {
+export async function getEvents(): Promise<Event[]> {
+  // Try Supabase first, fallback to JSON files
+  if (supabase) {
+    try {
+      const events = await getEventsFromSupabase();
+      if (events && events.length >= 0) {
+        return events;
+      }
+    } catch (error) {
+      console.warn("Supabase unavailable, falling back to JSON files:", error.message);
+    }
+  }
+
+  // Fallback to JSON files
   initializeDataFiles();
   return readData<Event>(EVENTS_FILE);
 }
@@ -119,8 +147,21 @@ export function saveEvents(events: Event[]): void {
   writeData(EVENTS_FILE, events);
 }
 
-export function addEvent(event: Omit<Event, "id">): Event {
-  const events = getEvents();
+export async function addEvent(event: Omit<Event, "id">): Promise<Event> {
+  // Try Supabase first
+  if (supabase) {
+    try {
+      const newEvent = await createEventInSupabase(event);
+      if (newEvent) {
+        return newEvent;
+      }
+    } catch (error) {
+      console.warn("Supabase unavailable, falling back to JSON files:", error.message);
+    }
+  }
+
+  // Fallback to JSON files
+  const events = await getEvents();
   const newEvent: Event = {
     ...event,
     id: Date.now().toString(),
@@ -130,8 +171,21 @@ export function addEvent(event: Omit<Event, "id">): Event {
   return newEvent;
 }
 
-export function updateEvent(id: string, updates: Partial<Event>): boolean {
-  const events = getEvents();
+export async function updateEvent(id: string, updates: Partial<Event>): Promise<boolean> {
+  // Try Supabase first
+  if (supabase) {
+    try {
+      const updatedEvent = await updateEventInSupabase(id, updates);
+      if (updatedEvent) {
+        return true;
+      }
+    } catch (error) {
+      console.warn("Supabase unavailable, falling back to JSON files:", error.message);
+    }
+  }
+
+  // Fallback to JSON files
+  const events = await getEvents();
   const index = events.findIndex((e) => e.id === id);
   if (index === -1) return false;
 
@@ -140,8 +194,21 @@ export function updateEvent(id: string, updates: Partial<Event>): boolean {
   return true;
 }
 
-export function deleteEvent(id: string): boolean {
-  const events = getEvents();
+export async function deleteEvent(id: string): Promise<boolean> {
+  // Try Supabase first
+  if (supabase) {
+    try {
+      const success = await deleteEventFromSupabase(id);
+      if (success) {
+        return true;
+      }
+    } catch (error) {
+      console.warn("Supabase unavailable, falling back to JSON files:", error.message);
+    }
+  }
+
+  // Fallback to JSON files
+  const events = await getEvents();
   const filtered = events.filter((e) => e.id !== id);
   if (filtered.length === events.length) return false;
 
@@ -150,7 +217,16 @@ export function deleteEvent(id: string): boolean {
 }
 
 // Team operations
-export function getTeamMembers(): TeamMember[] {
+export async function getTeamMembers(): Promise<TeamMember[]> {
+  // Try Supabase first, fallback to JSON files
+  if (supabase) {
+    const members = await getTeamMembersFromSupabase();
+    if (members.length > 0) {
+      return members;
+    }
+  }
+
+  // Fallback to JSON files
   initializeDataFiles();
   return readData<TeamMember>(TEAM_FILE).sort((a, b) => a.order - b.order);
 }
@@ -193,7 +269,16 @@ export function deleteTeamMember(id: string): boolean {
 }
 
 // Gallery operations
-export function getGalleryItems(): GalleryItem[] {
+export async function getGalleryItems(): Promise<GalleryItem[]> {
+  // Try Supabase first, fallback to JSON files
+  if (supabase) {
+    const items = await getGalleryItemsFromSupabase();
+    if (items.length > 0) {
+      return items;
+    }
+  }
+
+  // Fallback to JSON files
   initializeDataFiles();
   return readData<GalleryItem>(GALLERY_FILE).sort((a, b) => b.order - a.order);
 }

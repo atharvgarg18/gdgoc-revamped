@@ -1,17 +1,27 @@
 import { useState, useEffect } from "react";
-import { getEvents, Event } from "@/lib/supabase";
+import { useQuery } from "@tanstack/react-query";
+import { Event } from "@/lib/supabase";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 
 export default function EventsPage() {
-  const [events, setEvents] = useState<Event[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
   const [visibleCards, setVisibleCards] = useState<Set<number>>(new Set());
 
-  useEffect(() => {
-    loadEvents();
-  }, []);
+  // Fetch events with React Query for real-time updates
+  const { data: events = [], isLoading, error } = useQuery({
+    queryKey: ['public-events'],
+    queryFn: async (): Promise<Event[]> => {
+      const response = await fetch("/api/events");
+      const data = await response.json();
+      if (!data.success) {
+        throw new Error(data.message);
+      }
+      return data.data;
+    },
+    refetchInterval: 30000, // Refetch every 30 seconds for real-time updates
+    staleTime: 10000, // Consider data fresh for 10 seconds
+  });
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -33,14 +43,6 @@ export default function EventsPage() {
 
     return () => observer.disconnect();
   }, [events]);
-
-  const loadEvents = async () => {
-    const result = await getEvents();
-    if (result.success) {
-      setEvents(result.data);
-    }
-    setIsLoading(false);
-  };
 
   return (
     <div className="min-h-screen">
@@ -140,8 +142,29 @@ export default function EventsPage() {
           </div>
 
           <div className="relative z-10 container-responsive">
-            {/* Loading State */}
-            {isLoading ? (
+            {/* Error State */}
+            {error ? (
+              <div className="text-center py-16">
+                <div className="flex justify-center mb-8">
+                  <div className="w-16 h-16 md:w-20 md:h-20 bg-red-100 rounded-full flex items-center justify-center">
+                    <span className="text-2xl">⚠️</span>
+                  </div>
+                </div>
+                <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-4">
+                  Unable to Load Events
+                </h3>
+                <p className="text-gray-600 mb-6">
+                  We're having trouble loading events. Please try again later.
+                </p>
+                <button 
+                  onClick={() => window.location.reload()}
+                  className="btn-animate bg-gdsc-blue text-white px-6 py-3 rounded-full hover:bg-blue-600 transition-all duration-300 font-medium"
+                >
+                  Retry
+                </button>
+              </div>
+            ) : isLoading ? (
+              /* Loading State */
               <div className="text-center py-16">
                 <div className="flex justify-center mb-8">
                   <div className="flex space-x-1">
@@ -163,6 +186,30 @@ export default function EventsPage() {
                 <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-4">
                   Loading Events...
                 </h3>
+                {/* Loading skeleton */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 mt-12">
+                  {Array.from({ length: 4 }).map((_, i) => (
+                    <div key={i} className="bg-white rounded-2xl shadow-lg p-6 animate-pulse">
+                      <div className="h-2 bg-gray-200 rounded mb-4"></div>
+                      <div className="flex justify-between items-start mb-4">
+                        <div className="h-6 bg-gray-200 rounded w-20"></div>
+                        <div className="space-y-2">
+                          <div className="h-4 bg-gray-200 rounded w-24"></div>
+                          <div className="h-4 bg-gray-200 rounded w-20"></div>
+                        </div>
+                      </div>
+                      <div className="h-6 bg-gray-200 rounded mb-3 w-3/4"></div>
+                      <div className="space-y-2 mb-4">
+                        <div className="h-4 bg-gray-200 rounded"></div>
+                        <div className="h-4 bg-gray-200 rounded w-5/6"></div>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <div className="h-4 bg-gray-200 rounded w-28"></div>
+                        <div className="h-8 bg-gray-200 rounded w-24"></div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             ) : events.length === 0 ? (
               /* Empty State */
@@ -321,6 +368,16 @@ export default function EventsPage() {
                     ></div>
                   </div>
                 ))}
+              </div>
+            )}
+
+            {/* Live update indicator */}
+            {!isLoading && !error && (
+              <div className="text-center mt-8">
+                <div className="inline-flex items-center space-x-2 text-sm text-gray-500">
+                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                  <span>Live updates every 30 seconds</span>
+                </div>
               </div>
             )}
           </div>

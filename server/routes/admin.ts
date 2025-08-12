@@ -85,9 +85,9 @@ export const adminLogout: RequestHandler = (req, res) => {
 };
 
 // Events API
-export const getEventsAdmin: RequestHandler = (req, res) => {
+export const getEventsAdmin: RequestHandler = async (req, res) => {
   try {
-    const events = getEvents();
+    const events = await getEvents();
     res.json({
       success: true,
       data: events,
@@ -101,10 +101,10 @@ export const getEventsAdmin: RequestHandler = (req, res) => {
   }
 };
 
-export const createEvent: RequestHandler = (req, res) => {
+export const createEvent: RequestHandler = async (req, res) => {
   try {
     const eventData = req.body;
-    const newEvent = addEvent(eventData);
+    const newEvent = await addEvent(eventData);
 
     res.status(201).json({
       success: true,
@@ -119,12 +119,12 @@ export const createEvent: RequestHandler = (req, res) => {
   }
 };
 
-export const updateEventAdmin: RequestHandler = (req, res) => {
+export const updateEventAdmin: RequestHandler = async (req, res) => {
   try {
     const { id } = req.params;
     const updates = req.body;
 
-    const success = updateEvent(id, updates);
+    const success = await updateEvent(id, updates);
     if (!success) {
       return res.status(404).json({
         success: false,
@@ -144,11 +144,11 @@ export const updateEventAdmin: RequestHandler = (req, res) => {
   }
 };
 
-export const deleteEventAdmin: RequestHandler = (req, res) => {
+export const deleteEventAdmin: RequestHandler = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const success = deleteEvent(id);
+    const success = await deleteEvent(id);
     if (!success) {
       return res.status(404).json({
         success: false,
@@ -169,9 +169,9 @@ export const deleteEventAdmin: RequestHandler = (req, res) => {
 };
 
 // Team API
-export const getTeamAdmin: RequestHandler = (req, res) => {
+export const getTeamAdmin: RequestHandler = async (req, res) => {
   try {
-    const team = getTeamMembers();
+    const team = await getTeamMembers();
     res.json({
       success: true,
       data: team,
@@ -253,9 +253,9 @@ export const deleteTeamMemberAdmin: RequestHandler = (req, res) => {
 };
 
 // Gallery API
-export const getGalleryAdmin: RequestHandler = (req, res) => {
+export const getGalleryAdmin: RequestHandler = async (req, res) => {
   try {
-    const gallery = getGalleryItems();
+    const gallery = await getGalleryItems();
     res.json({
       success: true,
       data: gallery,
