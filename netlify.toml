@@ -1,20 +1,62 @@
+# Netlify Configuration for GDGoC IET DAVV Website
+# Optimized for Supabase integration and SPA routing
+
 [build]
-  command = "npm run build:client"
-  functions = "netlify/functions"
-  publish = "dist/spa"
+  # Build settings
+  publish = "dist"
+  command = "npm run build"
+  
+  # Environment variables for build process
+  [build.environment]
+    NODE_VERSION = "18"
+    NPM_VERSION = "9"
 
-[functions]
-  external_node_modules = ["express"]
-  node_bundler = "esbuild"
-
-[[redirects]]
-  force = true
-  from = "/api/*"
-  status = 200
-  to = "/.netlify/functions/api/:splat"
-
-# SPA fallback for React Router
+# SPA routing configuration - ensures all routes work correctly
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+  force = false
+
+# Security headers for better performance and safety
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+# Caching configuration for better performance
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# API endpoint handling (if needed for future extensions)
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+# Admin panel protection (optional - removes from search engines)
+[[headers]]
+  for = "/admin"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+# Supabase environment variable validation
+# These will be automatically available during build if set in Netlify UI
+[build.processing]
+  skip_processing = false
