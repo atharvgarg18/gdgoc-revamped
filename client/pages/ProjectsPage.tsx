@@ -36,11 +36,16 @@ export default function ProjectsPage() {
   }, [projects]);
 
   const loadProjects = async () => {
-    const result = await getProjects();
-    if (result.success) {
-      setProjects(result.data);
+    try {
+      const result = await getProjects();
+      if (result.success) {
+        setProjects(result.data);
+      }
+    } catch (error) {
+      console.error("Error loading projects:", error);
+    } finally {
+      setIsLoading(false);
     }
-    setIsLoading(false);
   };
 
   const filteredProjects = projects.filter(
@@ -75,130 +80,184 @@ export default function ProjectsPage() {
       label: "IoT",
       count: projects.filter((p) => p.category === "iot").length,
     },
-  ];
+    {
+      value: "other",
+      label: "Other",
+      count: projects.filter((p) => p.category === "other").length,
+    },
+  ].filter((cat) => cat.count > 0 || cat.value === "all");
 
   const getStatusColor = (status: string) => {
     switch (status) {
       case "completed":
-        return "bg-gdsc-green/10 text-gdsc-green";
+        return "bg-green-500/10 text-green-600 border-green-200";
       case "in_progress":
-        return "bg-gdsc-blue/10 text-gdsc-blue";
+        return "bg-blue-500/10 text-blue-600 border-blue-200";
       case "planned":
-        return "bg-gdsc-yellow/10 text-gdsc-yellow";
+        return "bg-yellow-500/10 text-yellow-600 border-yellow-200";
       default:
-        return "bg-gray-100 text-gray-600";
+        return "bg-gray-100 text-gray-600 border-gray-200";
     }
   };
 
   const getCategoryColor = (category: string) => {
-    switch (category) {
-      case "web":
-        return "bg-gdsc-blue";
-      case "mobile":
-        return "bg-gdsc-green";
-      case "ai":
-        return "bg-gdsc-red";
-      case "blockchain":
-        return "bg-gdsc-yellow";
-      case "iot":
-        return "bg-purple-500";
-      default:
-        return "bg-gray-500";
-    }
+    const colors = {
+      web: "bg-blue-500",
+      mobile: "bg-green-500",
+      ai: "bg-red-500",
+      blockchain: "bg-yellow-500",
+      iot: "bg-purple-500",
+      other: "bg-gray-500",
+    };
+    return colors[category as keyof typeof colors] || "bg-gray-500";
   };
 
   return (
     <div className="min-h-screen">
-      <SEO
+      <SEO 
         title="Projects"
-        description="Explore innovative projects built by GDGoC IET DAVV community members. From web applications to mobile apps, AI solutions, and more. Discover our open-source contributions."
+        description="Explore innovative projects built by GDGoC IET DAVV community members. From web applications to mobile apps, AI solutions, and more."
         keywords="GDGoC projects, student projects, open source, web development, mobile apps, AI projects, blockchain, IoT, programming projects, IET DAVV"
       />
-
+      
       <Navigation />
       <main className="pt-16">
-        {/* Enhanced Hero Section */}
-        <section className="relative py-16 md:py-24 bg-gradient-to-br from-gray-50 to-white overflow-hidden">
+        {/* Hero Section - Inspired by homepage design */}
+        <section className="relative min-h-[90vh] flex items-center justify-center bg-gradient-to-br from-gray-50 via-white to-blue-50 overflow-hidden">
           {/* Animated Background Elements */}
           <div className="absolute inset-0 overflow-hidden">
-            <div className="absolute top-10 left-10 w-20 md:w-40 h-20 md:h-40 bg-gdsc-blue/5 rounded-full animate-float"></div>
+            {/* Floating Circles */}
+            <div className="absolute top-20 left-20 w-32 md:w-64 h-32 md:h-64 bg-gradient-to-r from-blue-400/20 to-green-400/20 rounded-full animate-float blur-xl"></div>
             <div
-              className="absolute top-20 right-20 w-16 md:w-32 h-16 md:h-32 bg-gdsc-red/5 rounded-full animate-float"
+              className="absolute top-40 right-32 w-24 md:w-48 h-24 md:h-48 bg-gradient-to-r from-red-400/20 to-yellow-400/20 rounded-full animate-float blur-xl"
               style={{ animationDelay: "2s" }}
             ></div>
             <div
-              className="absolute bottom-20 left-1/4 w-24 md:w-48 h-24 md:h-48 bg-gdsc-yellow/5 rounded-full animate-float"
+              className="absolute bottom-32 left-1/4 w-40 md:w-80 h-40 md:h-80 bg-gradient-to-r from-green-400/20 to-blue-400/20 rounded-full animate-float blur-xl"
               style={{ animationDelay: "4s" }}
             ></div>
             <div
-              className="absolute bottom-10 right-1/3 w-14 md:w-28 h-14 md:h-28 bg-gdsc-green/5 rounded-full animate-float"
+              className="absolute bottom-20 right-20 w-28 md:w-56 h-28 md:h-56 bg-gradient-to-r from-yellow-400/20 to-red-400/20 rounded-full animate-float blur-xl"
               style={{ animationDelay: "1s" }}
             ></div>
 
-            {/* Grid pattern */}
+            {/* Grid Pattern */}
             <div className="absolute inset-0 opacity-5">
-              <div className="grid grid-cols-6 md:grid-cols-8 h-full gap-4">
-                {Array.from({ length: 8 }).map((_, i) => (
+              <div className="grid grid-cols-12 md:grid-cols-16 h-full gap-4">
+                {Array.from({ length: 16 }).map((_, i) => (
                   <div
                     key={i}
                     className="border-r border-gray-400 animate-pulse"
-                    style={{ animationDelay: `${i * 0.2}s` }}
+                    style={{ animationDelay: `${i * 0.1}s` }}
                   ></div>
                 ))}
               </div>
             </div>
+
+            {/* Decorative Shapes */}
+            <div className="absolute top-1/4 left-16 w-4 h-4 bg-blue-500 rounded-full animate-bounce"></div>
+            <div className="absolute top-1/3 right-16 w-6 h-6 bg-green-500 rotate-45 animate-pulse"></div>
+            <div className="absolute bottom-1/4 left-1/3 w-3 h-3 bg-red-500 rounded-full animate-ping"></div>
+            <div className="absolute bottom-1/3 right-1/4 w-5 h-5 bg-yellow-500 rotate-12 animate-bounce"></div>
           </div>
 
-          <div className="relative z-10 container-responsive text-center">
+          {/* Content */}
+          <div className="relative z-10 text-center px-4 max-w-6xl mx-auto">
             <div className="animate-slide-up">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                Our{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-gdsc-blue to-gdsc-green">
+              {/* Title */}
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6">
+                <span className="text-gray-900">Our</span>{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-green-500 to-blue-600 animate-gradient-x">
                   Projects
                 </span>
               </h1>
+
+              {/* Subtitle */}
               <p
-                className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mb-8 leading-relaxed animate-slide-up"
+                className="text-lg sm:text-xl md:text-2xl text-gray-600 mb-8 max-w-4xl mx-auto leading-relaxed animate-slide-up"
                 style={{ animationDelay: "0.2s" }}
               >
                 Discover the innovative projects built by our community members.
-                From web applications to mobile apps, AI solutions, and more.
+                From web applications to mobile apps, AI solutions, and cutting-edge tech.
               </p>
+
+              {/* Stats */}
               <div
-                className="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up"
+                className="flex flex-wrap justify-center gap-8 mb-8 animate-slide-up"
                 style={{ animationDelay: "0.4s" }}
               >
+                <div className="text-center">
+                  <div className="text-3xl md:text-4xl font-bold text-blue-600">
+                    {projects.length}+
+                  </div>
+                  <div className="text-gray-600">Projects</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl md:text-4xl font-bold text-green-600">
+                    {categories.length - 1}
+                  </div>
+                  <div className="text-gray-600">Categories</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl md:text-4xl font-bold text-red-600">
+                    {projects.filter(p => p.status === "completed").length}
+                  </div>
+                  <div className="text-gray-600">Completed</div>
+                </div>
+              </div>
+
+              {/* CTA Buttons */}
+              <div
+                className="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up"
+                style={{ animationDelay: "0.6s" }}
+              >
                 <a
-                  href="https://github.com/gdgoc-iet-davv"
+                  href="https://github.com/atharvgarg18"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-animate bg-gdsc-blue text-white px-8 py-4 rounded-full hover:bg-blue-600 transition-all duration-300 shadow-lg hover:shadow-xl font-medium"
+                  className="btn-animate bg-gradient-to-r from-blue-600 to-green-600 text-white px-8 py-4 rounded-full hover:shadow-xl transition-all duration-300 font-medium transform hover:scale-105"
                 >
                   View on GitHub
                 </a>
-                <button className="btn-animate border-2 border-gdsc-blue text-gdsc-blue px-8 py-4 rounded-full hover:bg-gdsc-blue hover:text-white transition-all duration-300 font-medium">
-                  Contribute
+                <button
+                  onClick={() => document.getElementById('projects-section')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="btn-animate border-2 border-blue-600 text-blue-600 px-8 py-4 rounded-full hover:bg-blue-600 hover:text-white transition-all duration-300 font-medium transform hover:scale-105"
+                >
+                  Explore Projects
                 </button>
               </div>
+            </div>
+          </div>
+
+          {/* Scroll Indicator */}
+          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <div className="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center">
+              <div className="w-1 h-3 bg-gray-400 rounded-full mt-2 animate-pulse"></div>
             </div>
           </div>
         </section>
 
         {/* Projects Section */}
-        <section className="py-16 md:py-20 relative overflow-hidden">
+        <section id="projects-section" className="py-16 md:py-20 relative overflow-hidden bg-white">
           <div className="relative z-10 container-responsive">
             {/* Category Filter */}
-            <div className="mb-8 md:mb-12">
-              <div className="flex flex-wrap gap-2 md:gap-3 justify-center">
+            <div className="mb-12">
+              <h2 className="text-3xl font-bold text-center text-gray-900 mb-8">
+                Explore by Category
+              </h2>
+              <div className="flex flex-wrap gap-3 justify-center">
                 {categories.map((category) => (
                   <button
                     key={category.value}
                     onClick={() => setSelectedCategory(category.value)}
-                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                      selectedCategory === category.value
-                        ? "bg-gdsc-blue text-white shadow-lg"
-                        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                    }`}
+                    className={`
+                      px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 transform hover:scale-105
+                      ${
+                        selectedCategory === category.value
+                          ? "bg-gradient-to-r from-blue-600 to-green-600 text-white shadow-lg"
+                          : "bg-gray-100 text-gray-700 hover:bg-gray-200 hover:shadow-md"
+                      }
+                    `}
                   >
                     {category.label}
                     <span className="ml-2 text-xs opacity-75">
@@ -211,77 +270,66 @@ export default function ProjectsPage() {
 
             {/* Loading State */}
             {isLoading ? (
-              <div className="text-center py-16">
+              <div className="text-center py-20">
                 <div className="flex justify-center mb-8">
-                  <div className="flex space-x-1">
-                    <div className="w-3 h-3 md:w-4 md:h-4 bg-gdsc-blue rounded-full animate-pulse"></div>
+                  <div className="flex space-x-2">
+                    <div className="w-4 h-4 bg-blue-500 rounded-full animate-pulse"></div>
                     <div
-                      className="w-3 h-3 md:w-4 md:h-4 bg-gdsc-red rounded-full animate-pulse"
+                      className="w-4 h-4 bg-green-500 rounded-full animate-pulse"
                       style={{ animationDelay: "0.2s" }}
                     ></div>
                     <div
-                      className="w-3 h-3 md:w-4 md:h-4 bg-gdsc-yellow rounded-full animate-pulse"
+                      className="w-4 h-4 bg-red-500 rounded-full animate-pulse"
                       style={{ animationDelay: "0.4s" }}
                     ></div>
                     <div
-                      className="w-3 h-3 md:w-4 md:h-4 bg-gdsc-green rounded-full animate-pulse"
+                      className="w-4 h-4 bg-yellow-500 rounded-full animate-pulse"
                       style={{ animationDelay: "0.6s" }}
                     ></div>
                   </div>
                 </div>
-                <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-4">
-                  Loading Projects...
+                <h3 className="text-xl font-semibold text-gray-900">
+                  Loading amazing projects...
                 </h3>
               </div>
             ) : filteredProjects.length === 0 ? (
               /* Empty State */
-              <div className="text-center py-16">
-                <div className="flex justify-center mb-8">
-                  <div className="flex space-x-1">
-                    <div className="w-4 h-4 md:w-6 md:h-6 bg-gdsc-blue rounded-full animate-pulse"></div>
-                    <div
-                      className="w-4 h-4 md:w-6 md:h-6 bg-gdsc-red rounded-full animate-pulse"
-                      style={{ animationDelay: "0.2s" }}
-                    ></div>
-                    <div
-                      className="w-4 h-4 md:w-6 md:h-6 bg-gdsc-yellow rounded-full animate-pulse"
-                      style={{ animationDelay: "0.4s" }}
-                    ></div>
-                    <div
-                      className="w-4 h-4 md:w-6 md:h-6 bg-gdsc-green rounded-full animate-pulse"
-                      style={{ animationDelay: "0.6s" }}
-                    ></div>
-                  </div>
-                </div>
+              <div className="text-center py-20">
+                <div className="text-8xl mb-8">🚀</div>
                 <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
                   Amazing Projects Coming Soon!
                 </h3>
-                <p className="text-gray-600 text-lg md:text-xl max-w-2xl mx-auto mb-8">
+                <p className="text-gray-600 text-lg max-w-2xl mx-auto mb-8">
                   We're working on exciting projects that will showcase our
-                  community's talent and innovation.
+                  community's talent and innovation. Stay tuned!
                 </p>
                 <a
                   href="https://chat.whatsapp.com/CcTjDYXNfQMEoLUHzB3hwa"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-animate bg-gdsc-blue text-white px-8 py-4 rounded-full hover:bg-blue-600 transition-all duration-300 shadow-lg hover:shadow-xl font-medium inline-block"
+                  className="btn-animate bg-gradient-to-r from-blue-600 to-green-600 text-white px-8 py-4 rounded-full hover:shadow-xl transition-all duration-300 font-medium inline-block transform hover:scale-105"
                 >
                   Join the Team
                 </a>
               </div>
             ) : (
               /* Projects Grid */
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {filteredProjects.map((project, index) => (
                   <div
                     key={project.id}
                     data-index={index}
-                    className={`project-card group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden card-hover ${
-                      visibleCards.has(index)
-                        ? "animate-slide-up opacity-100"
-                        : "opacity-0"
-                    }`}
-                    style={{ animationDelay: `${index * 0.15}s` }}
+                    className={`
+                      project-card group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl 
+                      transition-all duration-500 overflow-hidden border border-gray-200 
+                      transform hover:scale-105 hover:-translate-y-2
+                      ${
+                        visibleCards.has(index)
+                          ? "animate-slide-up opacity-100"
+                          : "opacity-0"
+                      }
+                    `}
+                    style={{ animationDelay: `${index * 0.1}s` }}
                   >
                     {/* Project Image */}
                     {project.image && (
@@ -289,13 +337,18 @@ export default function ProjectsPage() {
                         <img
                           src={project.image}
                           alt={project.title}
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                        <div
-                          className={`absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-semibold ${getStatusColor(project.status)}`}
-                        >
-                          {project.status.replace("_", " ")}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                        
+                        {/* Status Badge */}
+                        <div className={`absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-medium border ${getStatusColor(project.status)}`}>
+                          {project.status.replace("_", " ").toUpperCase()}
+                        </div>
+
+                        {/* Category Dot */}
+                        <div className="absolute top-4 right-4">
+                          <div className={`w-4 h-4 rounded-full ${getCategoryColor(project.category)} shadow-lg`}></div>
                         </div>
                       </div>
                     )}
@@ -303,57 +356,57 @@ export default function ProjectsPage() {
                     <div className="p-6">
                       {/* Project Header */}
                       <div className="mb-4">
-                        <div className="flex items-center gap-2 mb-2">
-                          <div
-                            className={`w-3 h-3 rounded-full ${getCategoryColor(project.category)}`}
-                          ></div>
-                          <span className="text-sm text-gray-500 capitalize">
-                            {project.category}
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-sm text-gray-500 capitalize font-medium">
+                            {project.category} Project
                           </span>
                         </div>
-                        <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-gdsc-blue transition-colors duration-300">
+                        <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-300 line-clamp-2">
                           {project.title}
                         </h3>
-                        <p className="text-gray-600 text-sm leading-relaxed">
+                        <p className="text-gray-600 text-sm leading-relaxed line-clamp-3">
                           {project.description}
                         </p>
                       </div>
 
                       {/* Tech Stack */}
                       <div className="mb-4">
-                        <div className="flex flex-wrap gap-1">
-                          {project.tech_stack.slice(0, 3).map((tech, i) => (
+                        <div className="flex flex-wrap gap-2">
+                          {project.tech_stack.slice(0, 4).map((tech, i) => (
                             <span
                               key={i}
-                              className="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-md"
+                              className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-md font-medium"
                             >
                               {tech}
                             </span>
                           ))}
-                          {project.tech_stack.length > 3 && (
-                            <span className="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-md">
-                              +{project.tech_stack.length - 3}
+                          {project.tech_stack.length > 4 && (
+                            <span className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-md font-medium">
+                              +{project.tech_stack.length - 4} more
                             </span>
                           )}
                         </div>
                       </div>
 
                       {/* Team Members */}
-                      <div className="mb-4 text-sm text-gray-500">
+                      <div className="mb-6 text-sm text-gray-500">
                         <span className="font-medium">Team:</span>{" "}
-                        {project.team_members.join(", ")}
+                        <span>{project.team_members.join(", ")}</span>
                       </div>
 
                       {/* Actions */}
-                      <div className="flex gap-2">
+                      <div className="flex gap-3">
                         {project.github_url && (
                           <a
                             href={project.github_url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex-1 bg-gray-900 text-white px-4 py-2 rounded-lg text-center text-sm font-medium hover:bg-gray-800 transition-colors duration-300"
+                            className="flex-1 bg-gray-900 text-white px-4 py-2.5 rounded-lg text-center text-sm font-medium hover:bg-gray-800 transition-all duration-300 transform hover:scale-105"
                           >
-                            GitHub
+                            <span className="flex items-center justify-center space-x-2">
+                              <span>⚡</span>
+                              <span>Code</span>
+                            </span>
                           </a>
                         )}
                         {project.live_url && (
@@ -361,26 +414,58 @@ export default function ProjectsPage() {
                             href={project.live_url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex-1 bg-gdsc-blue text-white px-4 py-2 rounded-lg text-center text-sm font-medium hover:bg-blue-600 transition-colors duration-300"
+                            className="flex-1 bg-gradient-to-r from-blue-600 to-green-600 text-white px-4 py-2.5 rounded-lg text-center text-sm font-medium hover:shadow-lg transition-all duration-300 transform hover:scale-105"
                           >
-                            Live Demo
+                            <span className="flex items-center justify-center space-x-2">
+                              <span>🚀</span>
+                              <span>Live</span>
+                            </span>
                           </a>
                         )}
                       </div>
                     </div>
 
-                    {/* Floating element */}
-                    <div
-                      className="absolute -bottom-2 -right-2 w-6 h-6 bg-gdsc-yellow rounded-full animate-float opacity-60"
-                      style={{ animationDelay: `${index * 0.5}s` }}
-                    ></div>
+                    {/* Hover Effect Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-600/5 to-green-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
                   </div>
                 ))}
               </div>
             )}
           </div>
         </section>
+
+        {/* Call to Action Section */}
+        <section className="py-16 md:py-20 bg-gradient-to-r from-blue-50 to-green-50">
+          <div className="container-responsive text-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+              Want to Build Something Amazing?
+            </h2>
+            <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+              Join our community of passionate developers and bring your ideas to life.
+              Let's build the future together!
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="https://chat.whatsapp.com/CcTjDYXNfQMEoLUHzB3hwa"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-animate bg-gradient-to-r from-blue-600 to-green-600 text-white px-8 py-4 rounded-full hover:shadow-xl transition-all duration-300 font-medium transform hover:scale-105"
+              >
+                Join Our Community
+              </a>
+              <a
+                href="https://github.com/atharvgarg18"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-animate border-2 border-blue-600 text-blue-600 px-8 py-4 rounded-full hover:bg-blue-600 hover:text-white transition-all duration-300 font-medium transform hover:scale-105"
+              >
+                Contribute on GitHub
+              </a>
+            </div>
+          </div>
+        </section>
       </main>
+      
       <Footer />
     </div>
   );
