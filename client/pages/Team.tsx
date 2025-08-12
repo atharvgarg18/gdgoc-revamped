@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getTeamMembers, TeamMember } from "@/lib/supabase";
+import { getTeamMembers, TeamMember } from "@/lib/firebase";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SocialIcons from "@/components/SocialIcons";

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getProjects, Project } from "@/lib/supabase";
+import { getProjects, Project } from "@/lib/firebase";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";

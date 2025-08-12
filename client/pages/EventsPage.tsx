@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getEvents, Event } from "@/lib/supabase";
+import { getEvents, Event } from "@/lib/firebase";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
