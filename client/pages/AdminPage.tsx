@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import NewAdminLogin from "@/components/admin/NewAdminLogin";
-import NewAdminDashboard from "@/components/admin/NewAdminDashboard";
+import ModernAdminDashboard from "@/components/admin/ModernAdminDashboard";
+import SEO from "@/components/SEO";
 
 export default function AdminPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -46,8 +47,24 @@ export default function AdminPage() {
   }
 
   if (!isAuthenticated) {
-    return <NewAdminLogin onLogin={handleLogin} />;
+    return (
+      <>
+        <SEO
+          title="Admin Login"
+          description="Secure admin panel login for GDGoC IET DAVV content management system."
+        />
+        <NewAdminLogin onLogin={handleLogin} />
+      </>
+    );
   }
 
-  return <NewAdminDashboard onLogout={handleLogout} />;
+  return (
+    <>
+      <SEO
+        title="Admin Dashboard"
+        description="GDGoC IET DAVV admin dashboard for managing events, team members, projects, and gallery content."
+      />
+      <ModernAdminDashboard onLogout={handleLogout} />
+    </>
+  );
 }
