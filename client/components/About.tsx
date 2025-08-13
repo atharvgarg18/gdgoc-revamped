@@ -33,22 +33,26 @@ export default function About() {
     {
       icon: Target,
       title: "Innovation First",
-      description: "We embrace cutting-edge technologies and innovative solutions to solve real-world problems.",
+      description:
+        "We embrace cutting-edge technologies and innovative solutions to solve real-world problems.",
     },
     {
       icon: Users,
       title: "Community Driven",
-      description: "Building a strong network of developers who support and learn from each other.",
+      description:
+        "Building a strong network of developers who support and learn from each other.",
     },
     {
       icon: Lightbulb,
       title: "Skill Development",
-      description: "Providing hands-on workshops and real-world projects to enhance technical skills.",
+      description:
+        "Providing hands-on workshops and real-world projects to enhance technical skills.",
     },
     {
       icon: Award,
       title: "Excellence",
-      description: "Striving for excellence in everything we do, from events to projects to community building.",
+      description:
+        "Striving for excellence in everything we do, from events to projects to community building.",
     },
   ];
 
@@ -72,7 +76,7 @@ export default function About() {
           style={{ animationDelay: "1s" }}
         ></div>
       </div>
-      
+
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
@@ -91,10 +95,10 @@ export default function About() {
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
           {stats.map((stat, index) => (
-            <div 
-              key={index} 
+            <div
+              key={index}
               className={`relative text-center p-6 rounded-2xl backdrop-blur-lg bg-white/70 border border-white/20 shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 group ${
-                isVisible ? 'animate-fade-in-up' : 'opacity-0'
+                isVisible ? "animate-fade-in-up" : "opacity-0"
               }`}
               style={{ animationDelay: `${index * 0.1}s` }}
             >
@@ -118,7 +122,7 @@ export default function About() {
               <div
                 key={index}
                 className={`relative group p-8 rounded-2xl backdrop-blur-lg bg-white/60 border border-white/30 shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-500 overflow-hidden ${
-                  isVisible ? 'animate-fade-in-up' : 'opacity-0'
+                  isVisible ? "animate-fade-in-up" : "opacity-0"
                 }`}
                 style={{ animationDelay: `${0.2 + index * 0.1}s` }}
               >
@@ -144,27 +148,35 @@ export default function About() {
             <h3 className="text-2xl md:text-4xl font-bold bg-gradient-to-r from-gdsc-blue via-gdsc-red to-gdsc-green bg-clip-text text-transparent mb-8">
               Our Mission & Values
             </h3>
-            
+
             <div className="grid md:grid-cols-2 gap-8 text-left">
               <div>
-                <h4 className="text-xl font-bold text-gray-900 mb-4">Mission</h4>
+                <h4 className="text-xl font-bold text-gray-900 mb-4">
+                  Mission
+                </h4>
                 <p className="text-gray-700 leading-relaxed">
-                  We're built different, so we build different. Our mission is to
-                  empower future developers by bringing students passionate about
-                  technology together and helping them grow their skills in tech,
-                  regardless of background.
+                  We're built different, so we build different. Our mission is
+                  to empower future developers by bringing students passionate
+                  about technology together and helping them grow their skills
+                  in tech, regardless of background.
                 </p>
               </div>
-              
+
               <div>
                 <h4 className="text-xl font-bold text-gray-900 mb-4">Values</h4>
                 <p className="text-gray-700 leading-relaxed mb-4">
-                  We believe you don't need to code to be a developer. We develop both
-                  products and people by making Google technologies accessible to
-                  everyone through workshops, events, and more.
+                  We believe you don't need to code to be a developer. We
+                  develop both products and people by making Google technologies
+                  accessible to everyone through workshops, events, and more.
                 </p>
                 <div className="flex flex-wrap gap-2">
-                  {["Innovation", "Collaboration", "Learning", "Inclusivity", "Excellence"].map((value, index) => (
+                  {[
+                    "Innovation",
+                    "Collaboration",
+                    "Learning",
+                    "Inclusivity",
+                    "Excellence",
+                  ].map((value, index) => (
                     <span
                       key={index}
                       className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm font-medium"
@@ -175,7 +187,7 @@ export default function About() {
                 </div>
               </div>
             </div>
-            
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
               <a
                 href="https://chat.whatsapp.com/CcTjDYXNfQMEoLUHzB3hwa"

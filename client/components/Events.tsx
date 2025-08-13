@@ -63,7 +63,6 @@ export default function Events() {
     return <Calendar size={16} />;
   };
 
-
   return (
     <section
       ref={sectionRef}
@@ -84,7 +83,7 @@ export default function Events() {
           style={{ animationDelay: "2s" }}
         ></div>
       </div>
-      
+
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
@@ -152,7 +151,9 @@ export default function Events() {
                         <div
                           className={`inline-flex items-center px-3 py-1 rounded-xl text-xs md:text-sm font-semibold border-2 ${getEventTypeColor(event.type)} shadow-lg`}
                         >
-                          <span className="mr-2">{getEventTypeIcon(event.type)}</span>
+                          <span className="mr-2">
+                            {getEventTypeIcon(event.type)}
+                          </span>
                           {event.type}
                         </div>
                         {isPassed && (

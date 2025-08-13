@@ -287,7 +287,8 @@ export default function ContactPage() {
                 {/* Contact Form Removed */}
                 <div className="mt-8 text-center">
                   <p className="text-gray-600">
-                    For inquiries, please reach out to us directly via email or join our WhatsApp community.
+                    For inquiries, please reach out to us directly via email or
+                    join our WhatsApp community.
                   </p>
                 </div>
               </div>

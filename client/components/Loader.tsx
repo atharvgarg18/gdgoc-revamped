@@ -30,7 +30,7 @@ export default function Loader({ onComplete }: { onComplete: () => void }) {
             className="w-64 h-auto"
             onError={(e) => {
               // Fallback in case the image fails to load
-              e.currentTarget.style.display = 'none';
+              e.currentTarget.style.display = "none";
             }}
           />
         </div>
