@@ -30,13 +30,23 @@ export default function Events() {
     try {
       const result = await getEvents();
       console.log("Events result:", result); // Debug log
-      if (result.success) {
-        setEvents(result.data.slice(0, 4)); // Show only first 4 events on homepage
+
+      if (result.success || result.data) {
+        // Use data whether from database or fallback
+        const eventsData = result.data || [];
+        setEvents(eventsData.slice(0, 4)); // Show only first 4 events on homepage
+
+        if (result.fallback) {
+          console.info("Using fallback events data");
+        }
       } else {
         console.error("Get Events failed:", result.error);
+        // Set empty array if no fallback data available
+        setEvents([]);
       }
     } catch (error) {
       console.error("Error loading events:", error);
+      setEvents([]); // Fallback to empty array
     } finally {
       setIsLoading(false);
     }
