@@ -6,6 +6,7 @@ import {
   deleteProject,
   Project,
 } from "@/lib/supabase";
+import { validateAndFormatUrl } from "@/lib/urlUtils";
 
 export default function ProjectsManager() {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -41,23 +42,36 @@ export default function ProjectsManager() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const projectData = {
+    // Validate and format URLs
+    const processedData = {
       ...formData,
       tech_stack: formData.tech_stack.split(",").map((tech) => tech.trim()),
       team_members: formData.team_members
         .split(",")
         .map((member) => member.trim()),
+      github_url: formData.github_url ? validateAndFormatUrl(formData.github_url) || '' : '',
+      live_url: formData.live_url ? validateAndFormatUrl(formData.live_url) || '' : '',
     };
+
+    // Check for invalid URLs
+    const invalidUrls = [];
+    if (formData.github_url && !processedData.github_url) invalidUrls.push('GitHub URL');
+    if (formData.live_url && !processedData.live_url) invalidUrls.push('Live URL');
+
+    if (invalidUrls.length > 0) {
+      alert(`Please enter valid URLs for: ${invalidUrls.join(', ')} (e.g., https://github.com/username/repo)`);
+      return;
+    }
 
     try {
       if (editingProject) {
-        const result = await updateProject(editingProject.id, projectData);
+        const result = await updateProject(editingProject.id, processedData);
         if (result.success) {
           await loadProjects();
           closeModal();
         }
       } else {
-        const result = await createProject(projectData);
+        const result = await createProject(processedData);
         if (result.success) {
           await loadProjects();
           closeModal();
@@ -386,12 +400,16 @@ export default function ProjectsManager() {
                   </label>
                   <input
                     type="url"
+                    placeholder="https://github.com/username/repo"
                     value={formData.github_url}
                     onChange={(e) =>
                       setFormData({ ...formData, github_url: e.target.value })
                     }
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gdsc-blue"
                   />
+                  <p className="text-xs text-gray-500 mt-1">
+                    Full URL including https://
+                  </p>
                 </div>
 
                 <div>
@@ -400,12 +418,16 @@ export default function ProjectsManager() {
                   </label>
                   <input
                     type="url"
+                    placeholder="https://yourproject.com or https://yourproject.netlify.app"
                     value={formData.live_url}
                     onChange={(e) =>
                       setFormData({ ...formData, live_url: e.target.value })
                     }
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gdsc-blue"
                   />
+                  <p className="text-xs text-gray-500 mt-1">
+                    Full URL including https://
+                  </p>
                 </div>
 
                 <div>
