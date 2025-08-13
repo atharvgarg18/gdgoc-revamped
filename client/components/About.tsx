@@ -32,22 +32,26 @@ export default function About() {
     {
       icon: "🚀",
       title: "Innovation First",
-      description: "We embrace cutting-edge technologies and innovative solutions to solve real-world problems.",
+      description:
+        "We embrace cutting-edge technologies and innovative solutions to solve real-world problems.",
     },
     {
       icon: "👥",
       title: "Community Driven",
-      description: "Building a strong network of developers who support and learn from each other.",
+      description:
+        "Building a strong network of developers who support and learn from each other.",
     },
     {
       icon: "💡",
       title: "Skill Development",
-      description: "Providing hands-on workshops and real-world projects to enhance technical skills.",
+      description:
+        "Providing hands-on workshops and real-world projects to enhance technical skills.",
     },
     {
       icon: "⭐",
       title: "Excellence",
-      description: "Striving for excellence in everything we do, from events to projects to community building.",
+      description:
+        "Striving for excellence in everything we do, from events to projects to community building.",
     },
   ];
 
@@ -70,7 +74,9 @@ export default function About() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
           {stats.map((stat, index) => (
             <div key={index} className="text-center">
-              <div className={`text-3xl md:text-4xl font-bold ${stat.color} mb-2`}>
+              <div
+                className={`text-3xl md:text-4xl font-bold ${stat.color} mb-2`}
+              >
                 {stat.number}
               </div>
               <div className="text-gray-600 text-sm md:text-base">
@@ -104,9 +110,10 @@ export default function About() {
             Our Mission
           </h3>
           <p className="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed mb-8">
-            We're built different, so we build different. Our mission is to empower 
-            future developers by bringing students passionate about technology together 
-            and helping them grow their skills in tech, regardless of background.
+            We're built different, so we build different. Our mission is to
+            empower future developers by bringing students passionate about
+            technology together and helping them grow their skills in tech,
+            regardless of background.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
@@ -133,15 +140,15 @@ export default function About() {
             Our Values
           </h3>
           <p className="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed mb-8">
-            We believe you don't need to code to be a developer. We develop both 
-            products and people by making Google technologies accessible to everyone 
-            through workshops, events, and more. Dreamers, problem solvers, and 
-            tinkerers: That's who we are.
+            We believe you don't need to code to be a developer. We develop both
+            products and people by making Google technologies accessible to
+            everyone through workshops, events, and more. Dreamers, problem
+            solvers, and tinkerers: That's who we are.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             {[
               "Innovation",
-              "Collaboration", 
+              "Collaboration",
               "Learning",
               "Inclusivity",
               "Excellence",
