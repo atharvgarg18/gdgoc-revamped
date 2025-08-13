@@ -47,6 +47,10 @@ export default function Index() {
         <Navigation />
         <main>
           <Hero />
+          {/* Debug component - remove after fixing */}
+          <div className="container mx-auto px-4 py-4">
+            <ConnectionTest />
+          </div>
           <About />
           <Events />
         </main>
