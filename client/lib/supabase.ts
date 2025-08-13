@@ -53,6 +53,7 @@ export interface Event {
   attendees: number;
   image?: string;
   registration_link?: string;
+  status: "upcoming" | "completed";
   created_at: string;
   updated_at: string;
 }
