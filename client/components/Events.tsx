@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { getEvents, Event } from "@/lib/supabase";
+import { getEvents, Event, isEventCompleted } from "@/lib/supabase";
 import { Calendar, Users, Clock, ExternalLink } from "lucide-react";
 
 export default function Events() {
@@ -63,11 +63,6 @@ export default function Events() {
     return <Calendar size={16} />;
   };
 
-  const isEventPassed = (eventDate: string) => {
-    const today = new Date();
-    const eventDateObj = new Date(eventDate);
-    return eventDateObj < today;
-  };
 
   return (
     <section
@@ -141,7 +136,7 @@ export default function Events() {
           /* Events Grid - Mobile Optimized */
           <div className="space-y-6 md:grid md:grid-cols-2 md:gap-8 md:space-y-0 mb-12">
             {events.map((event, index) => {
-              const isPassed = isEventPassed(event.date);
+              const isPassed = isEventCompleted(event.date);
               return (
                 <div
                   key={event.id}
