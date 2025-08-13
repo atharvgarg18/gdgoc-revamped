@@ -6,6 +6,7 @@ import {
   deleteEvent,
   Event,
 } from "@/lib/supabase";
+import { validateAndFormatUrl } from "@/lib/urlUtils";
 
 export default function EventsManager() {
   const [events, setEvents] = useState<Event[]>([]);
@@ -47,8 +48,23 @@ export default function EventsManager() {
     setIsSubmitting(true);
 
     try {
+      // Validate and format registration URL
+      const processedData = {
+        ...formData,
+        registration_link: formData.registration_link
+          ? validateAndFormatUrl(formData.registration_link) || ''
+          : '',
+      };
+
+      // Validate registration URL if provided
+      if (formData.registration_link && !processedData.registration_link) {
+        alert('Please enter a valid registration URL (e.g., https://example.com)');
+        setIsSubmitting(false);
+        return;
+      }
+
       if (editingEvent) {
-        const result = await updateEvent(editingEvent.id, formData);
+        const result = await updateEvent(editingEvent.id, processedData);
         if (result.success) {
           await loadEvents();
           resetForm();
@@ -56,7 +72,7 @@ export default function EventsManager() {
           alert(`Error updating event: ${result.error}`);
         }
       } else {
-        const result = await createEvent(formData);
+        const result = await createEvent(processedData);
         if (result.success) {
           await loadEvents();
           resetForm();
@@ -394,6 +410,7 @@ export default function EventsManager() {
                   </label>
                   <input
                     type="url"
+                    placeholder="https://forms.google.com/... or https://eventbrite.com/..."
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gdsc-blue"
                     value={formData.registration_link}
                     onChange={(e) =>
@@ -403,6 +420,9 @@ export default function EventsManager() {
                       })
                     }
                   />
+                  <p className="text-xs text-gray-500 mt-1">
+                    Enter the full URL including https:// (e.g., https://forms.google.com/...)
+                  </p>
                 </div>
 
                 <div className="flex justify-end space-x-3 pt-4">
