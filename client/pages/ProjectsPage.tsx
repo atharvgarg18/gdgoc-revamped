@@ -3,6 +3,7 @@ import { getProjects, Project } from "@/lib/supabase";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
+import { handleLinkClick, isValidUrl } from "@/lib/urlUtils";
 
 export default function ProjectsPage() {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -408,31 +409,27 @@ export default function ProjectsPage() {
 
                       {/* Actions */}
                       <div className="flex gap-3">
-                        {project.github_url && (
-                          <a
-                            href={project.github_url}
-                            target="_blank"
-                            rel="noopener noreferrer"
+                        {project.github_url && isValidUrl(project.github_url) && (
+                          <button
+                            onClick={handleLinkClick(project.github_url)}
                             className="flex-1 bg-gray-900 text-white px-4 py-2.5 rounded-lg text-center text-sm font-medium hover:bg-gray-800 transition-all duration-300 transform hover:scale-105"
                           >
                             <span className="flex items-center justify-center space-x-2">
                               <span>⚡</span>
                               <span>Code</span>
                             </span>
-                          </a>
+                          </button>
                         )}
-                        {project.live_url && (
-                          <a
-                            href={project.live_url}
-                            target="_blank"
-                            rel="noopener noreferrer"
+                        {project.live_url && isValidUrl(project.live_url) && (
+                          <button
+                            onClick={handleLinkClick(project.live_url)}
                             className="flex-1 bg-gradient-to-r from-blue-600 to-green-600 text-white px-4 py-2.5 rounded-lg text-center text-sm font-medium hover:shadow-lg transition-all duration-300 transform hover:scale-105"
                           >
                             <span className="flex items-center justify-center space-x-2">
                               <span>🚀</span>
                               <span>Live</span>
                             </span>
-                          </a>
+                          </button>
                         )}
                       </div>
                     </div>
