@@ -169,34 +169,30 @@ export default function Footer() {
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="mailto:gdsc@ietdavv.edu.in"
                     className="text-gray-300 hover:text-white transition-colors duration-300 text-sm md:text-base hover:translate-x-1 transform inline-block"
                   >
-                    Learning Resources
+                    Email Us
                   </a>
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="https://developers.google.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="text-gray-300 hover:text-white transition-colors duration-300 text-sm md:text-base hover:translate-x-1 transform inline-block"
                   >
-                    Community Guidelines
+                    Google Developers
                   </a>
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="https://ietdavv.edu.in/"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="text-gray-300 hover:text-white transition-colors duration-300 text-sm md:text-base hover:translate-x-1 transform inline-block"
                   >
-                    Code of Conduct
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    className="text-gray-300 hover:text-white transition-colors duration-300 text-sm md:text-base hover:translate-x-1 transform inline-block"
-                  >
-                    Support
+                    IET DAVV
                   </a>
                 </li>
               </ul>
@@ -223,16 +219,10 @@ export default function Footer() {
                 </p>
                 <div className="flex space-x-4 md:space-x-6">
                   <a
-                    href="#"
+                    href="mailto:gdsc@ietdavv.edu.in"
                     className="text-gray-400 hover:text-white text-xs md:text-sm transition-colors"
                   >
-                    Privacy Policy
-                  </a>
-                  <a
-                    href="#"
-                    className="text-gray-400 hover:text-white text-xs md:text-sm transition-colors"
-                  >
-                    Terms of Service
+                    Contact Us
                   </a>
                 </div>
               </div>
