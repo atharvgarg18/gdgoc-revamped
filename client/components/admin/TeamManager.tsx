@@ -48,21 +48,34 @@ export default function TeamManager() {
       // Validate and format URLs
       const processedData = {
         ...formData,
-        linkedin: formData.linkedin ? validateAndFormatUrl(formData.linkedin) || '' : '',
-        github: formData.github ? validateAndFormatUrl(formData.github) || '' : '',
-        twitter: formData.twitter ? validateAndFormatUrl(formData.twitter) || '' : '',
-        instagram: formData.instagram ? validateAndFormatUrl(formData.instagram) || '' : '',
+        linkedin: formData.linkedin
+          ? validateAndFormatUrl(formData.linkedin) || ""
+          : "",
+        github: formData.github
+          ? validateAndFormatUrl(formData.github) || ""
+          : "",
+        twitter: formData.twitter
+          ? validateAndFormatUrl(formData.twitter) || ""
+          : "",
+        instagram: formData.instagram
+          ? validateAndFormatUrl(formData.instagram) || ""
+          : "",
       };
 
       // Check for invalid URLs
       const invalidUrls = [];
-      if (formData.linkedin && !processedData.linkedin) invalidUrls.push('LinkedIn');
-      if (formData.github && !processedData.github) invalidUrls.push('GitHub');
-      if (formData.twitter && !processedData.twitter) invalidUrls.push('Twitter');
-      if (formData.instagram && !processedData.instagram) invalidUrls.push('Instagram');
+      if (formData.linkedin && !processedData.linkedin)
+        invalidUrls.push("LinkedIn");
+      if (formData.github && !processedData.github) invalidUrls.push("GitHub");
+      if (formData.twitter && !processedData.twitter)
+        invalidUrls.push("Twitter");
+      if (formData.instagram && !processedData.instagram)
+        invalidUrls.push("Instagram");
 
       if (invalidUrls.length > 0) {
-        alert(`Please enter valid URLs for: ${invalidUrls.join(', ')} (e.g., https://linkedin.com/in/username)`);
+        alert(
+          `Please enter valid URLs for: ${invalidUrls.join(", ")} (e.g., https://linkedin.com/in/username)`,
+        );
         setIsSubmitting(false);
         return;
       }

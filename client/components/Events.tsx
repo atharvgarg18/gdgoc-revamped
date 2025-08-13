@@ -277,7 +277,8 @@ export default function Events() {
 
                       {!isPassed && (
                         <div className="w-full sm:w-auto">
-                          {event.registration_link && isValidUrl(event.registration_link) ? (
+                          {event.registration_link &&
+                          isValidUrl(event.registration_link) ? (
                             <button
                               onClick={handleLinkClick(event.registration_link)}
                               className={`w-full sm:w-auto inline-flex items-center justify-center bg-gradient-to-r ${getEventGradient(event.type)} text-white px-4 md:px-6 py-2 md:py-3 rounded-xl font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-105 text-sm md:text-base group/btn`}

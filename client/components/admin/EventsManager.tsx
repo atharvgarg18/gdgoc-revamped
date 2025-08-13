@@ -52,13 +52,15 @@ export default function EventsManager() {
       const processedData = {
         ...formData,
         registration_link: formData.registration_link
-          ? validateAndFormatUrl(formData.registration_link) || ''
-          : '',
+          ? validateAndFormatUrl(formData.registration_link) || ""
+          : "",
       };
 
       // Validate registration URL if provided
       if (formData.registration_link && !processedData.registration_link) {
-        alert('Please enter a valid registration URL (e.g., https://example.com)');
+        alert(
+          "Please enter a valid registration URL (e.g., https://example.com)",
+        );
         setIsSubmitting(false);
         return;
       }
@@ -421,7 +423,8 @@ export default function EventsManager() {
                     }
                   />
                   <p className="text-xs text-gray-500 mt-1">
-                    Enter the full URL including https:// (e.g., https://forms.google.com/...)
+                    Enter the full URL including https:// (e.g.,
+                    https://forms.google.com/...)
                   </p>
                 </div>
 

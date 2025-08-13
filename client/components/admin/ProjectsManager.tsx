@@ -49,17 +49,25 @@ export default function ProjectsManager() {
       team_members: formData.team_members
         .split(",")
         .map((member) => member.trim()),
-      github_url: formData.github_url ? validateAndFormatUrl(formData.github_url) || '' : '',
-      live_url: formData.live_url ? validateAndFormatUrl(formData.live_url) || '' : '',
+      github_url: formData.github_url
+        ? validateAndFormatUrl(formData.github_url) || ""
+        : "",
+      live_url: formData.live_url
+        ? validateAndFormatUrl(formData.live_url) || ""
+        : "",
     };
 
     // Check for invalid URLs
     const invalidUrls = [];
-    if (formData.github_url && !processedData.github_url) invalidUrls.push('GitHub URL');
-    if (formData.live_url && !processedData.live_url) invalidUrls.push('Live URL');
+    if (formData.github_url && !processedData.github_url)
+      invalidUrls.push("GitHub URL");
+    if (formData.live_url && !processedData.live_url)
+      invalidUrls.push("Live URL");
 
     if (invalidUrls.length > 0) {
-      alert(`Please enter valid URLs for: ${invalidUrls.join(', ')} (e.g., https://github.com/username/repo)`);
+      alert(
+        `Please enter valid URLs for: ${invalidUrls.join(", ")} (e.g., https://github.com/username/repo)`,
+      );
       return;
     }
 
