@@ -21,6 +21,8 @@ export default function GalleryManager() {
     category: "workshop" as "workshop" | "event" | "competition" | "community",
     display_order: 1,
   });
+  const [multipleImages, setMultipleImages] = useState<string[]>([""]);
+  const [useMultipleImages, setUseMultipleImages] = useState(false);
 
   useEffect(() => {
     loadGalleryItems();
