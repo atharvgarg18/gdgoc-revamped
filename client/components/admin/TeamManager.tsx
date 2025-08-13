@@ -284,6 +284,24 @@ export default function TeamManager() {
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Profile Type *
+                  </label>
+                  <select
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gdsc-green"
+                    value={formData.profile_type}
+                    onChange={(e) =>
+                      setFormData({ ...formData, profile_type: e.target.value as "Faculty Advisor" | "Mentors" | "Leads" })
+                    }
+                    required
+                  >
+                    <option value="Faculty Advisor">Faculty Advisor</option>
+                    <option value="Mentors">Mentors</option>
+                    <option value="Leads">Leads</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
                     Profile Image URL *
                   </label>
                   <input
