@@ -25,9 +25,13 @@ export default function Loader({ onComplete }: { onComplete: () => void }) {
         {/* GDSC IIITA Loader GIF */}
         <div className="flex justify-center mb-8">
           <img
-            src="https://gdsc.iiita.ac.in/static/media/gdsc-loader.c4dc897894a7a1e2b603.gif"
+            src="https://res.cloudinary.com/dp9ldntl3/image/upload/v1755121244/gdsc-loader.c4dc897894a7a1e2b603_mmcosa.gif"
             alt="GDGoC Loading Animation"
             className="w-64 h-auto"
+            onError={(e) => {
+              // Fallback in case the image fails to load
+              e.currentTarget.style.display = 'none';
+            }}
           />
         </div>
 
