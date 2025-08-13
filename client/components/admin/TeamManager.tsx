@@ -5,7 +5,7 @@ import {
   updateTeamMember,
   deleteTeamMember,
   TeamMember,
-} from "@/lib/firebase";
+} from "@/lib/supabase";
 
 export default function TeamManager() {
   const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
