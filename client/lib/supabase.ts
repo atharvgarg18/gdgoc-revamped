@@ -127,7 +127,8 @@ const mockEvents: Event[] = [
     color: "gdsc-blue",
     attendees: 85,
     image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800",
-    registration_link: "https://docs.google.com/forms/d/e/1FAIpQLSeq9VLdS9fVQ1R6KjVuOcM7QQ7Q1Q8Q1Q8Q1Q8Q1Q8Q1Q8Q1Q/viewform",
+    registration_link:
+      "https://docs.google.com/forms/d/e/1FAIpQLSeq9VLdS9fVQ1R6KjVuOcM7QQ7Q1Q8Q1Q8Q1Q8Q1Q8Q1Q8Q1Q/viewform",
     status: getEventStatus("Dec 15, 2024"),
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
@@ -143,7 +144,8 @@ const mockEvents: Event[] = [
     color: "gdsc-green",
     attendees: 120,
     image: "https://images.unsplash.com/photo-1607252650355-f7fd0460ccdb?w=800",
-    registration_link: "https://docs.google.com/forms/d/e/1FAIpQLSeq9VLdS9fVQ1R6KjVuOcM7QQ7Q1Q8Q1Q8Q1Q8Q1Q8Q1Q8Q1Q/viewform",
+    registration_link:
+      "https://docs.google.com/forms/d/e/1FAIpQLSeq9VLdS9fVQ1R6KjVuOcM7QQ7Q1Q8Q1Q8Q1Q8Q1Q8Q1Q8Q1Q/viewform",
     status: getEventStatus("Dec 20, 2024"),
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
@@ -159,7 +161,8 @@ const mockEvents: Event[] = [
     color: "gdsc-red",
     attendees: 95,
     image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800",
-    registration_link: "https://docs.google.com/forms/d/e/1FAIpQLSeq9VLdS9fVQ1R6KjVuOcM7QQ7Q1Q8Q1Q8Q1Q8Q1Q8Q1Q8Q1Q/viewform",
+    registration_link:
+      "https://docs.google.com/forms/d/e/1FAIpQLSeq9VLdS9fVQ1R6KjVuOcM7QQ7Q1Q8Q1Q8Q1Q8Q1Q8Q1Q8Q1Q/viewform",
     status: getEventStatus("Dec 25, 2024"),
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
@@ -175,7 +178,8 @@ const mockEvents: Event[] = [
     color: "gdsc-yellow",
     attendees: 67,
     image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800",
-    registration_link: "https://docs.google.com/forms/d/e/1FAIpQLSeq9VLdS9fVQ1R6KjVuOcM7QQ7Q1Q8Q1Q8Q1Q8Q1Q8Q1Q8Q1Q/viewform",
+    registration_link:
+      "https://docs.google.com/forms/d/e/1FAIpQLSeq9VLdS9fVQ1R6KjVuOcM7QQ7Q1Q8Q1Q8Q1Q8Q1Q8Q1Q8Q1Q/viewform",
     status: getEventStatus("Jan 5, 2025"),
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
