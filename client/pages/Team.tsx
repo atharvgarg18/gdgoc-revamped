@@ -38,6 +38,7 @@ export default function Team() {
       if (result.success || result.data) {
         const members = result.data || [];
         setTeamMembers(members);
+        console.log("Loaded team members:", members);
       }
     } catch (error) {
       console.warn("Error loading team members");
@@ -62,8 +63,8 @@ export default function Team() {
   const getProfileTypeIcon = (profileType: string) => {
     const icons = {
       "Faculty Advisor": "👨‍🏫",
-      Mentors: "🧑‍💼",
-      Leads: "⭐",
+      "Mentors": "��‍💼",
+      "Leads": "⭐",
     };
     return icons[profileType as keyof typeof icons] || "👤";
   };
@@ -71,30 +72,33 @@ export default function Team() {
   const getProfileTypeColor = (profileType: string) => {
     const colors = {
       "Faculty Advisor": "from-indigo-600 to-purple-600",
-      Mentors: "from-teal-600 to-blue-600",
-      Leads: "from-purple-600 to-pink-600",
+      "Mentors": "from-teal-600 to-blue-600", 
+      "Leads": "from-purple-600 to-pink-600",
     };
-    return (
-      colors[profileType as keyof typeof colors] || "from-gray-600 to-gray-800"
-    );
+    return colors[profileType as keyof typeof colors] || "from-gray-600 to-gray-800";
   };
 
-  const groupedMembers = teamMembers.reduce(
-    (acc, member) => {
-      const type = member.profile_type || "Leads"; // Fallback to Leads if profile_type is missing
-      if (!acc[type]) {
-        acc[type] = [];
+  // Group members by profile type with fallback
+  const groupMembersByType = () => {
+    const grouped: Record<string, TeamMember[]> = {
+      "Faculty Advisor": [],
+      "Mentors": [],
+      "Leads": []
+    };
+
+    teamMembers.forEach(member => {
+      const type = member.profile_type || "Leads";
+      if (grouped[type]) {
+        grouped[type].push(member);
+      } else {
+        grouped["Leads"].push(member);
       }
-      acc[type].push(member);
-      return acc;
-    },
-    {} as Record<string, TeamMember[]>,
-  );
+    });
 
-  // Debug log
-  console.log("Team members:", teamMembers);
-  console.log("Grouped members:", groupedMembers);
+    return grouped;
+  };
 
+  const groupedMembers = groupMembersByType();
   const profileOrder = ["Faculty Advisor", "Mentors", "Leads"];
 
   return (
@@ -112,18 +116,9 @@ export default function Team() {
           {/* Background Animation */}
           <div className="absolute inset-0 pointer-events-none">
             <div className="absolute top-20 left-10 w-12 h-12 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full opacity-20 animate-float"></div>
-            <div
-              className="absolute top-1/4 right-16 w-8 h-8 bg-gradient-to-r from-blue-500 to-green-500 rotate-45 opacity-25 animate-float"
-              style={{ animationDelay: "1s" }}
-            ></div>
-            <div
-              className="absolute bottom-40 left-20 w-6 h-6 bg-gradient-to-r from-green-500 to-yellow-500 rounded-full opacity-30 animate-float"
-              style={{ animationDelay: "2s" }}
-            ></div>
-            <div
-              className="absolute bottom-20 right-10 w-10 h-10 bg-gradient-to-r from-yellow-500 to-red-500 rounded-full opacity-20 animate-float"
-              style={{ animationDelay: "0.5s" }}
-            ></div>
+            <div className="absolute top-1/4 right-16 w-8 h-8 bg-gradient-to-r from-blue-500 to-green-500 rotate-45 opacity-25 animate-float" style={{ animationDelay: "1s" }}></div>
+            <div className="absolute bottom-40 left-20 w-6 h-6 bg-gradient-to-r from-green-500 to-yellow-500 rounded-full opacity-30 animate-float" style={{ animationDelay: "2s" }}></div>
+            <div className="absolute bottom-20 right-10 w-10 h-10 bg-gradient-to-r from-yellow-500 to-red-500 rounded-full opacity-20 animate-float" style={{ animationDelay: "0.5s" }}></div>
           </div>
 
           {/* Content */}
@@ -132,7 +127,7 @@ export default function Team() {
               {/* Title */}
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6">
                 <span className="text-gray-900">Meet Our</span>{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-blue-500 to-green-600 animate-gradient-x">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-blue-500 to-green-600">
                   Team
                 </span>
               </h1>
@@ -174,15 +169,15 @@ export default function Team() {
                 style={{ animationDelay: "0.6s" }}
               >
                 <button
-              onClick={() =>
-                document
-                  .getElementById("team-section")
-                  ?.scrollIntoView({ behavior: "smooth" })
-              }
-              className="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-8 py-4 rounded-full text-lg font-medium hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
-            >
-              Meet the Team
-            </button>
+                  onClick={() =>
+                    document
+                      .getElementById("team-section")
+                      ?.scrollIntoView({ behavior: "smooth" })
+                  }
+                  className="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-8 py-4 rounded-full text-lg font-medium hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
+                >
+                  Meet the Team
+                </button>
               </div>
             </div>
           </div>
@@ -214,6 +209,10 @@ export default function Team() {
                 <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mx-auto mb-4"></div>
                 <p className="text-gray-600">Loading our amazing team...</p>
               </div>
+            ) : teamMembers.length === 0 ? (
+              <div className="text-center py-12">
+                <p className="text-gray-600">No team members found. Please check the admin panel to add team members.</p>
+              </div>
             ) : (
               <div className="space-y-16">
                 {profileOrder.map((profileType) => {
@@ -225,18 +224,12 @@ export default function Team() {
                       {/* Profile Type Header */}
                       <div className="text-center">
                         <div className="inline-flex items-center space-x-3 mb-4">
-                          <span className="text-4xl">
-                            {getProfileTypeIcon(profileType)}
-                          </span>
-                          <h2
-                            className={`text-3xl md:text-4xl font-bold bg-gradient-to-r ${getProfileTypeColor(profileType)} bg-clip-text text-transparent`}
-                          >
+                          <span className="text-4xl">{getProfileTypeIcon(profileType)}</span>
+                          <h2 className={`text-3xl md:text-4xl font-bold bg-gradient-to-r ${getProfileTypeColor(profileType)} bg-clip-text text-transparent`}>
                             {profileType}
                           </h2>
                         </div>
-                        <div
-                          className={`w-24 h-1 bg-gradient-to-r ${getProfileTypeColor(profileType)} mx-auto rounded-full`}
-                        ></div>
+                        <div className={`w-24 h-1 bg-gradient-to-r ${getProfileTypeColor(profileType)} mx-auto rounded-full`}></div>
                       </div>
 
                       {/* Members Grid */}
@@ -262,14 +255,10 @@ export default function Team() {
                             <div className="p-6 pt-4">
                               {/* Member Info */}
                               <div className="text-center mb-4">
-                                <h3
-                                  className={`text-xl font-bold text-gray-900 mb-2 group-hover:bg-gradient-to-r group-hover:${getRoleColor(member.role)} group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300`}
-                                >
+                                <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors duration-300">
                                   {member.name}
                                 </h3>
-                                <div
-                                  className={`inline-block px-3 py-1 rounded-full text-sm font-medium text-white bg-gradient-to-r ${getRoleColor(member.role)} mb-2`}
-                                >
+                                <div className={`inline-block px-3 py-1 rounded-full text-sm font-medium text-white bg-gradient-to-r ${getRoleColor(member.role)} mb-2`}>
                                   {member.role}
                                 </div>
                                 <p className="text-gray-600 text-sm leading-relaxed line-clamp-3">
@@ -278,23 +267,23 @@ export default function Team() {
                               </div>
 
                               {/* Social Links */}
-                              <div className="flex justify-center">
-                                <SocialIcons
-                                  links={{
-                                    linkedin: member.linkedin,
-                                    github: member.github,
-                                    twitter: member.twitter,
-                                    instagram: member.instagram,
-                                  }}
-                                  size="sm"
-                                />
-                              </div>
+                              {(member.linkedin || member.github || member.twitter || member.instagram) && (
+                                <div className="flex justify-center">
+                                  <SocialIcons
+                                    links={{
+                                      linkedin: member.linkedin,
+                                      github: member.github,
+                                      twitter: member.twitter,
+                                      instagram: member.instagram,
+                                    }}
+                                    size="sm"
+                                  />
+                                </div>
+                              )}
                             </div>
 
                             {/* Hover Effect Overlay */}
-                            <div
-                              className={`absolute inset-0 bg-gradient-to-r ${getRoleColor(member.role)} opacity-0 group-hover:opacity-5 transition-opacity duration-300 rounded-2xl`}
-                            ></div>
+                            <div className={`absolute inset-0 bg-gradient-to-r ${getRoleColor(member.role)} opacity-0 group-hover:opacity-5 transition-opacity duration-300 rounded-2xl`}></div>
 
                             {/* Floating Decorative Element */}
                             <div
@@ -325,7 +314,7 @@ export default function Team() {
                   href="https://chat.whatsapp.com/CcTjDYXNfQMEoLUHzB3hwa"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-animate bg-gradient-to-r from-purple-600 to-blue-600 text-white px-8 py-4 rounded-full hover:shadow-xl transition-all duration-300 font-medium transform hover:scale-105"
+                  className="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-8 py-4 rounded-full hover:shadow-xl transition-all duration-300 font-medium transform hover:scale-105"
                 >
                   Join Our Community
                 </a>
@@ -333,7 +322,7 @@ export default function Team() {
                   href="https://github.com/gdgoc-iet-davv"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-animate border-2 border-purple-600 text-purple-600 px-8 py-4 rounded-full hover:bg-purple-600 hover:text-white transition-all duration-300 font-medium transform hover:scale-105"
+                  className="border-2 border-purple-600 text-purple-600 px-8 py-4 rounded-full hover:bg-purple-600 hover:text-white transition-all duration-300 font-medium transform hover:scale-105"
                 >
                   Contribute on GitHub
                 </a>
