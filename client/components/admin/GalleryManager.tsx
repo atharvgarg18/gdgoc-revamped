@@ -113,6 +113,8 @@ export default function GalleryManager() {
   const resetForm = () => {
     setShowForm(false);
     setEditingItem(null);
+    setUseMultipleImages(false);
+    setMultipleImages([""]);
     setFormData({
       title: "",
       description: "",
@@ -121,6 +123,21 @@ export default function GalleryManager() {
       category: "workshop",
       display_order: galleryItems.length + 1,
     });
+  };
+
+  const addImageField = () => {
+    setMultipleImages([...multipleImages, ""]);
+  };
+
+  const removeImageField = (index: number) => {
+    const newImages = multipleImages.filter((_, i) => i !== index);
+    setMultipleImages(newImages.length === 0 ? [""] : newImages);
+  };
+
+  const updateImageField = (index: number, value: string) => {
+    const newImages = [...multipleImages];
+    newImages[index] = value;
+    setMultipleImages(newImages);
   };
 
   const getCategoryColor = (category: string) => {
