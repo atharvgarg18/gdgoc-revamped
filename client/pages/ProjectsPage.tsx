@@ -466,7 +466,7 @@ export default function ProjectsPage() {
                 Join Our Community
               </a>
               <a
-                href="https://github.com/atharvgarg18"
+                href="https://github.com/gdgoc-iet-davv"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-animate border-2 border-blue-600 text-blue-600 px-8 py-4 rounded-full hover:bg-blue-600 hover:text-white transition-all duration-300 font-medium transform hover:scale-105"
