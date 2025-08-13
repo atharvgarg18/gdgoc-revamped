@@ -6,6 +6,7 @@ import About from "@/components/About";
 import Events from "@/components/Events";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
+import ConnectionTest from "@/components/ConnectionTest";
 
 export default function Index() {
   const [showLoader, setShowLoader] = useState(false);
