@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { scrollToTopInstant } from "@/lib/scrollUtils";
 
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -14,9 +15,10 @@ export default function Navigation() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mobile menu when route changes
+  // Close mobile menu and scroll to top when route changes
   useEffect(() => {
     setIsMobileMenuOpen(false);
+    scrollToTopInstant();
   }, [location]);
 
   // Prevent body scroll when mobile menu is open
