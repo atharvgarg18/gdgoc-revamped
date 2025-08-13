@@ -103,14 +103,14 @@ export interface Project {
 
 // Enhanced mock data for development and fallback
 // Utility function to check if event is completed
-const isEventCompleted = (eventDate: string): boolean => {
+export const isEventCompleted = (eventDate: string): boolean => {
   const today = new Date();
   const eventDateObj = new Date(eventDate);
   return eventDateObj < today;
 };
 
 // Utility function to determine event status
-const getEventStatus = (eventDate: string): "upcoming" | "completed" => {
+export const getEventStatus = (eventDate: string): "upcoming" | "completed" => {
   return isEventCompleted(eventDate) ? "completed" : "upcoming";
 };
 
