@@ -84,6 +84,7 @@ export default function TeamManager() {
     setFormData({
       name: member.name,
       role: member.role,
+      profile_type: member.profile_type || "Leads",
       image: member.image,
       bio: member.bio,
       linkedin: member.linkedin || "",
@@ -101,6 +102,7 @@ export default function TeamManager() {
     setFormData({
       name: "",
       role: "",
+      profile_type: "Leads" as "Faculty Advisor" | "Mentors" | "Leads",
       image: "",
       bio: "",
       linkedin: "",
