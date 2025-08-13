@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 
 export default function About() {
   const [isVisible, setIsVisible] = useState(false);
-  const [visibleCards, setVisibleCards] = useState<Set<number>>(new Set());
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -12,7 +11,7 @@ export default function About() {
           setIsVisible(true);
         }
       },
-      { threshold: 0.2 },
+      { threshold: 0.2 }
     );
 
     if (sectionRef.current) {
@@ -22,247 +21,140 @@ export default function About() {
     return () => observer.disconnect();
   }, []);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const index = parseInt(
-              entry.target.getAttribute("data-index") || "0",
-            );
-            setVisibleCards((prev) => new Set(prev).add(index));
-          }
-        });
-      },
-      { threshold: 0.2 },
-    );
-
-    const cards = document.querySelectorAll(".about-card");
-    cards.forEach((card) => observer.observe(card));
-
-    return () => observer.disconnect();
-  }, [isVisible]);
+  const stats = [
+    { number: "500+", label: "Active Members" },
+    { number: "50+", label: "Events Hosted" },
+    { number: "20+", label: "Projects Built" },
+    { number: "100+", label: "Skills Taught" },
+  ];
 
   const features = [
     {
-      icon: "🚀",
+      icon: (
+        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+        </svg>
+      ),
       title: "Innovation First",
-      description:
-        "We embrace cutting-edge technologies and innovative solutions to solve real-world problems.",
-      color: "from-blue-500 to-blue-600",
-      bg: "bg-blue-50",
+      description: "We embrace cutting-edge technologies and innovative solutions to solve real-world problems.",
     },
     {
-      icon: "🤝",
+      icon: (
+        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" />
+        </svg>
+      ),
       title: "Community Driven",
-      description:
-        "Building a strong network of developers who support and learn from each other.",
-      color: "from-green-500 to-green-600",
-      bg: "bg-green-50",
+      description: "Building a strong network of developers who support and learn from each other.",
     },
     {
-      icon: "🎯",
+      icon: (
+        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+        </svg>
+      ),
       title: "Skill Development",
-      description:
-        "Providing hands-on workshops and real-world projects to enhance technical skills.",
-      color: "from-red-500 to-red-600",
-      bg: "bg-red-50",
+      description: "Providing hands-on workshops and real-world projects to enhance technical skills.",
     },
     {
-      icon: "🌟",
+      icon: (
+        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+        </svg>
+      ),
       title: "Excellence",
-      description:
-        "Striving for excellence in everything we do, from events to projects to community building.",
-      color: "from-yellow-500 to-yellow-600",
-      bg: "bg-yellow-50",
+      description: "Striving for excellence in everything we do, from events to projects to community building.",
     },
-  ];
-
-  const stats = [
-    { number: "500+", label: "Active Members", color: "text-blue-600" },
-    { number: "50+", label: "Events Hosted", color: "text-green-600" },
-    { number: "20+", label: "Projects Built", color: "text-red-600" },
-    { number: "100+", label: "Skills Taught", color: "text-yellow-600" },
   ];
 
   return (
-    <section
-      ref={sectionRef}
-      className="py-16 md:py-24 bg-gradient-to-br from-gray-50 via-white to-blue-50 relative overflow-hidden"
-    >
-      {/* Enhanced Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        {/* Floating Circles */}
-        <div className="absolute top-20 left-20 w-32 md:w-64 h-32 md:h-64 bg-gradient-to-r from-blue-400/10 to-green-400/10 rounded-full animate-float blur-xl"></div>
-        <div
-          className="absolute top-40 right-32 w-24 md:w-48 h-24 md:h-48 bg-gradient-to-r from-red-400/10 to-yellow-400/10 rounded-full animate-float blur-xl"
-          style={{ animationDelay: "2s" }}
-        ></div>
-        <div
-          className="absolute bottom-32 left-1/4 w-40 md:w-80 h-40 md:h-80 bg-gradient-to-r from-green-400/10 to-blue-400/10 rounded-full animate-float blur-xl"
-          style={{ animationDelay: "4s" }}
-        ></div>
+    <section ref={sectionRef} className="py-16 md:py-20 bg-gray-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            About GDGoC IET DAVV
+          </h2>
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            Google Developer Groups on Campus at IET DAVV is a vibrant community of passionate students 
+            building the future through technology, innovation, and collaborative learning.
+          </p>
+        </div>
 
-        {/* Grid Pattern */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="grid grid-cols-12 md:grid-cols-16 h-full gap-4">
-            {Array.from({ length: 16 }).map((_, i) => (
-              <div
-                key={i}
-                className="border-r border-gray-400 animate-pulse"
-                style={{ animationDelay: `${i * 0.1}s` }}
-              ></div>
-            ))}
+        {/* Stats */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
+          {stats.map((stat, index) => (
+            <div key={index} className="text-center">
+              <div className="text-3xl md:text-4xl font-bold text-gdsc-blue mb-2">
+                {stat.number}
+              </div>
+              <div className="text-gray-600 text-sm md:text-base">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* Features Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+          {features.map((feature, index) => (
+            <div
+              key={index}
+              className="bg-white rounded-lg p-6 shadow-sm border border-gray-200 hover:shadow-md transition-shadow duration-300"
+            >
+              <div className="w-12 h-12 bg-gdsc-blue text-white rounded-lg flex items-center justify-center mb-4">
+                {feature.icon}
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                {feature.title}
+              </h3>
+              <p className="text-gray-600 leading-relaxed">
+                {feature.description}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        {/* Mission Statement */}
+        <div className="bg-white rounded-lg p-8 md:p-12 shadow-sm border border-gray-200 text-center">
+          <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
+            Our Mission
+          </h3>
+          <p className="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed mb-8">
+            To create an inclusive environment where students can learn, build, and grow together. 
+            We believe in the power of collaboration, continuous learning, and using technology to make a 
+            positive impact in our community and beyond.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="https://chat.whatsapp.com/CcTjDYXNfQMEoLUHzB3hwa"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-gdsc-blue text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-300 font-medium"
+            >
+              Join Our Community
+            </a>
+            <a
+              href="/events"
+              className="border-2 border-gdsc-blue text-gdsc-blue px-6 py-3 rounded-lg hover:bg-gdsc-blue hover:text-white transition-colors duration-300 font-medium"
+            >
+              Explore Events
+            </a>
           </div>
         </div>
 
-        {/* Decorative Shapes */}
-        <div className="absolute top-1/4 left-16 w-4 h-4 bg-blue-500 rounded-full animate-bounce opacity-20"></div>
-        <div className="absolute top-1/3 right-16 w-6 h-6 bg-green-500 rotate-45 animate-pulse opacity-20"></div>
-        <div className="absolute bottom-1/4 left-1/3 w-3 h-3 bg-red-500 rounded-full animate-ping opacity-20"></div>
-      </div>
-
-      <div className="relative z-10 container-responsive">
-        <div
-          className={`transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
-        >
-          {/* Section Header */}
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">
-              <span className="text-gray-900">About</span>{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-green-500 to-blue-600 animate-gradient-x">
-                GDGoC IET DAVV
+        {/* Values */}
+        <div className="mt-16 text-center">
+          <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-8">
+            Our Core Values
+          </h3>
+          <div className="flex flex-wrap justify-center gap-3">
+            {["Innovation", "Collaboration", "Learning", "Inclusivity", "Excellence"].map((value, index) => (
+              <span
+                key={index}
+                className="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-medium border border-gray-200"
+              >
+                {value}
               </span>
-            </h2>
-            <p
-              className="text-lg md:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed animate-slide-up"
-              style={{ animationDelay: "0.2s" }}
-            >
-              Google Developer Groups on Campus at IET DAVV is a vibrant
-              community of passionate students building the future through
-              technology, innovation, and collaborative learning.
-            </p>
-          </div>
-
-          {/* Stats Section */}
-          <div
-            className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16 animate-slide-up"
-            style={{ animationDelay: "0.4s" }}
-          >
-            {stats.map((stat, index) => (
-              <div
-                key={index}
-                className="text-center p-6 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-              >
-                <div
-                  className={`text-3xl md:text-4xl font-bold ${stat.color} mb-2`}
-                >
-                  {stat.number}
-                </div>
-                <div className="text-gray-600 text-sm md:text-base">
-                  {stat.label}
-                </div>
-              </div>
             ))}
-          </div>
-
-          {/* Features Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-            {features.map((feature, index) => (
-              <div
-                key={index}
-                data-index={index}
-                className={`
-                  about-card group relative p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 
-                  ${feature.bg} border border-white/50 backdrop-blur-sm transform hover:scale-105 hover:-translate-y-2
-                  ${
-                    visibleCards.has(index)
-                      ? "animate-slide-up opacity-100"
-                      : "opacity-0"
-                  }
-                `}
-                style={{ animationDelay: `${index * 0.2}s` }}
-              >
-                {/* Icon */}
-                <div
-                  className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-r ${feature.color} text-white text-2xl mb-6 group-hover:scale-110 transition-transform duration-300`}
-                >
-                  {feature.icon}
-                </div>
-
-                {/* Content */}
-                <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors duration-300">
-                  {feature.title}
-                </h3>
-                <p className="text-gray-600 leading-relaxed">
-                  {feature.description}
-                </p>
-
-                {/* Hover Effect */}
-                <div
-                  className={`absolute inset-0 bg-gradient-to-r ${feature.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300 rounded-2xl`}
-                ></div>
-              </div>
-            ))}
-          </div>
-
-          {/* Mission Statement */}
-          <div
-            className="text-center bg-white/80 backdrop-blur-sm rounded-3xl p-8 md:p-12 shadow-xl animate-slide-up"
-            style={{ animationDelay: "0.8s" }}
-          >
-            <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
-              Our Mission
-            </h3>
-            <p className="text-lg md:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed mb-8">
-              To create an inclusive environment where students can learn,
-              build, and grow together. We believe in the power of
-              collaboration, continuous learning, and using technology to make a
-              positive impact in our community and beyond.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="https://chat.whatsapp.com/CcTjDYXNfQMEoLUHzB3hwa"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-animate bg-gradient-to-r from-blue-600 to-green-600 text-white px-8 py-4 rounded-full hover:shadow-xl transition-all duration-300 font-medium transform hover:scale-105"
-              >
-                Join Our Community
-              </a>
-              <a
-                href="/events"
-                className="btn-animate border-2 border-blue-600 text-blue-600 px-8 py-4 rounded-full hover:bg-blue-600 hover:text-white transition-all duration-300 font-medium transform hover:scale-105"
-              >
-                Explore Events
-              </a>
-            </div>
-          </div>
-
-          {/* Values Section */}
-          <div
-            className="mt-16 text-center animate-slide-up"
-            style={{ animationDelay: "1s" }}
-          >
-            <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-8">
-              Our Core Values
-            </h3>
-            <div className="flex flex-wrap justify-center gap-4">
-              {[
-                "Innovation",
-                "Collaboration",
-                "Learning",
-                "Inclusivity",
-                "Excellence",
-              ].map((value, index) => (
-                <span
-                  key={index}
-                  className="px-6 py-3 bg-gradient-to-r from-blue-600 to-green-600 text-white rounded-full text-lg font-medium hover:shadow-lg transition-all duration-300 transform hover:scale-105"
-                  style={{ animationDelay: `${1.2 + index * 0.1}s` }}
-                >
-                  {value}
-                </span>
-              ))}
-            </div>
           </div>
         </div>
       </div>
