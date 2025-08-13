@@ -68,7 +68,10 @@ export default function Events() {
   };
 
   return (
-    <section ref={sectionRef} className="relative min-h-screen py-20 bg-gradient-to-br from-purple-50 via-pink-50 to-orange-50 overflow-hidden">
+    <section
+      ref={sectionRef}
+      className="relative min-h-screen py-20 bg-gradient-to-br from-purple-50 via-pink-50 to-orange-50 overflow-hidden"
+    >
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Floating Circles */}
@@ -76,7 +79,7 @@ export default function Events() {
         <div className="absolute top-60 left-20 w-32 h-32 bg-gradient-to-r from-orange-400 to-red-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
         <div className="absolute bottom-40 right-1/4 w-28 h-28 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
         <div className="absolute bottom-20 left-10 w-20 h-20 bg-gradient-to-r from-pink-400 to-orange-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-6000"></div>
-        
+
         {/* Floating Geometric Shapes */}
         <div className="absolute top-1/3 right-1/3 animate-float">
           <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rotate-45 opacity-20"></div>
@@ -95,7 +98,9 @@ export default function Events() {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Hero Header */}
         <div className="text-center mb-16">
-          <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <div
+            className={`transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+          >
             <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6">
               <span className="text-gray-900">Upcoming</span>{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-pink-500 to-orange-600 animate-gradient-x">
@@ -117,13 +122,19 @@ export default function Events() {
               <div className="animate-spin rounded-full h-16 w-16 border-4 border-purple-200 border-t-purple-600 mx-auto mb-6"></div>
               <div className="absolute inset-0 rounded-full border-4 border-pink-200 border-t-pink-600 animate-ping opacity-20"></div>
             </div>
-            <p className="text-xl text-gray-600 font-medium">Loading amazing events...</p>
+            <p className="text-xl text-gray-600 font-medium">
+              Loading amazing events...
+            </p>
           </div>
         ) : events.length === 0 ? (
           /* Empty State with Enhanced Design */
-          <div className={`text-center py-20 bg-white/20 backdrop-blur-lg rounded-3xl border border-white/30 shadow-2xl transform transition-all duration-1000 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}>
+          <div
+            className={`text-center py-20 bg-white/20 backdrop-blur-lg rounded-3xl border border-white/30 shadow-2xl transform transition-all duration-1000 ${
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-10"
+            }`}
+          >
             <div className="text-8xl mb-8 animate-bounce">🎉</div>
             <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
               Exciting Events Coming Soon!
@@ -149,7 +160,9 @@ export default function Events() {
               <div
                 key={event.id}
                 className={`group relative bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-500 transform hover:scale-105 hover:shadow-2xl ${
-                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                  isVisible
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-10"
                 }`}
                 style={{ transitionDelay: `${index * 200}ms` }}
               >
@@ -163,7 +176,9 @@ export default function Events() {
                       <div
                         className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold bg-gradient-to-r ${getEventTypeColor(event.type)} text-white shadow-lg group-hover:scale-110 transition-transform duration-300`}
                       >
-                        <span className="mr-2 text-base">{getEventTypeIcon(event.type)}</span>
+                        <span className="mr-2 text-base">
+                          {getEventTypeIcon(event.type)}
+                        </span>
                         {event.type}
                       </div>
                     </div>
@@ -209,7 +224,9 @@ export default function Events() {
                     >
                       <span className="relative z-10 flex items-center space-x-2">
                         <span>Register Now</span>
-                        <span className="group-hover:translate-x-1 transition-transform duration-200">→</span>
+                        <span className="group-hover:translate-x-1 transition-transform duration-200">
+                          →
+                        </span>
                       </span>
                     </a>
                   ) : (
@@ -218,7 +235,9 @@ export default function Events() {
                     >
                       <span className="relative z-10 flex items-center space-x-2">
                         <span>Register Now</span>
-                        <span className="group-hover:translate-x-1 transition-transform duration-200">→</span>
+                        <span className="group-hover:translate-x-1 transition-transform duration-200">
+                          →
+                        </span>
                       </span>
                     </button>
                   )}
@@ -234,9 +253,15 @@ export default function Events() {
         )}
 
         {/* CTA Section with Enhanced Design */}
-        <div className={`relative bg-white/20 backdrop-blur-lg rounded-3xl p-8 md:p-16 border border-white/30 text-center shadow-2xl transform transition-all duration-1000 ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-        }`} style={{ transitionDelay: events.length > 0 ? `${events.length * 200 + 400}ms` : '600ms' }}>
+        <div
+          className={`relative bg-white/20 backdrop-blur-lg rounded-3xl p-8 md:p-16 border border-white/30 text-center shadow-2xl transform transition-all duration-1000 ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+          }`}
+          style={{
+            transitionDelay:
+              events.length > 0 ? `${events.length * 200 + 400}ms` : "600ms",
+          }}
+        >
           <div className="absolute inset-0 bg-gradient-to-r from-purple-600/5 to-pink-600/5 rounded-3xl"></div>
           <div className="relative">
             <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">

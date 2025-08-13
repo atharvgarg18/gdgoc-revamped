@@ -53,12 +53,15 @@ export default function GalleryManager() {
       } else {
         if (useMultipleImages) {
           // Create multiple gallery items for each image
-          const validImages = multipleImages.filter(img => img.trim() !== "");
+          const validImages = multipleImages.filter((img) => img.trim() !== "");
           for (let i = 0; i < validImages.length; i++) {
             const itemData = {
               ...formData,
               image: validImages[i],
-              title: validImages.length > 1 ? `${formData.title} (${i + 1})` : formData.title,
+              title:
+                validImages.length > 1
+                  ? `${formData.title} (${i + 1})`
+                  : formData.title,
               display_order: formData.display_order + i,
             };
             await createGalleryItem(itemData);
@@ -321,12 +324,16 @@ export default function GalleryManager() {
                         onChange={(e) => setUseMultipleImages(e.target.checked)}
                         className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
                       />
-                      <label htmlFor="multipleImages" className="text-sm font-medium text-gray-700">
+                      <label
+                        htmlFor="multipleImages"
+                        className="text-sm font-medium text-gray-700"
+                      >
                         Add multiple images for this event/activity
                       </label>
                     </div>
                     <p className="text-xs text-gray-600 mt-1">
-                      ✨ Perfect for showcasing multiple photos from the same event or activity
+                      ✨ Perfect for showcasing multiple photos from the same
+                      event or activity
                     </p>
                   </div>
                 )}
@@ -346,7 +353,9 @@ export default function GalleryManager() {
                             placeholder={`https://example.com/image${index + 1}.jpg`}
                             className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                             value={image}
-                            onChange={(e) => updateImageField(index, e.target.value)}
+                            onChange={(e) =>
+                              updateImageField(index, e.target.value)
+                            }
                           />
                           {multipleImages.length > 1 && (
                             <button
@@ -368,7 +377,8 @@ export default function GalleryManager() {
                       </button>
                     </div>
                     <p className="text-xs text-gray-500 mt-2">
-                      💡 Each image will create a separate gallery item with numbered titles
+                      💡 Each image will create a separate gallery item with
+                      numbered titles
                     </p>
                   </div>
                 ) : (
@@ -387,7 +397,8 @@ export default function GalleryManager() {
                       }
                     />
                     <p className="text-xs text-gray-500 mt-1">
-                      📷 Recommended size: 800x600px. Use Unsplash, Imgur, or your preferred image hosting.
+                      📷 Recommended size: 800x600px. Use Unsplash, Imgur, or
+                      your preferred image hosting.
                     </p>
                   </div>
                 )}
