@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import crypto from "crypto";
 
 // Simple admin password (in production, this should be hashed and stored securely)
-const ADMIN_PASSWORD = "gdgoc2024admin"; // Change this to a secure password
+const ADMIN_PASSWORD = "GDGoC_IET_2024_SecureAdmin#789"; // Secure password
 const JWT_SECRET = "gdgoc-jwt-secret-key"; // In production, use environment variable
 
 // Simple session storage (in production, use Redis or database)
