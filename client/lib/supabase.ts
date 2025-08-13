@@ -317,20 +317,43 @@ const withErrorHandling = async <T>(
     return { success: true, data };
   } catch (error: any) {
     console.error(`${operationName || 'Operation'} failed:`, error);
-    
+
+    let errorMessage = "An unexpected error occurred";
+
+    // Extract meaningful error message
+    if (typeof error === 'string') {
+      errorMessage = error;
+    } else if (error?.message) {
+      errorMessage = error.message;
+    } else if (error?.error_description) {
+      errorMessage = error.error_description;
+    } else if (error?.details) {
+      errorMessage = error.details;
+    }
+
     // Network-specific error handling for Netlify
-    if (error.message?.includes('fetch')) {
-      return { 
-        success: false, 
-        error: "Network connection failed. Please check your internet connection.", 
-        data: fallbackData 
+    if (errorMessage.includes('fetch') || errorMessage.includes('network')) {
+      errorMessage = "Network connection failed. Please check your internet connection.";
+    }
+
+    // Supabase-specific error handling
+    if (errorMessage.includes('JWT') || errorMessage.includes('auth')) {
+      errorMessage = "Authentication error. Please check your credentials.";
+    }
+
+    if (errorMessage.includes('relation') || errorMessage.includes('table')) {
+      console.warn(`Database table not found, using fallback data for ${operationName}`);
+      return {
+        success: true,
+        data: fallbackData || [],
+        fallback: true
       };
     }
-    
-    return { 
-      success: false, 
-      error: error.message || "An unexpected error occurred", 
-      data: fallbackData 
+
+    return {
+      success: false,
+      error: errorMessage,
+      data: fallbackData || []
     };
   }
 };
