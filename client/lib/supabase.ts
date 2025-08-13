@@ -7,29 +7,36 @@ const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || "";
 // Production-ready validation for Netlify
 const isValidConfig = () => {
   if (!supabaseUrl || !supabaseAnonKey) {
-    console.warn("⚠️ Supabase configuration missing. Running in fallback mode.");
+    console.warn(
+      "⚠️ Supabase configuration missing. Running in fallback mode.",
+    );
     return false;
   }
-  
-  if (supabaseUrl === "your-supabase-url" || supabaseAnonKey === "your-supabase-anon-key") {
+
+  if (
+    supabaseUrl === "your-supabase-url" ||
+    supabaseAnonKey === "your-supabase-anon-key"
+  ) {
     console.warn("⚠️ Please update Supabase credentials. Using fallback mode.");
     return false;
   }
-  
+
   if (!supabaseUrl.includes("supabase.co")) {
     console.warn("⚠️ Invalid Supabase URL format. Using fallback mode.");
     return false;
   }
-  
+
   return true;
 };
 
 // Create Supabase client with error handling
-export const supabase = isValidConfig() ? createClient(supabaseUrl, supabaseAnonKey, {
-  auth: {
-    persistSession: false // Optimized for static sites like Netlify
-  }
-}) : null;
+export const supabase = isValidConfig()
+  ? createClient(supabaseUrl, supabaseAnonKey, {
+      auth: {
+        persistSession: false, // Optimized for static sites like Netlify
+      },
+    })
+  : null;
 
 // Database connection status
 export const isSupabaseConnected = () => supabase !== null;
@@ -101,7 +108,8 @@ const mockEvents: Event[] = [
     date: "Dec 15, 2024",
     time: "2:00 PM - 5:00 PM",
     type: "Workshop",
-    description: "Learn the fundamentals of ML with hands-on exercises using Python and popular libraries like scikit-learn.",
+    description:
+      "Learn the fundamentals of ML with hands-on exercises using Python and popular libraries like scikit-learn.",
     color: "gdsc-blue",
     attendees: 85,
     image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800",
@@ -115,7 +123,8 @@ const mockEvents: Event[] = [
     date: "Dec 20, 2024",
     time: "10:00 AM - 4:00 PM",
     type: "Bootcamp",
-    description: "Build your first Android app from scratch using Kotlin and Android Studio.",
+    description:
+      "Build your first Android app from scratch using Kotlin and Android Studio.",
     color: "gdsc-green",
     attendees: 120,
     image: "https://images.unsplash.com/photo-1607252650355-f7fd0460ccdb?w=800",
@@ -129,7 +138,8 @@ const mockEvents: Event[] = [
     date: "Dec 25, 2024",
     time: "1:00 PM - 6:00 PM",
     type: "Workshop",
-    description: "Modern web development using React, TypeScript, and best practices for building scalable applications.",
+    description:
+      "Modern web development using React, TypeScript, and best practices for building scalable applications.",
     color: "gdsc-red",
     attendees: 95,
     image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800",
@@ -143,7 +153,8 @@ const mockEvents: Event[] = [
     date: "Jan 5, 2025",
     time: "3:00 PM - 6:00 PM",
     type: "Workshop",
-    description: "Explore Google Cloud Platform services and deploy your applications to the cloud.",
+    description:
+      "Explore Google Cloud Platform services and deploy your applications to the cloud.",
     color: "gdsc-yellow",
     attendees: 67,
     image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800",
@@ -196,7 +207,8 @@ const mockGalleryItems: GalleryItem[] = [
   {
     id: "1",
     title: "Web Development Workshop",
-    description: "Students learning React and modern web technologies in our intensive workshop session.",
+    description:
+      "Students learning React and modern web technologies in our intensive workshop session.",
     image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800",
     date: "2024-11-15",
     category: "workshop",
@@ -207,7 +219,8 @@ const mockGalleryItems: GalleryItem[] = [
   {
     id: "2",
     title: "Community Meetup",
-    description: "Our monthly community gathering and networking event with industry professionals.",
+    description:
+      "Our monthly community gathering and networking event with industry professionals.",
     image: "https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=800",
     date: "2024-11-20",
     category: "community",
@@ -218,7 +231,8 @@ const mockGalleryItems: GalleryItem[] = [
   {
     id: "3",
     title: "Coding Competition",
-    description: "Annual coding competition with exciting challenges and prizes for participants.",
+    description:
+      "Annual coding competition with exciting challenges and prizes for participants.",
     image: "https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?w=800",
     date: "2024-10-25",
     category: "competition",
@@ -232,7 +246,8 @@ const mockProjects: Project[] = [
   {
     id: "1",
     title: "GDGoC Website",
-    description: "Modern, responsive website for our community built with React and TypeScript. Features admin panel, event management, and community showcase.",
+    description:
+      "Modern, responsive website for our community built with React and TypeScript. Features admin panel, event management, and community showcase.",
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800",
     github_url: "https://github.com/gdgoc-iet-davv/website",
     live_url: "https://gdgoc-iet-davv.netlify.app",
@@ -247,7 +262,8 @@ const mockProjects: Project[] = [
   {
     id: "2",
     title: "Event Management App",
-    description: "Mobile app for managing community events and registrations with real-time notifications and QR code check-ins.",
+    description:
+      "Mobile app for managing community events and registrations with real-time notifications and QR code check-ins.",
     image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800",
     github_url: "https://github.com/gdgoc-iet-davv/event-app",
     tech_stack: ["React Native", "Firebase", "Node.js", "Express"],
@@ -261,7 +277,8 @@ const mockProjects: Project[] = [
   {
     id: "3",
     title: "AI Study Buddy",
-    description: "Machine learning powered study assistant that helps students with personalized learning paths and progress tracking.",
+    description:
+      "Machine learning powered study assistant that helps students with personalized learning paths and progress tracking.",
     image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800",
     github_url: "https://github.com/gdgoc-iet-davv/ai-study-buddy",
     tech_stack: ["Python", "TensorFlow", "FastAPI", "React", "PostgreSQL"],
@@ -288,7 +305,7 @@ const getFromStorage = <T>(key: string, defaultData: T[]): T[] => {
   try {
     const stored = localStorage.getItem(key);
     if (!stored) return defaultData;
-    
+
     const parsed = JSON.parse(stored);
     return Array.isArray(parsed) ? parsed : defaultData;
   } catch (error) {
@@ -310,27 +327,53 @@ const saveToStorage = <T>(key: string, data: T[]) => {
 const withErrorHandling = async <T>(
   operation: () => Promise<T>,
   fallbackData?: any,
-  operationName?: string
+  operationName?: string,
 ): Promise<{ success: boolean; data?: T; error?: string }> => {
   try {
     const data = await operation();
     return { success: true, data };
   } catch (error: any) {
-    console.error(`${operationName || 'Operation'} failed:`, error);
-    
+    console.error(`${operationName || "Operation"} failed:`, error);
+
+    let errorMessage = "An unexpected error occurred";
+
+    // Extract meaningful error message
+    if (typeof error === "string") {
+      errorMessage = error;
+    } else if (error?.message) {
+      errorMessage = error.message;
+    } else if (error?.error_description) {
+      errorMessage = error.error_description;
+    } else if (error?.details) {
+      errorMessage = error.details;
+    }
+
     // Network-specific error handling for Netlify
-    if (error.message?.includes('fetch')) {
-      return { 
-        success: false, 
-        error: "Network connection failed. Please check your internet connection.", 
-        data: fallbackData 
+    if (errorMessage.includes("fetch") || errorMessage.includes("network")) {
+      errorMessage =
+        "Network connection failed. Please check your internet connection.";
+    }
+
+    // Supabase-specific error handling
+    if (errorMessage.includes("JWT") || errorMessage.includes("auth")) {
+      errorMessage = "Authentication error. Please check your credentials.";
+    }
+
+    if (errorMessage.includes("relation") || errorMessage.includes("table")) {
+      console.warn(
+        `Database table not found, using fallback data for ${operationName}`,
+      );
+      return {
+        success: true,
+        data: fallbackData || [],
+        fallback: true,
       };
     }
-    
-    return { 
-      success: false, 
-      error: error.message || "An unexpected error occurred", 
-      data: fallbackData 
+
+    return {
+      success: false,
+      error: errorMessage,
+      data: fallbackData || [],
     };
   }
 };
@@ -360,11 +403,13 @@ export const getEvents = async () => {
       return data || [];
     },
     getFromStorage(STORAGE_KEYS.events, mockEvents),
-    "Get Events"
+    "Get Events",
   );
 };
 
-export const createEvent = async (event: Omit<Event, "id" | "created_at" | "updated_at">) => {
+export const createEvent = async (
+  event: Omit<Event, "id" | "created_at" | "updated_at">,
+) => {
   if (!supabase) {
     const events = getFromStorage(STORAGE_KEYS.events, mockEvents);
     const newEvent: Event = {
@@ -382,11 +427,13 @@ export const createEvent = async (event: Omit<Event, "id" | "created_at" | "upda
     async () => {
       const { data, error } = await supabase
         .from("events")
-        .insert([{
-          ...event,
-          created_at: new Date().toISOString(),
-          updated_at: new Date().toISOString(),
-        }])
+        .insert([
+          {
+            ...event,
+            created_at: new Date().toISOString(),
+            updated_at: new Date().toISOString(),
+          },
+        ])
         .select()
         .single();
 
@@ -394,7 +441,7 @@ export const createEvent = async (event: Omit<Event, "id" | "created_at" | "upda
       return data;
     },
     null,
-    "Create Event"
+    "Create Event",
   );
 };
 
@@ -426,7 +473,7 @@ export const updateEvent = async (id: string, updates: Partial<Event>) => {
       return data;
     },
     null,
-    "Update Event"
+    "Update Event",
   );
 };
 
@@ -445,7 +492,7 @@ export const deleteEvent = async (id: string) => {
       return true;
     },
     null,
-    "Delete Event"
+    "Delete Event",
   );
 };
 
@@ -453,7 +500,11 @@ export const deleteEvent = async (id: string) => {
 export const getTeamMembers = async () => {
   if (!supabase) {
     const data = getFromStorage(STORAGE_KEYS.teamMembers, mockTeamMembers);
-    return { success: true, data: data.sort((a, b) => a.display_order - b.display_order), fallback: true };
+    return {
+      success: true,
+      data: data.sort((a, b) => a.display_order - b.display_order),
+      fallback: true,
+    };
   }
 
   return withErrorHandling(
@@ -467,11 +518,13 @@ export const getTeamMembers = async () => {
       return data || [];
     },
     getFromStorage(STORAGE_KEYS.teamMembers, mockTeamMembers),
-    "Get Team Members"
+    "Get Team Members",
   );
 };
 
-export const createTeamMember = async (member: Omit<TeamMember, "id" | "created_at" | "updated_at">) => {
+export const createTeamMember = async (
+  member: Omit<TeamMember, "id" | "created_at" | "updated_at">,
+) => {
   if (!supabase) {
     const members = getFromStorage(STORAGE_KEYS.teamMembers, mockTeamMembers);
     const newMember: TeamMember = {
@@ -489,11 +542,13 @@ export const createTeamMember = async (member: Omit<TeamMember, "id" | "created_
     async () => {
       const { data, error } = await supabase
         .from("team_members")
-        .insert([{
-          ...member,
-          created_at: new Date().toISOString(),
-          updated_at: new Date().toISOString(),
-        }])
+        .insert([
+          {
+            ...member,
+            created_at: new Date().toISOString(),
+            updated_at: new Date().toISOString(),
+          },
+        ])
         .select()
         .single();
 
@@ -501,11 +556,14 @@ export const createTeamMember = async (member: Omit<TeamMember, "id" | "created_
       return data;
     },
     null,
-    "Create Team Member"
+    "Create Team Member",
   );
 };
 
-export const updateTeamMember = async (id: string, updates: Partial<TeamMember>) => {
+export const updateTeamMember = async (
+  id: string,
+  updates: Partial<TeamMember>,
+) => {
   if (!supabase) {
     const members = getFromStorage(STORAGE_KEYS.teamMembers, mockTeamMembers);
     const index = members.findIndex((m) => m.id === id);
@@ -533,7 +591,7 @@ export const updateTeamMember = async (id: string, updates: Partial<TeamMember>)
       return data;
     },
     null,
-    "Update Team Member"
+    "Update Team Member",
   );
 };
 
@@ -547,12 +605,15 @@ export const deleteTeamMember = async (id: string) => {
 
   return withErrorHandling(
     async () => {
-      const { error } = await supabase.from("team_members").delete().eq("id", id);
+      const { error } = await supabase
+        .from("team_members")
+        .delete()
+        .eq("id", id);
       if (error) throw error;
       return true;
     },
     null,
-    "Delete Team Member"
+    "Delete Team Member",
   );
 };
 
@@ -560,7 +621,11 @@ export const deleteTeamMember = async (id: string) => {
 export const getGalleryItems = async () => {
   if (!supabase) {
     const data = getFromStorage(STORAGE_KEYS.galleryItems, mockGalleryItems);
-    return { success: true, data: data.sort((a, b) => b.display_order - a.display_order), fallback: true };
+    return {
+      success: true,
+      data: data.sort((a, b) => b.display_order - a.display_order),
+      fallback: true,
+    };
   }
 
   return withErrorHandling(
@@ -574,11 +639,13 @@ export const getGalleryItems = async () => {
       return data || [];
     },
     getFromStorage(STORAGE_KEYS.galleryItems, mockGalleryItems),
-    "Get Gallery Items"
+    "Get Gallery Items",
   );
 };
 
-export const createGalleryItem = async (item: Omit<GalleryItem, "id" | "created_at" | "updated_at">) => {
+export const createGalleryItem = async (
+  item: Omit<GalleryItem, "id" | "created_at" | "updated_at">,
+) => {
   if (!supabase) {
     const items = getFromStorage(STORAGE_KEYS.galleryItems, mockGalleryItems);
     const newItem: GalleryItem = {
@@ -596,11 +663,13 @@ export const createGalleryItem = async (item: Omit<GalleryItem, "id" | "created_
     async () => {
       const { data, error } = await supabase
         .from("gallery_items")
-        .insert([{
-          ...item,
-          created_at: new Date().toISOString(),
-          updated_at: new Date().toISOString(),
-        }])
+        .insert([
+          {
+            ...item,
+            created_at: new Date().toISOString(),
+            updated_at: new Date().toISOString(),
+          },
+        ])
         .select()
         .single();
 
@@ -608,15 +677,19 @@ export const createGalleryItem = async (item: Omit<GalleryItem, "id" | "created_
       return data;
     },
     null,
-    "Create Gallery Item"
+    "Create Gallery Item",
   );
 };
 
-export const updateGalleryItem = async (id: string, updates: Partial<GalleryItem>) => {
+export const updateGalleryItem = async (
+  id: string,
+  updates: Partial<GalleryItem>,
+) => {
   if (!supabase) {
     const items = getFromStorage(STORAGE_KEYS.galleryItems, mockGalleryItems);
     const index = items.findIndex((i) => i.id === id);
-    if (index === -1) return { success: false, error: "Gallery item not found" };
+    if (index === -1)
+      return { success: false, error: "Gallery item not found" };
 
     items[index] = {
       ...items[index],
@@ -640,7 +713,7 @@ export const updateGalleryItem = async (id: string, updates: Partial<GalleryItem
       return data;
     },
     null,
-    "Update Gallery Item"
+    "Update Gallery Item",
   );
 };
 
@@ -654,12 +727,15 @@ export const deleteGalleryItem = async (id: string) => {
 
   return withErrorHandling(
     async () => {
-      const { error } = await supabase.from("gallery_items").delete().eq("id", id);
+      const { error } = await supabase
+        .from("gallery_items")
+        .delete()
+        .eq("id", id);
       if (error) throw error;
       return true;
     },
     null,
-    "Delete Gallery Item"
+    "Delete Gallery Item",
   );
 };
 
@@ -667,7 +743,11 @@ export const deleteGalleryItem = async (id: string) => {
 export const getProjects = async () => {
   if (!supabase) {
     const data = getFromStorage(STORAGE_KEYS.projects, mockProjects);
-    return { success: true, data: data.sort((a, b) => b.display_order - a.display_order), fallback: true };
+    return {
+      success: true,
+      data: data.sort((a, b) => b.display_order - a.display_order),
+      fallback: true,
+    };
   }
 
   return withErrorHandling(
@@ -681,11 +761,13 @@ export const getProjects = async () => {
       return data || [];
     },
     getFromStorage(STORAGE_KEYS.projects, mockProjects),
-    "Get Projects"
+    "Get Projects",
   );
 };
 
-export const createProject = async (project: Omit<Project, "id" | "created_at" | "updated_at">) => {
+export const createProject = async (
+  project: Omit<Project, "id" | "created_at" | "updated_at">,
+) => {
   if (!supabase) {
     const projects = getFromStorage(STORAGE_KEYS.projects, mockProjects);
     const newProject: Project = {
@@ -703,11 +785,13 @@ export const createProject = async (project: Omit<Project, "id" | "created_at" |
     async () => {
       const { data, error } = await supabase
         .from("projects")
-        .insert([{
-          ...project,
-          created_at: new Date().toISOString(),
-          updated_at: new Date().toISOString(),
-        }])
+        .insert([
+          {
+            ...project,
+            created_at: new Date().toISOString(),
+            updated_at: new Date().toISOString(),
+          },
+        ])
         .select()
         .single();
 
@@ -715,7 +799,7 @@ export const createProject = async (project: Omit<Project, "id" | "created_at" |
       return data;
     },
     null,
-    "Create Project"
+    "Create Project",
   );
 };
 
@@ -747,7 +831,7 @@ export const updateProject = async (id: string, updates: Partial<Project>) => {
       return data;
     },
     null,
-    "Update Project"
+    "Update Project",
   );
 };
 
@@ -766,7 +850,7 @@ export const deleteProject = async (id: string) => {
       return true;
     },
     null,
-    "Delete Project"
+    "Delete Project",
   );
 };
 
@@ -778,11 +862,14 @@ export const testSupabaseConnection = async () => {
 
   return withErrorHandling(
     async () => {
-      const { data, error } = await supabase.from("events").select("count").limit(1);
+      const { data, error } = await supabase
+        .from("events")
+        .select("count")
+        .limit(1);
       if (error) throw error;
       return { connected: true, timestamp: new Date().toISOString() };
     },
     null,
-    "Test Connection"
+    "Test Connection",
   );
 };

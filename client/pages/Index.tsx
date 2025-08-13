@@ -6,6 +6,7 @@ import About from "@/components/About";
 import Events from "@/components/Events";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
+import ConnectionTest from "@/components/ConnectionTest";
 
 export default function Index() {
   const [showLoader, setShowLoader] = useState(false);
@@ -46,6 +47,10 @@ export default function Index() {
         <Navigation />
         <main>
           <Hero />
+          {/* Debug component - remove after fixing */}
+          <div className="container mx-auto px-4 py-4">
+            <ConnectionTest />
+          </div>
           <About />
           <Events />
         </main>
