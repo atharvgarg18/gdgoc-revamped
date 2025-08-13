@@ -290,7 +290,13 @@ export default function TeamManager() {
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gdsc-green"
                     value={formData.profile_type}
                     onChange={(e) =>
-                      setFormData({ ...formData, profile_type: e.target.value as "Faculty Advisor" | "Mentors" | "Leads" })
+                      setFormData({
+                        ...formData,
+                        profile_type: e.target.value as
+                          | "Faculty Advisor"
+                          | "Mentors"
+                          | "Leads",
+                      })
                     }
                     required
                   >

@@ -62,8 +62,8 @@ export default function Team() {
   const getProfileTypeIcon = (profileType: string) => {
     const icons = {
       "Faculty Advisor": "👨‍🏫",
-      "Mentors": "🧑‍💼",
-      "Leads": "⭐",
+      Mentors: "🧑‍💼",
+      Leads: "⭐",
     };
     return icons[profileType as keyof typeof icons] || "👤";
   };
@@ -71,20 +71,25 @@ export default function Team() {
   const getProfileTypeColor = (profileType: string) => {
     const colors = {
       "Faculty Advisor": "from-indigo-600 to-purple-600",
-      "Mentors": "from-teal-600 to-blue-600", 
-      "Leads": "from-purple-600 to-pink-600",
+      Mentors: "from-teal-600 to-blue-600",
+      Leads: "from-purple-600 to-pink-600",
     };
-    return colors[profileType as keyof typeof colors] || "from-gray-600 to-gray-800";
+    return (
+      colors[profileType as keyof typeof colors] || "from-gray-600 to-gray-800"
+    );
   };
 
-  const groupedMembers = teamMembers.reduce((acc, member) => {
-    const type = member.profile_type;
-    if (!acc[type]) {
-      acc[type] = [];
-    }
-    acc[type].push(member);
-    return acc;
-  }, {} as Record<string, TeamMember[]>);
+  const groupedMembers = teamMembers.reduce(
+    (acc, member) => {
+      const type = member.profile_type;
+      if (!acc[type]) {
+        acc[type] = [];
+      }
+      acc[type].push(member);
+      return acc;
+    },
+    {} as Record<string, TeamMember[]>,
+  );
 
   const profileOrder = ["Faculty Advisor", "Mentors", "Leads"];
 
@@ -103,9 +108,18 @@ export default function Team() {
           {/* Background Animation */}
           <div className="absolute inset-0 pointer-events-none">
             <div className="absolute top-20 left-10 w-12 h-12 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full opacity-20 animate-float"></div>
-            <div className="absolute top-1/4 right-16 w-8 h-8 bg-gradient-to-r from-blue-500 to-green-500 rotate-45 opacity-25 animate-float" style={{ animationDelay: "1s" }}></div>
-            <div className="absolute bottom-40 left-20 w-6 h-6 bg-gradient-to-r from-green-500 to-yellow-500 rounded-full opacity-30 animate-float" style={{ animationDelay: "2s" }}></div>
-            <div className="absolute bottom-20 right-10 w-10 h-10 bg-gradient-to-r from-yellow-500 to-red-500 rounded-full opacity-20 animate-float" style={{ animationDelay: "0.5s" }}></div>
+            <div
+              className="absolute top-1/4 right-16 w-8 h-8 bg-gradient-to-r from-blue-500 to-green-500 rotate-45 opacity-25 animate-float"
+              style={{ animationDelay: "1s" }}
+            ></div>
+            <div
+              className="absolute bottom-40 left-20 w-6 h-6 bg-gradient-to-r from-green-500 to-yellow-500 rounded-full opacity-30 animate-float"
+              style={{ animationDelay: "2s" }}
+            ></div>
+            <div
+              className="absolute bottom-20 right-10 w-10 h-10 bg-gradient-to-r from-yellow-500 to-red-500 rounded-full opacity-20 animate-float"
+              style={{ animationDelay: "0.5s" }}
+            ></div>
           </div>
 
           {/* Content */}
@@ -207,12 +221,18 @@ export default function Team() {
                       {/* Profile Type Header */}
                       <div className="text-center">
                         <div className="inline-flex items-center space-x-3 mb-4">
-                          <span className="text-4xl">{getProfileTypeIcon(profileType)}</span>
-                          <h2 className={`text-3xl md:text-4xl font-bold bg-gradient-to-r ${getProfileTypeColor(profileType)} bg-clip-text text-transparent`}>
+                          <span className="text-4xl">
+                            {getProfileTypeIcon(profileType)}
+                          </span>
+                          <h2
+                            className={`text-3xl md:text-4xl font-bold bg-gradient-to-r ${getProfileTypeColor(profileType)} bg-clip-text text-transparent`}
+                          >
                             {profileType}
                           </h2>
                         </div>
-                        <div className={`w-24 h-1 bg-gradient-to-r ${getProfileTypeColor(profileType)} mx-auto rounded-full`}></div>
+                        <div
+                          className={`w-24 h-1 bg-gradient-to-r ${getProfileTypeColor(profileType)} mx-auto rounded-full`}
+                        ></div>
                       </div>
 
                       {/* Members Grid */}
@@ -238,10 +258,14 @@ export default function Team() {
                             <div className="p-6 pt-4">
                               {/* Member Info */}
                               <div className="text-center mb-4">
-                                <h3 className={`text-xl font-bold text-gray-900 mb-2 group-hover:bg-gradient-to-r group-hover:${getRoleColor(member.role)} group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300`}>
+                                <h3
+                                  className={`text-xl font-bold text-gray-900 mb-2 group-hover:bg-gradient-to-r group-hover:${getRoleColor(member.role)} group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300`}
+                                >
                                   {member.name}
                                 </h3>
-                                <div className={`inline-block px-3 py-1 rounded-full text-sm font-medium text-white bg-gradient-to-r ${getRoleColor(member.role)} mb-2`}>
+                                <div
+                                  className={`inline-block px-3 py-1 rounded-full text-sm font-medium text-white bg-gradient-to-r ${getRoleColor(member.role)} mb-2`}
+                                >
                                   {member.role}
                                 </div>
                                 <p className="text-gray-600 text-sm leading-relaxed line-clamp-3">

@@ -68,8 +68,7 @@ export default function Events() {
       Competition: "from-purple-500 to-purple-600",
     };
     return (
-      gradients[type as keyof typeof gradients] ||
-      "from-gray-500 to-gray-600"
+      gradients[type as keyof typeof gradients] || "from-gray-500 to-gray-600"
     );
   };
 
@@ -104,7 +103,7 @@ export default function Events() {
           className="absolute bottom-32 right-20 w-5 h-5 bg-gdsc-yellow rotate-45 opacity-20 animate-float"
           style={{ animationDelay: "0.8s" }}
         ></div>
-        
+
         {/* Subtle Grid Pattern */}
         <div className="absolute inset-0 opacity-5">
           <div className="grid grid-cols-16 gap-6 h-full">
@@ -118,7 +117,7 @@ export default function Events() {
           </div>
         </div>
       </div>
-      
+
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Enhanced Header */}
         <div className="text-center mb-16">
@@ -142,9 +141,17 @@ export default function Events() {
           <div className="text-center py-12 backdrop-blur-lg bg-white/70 rounded-2xl border border-white/30 shadow-xl">
             <div className="relative inline-block">
               <div className="animate-spin rounded-full h-12 w-12 border-4 border-gdsc-red/30 border-t-gdsc-red mx-auto mb-4"></div>
-              <div className="absolute inset-0 rounded-full h-12 w-12 border-4 border-transparent border-t-gdsc-yellow animate-spin" style={{ animationDirection: "reverse", animationDuration: "0.8s" }}></div>
+              <div
+                className="absolute inset-0 rounded-full h-12 w-12 border-4 border-transparent border-t-gdsc-yellow animate-spin"
+                style={{
+                  animationDirection: "reverse",
+                  animationDuration: "0.8s",
+                }}
+              ></div>
             </div>
-            <p className="text-gray-700 font-medium">Loading exciting events...</p>
+            <p className="text-gray-700 font-medium">
+              Loading exciting events...
+            </p>
           </div>
         ) : events.length === 0 ? (
           /* Enhanced Empty State */
@@ -168,7 +175,7 @@ export default function Events() {
                 style={{ animationDelay: "0.5s" }}
               ></div>
             </div>
-            
+
             <div className="relative z-10">
               <div className="w-16 h-16 mx-auto mb-6 text-gray-400 transform hover:scale-110 transition-transform duration-300">
                 <Calendar size={64} />
@@ -187,7 +194,10 @@ export default function Events() {
                 className="relative overflow-hidden bg-gradient-to-r from-gdsc-green to-green-600 text-white px-8 py-4 rounded-xl hover:from-green-600 hover:to-green-700 transition-all duration-300 font-semibold transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center group"
               >
                 <span className="relative z-10">Get Notified</span>
-                <ExternalLink size={16} className="ml-2 relative z-10 group-hover:translate-x-1 transition-transform duration-300" />
+                <ExternalLink
+                  size={16}
+                  className="ml-2 relative z-10 group-hover:translate-x-1 transition-transform duration-300"
+                />
                 <div className="absolute inset-0 bg-white/20 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
               </a>
             </div>
@@ -206,11 +216,15 @@ export default function Events() {
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   {/* Colored top accent */}
-                  <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${getEventGradient(event.type)}`}></div>
-                  
+                  <div
+                    className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${getEventGradient(event.type)}`}
+                  ></div>
+
                   {/* Gradient overlay on hover */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${getEventGradient(event.type)} opacity-0 group-hover:opacity-5 transition-opacity duration-500 rounded-2xl`}></div>
-                  
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-br ${getEventGradient(event.type)} opacity-0 group-hover:opacity-5 transition-opacity duration-500 rounded-2xl`}
+                  ></div>
+
                   <div className="relative z-10">
                     {/* Event Header - Mobile Optimized */}
                     <div className="flex flex-col gap-3 mb-4">
@@ -241,7 +255,9 @@ export default function Events() {
                     </div>
 
                     {/* Event Content */}
-                    <h3 className={`text-lg md:text-2xl font-bold text-gray-900 mb-3 leading-tight transition-colors duration-300 group-hover:bg-gradient-to-r group-hover:${getEventGradient(event.type)} group-hover:bg-clip-text group-hover:text-transparent`}>
+                    <h3
+                      className={`text-lg md:text-2xl font-bold text-gray-900 mb-3 leading-tight transition-colors duration-300 group-hover:bg-gradient-to-r group-hover:${getEventGradient(event.type)} group-hover:bg-clip-text group-hover:text-transparent`}
+                    >
                       {event.title}
                     </h3>
 
@@ -268,10 +284,15 @@ export default function Events() {
                               className={`w-full sm:w-auto inline-flex items-center justify-center bg-gradient-to-r ${getEventGradient(event.type)} text-white px-4 md:px-6 py-2 md:py-3 rounded-xl font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-105 text-sm md:text-base group/btn`}
                             >
                               <span>Register Now</span>
-                              <ExternalLink size={14} className="ml-2 group-hover/btn:translate-x-1 transition-transform duration-300" />
+                              <ExternalLink
+                                size={14}
+                                className="ml-2 group-hover/btn:translate-x-1 transition-transform duration-300"
+                              />
                             </a>
                           ) : (
-                            <button className={`w-full sm:w-auto bg-gradient-to-r ${getEventGradient(event.type)} text-white px-4 md:px-6 py-2 md:py-3 rounded-xl font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-105 text-sm md:text-base`}>
+                            <button
+                              className={`w-full sm:w-auto bg-gradient-to-r ${getEventGradient(event.type)} text-white px-4 md:px-6 py-2 md:py-3 rounded-xl font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-105 text-sm md:text-base`}
+                            >
                               Register Now
                             </button>
                           )}
@@ -279,9 +300,11 @@ export default function Events() {
                       )}
                     </div>
                   </div>
-                  
+
                   {/* Floating decorative element */}
-                  <div className={`absolute -bottom-2 -right-2 w-4 h-4 bg-gradient-to-r ${getEventGradient(event.type)} rounded-full opacity-60 group-hover:animate-bounce`}></div>
+                  <div
+                    className={`absolute -bottom-2 -right-2 w-4 h-4 bg-gradient-to-r ${getEventGradient(event.type)} rounded-full opacity-60 group-hover:animate-bounce`}
+                  ></div>
                 </div>
               );
             })}
@@ -296,7 +319,10 @@ export default function Events() {
             className="group relative overflow-hidden inline-flex items-center bg-gradient-to-r from-gdsc-red to-red-600 text-white px-8 py-4 rounded-xl hover:from-red-600 hover:to-red-700 transition-all duration-300 font-semibold transform hover:scale-105 shadow-lg hover:shadow-xl"
           >
             <span className="relative z-10">View All Events</span>
-            <ExternalLink size={16} className="ml-2 relative z-10 group-hover:translate-x-1 transition-transform duration-300" />
+            <ExternalLink
+              size={16}
+              className="ml-2 relative z-10 group-hover:translate-x-1 transition-transform duration-300"
+            />
             <div className="absolute inset-0 bg-white/20 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
           </a>
         </div>

@@ -23,10 +23,30 @@ export default function About() {
   }, []);
 
   const stats = [
-    { number: "500+", label: "Active Members", color: "text-gdsc-blue", bgColor: "from-blue-500 to-blue-600" },
-    { number: "50+", label: "Events Hosted", color: "text-gdsc-red", bgColor: "from-red-500 to-red-600" },
-    { number: "20+", label: "Projects Built", color: "text-gdsc-yellow", bgColor: "from-yellow-500 to-yellow-600" },
-    { number: "100+", label: "Skills Taught", color: "text-gdsc-green", bgColor: "from-green-500 to-green-600" },
+    {
+      number: "500+",
+      label: "Active Members",
+      color: "text-gdsc-blue",
+      bgColor: "from-blue-500 to-blue-600",
+    },
+    {
+      number: "50+",
+      label: "Events Hosted",
+      color: "text-gdsc-red",
+      bgColor: "from-red-500 to-red-600",
+    },
+    {
+      number: "20+",
+      label: "Projects Built",
+      color: "text-gdsc-yellow",
+      bgColor: "from-yellow-500 to-yellow-600",
+    },
+    {
+      number: "100+",
+      label: "Skills Taught",
+      color: "text-gdsc-green",
+      bgColor: "from-green-500 to-green-600",
+    },
   ];
 
   const features = [
@@ -36,7 +56,7 @@ export default function About() {
       description:
         "We embrace cutting-edge technologies and innovative solutions to solve real-world problems.",
       color: "from-blue-500 to-blue-600",
-      hoverColor: "group-hover:text-blue-600"
+      hoverColor: "group-hover:text-blue-600",
     },
     {
       icon: Users,
@@ -44,7 +64,7 @@ export default function About() {
       description:
         "Building a strong network of developers who support and learn from each other.",
       color: "from-green-500 to-green-600",
-      hoverColor: "group-hover:text-green-600"
+      hoverColor: "group-hover:text-green-600",
     },
     {
       icon: Lightbulb,
@@ -52,7 +72,7 @@ export default function About() {
       description:
         "Providing hands-on workshops and real-world projects to enhance technical skills.",
       color: "from-yellow-500 to-yellow-600",
-      hoverColor: "group-hover:text-yellow-600"
+      hoverColor: "group-hover:text-yellow-600",
     },
     {
       icon: Award,
@@ -60,7 +80,7 @@ export default function About() {
       description:
         "Striving for excellence in everything we do, from events to projects to community building.",
       color: "from-red-500 to-red-600",
-      hoverColor: "group-hover:text-red-600"
+      hoverColor: "group-hover:text-red-600",
     },
   ];
 
@@ -91,7 +111,7 @@ export default function About() {
           className="absolute bottom-32 left-16 w-10 h-10 bg-gradient-to-r from-gdsc-blue to-gdsc-green rounded-full opacity-15 animate-float"
           style={{ animationDelay: "3s" }}
         ></div>
-        
+
         {/* Subtle Grid Pattern */}
         <div className="absolute inset-0 opacity-5">
           <div className="grid grid-cols-20 gap-4 h-full">
@@ -105,7 +125,7 @@ export default function About() {
           </div>
         </div>
       </div>
-      
+
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header with Enhanced Animation */}
         <div className="text-center mb-16">
@@ -127,19 +147,23 @@ export default function About() {
         {/* Enhanced Stats with Colors */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
           {stats.map((stat, index) => (
-            <div 
-              key={index} 
+            <div
+              key={index}
               className={`relative text-center p-6 rounded-2xl backdrop-blur-lg bg-white/80 border border-white/30 shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-500 group ${
                 isVisible ? "animate-fade-in-up" : "opacity-0"
               }`}
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               {/* Colored top border */}
-              <div className={`absolute top-0 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r ${stat.bgColor} rounded-b-full`}></div>
-              
+              <div
+                className={`absolute top-0 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-gradient-to-r ${stat.bgColor} rounded-b-full`}
+              ></div>
+
               {/* Animated background glow */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${stat.bgColor} opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-2xl`}></div>
-              
+              <div
+                className={`absolute inset-0 bg-gradient-to-br ${stat.bgColor} opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-2xl`}
+              ></div>
+
               <div className="relative z-10">
                 <div
                   className={`text-3xl md:text-4xl font-bold ${stat.color} mb-2 group-hover:scale-110 transition-transform duration-300`}
@@ -150,9 +174,11 @@ export default function About() {
                   {stat.label}
                 </div>
               </div>
-              
+
               {/* Decorative corner element */}
-              <div className={`absolute -bottom-1 -right-1 w-3 h-3 bg-gradient-to-r ${stat.bgColor} rounded-full opacity-60 group-hover:animate-ping`}></div>
+              <div
+                className={`absolute -bottom-1 -right-1 w-3 h-3 bg-gradient-to-r ${stat.bgColor} rounded-full opacity-60 group-hover:animate-ping`}
+              ></div>
             </div>
           ))}
         </div>
@@ -170,25 +196,35 @@ export default function About() {
                 style={{ animationDelay: `${0.2 + index * 0.1}s` }}
               >
                 {/* Colored side accent */}
-                <div className={`absolute left-0 top-1/2 transform -translate-y-1/2 w-1 h-16 bg-gradient-to-b ${feature.color} rounded-r-full transition-all duration-500 group-hover:h-24`}></div>
-                
+                <div
+                  className={`absolute left-0 top-1/2 transform -translate-y-1/2 w-1 h-16 bg-gradient-to-b ${feature.color} rounded-r-full transition-all duration-500 group-hover:h-24`}
+                ></div>
+
                 {/* Gradient overlay on hover */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500 rounded-2xl`}></div>
-                
+                <div
+                  className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500 rounded-2xl`}
+                ></div>
+
                 <div className="relative z-10 pl-4">
-                  <div className={`w-12 h-12 text-gray-600 mb-6 transform group-hover:scale-110 transition-all duration-300 ${feature.hoverColor}`}>
+                  <div
+                    className={`w-12 h-12 text-gray-600 mb-6 transform group-hover:scale-110 transition-all duration-300 ${feature.hoverColor}`}
+                  >
                     <IconComponent size={48} />
                   </div>
-                  <h3 className={`text-xl font-bold text-gray-900 mb-4 transition-colors duration-300 ${feature.hoverColor}`}>
+                  <h3
+                    className={`text-xl font-bold text-gray-900 mb-4 transition-colors duration-300 ${feature.hoverColor}`}
+                  >
                     {feature.title}
                   </h3>
                   <p className="text-gray-700 leading-relaxed">
                     {feature.description}
                   </p>
                 </div>
-                
+
                 {/* Floating decorative element */}
-                <div className={`absolute top-4 right-4 w-2 h-2 bg-gradient-to-r ${feature.color} rounded-full opacity-40 group-hover:animate-bounce`}></div>
+                <div
+                  className={`absolute top-4 right-4 w-2 h-2 bg-gradient-to-r ${feature.color} rounded-full opacity-40 group-hover:animate-bounce`}
+                ></div>
               </div>
             );
           })}
@@ -215,12 +251,12 @@ export default function About() {
               style={{ animationDelay: "0.5s" }}
             ></div>
           </div>
-          
+
           <div className="relative z-10">
             <h3 className="text-2xl md:text-4xl font-bold bg-gradient-to-r from-gdsc-blue via-gdsc-red to-gdsc-green bg-clip-text text-transparent mb-8 animate-gradient-x">
               Our Mission & Values
             </h3>
-            
+
             <div className="grid md:grid-cols-2 gap-8 text-left">
               <div className="group/card">
                 <div className="flex items-center mb-4">
@@ -238,7 +274,7 @@ export default function About() {
                   in tech, regardless of background.
                 </p>
               </div>
-              
+
               <div className="group/card">
                 <div className="flex items-center mb-4">
                   <div className="w-8 h-8 bg-gradient-to-r from-gdsc-green to-gdsc-yellow rounded-full flex items-center justify-center mr-3">
@@ -256,10 +292,19 @@ export default function About() {
                 <div className="flex flex-wrap gap-2">
                   {[
                     { value: "Innovation", color: "from-blue-500 to-blue-600" },
-                    { value: "Collaboration", color: "from-green-500 to-green-600" },
+                    {
+                      value: "Collaboration",
+                      color: "from-green-500 to-green-600",
+                    },
                     { value: "Learning", color: "from-red-500 to-red-600" },
-                    { value: "Inclusivity", color: "from-yellow-500 to-yellow-600" },
-                    { value: "Excellence", color: "from-purple-500 to-purple-600" },
+                    {
+                      value: "Inclusivity",
+                      color: "from-yellow-500 to-yellow-600",
+                    },
+                    {
+                      value: "Excellence",
+                      color: "from-purple-500 to-purple-600",
+                    },
                   ].map((item, index) => (
                     <span
                       key={index}
@@ -271,7 +316,7 @@ export default function About() {
                 </div>
               </div>
             </div>
-            
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
               <a
                 href="https://chat.whatsapp.com/CcTjDYXNfQMEoLUHzB3hwa"
