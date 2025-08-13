@@ -189,7 +189,9 @@ export default function ContactPage() {
                       </h3>
                       <div className="flex space-x-4">
                         <a
-                          href="#"
+                          href="https://www.linkedin.com/company/gdgoc-iet-davv"
+                          target="_blank"
+                          rel="noopener noreferrer"
                           className="text-gray-600 hover:text-gdsc-blue transition-colors"
                         >
                           <span className="sr-only">LinkedIn</span>
