@@ -90,7 +90,7 @@ export default function NewAdminLogin({ onLogin }: NewAdminLoginProps) {
 
           <div className="mt-6 text-center">
             <p className="text-xs text-gray-500">
-              Default password: gdgoc2024admin
+              For security reasons, password is not displayed publicly.
             </p>
           </div>
         </div>
