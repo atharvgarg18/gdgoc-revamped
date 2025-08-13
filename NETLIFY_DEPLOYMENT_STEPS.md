@@ -16,23 +16,27 @@ I've configured everything with your fresh Supabase credentials:
 ### **Step 1: Set Environment Variables in Netlify**
 
 1. **Go to Netlify Dashboard**
+
    - Visit: https://app.netlify.com/
    - Find your deployed site
    - Click on your site name
 
 2. **Navigate to Environment Variables**
+
    - Go to **Site settings** (from the top menu)
    - Click **Environment variables** (in the left sidebar)
 
 3. **Add These Exact Variables**
 
    **Variable 1:**
+
    ```
    Key: VITE_SUPABASE_URL
    Value: https://ywnmfaugihbiddjunyai.supabase.co
    ```
 
    **Variable 2:**
+
    ```
    Key: VITE_SUPABASE_ANON_KEY
    Value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inl3bm1mYXVnaWhiaWRkanVueWFpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTUwNjc5MzcsImV4cCI6MjA3MDY0MzkzN30.2n8DEjiwxxD1CGOoAN3G8IylV1WD4W1oGXkwE3UjfyY
@@ -50,10 +54,12 @@ I've configured everything with your fresh Supabase credentials:
 ### **Step 3: Test Production Site**
 
 1. **Visit Your Live Site**
+
    - Go to your Netlify URL
    - Test navigation (all pages should work)
 
 2. **Test Admin Panel**
+
    - Go to: `your-site.netlify.app/admin`
    - Password: `gdgoc2024admin`
    - ✅ Should show: **"Supabase Connected"** (green status)
@@ -72,6 +78,7 @@ I've configured everything with your fresh Supabase credentials:
 After deployment, verify these work:
 
 ### **✅ Website Functionality**
+
 - [ ] Homepage loads correctly
 - [ ] All page navigation works
 - [ ] Events page shows data
@@ -80,6 +87,7 @@ After deployment, verify these work:
 - [ ] Projects page functional
 
 ### **✅ Admin Panel**
+
 - [ ] `/admin` accessible
 - [ ] Login works with `gdgoc2024admin`
 - [ ] Connection status shows **"Supabase Connected"**
@@ -89,6 +97,7 @@ After deployment, verify these work:
 - [ ] Can modify projects
 
 ### **✅ Database Integration**
+
 - [ ] New content appears on public pages
 - [ ] Changes save to Supabase dashboard
 - [ ] No "Fallback Mode" warnings
@@ -98,17 +107,20 @@ After deployment, verify these work:
 ## 🚨 **TROUBLESHOOTING**
 
 ### **If you see "Fallback Mode":**
+
 1. Check environment variables are **exactly** as shown above
 2. Verify no extra spaces in values
 3. Redeploy after setting variables
 4. Clear browser cache
 
 ### **If admin panel doesn't work:**
+
 1. Try password: `gdgoc2024admin`
 2. Check browser console for errors (F12)
 3. Try incognito/private mode
 
 ### **If pages don't load:**
+
 1. Check deployment logs in Netlify
 2. Verify build completed successfully
 3. Check if netlify.toml is in root directory
