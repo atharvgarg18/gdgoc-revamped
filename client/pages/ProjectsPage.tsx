@@ -213,7 +213,7 @@ export default function ProjectsPage() {
                 style={{ animationDelay: "0.6s" }}
               >
                 <a
-                  href="https://github.com/atharvgarg18"
+                  href="https://github.com/gdgoc-iet-davv/website"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-animate bg-gradient-to-r from-blue-600 to-green-600 text-white px-8 py-4 rounded-full hover:shadow-xl transition-all duration-300 font-medium transform hover:scale-105"
