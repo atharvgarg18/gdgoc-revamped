@@ -310,21 +310,87 @@ export default function GalleryManager() {
                   />
                 </div>
 
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Image URL *
-                  </label>
-                  <input
-                    type="url"
-                    required
-                    placeholder="https://example.com/image.jpg"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gdsc-yellow"
-                    value={formData.image}
-                    onChange={(e) =>
-                      setFormData({ ...formData, image: e.target.value })
-                    }
-                  />
-                </div>
+                {/* Multiple Images Toggle */}
+                {!editingItem && (
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                    <div className="flex items-center space-x-3">
+                      <input
+                        type="checkbox"
+                        id="multipleImages"
+                        checked={useMultipleImages}
+                        onChange={(e) => setUseMultipleImages(e.target.checked)}
+                        className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                      />
+                      <label htmlFor="multipleImages" className="text-sm font-medium text-gray-700">
+                        Add multiple images for this event/activity
+                      </label>
+                    </div>
+                    <p className="text-xs text-gray-600 mt-1">
+                      ✨ Perfect for showcasing multiple photos from the same event or activity
+                    </p>
+                  </div>
+                )}
+
+                {/* Image URL(s) */}
+                {useMultipleImages && !editingItem ? (
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Image URLs * (Multiple Images)
+                    </label>
+                    <div className="space-y-3">
+                      {multipleImages.map((image, index) => (
+                        <div key={index} className="flex space-x-2">
+                          <input
+                            type="url"
+                            required
+                            placeholder={`https://example.com/image${index + 1}.jpg`}
+                            className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            value={image}
+                            onChange={(e) => updateImageField(index, e.target.value)}
+                          />
+                          {multipleImages.length > 1 && (
+                            <button
+                              type="button"
+                              onClick={() => removeImageField(index)}
+                              className="px-3 py-2 text-red-600 hover:text-red-800 border border-red-300 rounded-lg hover:bg-red-50"
+                            >
+                              ✕
+                            </button>
+                          )}
+                        </div>
+                      ))}
+                      <button
+                        type="button"
+                        onClick={addImageField}
+                        className="w-full px-3 py-2 border-2 border-dashed border-gray-300 rounded-lg text-gray-500 hover:text-gray-700 hover:border-gray-400 transition-colors"
+                      >
+                        + Add Another Image
+                      </button>
+                    </div>
+                    <p className="text-xs text-gray-500 mt-2">
+                      💡 Each image will create a separate gallery item with numbered titles
+                    </p>
+                  </div>
+                ) : (
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Image URL *
+                    </label>
+                    <input
+                      type="url"
+                      required
+                      placeholder="https://example.com/image.jpg"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gdsc-yellow"
+                      value={formData.image}
+                      onChange={(e) =>
+                        setFormData({ ...formData, image: e.target.value })
+                      }
+                    />
+                    <p className="text-xs text-gray-500 mt-1">
+                      📷 Recommended size: 800x600px. Use Unsplash, Imgur, or your preferred image hosting.
+                    </p>
+                  </div>
+                )}
 
                 <div className="grid grid-cols-2 gap-4">
                   <div>
