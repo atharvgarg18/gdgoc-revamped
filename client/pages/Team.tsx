@@ -81,7 +81,7 @@ export default function Team() {
 
   const groupedMembers = teamMembers.reduce(
     (acc, member) => {
-      const type = member.profile_type;
+      const type = member.profile_type || "Leads"; // Fallback to Leads if profile_type is missing
       if (!acc[type]) {
         acc[type] = [];
       }
@@ -90,6 +90,10 @@ export default function Team() {
     },
     {} as Record<string, TeamMember[]>,
   );
+
+  // Debug log
+  console.log("Team members:", teamMembers);
+  console.log("Grouped members:", groupedMembers);
 
   const profileOrder = ["Faculty Advisor", "Mentors", "Leads"];
 
