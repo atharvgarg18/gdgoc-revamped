@@ -282,6 +282,9 @@ export default function Events() {
                               target="_blank"
                               rel="noopener noreferrer"
                               className={`w-full sm:w-auto inline-flex items-center justify-center bg-gradient-to-r ${getEventGradient(event.type)} text-white px-4 md:px-6 py-2 md:py-3 rounded-xl font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-105 text-sm md:text-base group/btn`}
+                              onClick={(e) => {
+                                console.log("Registration link clicked:", event.registration_link);
+                              }}
                             >
                               <span>Register Now</span>
                               <ExternalLink
