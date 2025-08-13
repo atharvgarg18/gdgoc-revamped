@@ -206,7 +206,9 @@ export default function ContactPage() {
                           </svg>
                         </a>
                         <a
-                          href="#"
+                          href="https://twitter.com/gdgoc_iet_davv"
+                          target="_blank"
+                          rel="noopener noreferrer"
                           className="text-gray-600 hover:text-gdsc-blue transition-colors"
                         >
                           <span className="sr-only">Twitter</span>
@@ -219,7 +221,9 @@ export default function ContactPage() {
                           </svg>
                         </a>
                         <a
-                          href="#"
+                          href="https://www.instagram.com/gdgoc_iet_davv"
+                          target="_blank"
+                          rel="noopener noreferrer"
                           className="text-gray-600 hover:text-gdsc-blue transition-colors"
                         >
                           <span className="sr-only">Instagram</span>
