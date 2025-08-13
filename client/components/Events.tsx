@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { getEvents, Event, isEventCompleted } from "@/lib/supabase";
 import { Calendar, Users, Clock, ExternalLink } from "lucide-react";
+import { handleLinkClick, isValidUrl } from "@/lib/urlUtils";
 
 export default function Events() {
   const [events, setEvents] = useState<Event[]>([]);
@@ -276,30 +277,23 @@ export default function Events() {
 
                       {!isPassed && (
                         <div className="w-full sm:w-auto">
-                          {event.registration_link ? (
-                            <a
-                              href={event.registration_link}
-                              target="_blank"
-                              rel="noopener noreferrer"
+                          {event.registration_link && isValidUrl(event.registration_link) ? (
+                            <button
+                              onClick={handleLinkClick(event.registration_link)}
                               className={`w-full sm:w-auto inline-flex items-center justify-center bg-gradient-to-r ${getEventGradient(event.type)} text-white px-4 md:px-6 py-2 md:py-3 rounded-xl font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-105 text-sm md:text-base group/btn`}
-                              onClick={(e) => {
-                                console.log(
-                                  "Registration link clicked:",
-                                  event.registration_link,
-                                );
-                              }}
                             >
                               <span>Register Now</span>
                               <ExternalLink
                                 size={14}
                                 className="ml-2 group-hover/btn:translate-x-1 transition-transform duration-300"
                               />
-                            </a>
+                            </button>
                           ) : (
                             <button
-                              className={`w-full sm:w-auto bg-gradient-to-r ${getEventGradient(event.type)} text-white px-4 md:px-6 py-2 md:py-3 rounded-xl font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-105 text-sm md:text-base`}
+                              className={`w-full sm:w-auto bg-gradient-to-r ${getEventGradient(event.type)} text-white px-4 md:px-6 py-2 md:py-3 rounded-xl font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-105 text-sm md:text-base opacity-50 cursor-not-allowed`}
+                              disabled
                             >
-                              Register Now
+                              Registration Coming Soon
                             </button>
                           )}
                         </div>
