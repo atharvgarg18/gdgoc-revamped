@@ -62,6 +62,7 @@ export interface TeamMember {
   id: string;
   name: string;
   role: string;
+  profile_type: "Faculty Advisor" | "Mentors" | "Leads";
   image: string;
   bio: string;
   linkedin?: string;
