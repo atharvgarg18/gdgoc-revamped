@@ -379,7 +379,7 @@ const withErrorHandling = async <T>(
 };
 
 // Admin authentication with enhanced security
-const ADMIN_PASSWORD = "gdgoc2024admin";
+const ADMIN_PASSWORD = "GDGoC_IET_2024_SecureAdmin#789";
 
 export const checkAdminPassword = (password: string): boolean => {
   return password === ADMIN_PASSWORD;
