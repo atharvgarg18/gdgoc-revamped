@@ -71,16 +71,34 @@ export default function Events() {
   };
 
   return (
-    <section ref={sectionRef} className="relative py-16 md:py-20 bg-gradient-to-br from-white via-red-50/20 to-yellow-50/30 overflow-hidden">
+    <section
+      ref={sectionRef}
+      className="relative py-16 md:py-20 bg-gradient-to-br from-white via-red-50/20 to-yellow-50/30 overflow-hidden"
+    >
       {/* Floating Background Elements */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-16 right-16 w-10 h-10 bg-gradient-to-r from-gdsc-red to-gdsc-yellow rounded-full opacity-20 animate-float" style={{ animationDelay: "0s" }}></div>
-        <div className="absolute top-1/3 left-12 w-6 h-6 bg-gdsc-blue rotate-45 opacity-25 animate-float" style={{ animationDelay: "1.5s" }}></div>
-        <div className="absolute bottom-32 right-20 w-8 h-8 bg-gradient-to-r from-gdsc-green to-gdsc-blue rounded-full opacity-30 animate-float" style={{ animationDelay: "2s" }}></div>
-        <div className="absolute bottom-16 left-16 w-4 h-4 bg-gdsc-yellow rounded-full opacity-35 animate-float" style={{ animationDelay: "0.8s" }}></div>
-        <div className="absolute top-1/2 right-1/4 w-12 h-12 bg-gradient-to-r from-gdsc-red to-gdsc-green rounded-full opacity-15 animate-float" style={{ animationDelay: "3s" }}></div>
+        <div
+          className="absolute top-16 right-16 w-10 h-10 bg-gradient-to-r from-gdsc-red to-gdsc-yellow rounded-full opacity-20 animate-float"
+          style={{ animationDelay: "0s" }}
+        ></div>
+        <div
+          className="absolute top-1/3 left-12 w-6 h-6 bg-gdsc-blue rotate-45 opacity-25 animate-float"
+          style={{ animationDelay: "1.5s" }}
+        ></div>
+        <div
+          className="absolute bottom-32 right-20 w-8 h-8 bg-gradient-to-r from-gdsc-green to-gdsc-blue rounded-full opacity-30 animate-float"
+          style={{ animationDelay: "2s" }}
+        ></div>
+        <div
+          className="absolute bottom-16 left-16 w-4 h-4 bg-gdsc-yellow rounded-full opacity-35 animate-float"
+          style={{ animationDelay: "0.8s" }}
+        ></div>
+        <div
+          className="absolute top-1/2 right-1/4 w-12 h-12 bg-gradient-to-r from-gdsc-red to-gdsc-green rounded-full opacity-15 animate-float"
+          style={{ animationDelay: "3s" }}
+        ></div>
       </div>
-      
+
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
@@ -89,7 +107,10 @@ export default function Events() {
               Upcoming Events
             </h2>
             <div className="absolute -top-2 -left-2 w-5 h-5 bg-gdsc-blue rounded-full animate-pulse opacity-60"></div>
-            <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-gdsc-green rotate-45 animate-pulse opacity-50" style={{ animationDelay: "0.5s" }}></div>
+            <div
+              className="absolute -bottom-1 -right-1 w-3 h-3 bg-gdsc-green rotate-45 animate-pulse opacity-50"
+              style={{ animationDelay: "0.5s" }}
+            ></div>
           </div>
           <p className="text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed">
             Join us for exciting workshops, seminars, and hands-on sessions
@@ -103,7 +124,13 @@ export default function Events() {
           <div className="text-center py-12 backdrop-blur-lg bg-white/60 rounded-2xl border border-white/30 shadow-xl">
             <div className="relative inline-block">
               <div className="animate-spin rounded-full h-12 w-12 border-4 border-gdsc-blue/30 border-t-gdsc-blue mx-auto mb-4"></div>
-              <div className="absolute inset-0 rounded-full h-12 w-12 border-4 border-transparent border-t-gdsc-red animate-spin" style={{ animationDirection: "reverse", animationDuration: "0.8s" }}></div>
+              <div
+                className="absolute inset-0 rounded-full h-12 w-12 border-4 border-transparent border-t-gdsc-red animate-spin"
+                style={{
+                  animationDirection: "reverse",
+                  animationDuration: "0.8s",
+                }}
+              ></div>
             </div>
             <p className="text-gray-700 font-medium">Loading events...</p>
           </div>
@@ -112,14 +139,28 @@ export default function Events() {
           <div className="relative text-center py-20 backdrop-blur-lg bg-gradient-to-br from-white/70 to-white/50 border border-white/30 shadow-2xl rounded-3xl overflow-hidden">
             {/* Animated background elements */}
             <div className="absolute inset-0 opacity-30">
-              <div className="absolute top-8 left-8 w-3 h-3 bg-gdsc-blue rounded-full animate-ping" style={{ animationDelay: "0s" }}></div>
-              <div className="absolute top-12 right-12 w-2 h-2 bg-gdsc-red rounded-full animate-ping" style={{ animationDelay: "1s" }}></div>
-              <div className="absolute bottom-12 left-16 w-2 h-2 bg-gdsc-yellow rounded-full animate-ping" style={{ animationDelay: "2s" }}></div>
-              <div className="absolute bottom-8 right-8 w-3 h-3 bg-gdsc-green rounded-full animate-ping" style={{ animationDelay: "0.5s" }}></div>
+              <div
+                className="absolute top-8 left-8 w-3 h-3 bg-gdsc-blue rounded-full animate-ping"
+                style={{ animationDelay: "0s" }}
+              ></div>
+              <div
+                className="absolute top-12 right-12 w-2 h-2 bg-gdsc-red rounded-full animate-ping"
+                style={{ animationDelay: "1s" }}
+              ></div>
+              <div
+                className="absolute bottom-12 left-16 w-2 h-2 bg-gdsc-yellow rounded-full animate-ping"
+                style={{ animationDelay: "2s" }}
+              ></div>
+              <div
+                className="absolute bottom-8 right-8 w-3 h-3 bg-gdsc-green rounded-full animate-ping"
+                style={{ animationDelay: "0.5s" }}
+              ></div>
             </div>
-            
+
             <div className="relative z-10">
-              <div className="text-8xl mb-8 transform hover:scale-110 transition-transform duration-300">📅</div>
+              <div className="text-8xl mb-8 transform hover:scale-110 transition-transform duration-300">
+                📅
+              </div>
               <h3 className="text-3xl font-bold bg-gradient-to-r from-gdsc-blue to-gdsc-green bg-clip-text text-transparent mb-6">
                 Exciting Events Coming Soon!
               </h3>
@@ -145,16 +186,16 @@ export default function Events() {
               <div
                 key={event.id}
                 className={`relative group p-8 rounded-2xl backdrop-blur-lg bg-white/70 border border-white/30 shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-500 overflow-hidden ${
-                  isVisible ? 'animate-fade-in-up' : 'opacity-0'
+                  isVisible ? "animate-fade-in-up" : "opacity-0"
                 }`}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 {/* Gradient overlay on hover */}
                 <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                
+
                 {/* Floating decoration */}
                 <div className="absolute top-4 right-4 w-2 h-2 bg-gdsc-red rounded-full opacity-40 group-hover:animate-bounce"></div>
-                
+
                 <div className="relative z-10">
                   {/* Event Header */}
                   <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-6 gap-3">
@@ -162,7 +203,9 @@ export default function Events() {
                       <div
                         className={`inline-flex items-center px-4 py-2 rounded-xl text-sm font-semibold border-2 ${getEventTypeColor(event.type)} transform group-hover:scale-105 transition-transform duration-300 shadow-lg`}
                       >
-                        <span className="mr-2 text-lg">{getEventTypeIcon(event.type)}</span>
+                        <span className="mr-2 text-lg">
+                          {getEventTypeIcon(event.type)}
+                        </span>
                         {event.type}
                       </div>
                     </div>
@@ -170,7 +213,9 @@ export default function Events() {
                       <div className="font-bold text-gray-900 text-lg">
                         {event.date}
                       </div>
-                      <div className="text-sm text-gray-600 font-medium">{event.time}</div>
+                      <div className="text-sm text-gray-600 font-medium">
+                        {event.time}
+                      </div>
                     </div>
                   </div>
 
@@ -231,12 +276,24 @@ export default function Events() {
         <div className="relative group p-8 md:p-12 rounded-3xl backdrop-blur-lg bg-gradient-to-br from-white/70 to-white/50 border border-white/30 shadow-2xl text-center overflow-hidden">
           {/* Animated background pattern */}
           <div className="absolute inset-0 opacity-30">
-            <div className="absolute top-6 left-6 w-3 h-3 bg-gdsc-red rounded-full animate-ping" style={{ animationDelay: "0s" }}></div>
-            <div className="absolute top-12 right-8 w-2 h-2 bg-gdsc-yellow rounded-full animate-ping" style={{ animationDelay: "1s" }}></div>
-            <div className="absolute bottom-8 left-12 w-2 h-2 bg-gdsc-green rounded-full animate-ping" style={{ animationDelay: "2s" }}></div>
-            <div className="absolute bottom-6 right-6 w-3 h-3 bg-gdsc-blue rounded-full animate-ping" style={{ animationDelay: "0.5s" }}></div>
+            <div
+              className="absolute top-6 left-6 w-3 h-3 bg-gdsc-red rounded-full animate-ping"
+              style={{ animationDelay: "0s" }}
+            ></div>
+            <div
+              className="absolute top-12 right-8 w-2 h-2 bg-gdsc-yellow rounded-full animate-ping"
+              style={{ animationDelay: "1s" }}
+            ></div>
+            <div
+              className="absolute bottom-8 left-12 w-2 h-2 bg-gdsc-green rounded-full animate-ping"
+              style={{ animationDelay: "2s" }}
+            ></div>
+            <div
+              className="absolute bottom-6 right-6 w-3 h-3 bg-gdsc-blue rounded-full animate-ping"
+              style={{ animationDelay: "0.5s" }}
+            ></div>
           </div>
-          
+
           <div className="relative z-10">
             <h3 className="text-2xl md:text-4xl font-bold bg-gradient-to-r from-gdsc-red via-gdsc-yellow to-gdsc-green bg-clip-text text-transparent mb-6">
               Don't Miss Out on Our Events!
