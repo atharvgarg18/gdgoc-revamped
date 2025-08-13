@@ -11,7 +11,7 @@ export default function About() {
           setIsVisible(true);
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.2 },
     );
 
     if (sectionRef.current) {
@@ -31,39 +31,83 @@ export default function About() {
   const features = [
     {
       icon: (
-        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+        <svg
+          className="w-8 h-8"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M13 10V3L4 14h7v7l9-11h-7z"
+          />
         </svg>
       ),
       title: "Innovation First",
-      description: "We embrace cutting-edge technologies and innovative solutions to solve real-world problems.",
+      description:
+        "We embrace cutting-edge technologies and innovative solutions to solve real-world problems.",
     },
     {
       icon: (
-        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" />
+        <svg
+          className="w-8 h-8"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"
+          />
         </svg>
       ),
       title: "Community Driven",
-      description: "Building a strong network of developers who support and learn from each other.",
+      description:
+        "Building a strong network of developers who support and learn from each other.",
     },
     {
       icon: (
-        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+        <svg
+          className="w-8 h-8"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+          />
         </svg>
       ),
       title: "Skill Development",
-      description: "Providing hands-on workshops and real-world projects to enhance technical skills.",
+      description:
+        "Providing hands-on workshops and real-world projects to enhance technical skills.",
     },
     {
       icon: (
-        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+        <svg
+          className="w-8 h-8"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
+          />
         </svg>
       ),
       title: "Excellence",
-      description: "Striving for excellence in everything we do, from events to projects to community building.",
+      description:
+        "Striving for excellence in everything we do, from events to projects to community building.",
     },
   ];
 
@@ -76,8 +120,9 @@ export default function About() {
             About GDGoC IET DAVV
           </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Google Developer Groups on Campus at IET DAVV is a vibrant community of passionate students 
-            building the future through technology, innovation, and collaborative learning.
+            Google Developer Groups on Campus at IET DAVV is a vibrant community
+            of passionate students building the future through technology,
+            innovation, and collaborative learning.
           </p>
         </div>
 
@@ -88,7 +133,9 @@ export default function About() {
               <div className="text-3xl md:text-4xl font-bold text-gdsc-blue mb-2">
                 {stat.number}
               </div>
-              <div className="text-gray-600 text-sm md:text-base">{stat.label}</div>
+              <div className="text-gray-600 text-sm md:text-base">
+                {stat.label}
+              </div>
             </div>
           ))}
         </div>
@@ -119,9 +166,10 @@ export default function About() {
             Our Mission
           </h3>
           <p className="text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed mb-8">
-            To create an inclusive environment where students can learn, build, and grow together. 
-            We believe in the power of collaboration, continuous learning, and using technology to make a 
-            positive impact in our community and beyond.
+            To create an inclusive environment where students can learn, build,
+            and grow together. We believe in the power of collaboration,
+            continuous learning, and using technology to make a positive impact
+            in our community and beyond.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
@@ -147,7 +195,13 @@ export default function About() {
             Our Core Values
           </h3>
           <div className="flex flex-wrap justify-center gap-3">
-            {["Innovation", "Collaboration", "Learning", "Inclusivity", "Excellence"].map((value, index) => (
+            {[
+              "Innovation",
+              "Collaboration",
+              "Learning",
+              "Inclusivity",
+              "Excellence",
+            ].map((value, index) => (
               <span
                 key={index}
                 className="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-medium border border-gray-200"
