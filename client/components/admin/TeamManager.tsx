@@ -5,7 +5,7 @@ import {
   updateTeamMember,
   deleteTeamMember,
   TeamMember,
-} from "@/lib/supabase";
+} from "@/lib/firebase";
 
 export default function TeamManager() {
   const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
@@ -16,6 +16,7 @@ export default function TeamManager() {
   const [formData, setFormData] = useState({
     name: "",
     role: "",
+    profile_type: "Leads" as "Faculty Advisor" | "Mentors" | "Leads",
     image: "",
     bio: "",
     linkedin: "",
