@@ -29,7 +29,6 @@ export default function Events() {
   const loadEvents = async () => {
     try {
       const result = await getEvents();
-      console.log("Events result:", result); // Debug log
 
       if (result.success || result.data) {
         // Use data whether from database or fallback
@@ -37,15 +36,14 @@ export default function Events() {
         setEvents(eventsData.slice(0, 4)); // Show only first 4 events on homepage
 
         if (result.fallback) {
-          console.info("Using fallback events data");
+          console.info("Using local events data - database not connected");
         }
       } else {
-        console.error("Get Events failed:", result.error);
-        // Set empty array if no fallback data available
+        // If no fallback data is available, set empty array
         setEvents([]);
       }
     } catch (error) {
-      console.error("Error loading events:", error);
+      console.warn("Error loading events, using fallback data");
       setEvents([]); // Fallback to empty array
     } finally {
       setIsLoading(false);
