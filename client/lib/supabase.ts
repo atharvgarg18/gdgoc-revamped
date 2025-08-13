@@ -127,8 +127,7 @@ const mockEvents: Event[] = [
     color: "gdsc-blue",
     attendees: 85,
     image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800",
-    registration_link:
-      "https://docs.google.com/forms/d/e/1FAIpQLSeq9VLdS9fVQ1R6KjVuOcM7QQ7Q1Q8Q1Q8Q1Q8Q1Q8Q1Q8Q1Q/viewform",
+    registration_link: "https://forms.gle/ml-workshop-2024",
     status: getEventStatus("Dec 15, 2024"),
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
