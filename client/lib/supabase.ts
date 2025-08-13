@@ -102,6 +102,18 @@ export interface Project {
 }
 
 // Enhanced mock data for development and fallback
+// Utility function to check if event is completed
+const isEventCompleted = (eventDate: string): boolean => {
+  const today = new Date();
+  const eventDateObj = new Date(eventDate);
+  return eventDateObj < today;
+};
+
+// Utility function to determine event status
+const getEventStatus = (eventDate: string): "upcoming" | "completed" => {
+  return isEventCompleted(eventDate) ? "completed" : "upcoming";
+};
+
 const mockEvents: Event[] = [
   {
     id: "1",
@@ -115,6 +127,7 @@ const mockEvents: Event[] = [
     attendees: 85,
     image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800",
     registration_link: "https://forms.google.com/ml-workshop",
+    status: getEventStatus("Dec 15, 2024"),
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
   },
