@@ -6,6 +6,7 @@ import {
   deleteTeamMember,
   TeamMember,
 } from "@/lib/supabase";
+import { validateAndFormatUrl } from "@/lib/urlUtils";
 
 export default function TeamManager() {
   const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
@@ -44,8 +45,30 @@ export default function TeamManager() {
     setIsSubmitting(true);
 
     try {
+      // Validate and format URLs
+      const processedData = {
+        ...formData,
+        linkedin: formData.linkedin ? validateAndFormatUrl(formData.linkedin) || '' : '',
+        github: formData.github ? validateAndFormatUrl(formData.github) || '' : '',
+        twitter: formData.twitter ? validateAndFormatUrl(formData.twitter) || '' : '',
+        instagram: formData.instagram ? validateAndFormatUrl(formData.instagram) || '' : '',
+      };
+
+      // Check for invalid URLs
+      const invalidUrls = [];
+      if (formData.linkedin && !processedData.linkedin) invalidUrls.push('LinkedIn');
+      if (formData.github && !processedData.github) invalidUrls.push('GitHub');
+      if (formData.twitter && !processedData.twitter) invalidUrls.push('Twitter');
+      if (formData.instagram && !processedData.instagram) invalidUrls.push('Instagram');
+
+      if (invalidUrls.length > 0) {
+        alert(`Please enter valid URLs for: ${invalidUrls.join(', ')} (e.g., https://linkedin.com/in/username)`);
+        setIsSubmitting(false);
+        return;
+      }
+
       if (editingMember) {
-        const result = await updateTeamMember(editingMember.id, formData);
+        const result = await updateTeamMember(editingMember.id, processedData);
         if (result.success) {
           await loadTeamMembers();
           resetForm();
@@ -53,7 +76,7 @@ export default function TeamManager() {
           alert(`Error updating team member: ${result.error}`);
         }
       } else {
-        const result = await createTeamMember(formData);
+        const result = await createTeamMember(processedData);
         if (result.success) {
           await loadTeamMembers();
           resetForm();
@@ -375,6 +398,9 @@ export default function TeamManager() {
                           setFormData({ ...formData, linkedin: e.target.value })
                         }
                       />
+                      <p className="text-xs text-gray-500 mt-1">
+                        Full URL including https://
+                      </p>
                     </div>
                     <div>
                       <label className="block text-xs text-gray-600 mb-1">
@@ -389,6 +415,9 @@ export default function TeamManager() {
                           setFormData({ ...formData, github: e.target.value })
                         }
                       />
+                      <p className="text-xs text-gray-500 mt-1">
+                        Full URL including https://
+                      </p>
                     </div>
                     <div>
                       <label className="block text-xs text-gray-600 mb-1">
@@ -403,6 +432,9 @@ export default function TeamManager() {
                           setFormData({ ...formData, twitter: e.target.value })
                         }
                       />
+                      <p className="text-xs text-gray-500 mt-1">
+                        Full URL including https://
+                      </p>
                     </div>
                     <div>
                       <label className="block text-xs text-gray-600 mb-1">
@@ -420,6 +452,9 @@ export default function TeamManager() {
                           })
                         }
                       />
+                      <p className="text-xs text-gray-500 mt-1">
+                        Full URL including https://
+                      </p>
                     </div>
                   </div>
                 </div>
