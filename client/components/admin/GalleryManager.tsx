@@ -51,12 +51,28 @@ export default function GalleryManager() {
           alert(`Error updating gallery item: ${result.error}`);
         }
       } else {
-        const result = await createGalleryItem(formData);
-        if (result.success) {
+        if (useMultipleImages) {
+          // Create multiple gallery items for each image
+          const validImages = multipleImages.filter(img => img.trim() !== "");
+          for (let i = 0; i < validImages.length; i++) {
+            const itemData = {
+              ...formData,
+              image: validImages[i],
+              title: validImages.length > 1 ? `${formData.title} (${i + 1})` : formData.title,
+              display_order: formData.display_order + i,
+            };
+            await createGalleryItem(itemData);
+          }
           await loadGalleryItems();
           resetForm();
         } else {
-          alert(`Error creating gallery item: ${result.error}`);
+          const result = await createGalleryItem(formData);
+          if (result.success) {
+            await loadGalleryItems();
+            resetForm();
+          } else {
+            alert(`Error creating gallery item: ${result.error}`);
+          }
         }
       }
     } catch (error) {
