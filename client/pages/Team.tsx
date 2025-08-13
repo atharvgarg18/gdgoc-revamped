@@ -170,15 +170,15 @@ export default function Team() {
                 style={{ animationDelay: "0.6s" }}
               >
                 <button
-                  onClick={() =>
-                    document
-                      .getElementById("team-section")
-                      ?.scrollIntoView({ behavior: "smooth" })
-                  }
-                  className="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-8 py-4 rounded-full text-lg font-medium hover:shadow-2xl transition-all duration-300 transform hover:scale-105 animate-pulse"
-                >
-                  Meet the Team
-                </button>
+              onClick={() =>
+                document
+                  .getElementById("team-section")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
+              className="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-8 py-4 rounded-full text-lg font-medium hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
+            >
+              Meet the Team
+            </button>
               </div>
             </div>
           </div>
