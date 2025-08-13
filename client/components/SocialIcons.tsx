@@ -38,6 +38,9 @@ export default function SocialIcons({
           rel="noopener noreferrer"
           className={`${baseClasses} bg-[#0077b5] text-white hover:bg-[#005885]`}
           aria-label="LinkedIn"
+          onClick={(e) => {
+            console.log("LinkedIn link clicked:", links.linkedin);
+          }}
         >
           <svg
             className={iconSizes[size]}
