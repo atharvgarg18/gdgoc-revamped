@@ -415,38 +415,32 @@ export default function ProjectsPage() {
 
                       {/* Actions */}
                       <div className="flex gap-3">
-                        {/* Always show Code button */}
-                        {project.github_url &&
-                        isValidUrl(project.github_url) ? (
-                          <button
-                            onClick={handleLinkClick(project.github_url)}
-                            className="flex-1 bg-gray-900 text-white px-4 py-2.5 rounded-lg text-center text-sm font-medium hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 group/btn"
-                          >
-                            <span className="flex items-center justify-center space-x-2">
-                              <span className="group-hover/btn:rotate-12 transition-transform duration-300">
-                                ⚡
-                              </span>
-                              <span>Code</span>
+                        {/* Always show Code button with proper handlers */}
+                        <button
+                          onClick={project.github_url && isValidUrl(project.github_url) ? handleLinkClick(project.github_url) : undefined}
+                          disabled={!project.github_url || !isValidUrl(project.github_url)}
+                          className={`flex-1 px-4 py-2.5 rounded-lg text-center text-sm font-medium transition-all duration-300 transform hover:scale-105 group/btn ${
+                            project.github_url && isValidUrl(project.github_url)
+                              ? "bg-gray-900 text-white hover:bg-gray-800 cursor-pointer"
+                              : "bg-gray-400 text-white opacity-50 cursor-not-allowed"
+                          }`}
+                        >
+                          <span className="flex items-center justify-center space-x-2">
+                            <span className={project.github_url && isValidUrl(project.github_url) ? "group-hover/btn:rotate-12 transition-transform duration-300" : ""}>
+                              ⚡
                             </span>
-                          </button>
-                        ) : (
-                          <button
-                            disabled
-                            className="flex-1 bg-gray-600 text-white px-4 py-2.5 rounded-lg text-center text-sm font-medium opacity-50 cursor-not-allowed"
-                          >
-                            <span className="flex items-center justify-center space-x-2">
-                              <span>⚡</span>
-                              <span>Code Soon</span>
-                            </span>
-                          </button>
-                        )}
+                            <span>{project.github_url && isValidUrl(project.github_url) ? "Code" : "Code Soon"}</span>
+                          </span>
+                        </button>
+
+                        {/* Live button */}
                         {project.live_url && isValidUrl(project.live_url) && (
                           <button
                             onClick={handleLinkClick(project.live_url)}
-                            className="flex-1 bg-gradient-to-r from-blue-600 to-green-600 text-white px-4 py-2.5 rounded-lg text-center text-sm font-medium hover:shadow-lg transition-all duration-300 transform hover:scale-105"
+                            className="flex-1 bg-gradient-to-r from-blue-600 to-green-600 text-white px-4 py-2.5 rounded-lg text-center text-sm font-medium hover:shadow-lg transition-all duration-300 transform hover:scale-105 group/btn"
                           >
                             <span className="flex items-center justify-center space-x-2">
-                              <span>🚀</span>
+                              <span className="group-hover/btn:scale-110 transition-transform duration-300">🚀</span>
                               <span>Live</span>
                             </span>
                           </button>
