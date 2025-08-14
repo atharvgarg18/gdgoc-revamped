@@ -309,7 +309,7 @@ export default function Team() {
                       </div>
 
                       {/* Members Grid */}
-                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                      <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
                         {members.map((member, index) => {
                           const globalIndex = teamMembers.findIndex((m) => m.id === member.id);
                           return (
