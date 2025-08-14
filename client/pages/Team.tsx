@@ -87,7 +87,7 @@ export default function Team() {
       case "Faculty Advisor":
         return (
           <svg
-            className="w-8 h-8 text-indigo-600"
+            className="w-10 h-10 text-indigo-600"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -103,7 +103,7 @@ export default function Team() {
       case "Lead":
         return (
           <svg
-            className="w-8 h-8 text-purple-600"
+            className="w-10 h-10 text-purple-600"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -118,7 +118,7 @@ export default function Team() {
       case "Co-Lead":
         return (
           <svg
-            className="w-8 h-8 text-pink-600"
+            className="w-10 h-10 text-pink-600"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -135,7 +135,7 @@ export default function Team() {
       case "Core Member":
         return (
           <svg
-            className="w-8 h-8 text-gray-700"
+            className="w-10 h-10 text-gray-700"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -152,7 +152,7 @@ export default function Team() {
       default:
         return (
           <svg
-            className="w-8 h-8 text-teal-600"
+            className="w-10 h-10 text-teal-600"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -300,41 +300,41 @@ export default function Team() {
                       {/* Profile Type Header */}
                       <div className="text-center">
                         <div className="inline-flex items-center space-x-3 mb-4">
-                          <span className="text-3xl">{getProfileTypeIcon(profileType)}</span>
-                          <h2 className={`text-2xl md:text-3xl font-bold bg-gradient-to-r ${getProfileTypeColor(profileType)} bg-clip-text text-transparent`}>
+                          <span className="text-4xl">{getProfileTypeIcon(profileType)}</span>
+                          <h2 className={`text-3xl md:text-4xl font-bold bg-gradient-to-r ${getProfileTypeColor(profileType)} bg-clip-text text-transparent`}>
                             {profileType}
                           </h2>
                         </div>
-                        <div className={`w-20 h-1 bg-gradient-to-r ${getProfileTypeColor(profileType)} mx-auto rounded-full`} />
+                        <div className={`w-24 h-1 bg-gradient-to-r ${getProfileTypeColor(profileType)} mx-auto rounded-full`} />
                       </div>
 
-                      {/* Members Grid - Updated for smaller cards */}
-                      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 md:gap-6">
+                      {/* Members Grid */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {members.map((member, index) => {
                           const globalIndex = teamMembers.findIndex((m) => m.id === member.id);
                           return (
                             <div
                               key={member.id}
                               data-index={globalIndex}
-                              className={`team-member-card relative group bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105 overflow-hidden ${visibleCards.has(globalIndex) ? "animate-fade-in-up opacity-100" : "opacity-0"}`}
+                              className={`team-member-card relative group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105 overflow-hidden ${visibleCards.has(globalIndex) ? "animate-fade-in-up opacity-100" : "opacity-0"}`}
                               style={{ animationDelay: `${index * 0.08}s` }}
                             >
-                              {/* Member Image - Smaller aspect ratio */}
+                              {/* Member Image */}
                               <div className="aspect-square overflow-hidden">
                                 <img src={member.image} alt={member.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" />
                               </div>
 
-                              <div className="p-3">
-                                {/* Member Info - Condensed */}
-                                <div className="text-center mb-3">
-                                  <h3 className="text-sm font-bold text-gray-900 mb-1 group-hover:text-purple-600 transition-colors duration-300 line-clamp-1">{member.name}</h3>
-                                  <div className={`inline-block px-2 py-1 rounded-full text-xs font-medium text-white bg-gradient-to-r ${getRoleColor(member.role)} mb-2`}>
+                              <div className="p-6 pt-4">
+                                {/* Member Info */}
+                                <div className="text-center mb-4">
+                                  <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors duration-300">{member.name}</h3>
+                                  <div className={`inline-block px-3 py-1 rounded-full text-sm font-medium text-white bg-gradient-to-r ${getRoleColor(member.role)} mb-2`}>
                                     {member.role}
                                   </div>
-                                  <p className="text-gray-600 text-xs leading-relaxed line-clamp-2">{member.bio}</p>
+                                  <p className="text-gray-600 text-sm leading-relaxed line-clamp-3">{member.bio}</p>
                                 </div>
 
-                                {/* Social Links - Smaller */}
+                                {/* Social Links */}
                                 {(member.linkedin || member.github || member.twitter || member.instagram) && (
                                   <div className="flex justify-center">
                                     <SocialIcons
@@ -344,17 +344,17 @@ export default function Team() {
                                         twitter: member.twitter,
                                         instagram: member.instagram,
                                       }}
-                                      size="xs"
+                                      size="sm"
                                     />
                                   </div>
                                 )}
                               </div>
 
                               {/* Hover Effect Overlay - non-interactive */}
-                              <div className={`absolute inset-0 bg-gradient-to-r ${getRoleColor(member.role)} opacity-0 group-hover:opacity-5 transition-opacity duration-300 rounded-xl pointer-events-none`} aria-hidden="true" />
+                              <div className={`absolute inset-0 bg-gradient-to-r ${getRoleColor(member.role)} opacity-0 group-hover:opacity-5 transition-opacity duration-300 rounded-2xl pointer-events-none`} aria-hidden="true" />
 
-                              {/* Floating Decorative Element - Smaller */}
-                              <div className={`absolute -bottom-1 -right-1 w-4 h-4 bg-gradient-to-r ${getProfileTypeColor(profileType)} rounded-full animate-float opacity-60 shadow-lg`} style={{ animationDelay: `${index * 0.5}s` }} />
+                              {/* Floating Decorative Element */}
+                              <div className={`absolute -bottom-2 -right-2 w-6 h-6 bg-gradient-to-r ${getProfileTypeColor(profileType)} rounded-full animate-float opacity-60 shadow-lg`} style={{ animationDelay: `${index * 0.5}s` }} />
                             </div>
                           );
                         })}
