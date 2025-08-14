@@ -22,7 +22,7 @@ export default function Team() {
           setIsVisible(true);
         }
       },
-      { threshold: 0.2 },
+      { threshold: 0.2 }
     );
 
     if (sectionRef.current) {
@@ -37,19 +37,22 @@ export default function Team() {
       const result = await getTeamMembers();
       if (result.success || result.data) {
         const members = result.data || [];
+        // optional normalization can go here
         setTeamMembers(members);
         console.log("Loaded team members:", members);
       }
     } catch (error) {
-      console.warn("Error loading team members");
+      console.warn("Error loading team members", error);
     } finally {
       setIsLoading(false);
     }
   };
 
   const getRoleColor = (role: string) => {
-    const colors = {
+    const colors: Record<string, string> = {
       Lead: "from-purple-600 to-blue-600",
+      "Co-Lead": "from-purple-500 to-pink-500",
+      "Core Member": "from-gray-600 to-gray-800",
       "Technical Lead": "from-blue-600 to-green-600",
       "Design Lead": "from-green-600 to-yellow-600",
       "Marketing Lead": "from-yellow-600 to-red-600",
@@ -57,43 +60,136 @@ export default function Team() {
       "Senior Mentor": "from-teal-600 to-blue-600",
       Mentor: "from-emerald-600 to-teal-600",
     };
-    return colors[role as keyof typeof colors] || "from-gray-600 to-gray-800";
+    return colors[role] || "from-gray-600 to-gray-800";
   };
 
-  const getProfileTypeIcon = (profileType: string) => {
-    const icons = {
-      "Faculty Advisor": "👨‍🏫",
-      Mentors: "��‍💼",
-      Leads: "⭐",
-    };
-    return icons[profileType as keyof typeof icons] || "👤";
+  // Icons for profile types — note aria-hidden as boolean
+  const getProfileTypeIcon = (profileType: string): JSX.Element => {
+    switch (profileType) {
+      case "Faculty Advisor":
+        return (
+          <svg
+            className="w-10 h-10 text-indigo-600"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            role="img"
+            aria-hidden={true}
+          >
+            <title>Faculty Advisor</title>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 2L1 7l11 5 9-4.09V17a2 2 0 01-2 2H6" />
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 22V12" />
+          </svg>
+        );
+
+      case "Lead":
+        return (
+          <svg
+            className="w-10 h-10 text-purple-600"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            role="img"
+            aria-hidden={true}
+          >
+            <title>Lead</title>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2z" />
+          </svg>
+        );
+
+      case "Co-Lead":
+        return (
+          <svg
+            className="w-10 h-10 text-pink-600"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            role="img"
+            aria-hidden={true}
+          >
+            <title>Co-Lead</title>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M16 11c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3z" />
+            <path strokeLinecap="round" strokeLinejoin="round" d="M6 11c1.657 0 3-1.343 3-3S7.657 5 6 5 3 6.343 3 8s1.343 3 3 3z" />
+            <path strokeLinecap="round" strokeLinejoin="round" d="M3 20v-1a4 4 0 014-4h6a4 4 0 014 4v1" />
+          </svg>
+        );
+
+      case "Core Member":
+        return (
+          <svg
+            className="w-10 h-10 text-gray-700"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            role="img"
+            aria-hidden={true}
+          >
+            <title>Core Member</title>
+            <circle cx="12" cy="8" r="3" strokeLinecap="round" strokeLinejoin="round" />
+            <path strokeLinecap="round" strokeLinejoin="round" d="M5.5 20a6.5 6.5 0 0113 0" />
+          </svg>
+        );
+
+      case "Mentor":
+      default:
+        return (
+          <svg
+            className="w-10 h-10 text-teal-600"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            role="img"
+            aria-hidden={true}
+          >
+            <title>Mentor</title>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 12a4 4 0 100-8 4 4 0 000 8z" />
+            <path strokeLinecap="round" strokeLinejoin="round" d="M6 20a6 6 0 0112 0" />
+          </svg>
+        );
+    }
   };
 
   const getProfileTypeColor = (profileType: string) => {
-    const colors = {
+    const colors: Record<string, string> = {
       "Faculty Advisor": "from-indigo-600 to-purple-600",
-      Mentors: "from-teal-600 to-blue-600",
-      Leads: "from-purple-600 to-pink-600",
+      Lead: "from-purple-600 to-pink-600",
+      "Co-Lead": "from-pink-500 to-purple-500",
+      "Core Member": "from-gray-400 to-gray-700",
+      Mentor: "from-teal-600 to-blue-600",
     };
-    return (
-      colors[profileType as keyof typeof colors] || "from-gray-600 to-gray-800"
-    );
+    return colors[profileType] || "from-gray-600 to-gray-800";
   };
 
-  // Group members by profile type with fallback
+  // Group members by profile type with fallback to "Core Member"
   const groupMembersByType = () => {
     const grouped: Record<string, TeamMember[]> = {
       "Faculty Advisor": [],
-      Mentors: [],
-      Leads: [],
+      Lead: [],
+      "Co-Lead": [],
+      "Core Member": [],
+      Mentor: [],
     };
 
     teamMembers.forEach((member) => {
-      const type = member.profile_type || "Leads";
+      const rawType = (member.profile_type || "").trim();
+      const type =
+        rawType === "Faculty Advisor" ||
+        rawType === "Lead" ||
+        rawType === "Co-Lead" ||
+        rawType === "Core Member" ||
+        rawType === "Mentor"
+          ? rawType
+          : "Core Member";
+
       if (grouped[type]) {
         grouped[type].push(member);
       } else {
-        grouped["Leads"].push(member);
+        grouped["Core Member"].push(member);
       }
     });
 
@@ -101,7 +197,7 @@ export default function Team() {
   };
 
   const groupedMembers = groupMembersByType();
-  const profileOrder = ["Faculty Advisor", "Mentors", "Leads"];
+  const profileOrder = ["Faculty Advisor", "Lead", "Co-Lead", "Core Member", "Mentor"];
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -135,7 +231,6 @@ export default function Team() {
           {/* Content */}
           <div className="relative z-10 text-center px-4 max-w-6xl mx-auto">
             <div className="animate-slide-up">
-              {/* Title */}
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6">
                 <span className="text-gray-900">Meet Our</span>{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-blue-500 to-green-600">
@@ -143,25 +238,19 @@ export default function Team() {
                 </span>
               </h1>
 
-              {/* Subtitle */}
               <p
                 className="text-lg sm:text-xl md:text-2xl text-gray-600 mb-8 max-w-4xl mx-auto leading-relaxed animate-slide-up"
                 style={{ animationDelay: "0.2s" }}
               >
-                Meet the passionate individuals behind GDGoC IET DAVV. Our
-                diverse team of student leaders, developers, and innovators work
-                together to build an amazing tech community.
+                Meet the passionate individuals behind GDGoC IET DAVV. Our diverse team of student leaders, developers, and innovators work together to build an amazing tech community.
               </p>
 
-              {/* Stats */}
               <div
                 className="flex flex-wrap justify-center gap-8 mb-8 animate-slide-up"
                 style={{ animationDelay: "0.4s" }}
               >
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-purple-600">
-                    {teamMembers.length}+
-                  </div>
+                  <div className="text-3xl font-bold text-purple-600">{teamMembers.length}+</div>
                   <div className="text-gray-600">Team Members</div>
                 </div>
                 <div className="text-center">
@@ -174,17 +263,9 @@ export default function Team() {
                 </div>
               </div>
 
-              {/* CTA Button */}
-              <div
-                className="animate-slide-up"
-                style={{ animationDelay: "0.6s" }}
-              >
+              <div className="animate-slide-up" style={{ animationDelay: "0.6s" }}>
                 <button
-                  onClick={() =>
-                    document
-                      .getElementById("team-section")
-                      ?.scrollIntoView({ behavior: "smooth" })
-                  }
+                  onClick={() => document.getElementById("team-section")?.scrollIntoView({ behavior: "smooth" })}
                   className="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-8 py-4 rounded-full text-lg font-medium hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
                 >
                   Meet the Team
@@ -197,11 +278,7 @@ export default function Team() {
           <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
             <div
               className="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center hover:border-purple-600 transition-colors cursor-pointer"
-              onClick={() =>
-                document
-                  .getElementById("team-section")
-                  ?.scrollIntoView({ behavior: "smooth" })
-              }
+              onClick={() => document.getElementById("team-section")?.scrollIntoView({ behavior: "smooth" })}
             >
               <div className="w-1 h-3 bg-gray-400 rounded-full mt-2 animate-pulse"></div>
             </div>
@@ -209,11 +286,7 @@ export default function Team() {
         </section>
 
         {/* Team Section */}
-        <section
-          ref={sectionRef}
-          id="team-section"
-          className="py-16 md:py-20 bg-white relative overflow-hidden"
-        >
+        <section ref={sectionRef} id="team-section" className="py-16 md:py-20 bg-white relative overflow-hidden">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             {isLoading ? (
               <div className="text-center py-12">
@@ -222,10 +295,7 @@ export default function Team() {
               </div>
             ) : teamMembers.length === 0 ? (
               <div className="text-center py-12">
-                <p className="text-gray-600">
-                  No team members found. Please check the admin panel to add
-                  team members.
-                </p>
+                <p className="text-gray-600">No team members found. Please check the admin panel to add team members.</p>
               </div>
             ) : (
               <div className="space-y-16">
@@ -238,18 +308,16 @@ export default function Team() {
                       {/* Profile Type Header */}
                       <div className="text-center">
                         <div className="inline-flex items-center space-x-3 mb-4">
-                          <span className="text-4xl">
-                            {getProfileTypeIcon(profileType)}
-                          </span>
+                          <span className="text-4xl">{getProfileTypeIcon(profileType)}</span>
                           <h2
-                            className={`text-3xl md:text-4xl font-bold bg-gradient-to-r ${getProfileTypeColor(profileType)} bg-clip-text text-transparent`}
+                            className={`text-3xl md:text-4xl font-bold bg-gradient-to-r ${getProfileTypeColor(
+                              profileType
+                            )} bg-clip-text text-transparent`}
                           >
                             {profileType}
                           </h2>
                         </div>
-                        <div
-                          className={`w-24 h-1 bg-gradient-to-r ${getProfileTypeColor(profileType)} mx-auto rounded-full`}
-                        ></div>
+                        <div className={`w-24 h-1 bg-gradient-to-r ${getProfileTypeColor(profileType)} mx-auto rounded-full`} />
                       </div>
 
                       {/* Members Grid */}
@@ -279,20 +347,17 @@ export default function Team() {
                                   {member.name}
                                 </h3>
                                 <div
-                                  className={`inline-block px-3 py-1 rounded-full text-sm font-medium text-white bg-gradient-to-r ${getRoleColor(member.role)} mb-2`}
+                                  className={`inline-block px-3 py-1 rounded-full text-sm font-medium text-white bg-gradient-to-r ${getRoleColor(
+                                    member.role
+                                  )} mb-2`}
                                 >
                                   {member.role}
                                 </div>
-                                <p className="text-gray-600 text-sm leading-relaxed line-clamp-3">
-                                  {member.bio}
-                                </p>
+                                <p className="text-gray-600 text-sm leading-relaxed line-clamp-3">{member.bio}</p>
                               </div>
 
                               {/* Social Links */}
-                              {(member.linkedin ||
-                                member.github ||
-                                member.twitter ||
-                                member.instagram) && (
+                              {(member.linkedin || member.github || member.twitter || member.instagram) && (
                                 <div className="flex justify-center">
                                   <SocialIcons
                                     links={{
@@ -307,16 +372,17 @@ export default function Team() {
                               )}
                             </div>
 
-                            {/* Hover Effect Overlay */}
+                            {/* Hover Effect Overlay - pointer-events-none so icons are clickable */}
                             <div
-                              className={`absolute inset-0 bg-gradient-to-r ${getRoleColor(member.role)} opacity-0 group-hover:opacity-5 transition-opacity duration-300 rounded-2xl`}
-                            ></div>
+                              className={`absolute inset-0 bg-gradient-to-r ${getRoleColor(member.role)} opacity-0 group-hover:opacity-5 transition-opacity duration-300 rounded-2xl pointer-events-none`}
+                              aria-hidden="true"
+                            />
 
                             {/* Floating Decorative Element */}
                             <div
                               className={`absolute -bottom-2 -right-2 w-6 h-6 bg-gradient-to-r ${getProfileTypeColor(profileType)} rounded-full animate-float opacity-60 shadow-lg`}
                               style={{ animationDelay: `${index * 0.5}s` }}
-                            ></div>
+                            />
                           </div>
                         ))}
                       </div>
@@ -332,9 +398,7 @@ export default function Team() {
                 Want to Join Our Team?
               </h3>
               <p className="text-gray-600 text-lg max-w-2xl mx-auto mb-6">
-                We're always looking for passionate individuals who want to make
-                a difference in the tech community. Join us and help build the
-                future!
+                We're always looking for passionate individuals who want to make a difference in the tech community. Join us and help build the future!
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
