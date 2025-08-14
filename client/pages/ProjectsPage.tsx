@@ -409,18 +409,28 @@ export default function ProjectsPage() {
 
                       {/* Actions */}
                       <div className="flex gap-3">
-                        {project.github_url &&
-                          isValidUrl(project.github_url) && (
-                            <button
-                              onClick={handleLinkClick(project.github_url)}
-                              className="flex-1 bg-gray-900 text-white px-4 py-2.5 rounded-lg text-center text-sm font-medium hover:bg-gray-800 transition-all duration-300 transform hover:scale-105"
-                            >
-                              <span className="flex items-center justify-center space-x-2">
-                                <span>⚡</span>
-                                <span>Code</span>
-                              </span>
-                            </button>
-                          )}
+                        {/* Always show Code button */}
+                        {project.github_url && isValidUrl(project.github_url) ? (
+                          <button
+                            onClick={handleLinkClick(project.github_url)}
+                            className="flex-1 bg-gray-900 text-white px-4 py-2.5 rounded-lg text-center text-sm font-medium hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 group/btn"
+                          >
+                            <span className="flex items-center justify-center space-x-2">
+                              <span className="group-hover/btn:rotate-12 transition-transform duration-300">⚡</span>
+                              <span>Code</span>
+                            </span>
+                          </button>
+                        ) : (
+                          <button
+                            disabled
+                            className="flex-1 bg-gray-600 text-white px-4 py-2.5 rounded-lg text-center text-sm font-medium opacity-50 cursor-not-allowed"
+                          >
+                            <span className="flex items-center justify-center space-x-2">
+                              <span>⚡</span>
+                              <span>Code Soon</span>
+                            </span>
+                          </button>
+                        )}
                         {project.live_url && isValidUrl(project.live_url) && (
                           <button
                             onClick={handleLinkClick(project.live_url)}
