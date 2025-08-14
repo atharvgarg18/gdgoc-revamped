@@ -376,12 +376,18 @@ const withErrorHandling = async <T>(
   operation: () => Promise<T>,
   fallbackData?: any,
   operationName?: string,
-): Promise<{ success: boolean; data?: T; error?: string }> => {
+): Promise<{ success: boolean; data?: T; error?: string; fallback?: boolean }> => {
   try {
     const data = await operation();
     return { success: true, data };
   } catch (error: any) {
-    console.error(`${operationName || "Operation"} failed:`, error);
+    // Better error logging
+    console.error(`${operationName || "Operation"} failed:`, {
+      error,
+      message: error?.message,
+      details: error?.details,
+      code: error?.code,
+    });
 
     let errorMessage = "An unexpected error occurred";
 
@@ -394,6 +400,8 @@ const withErrorHandling = async <T>(
       errorMessage = error.error_description;
     } else if (error?.details) {
       errorMessage = error.details;
+    } else if (error?.code) {
+      errorMessage = `Database error: ${error.code}`;
     }
 
     // Network-specific error handling for Netlify
@@ -407,7 +415,8 @@ const withErrorHandling = async <T>(
       errorMessage = "Authentication error. Please check your credentials.";
     }
 
-    if (errorMessage.includes("relation") || errorMessage.includes("table")) {
+    if (errorMessage.includes("relation") || errorMessage.includes("table") ||
+        errorMessage.includes("does not exist") || error?.code === "42P01") {
       console.warn(
         `Database table not found, using fallback data for ${operationName}`,
       );
@@ -422,6 +431,7 @@ const withErrorHandling = async <T>(
       success: false,
       error: errorMessage,
       data: fallbackData || [],
+      fallback: true,
     };
   }
 };
