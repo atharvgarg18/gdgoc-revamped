@@ -77,9 +77,15 @@ export default function SocialIcons({
         </button>
       )}
 
-      {links.twitter && isValidUrl(links.twitter) && (
+      {links.twitter && (
         <button
-          onClick={handleLinkClick(links.twitter)}
+          onClick={(e) => {
+            e.preventDefault();
+            if (links.twitter && links.twitter.trim()) {
+              const url = links.twitter.startsWith('http') ? links.twitter : `https://${links.twitter}`;
+              window.open(url, '_blank', 'noopener,noreferrer');
+            }
+          }}
           className={`${baseClasses} bg-[#1da1f2] text-white hover:bg-[#0d8bd9]`}
           aria-label="Twitter"
         >
@@ -93,9 +99,15 @@ export default function SocialIcons({
         </button>
       )}
 
-      {links.instagram && isValidUrl(links.instagram) && (
+      {links.instagram && (
         <button
-          onClick={handleLinkClick(links.instagram)}
+          onClick={(e) => {
+            e.preventDefault();
+            if (links.instagram && links.instagram.trim()) {
+              const url = links.instagram.startsWith('http') ? links.instagram : `https://${links.instagram}`;
+              window.open(url, '_blank', 'noopener,noreferrer');
+            }
+          }}
           className={`${baseClasses} bg-gradient-to-br from-[#833ab4] via-[#fd1d1d] to-[#fcb045] text-white hover:opacity-90`}
           aria-label="Instagram"
         >
@@ -109,9 +121,15 @@ export default function SocialIcons({
         </button>
       )}
 
-      {links.whatsapp && isValidUrl(links.whatsapp) && (
+      {links.whatsapp && (
         <button
-          onClick={handleLinkClick(links.whatsapp)}
+          onClick={(e) => {
+            e.preventDefault();
+            if (links.whatsapp && links.whatsapp.trim()) {
+              const url = links.whatsapp.startsWith('http') ? links.whatsapp : `https://${links.whatsapp}`;
+              window.open(url, '_blank', 'noopener,noreferrer');
+            }
+          }}
           className={`${baseClasses} bg-[#25d366] text-white hover:bg-[#128c7e]`}
           aria-label="WhatsApp"
         >
