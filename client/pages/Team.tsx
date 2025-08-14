@@ -309,7 +309,7 @@ export default function Team() {
                       </div>
 
                       {/* Members Grid */}
-                      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 md:gap-6">
+                      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 md:gap-8">
                         {members.map((member, index) => {
                           const globalIndex = teamMembers.findIndex((m) => m.id === member.id);
                           return (
@@ -324,14 +324,14 @@ export default function Team() {
                                 <img src={member.image} alt={member.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" />
                               </div>
 
-                              <div className="p-3">
+                              <div className="p-4">
                                 {/* Member Info */}
                                 <div className="text-center mb-3">
-                                  <h3 className="text-sm font-bold text-gray-900 mb-1 group-hover:text-blue-500 transition-colors duration-300 line-clamp-1">{member.name}</h3>
-                                  <div className={`inline-block px-2 py-1 rounded-full text-xs font-medium text-white ${getRoleColor(member.role)} mb-2`}>
+                                  <h3 className="text-base font-bold text-gray-900 mb-1 group-hover:text-blue-500 transition-colors duration-300 line-clamp-1">{member.name}</h3>
+                                  <div className={`inline-block px-3 py-1 rounded-full text-xs font-medium text-white ${getRoleColor(member.role)} mb-2`}>
                                     {member.role}
                                   </div>
-                                  <p className="text-gray-600 text-xs leading-relaxed line-clamp-2">{member.bio}</p>
+                                  <p className="text-gray-600 text-sm leading-relaxed line-clamp-2">{member.bio}</p>
                                 </div>
 
                                 {/* Social Links */}
