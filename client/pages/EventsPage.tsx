@@ -415,29 +415,33 @@ export default function EventsPage() {
                             </span>
                           </div>
 
-                          {!isPassed && (
-                            <div className="w-full sm:w-auto">
-                              {event.registration_link && isValidUrl(event.registration_link) ? (
-                                <button
-                                  onClick={handleLinkClick(event.registration_link)}
-                                  className={`w-full sm:w-auto inline-flex items-center justify-center bg-gradient-to-r ${getEventTypeColor(event.type)} text-white px-4 py-2 rounded-xl font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-105 text-sm group/btn`}
-                                >
-                                  <span>Register Now</span>
+                          {/* Always show registration button */}
+                          <div className="w-full sm:w-auto">
+                            {event.registration_link && isValidUrl(event.registration_link) ? (
+                              <button
+                                onClick={isPassed ? undefined : handleLinkClick(event.registration_link)}
+                                disabled={isPassed}
+                                className={`w-full sm:w-auto inline-flex items-center justify-center bg-gradient-to-r ${getEventTypeColor(event.type)} text-white px-4 py-2 rounded-xl font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-105 text-sm group/btn ${
+                                  isPassed ? 'opacity-50 cursor-not-allowed' : ''
+                                }`}
+                              >
+                                <span>{isPassed ? 'Registration Closed' : 'Register Now'}</span>
+                                {!isPassed && (
                                   <ExternalLink
                                     size={14}
                                     className="ml-2 group-hover/btn:translate-x-1 transition-transform duration-300"
                                   />
-                                </button>
-                              ) : (
-                                <button
-                                  className={`w-full sm:w-auto bg-gradient-to-r ${getEventTypeColor(event.type)} text-white px-4 py-2 rounded-xl font-semibold text-sm opacity-50 cursor-not-allowed`}
-                                  disabled
-                                >
-                                  Registration Coming Soon
-                                </button>
-                              )}
-                            </div>
-                          )}
+                                )}
+                              </button>
+                            ) : (
+                              <button
+                                disabled
+                                className={`w-full sm:w-auto bg-gradient-to-r ${getEventTypeColor(event.type)} text-white px-4 py-2 rounded-xl font-semibold text-sm opacity-50 cursor-not-allowed`}
+                              >
+                                {isPassed ? 'Event Completed' : 'Registration Coming Soon'}
+                              </button>
+                            )}
+                          </div>
                         </div>
                       </div>
 
