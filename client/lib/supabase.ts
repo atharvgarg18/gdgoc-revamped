@@ -376,7 +376,12 @@ const withErrorHandling = async <T>(
   operation: () => Promise<T>,
   fallbackData?: any,
   operationName?: string,
-): Promise<{ success: boolean; data?: T; error?: string; fallback?: boolean }> => {
+): Promise<{
+  success: boolean;
+  data?: T;
+  error?: string;
+  fallback?: boolean;
+}> => {
   try {
     const data = await operation();
     return { success: true, data };
@@ -415,8 +420,12 @@ const withErrorHandling = async <T>(
       errorMessage = "Authentication error. Please check your credentials.";
     }
 
-    if (errorMessage.includes("relation") || errorMessage.includes("table") ||
-        errorMessage.includes("does not exist") || error?.code === "42P01") {
+    if (
+      errorMessage.includes("relation") ||
+      errorMessage.includes("table") ||
+      errorMessage.includes("does not exist") ||
+      error?.code === "42P01"
+    ) {
       console.warn(
         `Database table not found, using fallback data for ${operationName}`,
       );
