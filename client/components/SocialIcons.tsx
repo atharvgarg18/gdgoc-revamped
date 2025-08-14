@@ -33,9 +33,15 @@ export default function SocialIcons({
 
   return (
     <div className="flex items-center space-x-3">
-      {links.linkedin && isValidUrl(links.linkedin) && (
+      {links.linkedin && (
         <button
-          onClick={handleLinkClick(links.linkedin)}
+          onClick={(e) => {
+            e.preventDefault();
+            if (links.linkedin && links.linkedin.trim()) {
+              const url = links.linkedin.startsWith('http') ? links.linkedin : `https://${links.linkedin}`;
+              window.open(url, '_blank', 'noopener,noreferrer');
+            }
+          }}
           className={`${baseClasses} bg-[#0077b5] text-white hover:bg-[#005885]`}
           aria-label="LinkedIn"
         >
@@ -49,9 +55,15 @@ export default function SocialIcons({
         </button>
       )}
 
-      {links.github && isValidUrl(links.github) && (
+      {links.github && (
         <button
-          onClick={handleLinkClick(links.github)}
+          onClick={(e) => {
+            e.preventDefault();
+            if (links.github && links.github.trim()) {
+              const url = links.github.startsWith('http') ? links.github : `https://${links.github}`;
+              window.open(url, '_blank', 'noopener,noreferrer');
+            }
+          }}
           className={`${baseClasses} bg-[#333] text-white hover:bg-[#24292e]`}
           aria-label="GitHub"
         >
