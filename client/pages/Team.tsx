@@ -324,7 +324,7 @@ export default function Team() {
                                 <img src={member.image} alt={member.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" />
                               </div>
 
-                              <div className="p-6 pt-4">
+                              <div className="p-4 pt-4">
                                 {/* Member Info */}
                                 <div className="text-center mb-4">
                                   <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors duration-300">{member.name}</h3>
