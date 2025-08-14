@@ -9,40 +9,59 @@ import { scrollToTopInstant } from "@/lib/scrollUtils";
 export default function Team() {
   const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef<HTMLElement>(null);
+  // track which individual cards are visible (by index)
+  const [visibleCards, setVisibleCards] = useState<Set<number>>(new Set());
+  const sectionRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     scrollToTopInstant();
     loadTeamMembers();
+  }, []);
+
+  // observe each card after members are loaded
+  useEffect(() => {
+    if (!teamMembers || teamMembers.length === 0) return;
 
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const index = Number(entry.target.getAttribute("data-index"));
+            if (!Number.isNaN(index)) {
+              setVisibleCards((prev) => {
+                const next = new Set(prev);
+                next.add(index);
+                return next;
+              });
+            }
+          }
+        });
       },
-      { threshold: 0.2 }
+      { threshold: 0.15 }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
+    // observe all team member cards
+    const cards = document.querySelectorAll(".team-member-card");
+    cards.forEach((c) => observer.observe(c));
 
     return () => observer.disconnect();
-  }, []);
+  }, [teamMembers]);
 
   const loadTeamMembers = async () => {
     try {
       const result = await getTeamMembers();
       if (result.success || result.data) {
         const members = result.data || [];
-        // optional normalization can go here
+        // optional: normalize profile_type values here if needed
         setTeamMembers(members);
         console.log("Loaded team members:", members);
+      } else {
+        console.warn("getTeamMembers returned no data", result.error);
+        setTeamMembers([]);
       }
     } catch (error) {
-      console.warn("Error loading team members", error);
+      console.error("Error loading team members", error);
+      setTeamMembers([]);
     } finally {
       setIsLoading(false);
     }
@@ -63,7 +82,6 @@ export default function Team() {
     return colors[role] || "from-gray-600 to-gray-800";
   };
 
-  // Icons for profile types — note aria-hidden as boolean
   const getProfileTypeIcon = (profileType: string): JSX.Element => {
     switch (profileType) {
       case "Faculty Advisor":
@@ -82,7 +100,6 @@ export default function Team() {
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 22V12" />
           </svg>
         );
-
       case "Lead":
         return (
           <svg
@@ -98,7 +115,6 @@ export default function Team() {
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2z" />
           </svg>
         );
-
       case "Co-Lead":
         return (
           <svg
@@ -116,7 +132,6 @@ export default function Team() {
             <path strokeLinecap="round" strokeLinejoin="round" d="M3 20v-1a4 4 0 014-4h6a4 4 0 014 4v1" />
           </svg>
         );
-
       case "Core Member":
         return (
           <svg
@@ -133,7 +148,6 @@ export default function Team() {
             <path strokeLinecap="round" strokeLinejoin="round" d="M5.5 20a6.5 6.5 0 0113 0" />
           </svg>
         );
-
       case "Mentor":
       default:
         return (
@@ -165,7 +179,6 @@ export default function Team() {
     return colors[profileType] || "from-gray-600 to-gray-800";
   };
 
-  // Group members by profile type with fallback to "Core Member"
   const groupMembersByType = () => {
     const grouped: Record<string, TeamMember[]> = {
       "Faculty Advisor": [],
@@ -213,19 +226,10 @@ export default function Team() {
         <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-white via-blue-50/30 to-purple-50/30">
           {/* Background Animation */}
           <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute top-20 left-10 w-12 h-12 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full opacity-20 animate-float"></div>
-            <div
-              className="absolute top-1/4 right-16 w-8 h-8 bg-gradient-to-r from-blue-500 to-green-500 rotate-45 opacity-25 animate-float"
-              style={{ animationDelay: "1s" }}
-            ></div>
-            <div
-              className="absolute bottom-40 left-20 w-6 h-6 bg-gradient-to-r from-green-500 to-yellow-500 rounded-full opacity-30 animate-float"
-              style={{ animationDelay: "2s" }}
-            ></div>
-            <div
-              className="absolute bottom-20 right-10 w-10 h-10 bg-gradient-to-r from-yellow-500 to-red-500 rounded-full opacity-20 animate-float"
-              style={{ animationDelay: "0.5s" }}
-            ></div>
+            <div className="absolute top-20 left-10 w-12 h-12 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full opacity-20 animate-float" />
+            <div className="absolute top-1/4 right-16 w-8 h-8 bg-gradient-to-r from-blue-500 to-green-500 rotate-45 opacity-25 animate-float" style={{ animationDelay: "1s" }} />
+            <div className="absolute bottom-40 left-20 w-6 h-6 bg-gradient-to-r from-green-500 to-yellow-500 rounded-full opacity-30 animate-float" style={{ animationDelay: "2s" }} />
+            <div className="absolute bottom-20 right-10 w-10 h-10 bg-gradient-to-r from-yellow-500 to-red-500 rounded-full opacity-20 animate-float" style={{ animationDelay: "0.5s" }} />
           </div>
 
           {/* Content */}
@@ -238,17 +242,11 @@ export default function Team() {
                 </span>
               </h1>
 
-              <p
-                className="text-lg sm:text-xl md:text-2xl text-gray-600 mb-8 max-w-4xl mx-auto leading-relaxed animate-slide-up"
-                style={{ animationDelay: "0.2s" }}
-              >
+              <p className="text-lg sm:text-xl md:text-2xl text-gray-600 mb-8 max-w-4xl mx-auto leading-relaxed animate-slide-up" style={{ animationDelay: "0.2s" }}>
                 Meet the passionate individuals behind GDGoC IET DAVV. Our diverse team of student leaders, developers, and innovators work together to build an amazing tech community.
               </p>
 
-              <div
-                className="flex flex-wrap justify-center gap-8 mb-8 animate-slide-up"
-                style={{ animationDelay: "0.4s" }}
-              >
+              <div className="flex flex-wrap justify-center gap-8 mb-8 animate-slide-up" style={{ animationDelay: "0.4s" }}>
                 <div className="text-center">
                   <div className="text-3xl font-bold text-purple-600">{teamMembers.length}+</div>
                   <div className="text-gray-600">Team Members</div>
@@ -264,10 +262,7 @@ export default function Team() {
               </div>
 
               <div className="animate-slide-up" style={{ animationDelay: "0.6s" }}>
-                <button
-                  onClick={() => document.getElementById("team-section")?.scrollIntoView({ behavior: "smooth" })}
-                  className="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-8 py-4 rounded-full text-lg font-medium hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
-                >
+                <button onClick={() => document.getElementById("team-section")?.scrollIntoView({ behavior: "smooth" })} className="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-8 py-4 rounded-full text-lg font-medium hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
                   Meet the Team
                 </button>
               </div>
@@ -276,11 +271,8 @@ export default function Team() {
 
           {/* Scroll Indicator */}
           <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-            <div
-              className="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center hover:border-purple-600 transition-colors cursor-pointer"
-              onClick={() => document.getElementById("team-section")?.scrollIntoView({ behavior: "smooth" })}
-            >
-              <div className="w-1 h-3 bg-gray-400 rounded-full mt-2 animate-pulse"></div>
+            <div className="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center hover:border-purple-600 transition-colors cursor-pointer" onClick={() => document.getElementById("team-section")?.scrollIntoView({ behavior: "smooth" })}>
+              <div className="w-1 h-3 bg-gray-400 rounded-full mt-2 animate-pulse" />
             </div>
           </div>
         </section>
@@ -290,7 +282,7 @@ export default function Team() {
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             {isLoading ? (
               <div className="text-center py-12">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mx-auto mb-4"></div>
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mx-auto mb-4" />
                 <p className="text-gray-600">Loading our amazing team...</p>
               </div>
             ) : teamMembers.length === 0 ? (
@@ -309,11 +301,7 @@ export default function Team() {
                       <div className="text-center">
                         <div className="inline-flex items-center space-x-3 mb-4">
                           <span className="text-4xl">{getProfileTypeIcon(profileType)}</span>
-                          <h2
-                            className={`text-3xl md:text-4xl font-bold bg-gradient-to-r ${getProfileTypeColor(
-                              profileType
-                            )} bg-clip-text text-transparent`}
-                          >
+                          <h2 className={`text-3xl md:text-4xl font-bold bg-gradient-to-r ${getProfileTypeColor(profileType)} bg-clip-text text-transparent`}>
                             {profileType}
                           </h2>
                         </div>
@@ -322,69 +310,54 @@ export default function Team() {
 
                       {/* Members Grid */}
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {members.map((member, index) => (
-                          <div
-                            key={member.id}
-                            className={`relative group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105 overflow-hidden ${
-                              isVisible ? "animate-fade-in-up" : "opacity-0"
-                            }`}
-                            style={{ animationDelay: `${index * 0.1}s` }}
-                          >
-                            {/* Member Image */}
-                            <div className="aspect-square overflow-hidden">
-                              <img
-                                src={member.image}
-                                alt={member.name}
-                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                                loading="lazy"
-                              />
-                            </div>
-
-                            <div className="p-6 pt-4">
-                              {/* Member Info */}
-                              <div className="text-center mb-4">
-                                <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors duration-300">
-                                  {member.name}
-                                </h3>
-                                <div
-                                  className={`inline-block px-3 py-1 rounded-full text-sm font-medium text-white bg-gradient-to-r ${getRoleColor(
-                                    member.role
-                                  )} mb-2`}
-                                >
-                                  {member.role}
-                                </div>
-                                <p className="text-gray-600 text-sm leading-relaxed line-clamp-3">{member.bio}</p>
+                        {members.map((member, index) => {
+                          const globalIndex = teamMembers.findIndex((m) => m.id === member.id);
+                          return (
+                            <div
+                              key={member.id}
+                              data-index={globalIndex}
+                              className={`team-member-card relative group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105 overflow-hidden ${visibleCards.has(globalIndex) ? "animate-fade-in-up opacity-100" : "opacity-0"}`}
+                              style={{ animationDelay: `${index * 0.08}s` }}
+                            >
+                              {/* Member Image */}
+                              <div className="aspect-square overflow-hidden">
+                                <img src={member.image} alt={member.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" />
                               </div>
 
-                              {/* Social Links */}
-                              {(member.linkedin || member.github || member.twitter || member.instagram) && (
-                                <div className="flex justify-center">
-                                  <SocialIcons
-                                    links={{
-                                      linkedin: member.linkedin,
-                                      github: member.github,
-                                      twitter: member.twitter,
-                                      instagram: member.instagram,
-                                    }}
-                                    size="sm"
-                                  />
+                              <div className="p-6 pt-4">
+                                {/* Member Info */}
+                                <div className="text-center mb-4">
+                                  <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors duration-300">{member.name}</h3>
+                                  <div className={`inline-block px-3 py-1 rounded-full text-sm font-medium text-white bg-gradient-to-r ${getRoleColor(member.role)} mb-2`}>
+                                    {member.role}
+                                  </div>
+                                  <p className="text-gray-600 text-sm leading-relaxed line-clamp-3">{member.bio}</p>
                                 </div>
-                              )}
+
+                                {/* Social Links */}
+                                {(member.linkedin || member.github || member.twitter || member.instagram) && (
+                                  <div className="flex justify-center">
+                                    <SocialIcons
+                                      links={{
+                                        linkedin: member.linkedin,
+                                        github: member.github,
+                                        twitter: member.twitter,
+                                        instagram: member.instagram,
+                                      }}
+                                      size="sm"
+                                    />
+                                  </div>
+                                )}
+                              </div>
+
+                              {/* Hover Effect Overlay - non-interactive */}
+                              <div className={`absolute inset-0 bg-gradient-to-r ${getRoleColor(member.role)} opacity-0 group-hover:opacity-5 transition-opacity duration-300 rounded-2xl pointer-events-none`} aria-hidden="true" />
+
+                              {/* Floating Decorative Element */}
+                              <div className={`absolute -bottom-2 -right-2 w-6 h-6 bg-gradient-to-r ${getProfileTypeColor(profileType)} rounded-full animate-float opacity-60 shadow-lg`} style={{ animationDelay: `${index * 0.5}s` }} />
                             </div>
-
-                            {/* Hover Effect Overlay - pointer-events-none so icons are clickable */}
-                            <div
-                              className={`absolute inset-0 bg-gradient-to-r ${getRoleColor(member.role)} opacity-0 group-hover:opacity-5 transition-opacity duration-300 rounded-2xl pointer-events-none`}
-                              aria-hidden="true"
-                            />
-
-                            {/* Floating Decorative Element */}
-                            <div
-                              className={`absolute -bottom-2 -right-2 w-6 h-6 bg-gradient-to-r ${getProfileTypeColor(profileType)} rounded-full animate-float opacity-60 shadow-lg`}
-                              style={{ animationDelay: `${index * 0.5}s` }}
-                            />
-                          </div>
-                        ))}
+                          );
+                        })}
                       </div>
                     </div>
                   );
@@ -394,27 +367,13 @@ export default function Team() {
 
             {/* Join Us Section */}
             <div className="mt-16 text-center bg-gradient-to-r from-purple-50 to-blue-50 rounded-2xl p-8 md:p-12">
-              <h3 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent mb-4">
-                Want to Join Our Team?
-              </h3>
-              <p className="text-gray-600 text-lg max-w-2xl mx-auto mb-6">
-                We're always looking for passionate individuals who want to make a difference in the tech community. Join us and help build the future!
-              </p>
+              <h3 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent mb-4">Want to Join Our Team?</h3>
+              <p className="text-gray-600 text-lg max-w-2xl mx-auto mb-6">We're always looking for passionate individuals who want to make a difference in the tech community. Join us and help build the future!</p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a
-                  href="https://chat.whatsapp.com/CcTjDYXNfQMEoLUHzB3hwa"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-8 py-4 rounded-full hover:shadow-xl transition-all duration-300 font-medium transform hover:scale-105"
-                >
+                <a href="https://chat.whatsapp.com/CcTjDYXNfQMEoLUHzB3hwa" target="_blank" rel="noopener noreferrer" className="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-8 py-4 rounded-full hover:shadow-xl transition-all duration-300 font-medium transform hover:scale-105">
                   Join Our Community
                 </a>
-                <a
-                  href="https://github.com/gdgoc-iet-davv"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="border-2 border-purple-600 text-purple-600 px-8 py-4 rounded-full hover:bg-purple-600 hover:text-white transition-all duration-300 font-medium transform hover:scale-105"
-                >
+                <a href="https://github.com/gdgoc-iet-davv" target="_blank" rel="noopener noreferrer" className="border-2 border-purple-600 text-purple-600 px-8 py-4 rounded-full hover:bg-purple-600 hover:text-white transition-all duration-300 font-medium transform hover:scale-105">
                   Contribute on GitHub
                 </a>
               </div>
