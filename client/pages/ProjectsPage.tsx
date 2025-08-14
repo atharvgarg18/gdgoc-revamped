@@ -39,11 +39,17 @@ export default function ProjectsPage() {
   const loadProjects = async () => {
     try {
       const result = await getProjects();
-      if (result.success) {
-        setProjects(result.data);
+      if (result.success || result.data) {
+        // Use data whether from database or fallback
+        const projectsData = result.data || [];
+        setProjects(projectsData);
+      } else {
+        console.error("Get Projects failed:", result.error || "Unknown error");
+        setProjects([]);
       }
     } catch (error) {
       console.error("Error loading projects:", error);
+      setProjects([]);
     } finally {
       setIsLoading(false);
     }
