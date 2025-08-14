@@ -331,6 +331,22 @@ export default function Team() {
                                   <div className={`inline-block px-3 py-1 rounded-full text-xs font-medium text-white ${getRoleColor(member.role)} mb-2`}>
                                     {member.role}
                                   </div>
+
+                                {/* Social Links */}
+                                {(member.linkedin || member.github || member.twitter || member.instagram) && (
+                                  <div className="flex justify-center">
+                                    <SocialIcons
+                                      links={{
+                                        linkedin: member.linkedin,
+                                        github: member.github,
+                                        twitter: member.twitter,
+                                        instagram: member.instagram,
+                                      }}
+                                      size="xs"
+                                    />
+                                  </div>
+                                )}
+                              </div>
                                   <p className="text-gray-600 text-sm leading-relaxed line-clamp-2">{member.bio}</p>
                                 </div>
 
