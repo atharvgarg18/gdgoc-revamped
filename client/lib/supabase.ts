@@ -62,7 +62,7 @@ export interface TeamMember {
   id: string;
   name: string;
   role: string;
-  profile_type: "Faculty Advisor" | "Mentors" | "Leads";
+  profile_type: "Faculty Advisor" | "Mentor" | "Lead" | "Co-Lead" | "Core Member";
   image: string;
   bio: string;
   linkedin?: string;
@@ -189,7 +189,7 @@ const mockTeamMembers: TeamMember[] = [
     id: "1",
     name: "Atharv Garg",
     role: "Lead",
-    profile_type: "Leads",
+    profile_type: "Lead",
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400",
     bio: "Passionate about full-stack development and community building. Leading GDGoC IET DAVV with focus on creating an inclusive tech environment.",
     linkedin: "https://www.linkedin.com/in/atharvgarg18",
@@ -202,7 +202,7 @@ const mockTeamMembers: TeamMember[] = [
     id: "2",
     name: "Sarah Kumar",
     role: "Technical Lead",
-    profile_type: "Leads",
+    profile_type: "Lead",
     image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400",
     bio: "Specializes in machine learning and data science. Loves organizing workshops and helping others learn new technologies.",
     linkedin: "https://www.linkedin.com/company/gdgoc-iet-davv",
@@ -215,7 +215,7 @@ const mockTeamMembers: TeamMember[] = [
     id: "3",
     name: "Rahul Sharma",
     role: "Design Lead",
-    profile_type: "Leads",
+    profile_type: "Lead",
     image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400",
     bio: "UI/UX designer with expertise in creating intuitive user experiences. Passionate about design systems and accessibility.",
     linkedin: "https://www.linkedin.com/company/gdgoc-iet-davv",
@@ -240,7 +240,7 @@ const mockTeamMembers: TeamMember[] = [
     id: "5",
     name: "Arjun Patel",
     role: "Senior Mentor",
-    profile_type: "Mentors",
+    profile_type: "Mentor",
     image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400",
     bio: "Full-stack developer and open source contributor. Mentors students in web development and software engineering best practices.",
     linkedin: "https://www.linkedin.com/company/gdgoc-iet-davv",

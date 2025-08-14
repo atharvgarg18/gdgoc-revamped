@@ -17,7 +17,7 @@ export default function TeamManager() {
   const [formData, setFormData] = useState({
     name: "",
     role: "",
-    profile_type: "Leads" as "Faculty Advisor" | "Mentors" | "Leads",
+    profile_type: "Lead" as "Faculty Advisor" | "Mentor" | "Lead" | "Co-Lead" | "Core Member",
     image: "",
     bio: "",
     linkedin: "",
@@ -120,7 +120,7 @@ export default function TeamManager() {
     setFormData({
       name: member.name,
       role: member.role,
-      profile_type: member.profile_type || "Leads",
+      profile_type: member.profile_type || "Lead",
       image: member.image,
       bio: member.bio,
       linkedin: member.linkedin || "",
@@ -138,7 +138,7 @@ export default function TeamManager() {
     setFormData({
       name: "",
       role: "",
-      profile_type: "Leads" as "Faculty Advisor" | "Mentors" | "Leads",
+      profile_type: "Lead" as "Faculty Advisor" | "Mentor" | "Lead" | "Co-Lead" | "Core Member",
       image: "",
       bio: "",
       linkedin: "",
@@ -330,15 +330,19 @@ export default function TeamManager() {
                         ...formData,
                         profile_type: e.target.value as
                           | "Faculty Advisor"
-                          | "Mentors"
-                          | "Leads",
+                          | "Mentor"
+                          | "Lead"
+                          | "Co-Lead"
+                          | "Core Member",
                       })
                     }
                     required
                   >
                     <option value="Faculty Advisor">Faculty Advisor</option>
-                    <option value="Mentors">Mentors</option>
-                    <option value="Leads">Leads</option>
+                    <option value="Mentor">Mentor</option>
+                    <option value="Lead">Lead</option>
+                    <option value="Co-Lead">Co-Lead</option>
+                    <option value="Core Member">Core Member</option>
                   </select>
                 </div>
 
