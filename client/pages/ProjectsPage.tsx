@@ -415,9 +415,14 @@ export default function ProjectsPage() {
 
                       {/* Actions */}
                       <div className="flex gap-3">
-                        {/* Always show Code button with proper handlers */}
+                        {/* Always show Code button with working handlers */}
                         <button
-                          onClick={project.github_url && isValidUrl(project.github_url) ? handleLinkClick(project.github_url) : undefined}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            if (project.github_url && isValidUrl(project.github_url)) {
+                              window.open(project.github_url, '_blank', 'noopener,noreferrer');
+                            }
+                          }}
                           disabled={!project.github_url || !isValidUrl(project.github_url)}
                           className={`flex-1 px-4 py-2.5 rounded-lg text-center text-sm font-medium transition-all duration-300 transform hover:scale-105 group/btn ${
                             project.github_url && isValidUrl(project.github_url)
