@@ -419,11 +419,21 @@ export default function ProjectsPage() {
                         <button
                           onClick={(e) => {
                             e.preventDefault();
-                            if (project.github_url && isValidUrl(project.github_url)) {
-                              window.open(project.github_url, '_blank', 'noopener,noreferrer');
+                            if (
+                              project.github_url &&
+                              isValidUrl(project.github_url)
+                            ) {
+                              window.open(
+                                project.github_url,
+                                "_blank",
+                                "noopener,noreferrer",
+                              );
                             }
                           }}
-                          disabled={!project.github_url || !isValidUrl(project.github_url)}
+                          disabled={
+                            !project.github_url ||
+                            !isValidUrl(project.github_url)
+                          }
                           className={`flex-1 px-4 py-2.5 rounded-lg text-center text-sm font-medium transition-all duration-300 transform hover:scale-105 group/btn ${
                             project.github_url && isValidUrl(project.github_url)
                               ? "bg-gray-900 text-white hover:bg-gray-800 cursor-pointer"
@@ -431,10 +441,22 @@ export default function ProjectsPage() {
                           }`}
                         >
                           <span className="flex items-center justify-center space-x-2">
-                            <span className={project.github_url && isValidUrl(project.github_url) ? "group-hover/btn:rotate-12 transition-transform duration-300" : ""}>
+                            <span
+                              className={
+                                project.github_url &&
+                                isValidUrl(project.github_url)
+                                  ? "group-hover/btn:rotate-12 transition-transform duration-300"
+                                  : ""
+                              }
+                            >
                               ⚡
                             </span>
-                            <span>{project.github_url && isValidUrl(project.github_url) ? "Code" : "Code Soon"}</span>
+                            <span>
+                              {project.github_url &&
+                              isValidUrl(project.github_url)
+                                ? "Code"
+                                : "Code Soon"}
+                            </span>
                           </span>
                         </button>
 
@@ -445,7 +467,9 @@ export default function ProjectsPage() {
                             className="flex-1 bg-gradient-to-r from-blue-600 to-green-600 text-white px-4 py-2.5 rounded-lg text-center text-sm font-medium hover:shadow-lg transition-all duration-300 transform hover:scale-105 group/btn"
                           >
                             <span className="flex items-center justify-center space-x-2">
-                              <span className="group-hover/btn:scale-110 transition-transform duration-300">🚀</span>
+                              <span className="group-hover/btn:scale-110 transition-transform duration-300">
+                                🚀
+                              </span>
                               <span>Live</span>
                             </span>
                           </button>

@@ -38,8 +38,10 @@ export default function SocialIcons({
           onClick={(e) => {
             e.preventDefault();
             if (links.linkedin && links.linkedin.trim()) {
-              const url = links.linkedin.startsWith('http') ? links.linkedin : `https://${links.linkedin}`;
-              window.open(url, '_blank', 'noopener,noreferrer');
+              const url = links.linkedin.startsWith("http")
+                ? links.linkedin
+                : `https://${links.linkedin}`;
+              window.open(url, "_blank", "noopener,noreferrer");
             }
           }}
           className={`${baseClasses} bg-[#0077b5] text-white hover:bg-[#005885]`}
@@ -60,8 +62,10 @@ export default function SocialIcons({
           onClick={(e) => {
             e.preventDefault();
             if (links.github && links.github.trim()) {
-              const url = links.github.startsWith('http') ? links.github : `https://${links.github}`;
-              window.open(url, '_blank', 'noopener,noreferrer');
+              const url = links.github.startsWith("http")
+                ? links.github
+                : `https://${links.github}`;
+              window.open(url, "_blank", "noopener,noreferrer");
             }
           }}
           className={`${baseClasses} bg-[#333] text-white hover:bg-[#24292e]`}
@@ -82,8 +86,10 @@ export default function SocialIcons({
           onClick={(e) => {
             e.preventDefault();
             if (links.twitter && links.twitter.trim()) {
-              const url = links.twitter.startsWith('http') ? links.twitter : `https://${links.twitter}`;
-              window.open(url, '_blank', 'noopener,noreferrer');
+              const url = links.twitter.startsWith("http")
+                ? links.twitter
+                : `https://${links.twitter}`;
+              window.open(url, "_blank", "noopener,noreferrer");
             }
           }}
           className={`${baseClasses} bg-[#1da1f2] text-white hover:bg-[#0d8bd9]`}
@@ -104,8 +110,10 @@ export default function SocialIcons({
           onClick={(e) => {
             e.preventDefault();
             if (links.instagram && links.instagram.trim()) {
-              const url = links.instagram.startsWith('http') ? links.instagram : `https://${links.instagram}`;
-              window.open(url, '_blank', 'noopener,noreferrer');
+              const url = links.instagram.startsWith("http")
+                ? links.instagram
+                : `https://${links.instagram}`;
+              window.open(url, "_blank", "noopener,noreferrer");
             }
           }}
           className={`${baseClasses} bg-gradient-to-br from-[#833ab4] via-[#fd1d1d] to-[#fcb045] text-white hover:opacity-90`}
@@ -126,8 +134,10 @@ export default function SocialIcons({
           onClick={(e) => {
             e.preventDefault();
             if (links.whatsapp && links.whatsapp.trim()) {
-              const url = links.whatsapp.startsWith('http') ? links.whatsapp : `https://${links.whatsapp}`;
-              window.open(url, '_blank', 'noopener,noreferrer');
+              const url = links.whatsapp.startsWith("http")
+                ? links.whatsapp
+                : `https://${links.whatsapp}`;
+              window.open(url, "_blank", "noopener,noreferrer");
             }
           }}
           className={`${baseClasses} bg-[#25d366] text-white hover:bg-[#128c7e]`}

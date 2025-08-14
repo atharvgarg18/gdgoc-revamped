@@ -53,7 +53,9 @@ export default function Events() {
       Sprint: "from-yellow-500 to-yellow-600",
       Competition: "from-purple-500 to-purple-600",
     };
-    return gradients[type as keyof typeof gradients] || "from-gray-500 to-gray-600";
+    return (
+      gradients[type as keyof typeof gradients] || "from-gray-500 to-gray-600"
+    );
   };
 
   const getEventTypeColor = (type: string) => {
@@ -64,7 +66,10 @@ export default function Events() {
       Sprint: "bg-yellow-100 text-yellow-800 border-yellow-200",
       Competition: "bg-purple-100 text-purple-800 border-purple-200",
     };
-    return colors[type as keyof typeof colors] || "bg-gray-100 text-gray-800 border-gray-200";
+    return (
+      colors[type as keyof typeof colors] ||
+      "bg-gray-100 text-gray-800 border-gray-200"
+    );
   };
 
   const getEventTypeIcon = (type: string) => {
@@ -79,16 +84,34 @@ export default function Events() {
   };
 
   return (
-    <section ref={sectionRef} className="relative py-16 md:py-20 bg-gradient-to-br from-white via-red-50/20 to-yellow-50/30 overflow-hidden">
+    <section
+      ref={sectionRef}
+      className="relative py-16 md:py-20 bg-gradient-to-br from-white via-red-50/20 to-yellow-50/30 overflow-hidden"
+    >
       {/* Floating Background Elements */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-16 right-16 w-10 h-10 bg-gradient-to-r from-gdsc-red to-gdsc-yellow rounded-full opacity-20 animate-float" style={{ animationDelay: "0s" }}></div>
-        <div className="absolute top-1/3 left-12 w-6 h-6 bg-gdsc-blue rotate-45 opacity-25 animate-float" style={{ animationDelay: "1.5s" }}></div>
-        <div className="absolute bottom-32 right-20 w-8 h-8 bg-gradient-to-r from-gdsc-green to-gdsc-blue rounded-full opacity-30 animate-float" style={{ animationDelay: "2s" }}></div>
-        <div className="absolute bottom-16 left-16 w-4 h-4 bg-gdsc-yellow rounded-full opacity-35 animate-float" style={{ animationDelay: "0.8s" }}></div>
-        <div className="absolute top-1/2 right-1/4 w-12 h-12 bg-gradient-to-r from-gdsc-red to-gdsc-green rounded-full opacity-15 animate-float" style={{ animationDelay: "3s" }}></div>
+        <div
+          className="absolute top-16 right-16 w-10 h-10 bg-gradient-to-r from-gdsc-red to-gdsc-yellow rounded-full opacity-20 animate-float"
+          style={{ animationDelay: "0s" }}
+        ></div>
+        <div
+          className="absolute top-1/3 left-12 w-6 h-6 bg-gdsc-blue rotate-45 opacity-25 animate-float"
+          style={{ animationDelay: "1.5s" }}
+        ></div>
+        <div
+          className="absolute bottom-32 right-20 w-8 h-8 bg-gradient-to-r from-gdsc-green to-gdsc-blue rounded-full opacity-30 animate-float"
+          style={{ animationDelay: "2s" }}
+        ></div>
+        <div
+          className="absolute bottom-16 left-16 w-4 h-4 bg-gdsc-yellow rounded-full opacity-35 animate-float"
+          style={{ animationDelay: "0.8s" }}
+        ></div>
+        <div
+          className="absolute top-1/2 right-1/4 w-12 h-12 bg-gradient-to-r from-gdsc-red to-gdsc-green rounded-full opacity-15 animate-float"
+          style={{ animationDelay: "3s" }}
+        ></div>
       </div>
-      
+
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
@@ -97,7 +120,10 @@ export default function Events() {
               Upcoming Events
             </h2>
             <div className="absolute -top-2 -left-2 w-5 h-5 bg-gdsc-blue rounded-full animate-pulse opacity-60"></div>
-            <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-gdsc-green rotate-45 animate-pulse opacity-50" style={{ animationDelay: "0.5s" }}></div>
+            <div
+              className="absolute -bottom-1 -right-1 w-3 h-3 bg-gdsc-green rotate-45 animate-pulse opacity-50"
+              style={{ animationDelay: "0.5s" }}
+            ></div>
           </div>
           <p className="text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed">
             Join us for exciting workshops, seminars, and hands-on sessions
@@ -111,7 +137,13 @@ export default function Events() {
           <div className="text-center py-12 backdrop-blur-lg bg-white/60 rounded-2xl border border-white/30 shadow-xl">
             <div className="relative inline-block">
               <div className="animate-spin rounded-full h-12 w-12 border-4 border-gdsc-blue/30 border-t-gdsc-blue mx-auto mb-4"></div>
-              <div className="absolute inset-0 rounded-full h-12 w-12 border-4 border-transparent border-t-gdsc-red animate-spin" style={{ animationDirection: "reverse", animationDuration: "0.8s" }}></div>
+              <div
+                className="absolute inset-0 rounded-full h-12 w-12 border-4 border-transparent border-t-gdsc-red animate-spin"
+                style={{
+                  animationDirection: "reverse",
+                  animationDuration: "0.8s",
+                }}
+              ></div>
             </div>
             <p className="text-gray-700 font-medium">Loading events...</p>
           </div>
@@ -119,14 +151,28 @@ export default function Events() {
           /* Empty State */
           <div className="relative text-center py-20 backdrop-blur-lg bg-gradient-to-br from-white/70 to-white/50 border border-white/30 shadow-2xl rounded-3xl overflow-hidden">
             <div className="absolute inset-0 opacity-30">
-              <div className="absolute top-8 left-8 w-3 h-3 bg-gdsc-blue rounded-full animate-ping" style={{ animationDelay: "0s" }}></div>
-              <div className="absolute top-12 right-12 w-2 h-2 bg-gdsc-red rounded-full animate-ping" style={{ animationDelay: "1s" }}></div>
-              <div className="absolute bottom-12 left-16 w-2 h-2 bg-gdsc-yellow rounded-full animate-ping" style={{ animationDelay: "2s" }}></div>
-              <div className="absolute bottom-8 right-8 w-3 h-3 bg-gdsc-green rounded-full animate-ping" style={{ animationDelay: "0.5s" }}></div>
+              <div
+                className="absolute top-8 left-8 w-3 h-3 bg-gdsc-blue rounded-full animate-ping"
+                style={{ animationDelay: "0s" }}
+              ></div>
+              <div
+                className="absolute top-12 right-12 w-2 h-2 bg-gdsc-red rounded-full animate-ping"
+                style={{ animationDelay: "1s" }}
+              ></div>
+              <div
+                className="absolute bottom-12 left-16 w-2 h-2 bg-gdsc-yellow rounded-full animate-ping"
+                style={{ animationDelay: "2s" }}
+              ></div>
+              <div
+                className="absolute bottom-8 right-8 w-3 h-3 bg-gdsc-green rounded-full animate-ping"
+                style={{ animationDelay: "0.5s" }}
+              ></div>
             </div>
-            
+
             <div className="relative z-10">
-              <div className="text-8xl mb-8 transform hover:scale-110 transition-transform duration-300">📅</div>
+              <div className="text-8xl mb-8 transform hover:scale-110 transition-transform duration-300">
+                📅
+              </div>
               <h3 className="text-3xl font-bold bg-gradient-to-r from-gdsc-blue to-gdsc-green bg-clip-text text-transparent mb-6">
                 Exciting Events Coming Soon!
               </h3>
@@ -218,15 +264,24 @@ export default function Events() {
 
                       {/* Show registration button for all events, but disable for past events */}
                       <div className="w-full sm:w-auto">
-                        {event.registration_link && isValidUrl(event.registration_link) ? (
+                        {event.registration_link &&
+                        isValidUrl(event.registration_link) ? (
                           <button
-                            onClick={isPassed ? undefined : handleLinkClick(event.registration_link)}
+                            onClick={
+                              isPassed
+                                ? undefined
+                                : handleLinkClick(event.registration_link)
+                            }
                             disabled={isPassed}
                             className={`w-full sm:w-auto inline-flex items-center justify-center bg-gradient-to-r ${getEventGradient(event.type)} text-white px-4 md:px-6 py-2 md:py-3 rounded-xl font-semibold hover:shadow-lg transition-all duration-300 transform hover:scale-105 text-sm md:text-base group/btn ${
-                              isPassed ? 'opacity-50 cursor-not-allowed' : ''
+                              isPassed ? "opacity-50 cursor-not-allowed" : ""
                             }`}
                           >
-                            <span>{isPassed ? 'Registration Closed' : 'Register Now'}</span>
+                            <span>
+                              {isPassed
+                                ? "Registration Closed"
+                                : "Register Now"}
+                            </span>
                             {!isPassed && (
                               <ExternalLink
                                 size={14}
@@ -239,7 +294,9 @@ export default function Events() {
                             disabled
                             className={`w-full sm:w-auto bg-gradient-to-r ${getEventGradient(event.type)} text-white px-4 md:px-6 py-2 md:py-3 rounded-xl font-semibold text-sm md:text-base opacity-50 cursor-not-allowed`}
                           >
-                            {isPassed ? 'Event Completed' : 'Registration Coming Soon'}
+                            {isPassed
+                              ? "Event Completed"
+                              : "Registration Coming Soon"}
                           </button>
                         )}
                       </div>
@@ -260,12 +317,24 @@ export default function Events() {
         <div className="relative group p-8 md:p-12 rounded-3xl backdrop-blur-lg bg-gradient-to-br from-white/70 to-white/50 border border-white/30 shadow-2xl text-center overflow-hidden">
           {/* Animated background pattern */}
           <div className="absolute inset-0 opacity-30">
-            <div className="absolute top-6 left-6 w-3 h-3 bg-gdsc-red rounded-full animate-ping" style={{ animationDelay: "0s" }}></div>
-            <div className="absolute top-12 right-8 w-2 h-2 bg-gdsc-yellow rounded-full animate-ping" style={{ animationDelay: "1s" }}></div>
-            <div className="absolute bottom-8 left-12 w-2 h-2 bg-gdsc-green rounded-full animate-ping" style={{ animationDelay: "2s" }}></div>
-            <div className="absolute bottom-6 right-6 w-3 h-3 bg-gdsc-blue rounded-full animate-ping" style={{ animationDelay: "0.5s" }}></div>
+            <div
+              className="absolute top-6 left-6 w-3 h-3 bg-gdsc-red rounded-full animate-ping"
+              style={{ animationDelay: "0s" }}
+            ></div>
+            <div
+              className="absolute top-12 right-8 w-2 h-2 bg-gdsc-yellow rounded-full animate-ping"
+              style={{ animationDelay: "1s" }}
+            ></div>
+            <div
+              className="absolute bottom-8 left-12 w-2 h-2 bg-gdsc-green rounded-full animate-ping"
+              style={{ animationDelay: "2s" }}
+            ></div>
+            <div
+              className="absolute bottom-6 right-6 w-3 h-3 bg-gdsc-blue rounded-full animate-ping"
+              style={{ animationDelay: "0.5s" }}
+            ></div>
           </div>
-          
+
           <div className="relative z-10">
             <h3 className="text-2xl md:text-4xl font-bold bg-gradient-to-r from-gdsc-red via-gdsc-yellow to-gdsc-green bg-clip-text text-transparent mb-6">
               Don't Miss Out on Our Events!
