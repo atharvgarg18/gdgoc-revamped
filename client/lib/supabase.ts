@@ -800,6 +800,7 @@ export const deleteGalleryItem = async (id: string) => {
 // Projects API
 export const getProjects = async () => {
   if (!supabase) {
+    console.warn("Supabase not connected, using fallback data for projects");
     const data = getFromStorage(STORAGE_KEYS.projects, mockProjects);
     return {
       success: true,
