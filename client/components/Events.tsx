@@ -165,7 +165,7 @@ export default function Events() {
 
                   {/* Gradient overlay on hover - Fixed to prevent disappearing */}
                   <div
-                    className={`absolute inset-0 bg-gradient-to-br ${getEventGradient(event.type)} opacity-0 group-hover:opacity-[0.02] transition-opacity duration-500 rounded-2xl pointer-events-none`}
+                    className={`absolute inset-0 bg-gradient-to-br ${getEventGradient(event.type)} opacity-0 group-hover:opacity-[0.01] transition-opacity duration-500 rounded-2xl pointer-events-none`}
                   ></div>
 
                   <div className="relative z-10">
