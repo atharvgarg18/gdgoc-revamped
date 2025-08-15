@@ -60,6 +60,63 @@ export default function ContactPage() {
           </div>
         </section>
 
+        {/* Linktr.ee Section */}
+        <section className="py-16 bg-gray-50 relative overflow-hidden">
+          {/* Background decorations */}
+          <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute top-8 left-8 w-6 h-6 bg-gdsc-blue rounded-full opacity-30 animate-float"></div>
+            <div className="absolute top-16 right-12 w-4 h-4 bg-gdsc-red rotate-45 opacity-25 animate-float" style={{ animationDelay: "1s" }}></div>
+            <div className="absolute bottom-12 left-16 w-5 h-5 bg-gdsc-yellow rounded-full opacity-35 animate-float" style={{ animationDelay: "2s" }}></div>
+            <div className="absolute bottom-8 right-8 w-3 h-3 bg-gdsc-green rounded-full opacity-40 animate-float" style={{ animationDelay: "0.5s" }}></div>
+          </div>
+
+          <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-gdsc-blue mb-6">
+              All Our Links in One Place
+            </h2>
+            <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+              Find all our social media, resources, and important links in one convenient location.
+            </p>
+
+            {/* Linktr.ee Button */}
+            <div className="relative inline-block group">
+              <a
+                href="https://linktr.ee/gdgoc_iet_davv"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative overflow-hidden bg-gdsc-green hover:bg-green-600 text-white px-12 py-4 rounded-2xl font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl group inline-flex items-center space-x-3"
+              >
+                {/* Content */}
+                <div className="relative z-10 flex items-center space-x-3">
+                  <svg
+                    className="w-6 h-6 group-hover:rotate-12 transition-transform duration-300"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M13.511 5.853a1.143 1.143 0 0 1 0 2.286H8.97l-.069.002H7.43c-.63 0-1.142.512-1.142 1.142v1.47c0 .63.512 1.143 1.142 1.143h3.855a1.143 1.143 0 0 1 0 2.285H7.43c-1.89 0-3.428-1.537-3.428-3.428V9.283c0-1.89 1.538-3.428 3.428-3.428h6.081zm-3.022 6.297a1.143 1.143 0 0 1 0-2.286h5.541l.069-.002h1.47c.63 0 1.142-.512 1.142-1.142V7.25c0-.63-.512-1.143-1.142-1.143h-3.855a1.143 1.143 0 0 1 0-2.285h3.855c1.89 0 3.428 1.537 3.428 3.428v1.47c0 1.89-1.538 3.428-3.428 3.428H10.49z"/>
+                  </svg>
+                  <span className="group-hover:translate-x-1 transition-transform duration-300">
+                    Visit Our Linktree
+                  </span>
+                  <svg
+                    className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </div>
+              </a>
+            </div>
+
+            {/* Additional info */}
+            <p className="text-sm text-gray-500 mt-6">
+              Access our social media, resources, events, and more through our centralized link hub.
+            </p>
+          </div>
+        </section>
+
         {/* Contact Section */}
         <section id="contact-section" className="py-16 md:py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
