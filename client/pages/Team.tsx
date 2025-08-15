@@ -69,17 +69,17 @@ export default function Team() {
 
   const getRoleColor = (role: string) => {
     const colors: Record<string, string> = {
-      Lead: "from-purple-600 to-blue-600",
-      "Co-Lead": "from-purple-500 to-pink-500",
-      "Core Member": "from-gray-600 to-gray-800",
-      "Technical Lead": "from-blue-600 to-green-600",
-      "Design Lead": "from-green-600 to-yellow-600",
-      "Marketing Lead": "from-yellow-600 to-red-600",
-      "Faculty Advisor": "from-indigo-600 to-purple-600",
-      "Senior Mentor": "from-teal-600 to-blue-600",
-      Mentor: "from-emerald-600 to-teal-600",
+      Lead: "bg-blue-500", // Google Blue
+      "Co-Lead": "bg-red-500", // Google Red
+      "Core Member": "bg-gray-600",
+      "Technical Lead": "bg-blue-600",
+      "Design Lead": "bg-green-500", // Google Green
+      "Marketing Lead": "bg-yellow-500", // Google Yellow
+      "Faculty Advisor": "bg-blue-700",
+      "Senior Mentor": "bg-green-600",
+      Mentor: "bg-green-500",
     };
-    return colors[role] || "from-gray-600 to-gray-800";
+    return colors[role] || "bg-gray-600";
   };
 
   const getProfileTypeIcon = (profileType: string): JSX.Element => {
@@ -87,7 +87,7 @@ export default function Team() {
       case "Faculty Advisor":
         return (
           <svg
-            className="w-10 h-10 text-indigo-600"
+            className="w-8 h-8 text-blue-600"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -103,7 +103,7 @@ export default function Team() {
       case "Lead":
         return (
           <svg
-            className="w-10 h-10 text-purple-600"
+            className="w-8 h-8 text-blue-500"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -118,7 +118,7 @@ export default function Team() {
       case "Co-Lead":
         return (
           <svg
-            className="w-10 h-10 text-pink-600"
+            className="w-8 h-8 text-red-500"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -135,7 +135,7 @@ export default function Team() {
       case "Core Member":
         return (
           <svg
-            className="w-10 h-10 text-gray-700"
+            className="w-8 h-8 text-gray-700"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -152,7 +152,7 @@ export default function Team() {
       default:
         return (
           <svg
-            className="w-10 h-10 text-teal-600"
+            className="w-8 h-8 text-green-500"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -170,13 +170,13 @@ export default function Team() {
 
   const getProfileTypeColor = (profileType: string) => {
     const colors: Record<string, string> = {
-      "Faculty Advisor": "from-indigo-600 to-purple-600",
-      Lead: "from-purple-600 to-pink-600",
-      "Co-Lead": "from-pink-500 to-purple-500",
-      "Core Member": "from-gray-400 to-gray-700",
-      Mentor: "from-teal-600 to-blue-600",
+      "Faculty Advisor": "text-blue-600 border-blue-600",
+      Lead: "text-blue-500 border-blue-500",
+      "Co-Lead": "text-red-500 border-red-500",
+      "Core Member": "text-gray-600 border-gray-600",
+      Mentor: "text-green-500 border-green-500",
     };
-    return colors[profileType] || "from-gray-600 to-gray-800";
+    return colors[profileType] || "text-gray-600 border-gray-600";
   };
 
   const groupMembersByType = () => {
@@ -223,13 +223,15 @@ export default function Team() {
 
       <main className="pt-16">
         {/* Hero Section */}
-        <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-white via-blue-50/30 to-purple-50/30">
-          {/* Background Animation */}
+        <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gray-50">
+          {/* Google Color Background Elements */}
           <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute top-20 left-10 w-12 h-12 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full opacity-20 animate-float" />
-            <div className="absolute top-1/4 right-16 w-8 h-8 bg-gradient-to-r from-blue-500 to-green-500 rotate-45 opacity-25 animate-float" style={{ animationDelay: "1s" }} />
-            <div className="absolute bottom-40 left-20 w-6 h-6 bg-gradient-to-r from-green-500 to-yellow-500 rounded-full opacity-30 animate-float" style={{ animationDelay: "2s" }} />
-            <div className="absolute bottom-20 right-10 w-10 h-10 bg-gradient-to-r from-yellow-500 to-red-500 rounded-full opacity-20 animate-float" style={{ animationDelay: "0.5s" }} />
+            <div className="absolute top-20 left-10 w-4 h-4 bg-blue-500 rounded-full opacity-60 animate-float" />
+            <div className="absolute top-1/4 right-16 w-6 h-6 bg-red-500 rotate-45 opacity-50 animate-float" style={{ animationDelay: "1s" }} />
+            <div className="absolute bottom-40 left-20 w-5 h-5 bg-yellow-500 rounded-full opacity-70 animate-float" style={{ animationDelay: "2s" }} />
+            <div className="absolute bottom-20 right-10 w-8 h-8 bg-green-500 rounded-full opacity-40 animate-float" style={{ animationDelay: "0.5s" }} />
+            <div className="absolute top-1/2 left-1/4 w-4 h-4 bg-red-500 rounded-full opacity-50 animate-float" style={{ animationDelay: "3s" }} />
+            <div className="absolute top-1/3 right-1/3 w-5 h-5 bg-blue-500 rotate-45 opacity-60 animate-float" style={{ animationDelay: "1.5s" }} />
           </div>
 
           {/* Content */}
@@ -237,9 +239,7 @@ export default function Team() {
             <div className="animate-slide-up">
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6">
                 <span className="text-gray-900">Meet Our</span>{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-blue-500 to-green-600">
-                  Team
-                </span>
+                <span className="text-blue-500">Team</span>
               </h1>
 
               <p className="text-lg sm:text-xl md:text-2xl text-gray-600 mb-8 max-w-4xl mx-auto leading-relaxed animate-slide-up" style={{ animationDelay: "0.2s" }}>
@@ -248,21 +248,21 @@ export default function Team() {
 
               <div className="flex flex-wrap justify-center gap-8 mb-8 animate-slide-up" style={{ animationDelay: "0.4s" }}>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-purple-600">{teamMembers.length}+</div>
+                  <div className="text-3xl font-bold text-blue-500">{teamMembers.length}+</div>
                   <div className="text-gray-600">Team Members</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-blue-600">500+</div>
+                  <div className="text-3xl font-bold text-red-500">500+</div>
                   <div className="text-gray-600">Community Members</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-green-600">50+</div>
+                  <div className="text-3xl font-bold text-green-500">50+</div>
                   <div className="text-gray-600">Events Organized</div>
                 </div>
               </div>
 
               <div className="animate-slide-up" style={{ animationDelay: "0.6s" }}>
-                <button onClick={() => document.getElementById("team-section")?.scrollIntoView({ behavior: "smooth" })} className="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-8 py-4 rounded-full text-lg font-medium hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+                <button onClick={() => document.getElementById("team-section")?.scrollIntoView({ behavior: "smooth" })} className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-4 rounded-full text-lg font-medium hover:shadow-xl transition-all duration-300 transform hover:scale-105">
                   Meet the Team
                 </button>
               </div>
@@ -271,7 +271,7 @@ export default function Team() {
 
           {/* Scroll Indicator */}
           <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-            <div className="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center hover:border-purple-600 transition-colors cursor-pointer" onClick={() => document.getElementById("team-section")?.scrollIntoView({ behavior: "smooth" })}>
+            <div className="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center hover:border-blue-500 transition-colors cursor-pointer" onClick={() => document.getElementById("team-section")?.scrollIntoView({ behavior: "smooth" })}>
               <div className="w-1 h-3 bg-gray-400 rounded-full mt-2 animate-pulse" />
             </div>
           </div>
@@ -282,7 +282,7 @@ export default function Team() {
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             {isLoading ? (
               <div className="text-center py-12">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mx-auto mb-4" />
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4" />
                 <p className="text-gray-600">Loading our amazing team...</p>
               </div>
             ) : teamMembers.length === 0 ? (
@@ -300,23 +300,23 @@ export default function Team() {
                       {/* Profile Type Header */}
                       <div className="text-center">
                         <div className="inline-flex items-center space-x-3 mb-4">
-                          <span className="text-4xl">{getProfileTypeIcon(profileType)}</span>
-                          <h2 className={`text-3xl md:text-4xl font-bold bg-gradient-to-r ${getProfileTypeColor(profileType)} bg-clip-text text-transparent`}>
+                          <span className="text-3xl">{getProfileTypeIcon(profileType)}</span>
+                          <h2 className={`text-2xl md:text-3xl font-bold ${getProfileTypeColor(profileType).split(' ')[0]}`}>
                             {profileType}
                           </h2>
                         </div>
-                        <div className={`w-24 h-1 bg-gradient-to-r ${getProfileTypeColor(profileType)} mx-auto rounded-full`} />
+                        <div className={`w-20 h-1 bg-${getProfileTypeColor(profileType).split(' ')[1].replace('border-', '').replace('text-', '')} mx-auto rounded-full`} />
                       </div>
 
                       {/* Members Grid */}
-                      <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+                      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 md:gap-8">
                         {members.map((member, index) => {
                           const globalIndex = teamMembers.findIndex((m) => m.id === member.id);
                           return (
                             <div
                               key={member.id}
                               data-index={globalIndex}
-                              className={`team-member-card relative group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105 overflow-hidden ${visibleCards.has(globalIndex) ? "animate-fade-in-up opacity-100" : "opacity-0"}`}
+                              className={`team-member-card relative group bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105 overflow-hidden border-2 border-transparent hover:border-blue-200 ${visibleCards.has(globalIndex) ? "animate-fade-in-up opacity-100" : "opacity-0"}`}
                               style={{ animationDelay: `${index * 0.08}s` }}
                             >
                               {/* Member Image */}
@@ -324,14 +324,30 @@ export default function Team() {
                                 <img src={member.image} alt={member.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" />
                               </div>
 
-                              <div className="p-4 pt-4">
+                              <div className="p-4">
                                 {/* Member Info */}
-                                <div className="text-center mb-4">
-                                  <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors duration-300">{member.name}</h3>
-                                  <div className={`inline-block px-3 py-1 rounded-full text-sm font-medium text-white bg-gradient-to-r ${getRoleColor(member.role)} mb-2`}>
+                                <div className="text-center mb-3">
+                                  <h3 className="text-base font-bold text-gray-900 mb-1 group-hover:text-blue-500 transition-colors duration-300 line-clamp-1">{member.name}</h3>
+                                  <div className={`inline-block px-3 py-1 rounded-full text-xs font-medium text-white ${getRoleColor(member.role)} mb-2`}>
                                     {member.role}
                                   </div>
-                                  <p className="text-gray-600 text-sm leading-relaxed line-clamp-3">{member.bio}</p>
+
+                                {/* Social Links */}
+                                {(member.linkedin || member.github || member.twitter || member.instagram) && (
+                                  <div className="flex justify-center">
+                                    <SocialIcons
+                                      links={{
+                                        linkedin: member.linkedin,
+                                        github: member.github,
+                                        twitter: member.twitter,
+                                        instagram: member.instagram,
+                                      }}
+                                      size="xs"
+                                    />
+                                  </div>
+                                )}
+                              </div>
+                                  <p className="text-gray-600 text-sm leading-relaxed line-clamp-2">{member.bio}</p>
                                 </div>
 
                                 {/* Social Links */}
@@ -344,17 +360,17 @@ export default function Team() {
                                         twitter: member.twitter,
                                         instagram: member.instagram,
                                       }}
-                                      size="sm"
+                                      size="xs"
                                     />
                                   </div>
                                 )}
                               </div>
 
-                              {/* Hover Effect Overlay - non-interactive */}
-                              <div className={`absolute inset-0 bg-gradient-to-r ${getRoleColor(member.role)} opacity-0 group-hover:opacity-5 transition-opacity duration-300 rounded-2xl pointer-events-none`} aria-hidden="true" />
+                              {/* Role Color Accent */}
+                              <div className={`absolute top-0 left-0 w-full h-1 ${getRoleColor(member.role)}`} />
 
-                              {/* Floating Decorative Element */}
-                              <div className={`absolute -bottom-2 -right-2 w-6 h-6 bg-gradient-to-r ${getProfileTypeColor(profileType)} rounded-full animate-float opacity-60 shadow-lg`} style={{ animationDelay: `${index * 0.5}s` }} />
+                              {/* Google Color Decorative Dot */}
+                              <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-blue-500 rounded-full animate-float opacity-60 shadow-lg" style={{ animationDelay: `${index * 0.5}s` }} />
                             </div>
                           );
                         })}
@@ -366,14 +382,14 @@ export default function Team() {
             )}
 
             {/* Join Us Section */}
-            <div className="mt-16 text-center bg-gradient-to-r from-purple-50 to-blue-50 rounded-2xl p-8 md:p-12">
-              <h3 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent mb-4">Want to Join Our Team?</h3>
+            <div className="mt-16 text-center bg-blue-50 rounded-2xl p-8 md:p-12 border-2 border-blue-100">
+              <h3 className="text-2xl md:text-3xl font-bold text-blue-600 mb-4">Want to Join Our Team?</h3>
               <p className="text-gray-600 text-lg max-w-2xl mx-auto mb-6">We're always looking for passionate individuals who want to make a difference in the tech community. Join us and help build the future!</p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="https://chat.whatsapp.com/CcTjDYXNfQMEoLUHzB3hwa" target="_blank" rel="noopener noreferrer" className="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-8 py-4 rounded-full hover:shadow-xl transition-all duration-300 font-medium transform hover:scale-105">
+                <a href="https://chat.whatsapp.com/CcTjDYXNfQMEoLUHzB3hwa" target="_blank" rel="noopener noreferrer" className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-4 rounded-full hover:shadow-xl transition-all duration-300 font-medium transform hover:scale-105">
                   Join Our Community
                 </a>
-                <a href="https://github.com/gdgoc-iet-davv" target="_blank" rel="noopener noreferrer" className="border-2 border-purple-600 text-purple-600 px-8 py-4 rounded-full hover:bg-purple-600 hover:text-white transition-all duration-300 font-medium transform hover:scale-105">
+                <a href="https://github.com/gdgoc-iet-davv" target="_blank" rel="noopener noreferrer" className="border-2 border-blue-500 text-blue-500 px-8 py-4 rounded-full hover:bg-blue-500 hover:text-white transition-all duration-300 font-medium transform hover:scale-105">
                   Contribute on GitHub
                 </a>
               </div>
