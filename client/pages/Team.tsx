@@ -27,19 +27,24 @@ export default function Team() {
           if (!(entry.target instanceof HTMLElement)) return;
           const el = entry.target as HTMLElement;
 
-          const idxAttr = el.getAttribute("data-index") || "0";
-          const idx = Number(idxAttr);
-          if (Number.isNaN(idx)) return;
+          // prefer the local stagger; fallback to data-index if not present
+          const staggerAttr = el.getAttribute("data-stagger");
+          const raw = staggerAttr ?? el.getAttribute("data-index") ?? "0";
+          let stagger = Number(raw);
+          if (Number.isNaN(stagger)) stagger = 0;
 
-          // stagger via transitionDelay (ms)
-          el.style.transitionDelay = `${idx * 60}ms`;
+          // cap the stagger so long lists don't create big delays (max 8 steps)
+          const capped = Math.min(Math.max(stagger, 0), 8);
 
-          // add permanent class and stop observing
+          // make each step 45ms (shorter feel) — adjust if you want faster/slower
+          el.style.transitionDelay = `${capped * 45}ms`;
+
           el.classList.add("is-visible");
           observer.unobserve(el);
         });
       },
-      { threshold: 0.15 },
+      // trigger a little earlier: low threshold + negative bottom margin
+      { threshold: 0.05, rootMargin: "0px 0px -12% 0px" },
     );
 
     const cards = document.querySelectorAll(".team-member-card");
@@ -401,7 +406,8 @@ export default function Team() {
                             <article
                               key={member.id}
                               data-index={globalIndex}
-                              className="team-member-card relative group rounded-2xl overflow-hidden shadow-lg transform opacity-0 translate-y-6 transition-opacity duration-500"
+                              data-stagger={index}
+                              className="team-member-card relative group rounded-2xl overflow-hidden shadow-lg transform opacity-0 translate-y-6 transition-transform duration-500"
                             >
                               <div className="relative aspect-square w-full overflow-hidden">
                                 <img
