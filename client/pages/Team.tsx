@@ -9,8 +9,6 @@ import { scrollToTopInstant } from "@/lib/scrollUtils";
 export default function Team() {
   const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  // track which individual cards are visible (by index)
-  const [visibleCards, setVisibleCards] = useState<Set<number>>(new Set());
   const sectionRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
@@ -18,31 +16,36 @@ export default function Team() {
     loadTeamMembers();
   }, []);
 
-  // observe each card after members are loaded
+  // observe each card after members are loaded — add .is-visible class once per card
   useEffect(() => {
     if (!teamMembers || teamMembers.length === 0) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const index = Number(entry.target.getAttribute("data-index"));
-            if (!Number.isNaN(index)) {
-              setVisibleCards((prev) => {
-                const next = new Set(prev);
-                next.add(index);
-                return next;
-              });
-            }
-          }
+          if (!entry.isIntersecting) return;
+          if (!(entry.target instanceof HTMLElement)) return;
+          const el = entry.target as HTMLElement;
+
+          const idxAttr = el.getAttribute("data-index") || "0";
+          const idx = Number(idxAttr);
+          if (Number.isNaN(idx)) return;
+
+          // stagger via transitionDelay (ms)
+          el.style.transitionDelay = `${idx * 60}ms`;
+
+          // add permanent class and stop observing
+          el.classList.add("is-visible");
+          observer.unobserve(el);
         });
       },
       { threshold: 0.15 },
     );
 
-    // observe all team member cards
     const cards = document.querySelectorAll(".team-member-card");
-    cards.forEach((c) => observer.observe(c));
+    cards.forEach((c) => {
+      if (c instanceof HTMLElement) observer.observe(c);
+    });
 
     return () => observer.disconnect();
   }, [teamMembers]);
@@ -398,8 +401,7 @@ export default function Team() {
                             <article
                               key={member.id}
                               data-index={globalIndex}
-                              className={`team-member-card relative group rounded-2xl overflow-hidden shadow-lg transform transition-all duration-500 ${visibleCards.has(globalIndex) ? "animate-fade-in-up opacity-100" : "opacity-0"}`}
-                              style={{ animationDelay: `${index * 0.06}s` }}
+                              className="team-member-card relative group rounded-2xl overflow-hidden shadow-lg transform opacity-0 translate-y-6 transition-opacity duration-500"
                             >
                               <div className="relative aspect-square w-full overflow-hidden">
                                 <img
