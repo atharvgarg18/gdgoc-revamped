@@ -433,6 +433,9 @@
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -webkit-tap-highlight-color: transparent;
+    
+    /* Standard property for broader compatibility */
+    user-select: none;
   }
 }
 
@@ -441,6 +444,7 @@
   /* Firefox specific fixes */
   input[type="number"] {
     -moz-appearance: textfield;
+    appearance: textfield;
   }
 
   input[type="number"]::-webkit-outer-spin-button,
