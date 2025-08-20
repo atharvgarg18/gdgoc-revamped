@@ -493,9 +493,9 @@ export default function Team() {
             )}
 
             {/* Join Us Section */}
-            <div className="mt-16 text-center bg-gradient-to-r from-purple-50 to-blue-50 rounded-2xl p-8 md:p-12">
-              <h3 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent mb-4">
-                Want to Join Our Team?
+            <div className="mt-16 text-center bg-white rounded-2xl p-8 md:p-12 border border-gray-200">
+              <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+                Ready to Join Our Team?
               </h3>
               <p className="text-gray-600 text-lg max-w-2xl mx-auto mb-6">
                 We're always looking for passionate individuals who want to make
@@ -507,7 +507,7 @@ export default function Team() {
                   href="https://chat.whatsapp.com/CcTjDYXNfQMEoLUHzB3hwa"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-8 py-4 rounded-full hover:shadow-xl transition-all duration-300 font-medium transform hover:scale-105"
+                  className="bg-gdsc-blue text-white px-8 py-4 rounded-lg hover:bg-blue-600 transition-all duration-300 font-medium transform hover:scale-105"
                 >
                   Join Our Community
                 </a>
@@ -515,7 +515,7 @@ export default function Team() {
                   href="https://github.com/gdgoc-iet-davv"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="border-2 border-purple-600 text-purple-600 px-8 py-4 rounded-full hover:bg-purple-600 hover:text-white transition-all duration-300 font-medium transform hover:scale-105"
+                  className="border-2 border-gdsc-blue text-gdsc-blue px-8 py-4 rounded-lg hover:bg-gdsc-blue hover:text-white transition-all duration-300 font-medium transform hover:scale-105"
                 >
                   Contribute on GitHub
                 </a>

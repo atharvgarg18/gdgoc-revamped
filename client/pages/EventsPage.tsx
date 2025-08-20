@@ -250,7 +250,7 @@ export default function EventsPage() {
           <div className="relative z-10 container-responsive">
             {/* Filter Section */}
             <div className="mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-center bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent mb-8">
+              <h2 className="text-3xl md:text-4xl font-bold text-center text-black mb-8">
                 Explore by Category
               </h2>
               <div className="flex flex-wrap gap-3 justify-center">
@@ -464,40 +464,33 @@ export default function EventsPage() {
         </section>
 
         {/* Call to Action Section */}
-        <section className="py-16 md:py-20 bg-gradient-to-br from-green-50 via-blue-50/50 to-white relative overflow-hidden">
-          {/* Background decoration */}
-          <div className="absolute inset-0 pointer-events-none opacity-30">
-            <div className="absolute top-8 left-8 w-3 h-3 bg-green-500 rounded-full animate-ping"></div>
-            <div className="absolute top-16 right-12 w-2 h-2 bg-blue-500 rounded-full animate-ping" style={{ animationDelay: "1s" }}></div>
-            <div className="absolute bottom-12 left-16 w-2 h-2 bg-yellow-500 rounded-full animate-ping" style={{ animationDelay: "2s" }}></div>
-            <div className="absolute bottom-8 right-8 w-3 h-3 bg-red-500 rounded-full animate-ping" style={{ animationDelay: "0.5s" }}></div>
-          </div>
-
-          <div className="relative z-10 container-responsive text-center">
-            <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent mb-6">
-              Ready to Level Up Your Skills?
-            </h2>
-            <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-              Join our community of passionate developers and participate in
-              hands-on learning experiences that will accelerate your career
-              growth.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="https://chat.whatsapp.com/CcTjDYXNfQMEoLUHzB3hwa"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="relative overflow-hidden bg-gradient-to-r from-green-600 to-blue-600 text-white px-8 py-4 rounded-xl hover:shadow-xl transition-all duration-300 font-medium transform hover:scale-105 group"
-              >
-                <span className="relative z-10">Join Our Community</span>
-                <div className="absolute inset-0 bg-white/20 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
-              </a>
-              <a
-                href="/projects"
-                className="relative overflow-hidden border-2 border-green-600 text-green-600 px-8 py-4 rounded-xl hover:bg-green-600 hover:text-white transition-all duration-300 font-medium transform hover:scale-105 backdrop-blur-sm bg-white/20"
-              >
-                View Our Projects
-              </a>
+        <section className="py-16 md:py-20 bg-gray-50">
+          <div className="container-responsive">
+            <div className="text-center bg-white rounded-2xl p-8 md:p-12 border border-gray-200">
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+                Ready to Level Up Your Skills?
+              </h2>
+              <p className="text-gray-600 text-lg max-w-2xl mx-auto mb-6">
+                Join our community of passionate developers and participate in
+                hands-on learning experiences that will accelerate your career
+                growth.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <a
+                  href="https://chat.whatsapp.com/CcTjDYXNfQMEoLUHzB3hwa"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-gdsc-blue text-white px-8 py-4 rounded-lg hover:bg-blue-600 transition-all duration-300 font-medium transform hover:scale-105"
+                >
+                  Join Our Community
+                </a>
+                <a
+                  href="/projects"
+                  className="border-2 border-gdsc-blue text-gdsc-blue px-8 py-4 rounded-lg hover:bg-gdsc-blue hover:text-white transition-all duration-300 font-medium transform hover:scale-105"
+                >
+                  View Our Projects
+                </a>
+              </div>
             </div>
           </div>
         </section>

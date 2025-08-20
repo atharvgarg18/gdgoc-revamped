@@ -400,31 +400,33 @@ export default function GalleryPage() {
         </section>
 
         {/* Call to Action Section */}
-        <section className="py-16 md:py-20 bg-gradient-to-r from-pink-50 to-purple-50">
-          <div className="container-responsive text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-              Want to Be Part of Our Story?
-            </h2>
-            <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-              Join our community and be part of the memories we create together.
-              Every event is an opportunity to learn, grow, and connect with
-              amazing people.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="https://chat.whatsapp.com/CcTjDYXNfQMEoLUHzB3hwa"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-animate bg-gradient-to-r from-pink-600 to-purple-600 text-white px-8 py-4 rounded-full hover:shadow-xl transition-all duration-300 font-medium transform hover:scale-105"
-              >
-                Join Our Community
-              </a>
-              <a
-                href="/events"
-                className="btn-animate border-2 border-pink-600 text-pink-600 px-8 py-4 rounded-full hover:bg-pink-600 hover:text-white transition-all duration-300 font-medium transform hover:scale-105"
-              >
-                Upcoming Events
-              </a>
+        <section className="py-16 md:py-20 bg-gray-50">
+          <div className="container-responsive">
+            <div className="text-center bg-white rounded-2xl p-8 md:p-12 border border-gray-200">
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+                Ready to Be Part of Our Story?
+              </h2>
+              <p className="text-gray-600 text-lg max-w-2xl mx-auto mb-6">
+                Join our community and be part of the memories we create together.
+                Every event is an opportunity to learn, grow, and connect with
+                amazing people.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <a
+                  href="https://chat.whatsapp.com/CcTjDYXNfQMEoLUHzB3hwa"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-gdsc-blue text-white px-8 py-4 rounded-lg hover:bg-blue-600 transition-all duration-300 font-medium transform hover:scale-105"
+                >
+                  Join Our Community
+                </a>
+                <a
+                  href="/events"
+                  className="border-2 border-gdsc-blue text-gdsc-blue px-8 py-4 rounded-lg hover:bg-gdsc-blue hover:text-white transition-all duration-300 font-medium transform hover:scale-105"
+                >
+                  Upcoming Events
+                </a>
+              </div>
             </div>
           </div>
         </section>

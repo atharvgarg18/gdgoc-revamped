@@ -173,30 +173,27 @@ export default function ProjectsPage() {
                 </div>
               </div>
 
-              {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up" style={{ animationDelay: "0.6s" }}>
-                <a
-                  href="https://github.com/gdgoc-iet-davv/website"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-animate bg-gradient-to-r from-blue-600 to-green-600 text-white px-8 py-4 rounded-full hover:shadow-xl transition-all duration-300 font-medium transform hover:scale-105"
-                >
-                  View on GitHub
-                </a>
+              <div
+                className="animate-slide-up"
+                style={{ animationDelay: "0.6s" }}
+              >
                 <button
                   onClick={() => document.getElementById("projects-section")?.scrollIntoView({ behavior: "smooth" })}
-                  className="btn-animate border-2 border-blue-600 text-blue-600 px-8 py-4 rounded-full hover:bg-blue-600 hover:text-white transition-all duration-300 font-medium transform hover:scale-105"
+                  className="bg-gradient-to-r from-blue-600 to-green-600 text-white px-8 py-4 rounded-full text-lg font-medium hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
                 >
                   Explore Projects
                 </button>
               </div>
             </div>
+          </div>
 
-            {/* Scroll Indicator */}
-            <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-              <div className="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center">
-                <div className="w-1 h-3 bg-gray-400 rounded-full mt-2 animate-pulse" />
-              </div>
+          {/* Scroll Indicator */}
+          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <div
+              className="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center hover:border-blue-600 transition-colors cursor-pointer"
+              onClick={() => document.getElementById("projects-section")?.scrollIntoView({ behavior: "smooth" })}
+            >
+              <div className="w-1 h-3 bg-gray-400 rounded-full mt-2 animate-pulse" />
             </div>
           </div>
         </section>
@@ -212,7 +209,7 @@ export default function ProjectsPage() {
                   <button
                     key={category.value}
                     onClick={() => setSelectedCategory(category.value)}
-                    className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 transform hover:scale-105 ${
+                    className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
                       selectedCategory === category.value
                         ? "bg-gradient-to-r from-blue-600 to-green-600 text-white shadow-lg"
                         : "bg-gray-100 text-gray-700 hover:bg-gray-200 hover:shadow-md"
@@ -261,7 +258,7 @@ export default function ProjectsPage() {
                   <div
                     key={project.id}
                     data-index={index}
-                    className={`project-card group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-200 transform hover:scale-105 hover:-translate-y-2 flex flex-col h-full ${
+                    className={`project-card group relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-200 flex flex-col h-full ${
                       visibleCards.has(index) ? "animate-slide-up opacity-100" : "opacity-0"
                     }`}
                     style={{ animationDelay: `${index * 0.1}s` }}
@@ -316,14 +313,14 @@ export default function ProjectsPage() {
                       </div>
 
                       {/* Actions - anchored to bottom */}
-                      <div className="flex gap-3 mt-auto">
+                      <div className="flex gap-3 mt-auto relative z-20">
                         {/* Code: use anchor when valid */}
                         {project.github_url && isValidUrl(project.github_url) ? (
                           <a
                             href={project.github_url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex-1 px-4 py-2.5 rounded-lg text-center text-sm font-medium transition-all duration-300 transform hover:scale-105 bg-gray-900 text-white hover:bg-gray-800"
+                            className="flex-1 px-4 py-2.5 rounded-lg text-center text-sm font-medium transition-all duration-300 bg-gray-900 text-white hover:bg-gray-800 hover:shadow-md cursor-pointer"
                             aria-label={`${project.title} - Code`}
                           >
                             <span>Code</span>
@@ -340,7 +337,7 @@ export default function ProjectsPage() {
                             href={project.live_url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex-1 bg-gradient-to-r from-blue-600 to-green-600 text-white px-4 py-2.5 rounded-lg text-center text-sm font-medium hover:shadow-lg transition-all duration-300 transform hover:scale-105"
+                            className="flex-1 bg-gradient-to-r from-blue-600 to-green-600 text-white px-4 py-2.5 rounded-lg text-center text-sm font-medium hover:shadow-lg transition-all duration-300 cursor-pointer"
                             aria-label={`${project.title} - Live`}
                           >
                             <span>Live</span>
@@ -359,29 +356,31 @@ export default function ProjectsPage() {
         </section>
 
         {/* Call to Action Section */}
-        <section className="py-16 md:py-20 bg-gradient-to-r from-blue-50 to-green-50">
-          <div className="container-responsive text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Want to Build Something Amazing?</h2>
-            <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-              Join our community of passionate developers and bring your ideas to life. Let's build the future together!
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="https://chat.whatsapp.com/CcTjDYXNfQMEoLUHzB3hwa"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-animate bg-gradient-to-r from-blue-600 to-green-600 text-white px-8 py-4 rounded-full hover:shadow-xl transition-all duration-300 font-medium transform hover:scale-105"
-              >
-                Join Our Community
-              </a>
-              <a
-                href="https://github.com/gdgoc-iet-davv"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-animate border-2 border-blue-600 text-blue-600 px-8 py-4 rounded-full hover:bg-blue-600 hover:text-white transition-all duration-300 font-medium transform hover:scale-105"
-              >
-                Contribute on GitHub
-              </a>
+        <section className="py-16 md:py-20 bg-gray-50">
+          <div className="container-responsive">
+            <div className="text-center bg-white rounded-2xl p-8 md:p-12 border border-gray-200">
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Ready to Build Something Amazing?</h2>
+              <p className="text-gray-600 text-lg max-w-2xl mx-auto mb-6">
+                Join our community of passionate developers and bring your ideas to life. Let's build the future together!
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <a
+                  href="https://chat.whatsapp.com/CcTjDYXNfQMEoLUHzB3hwa"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-gdsc-blue text-white px-8 py-4 rounded-lg hover:bg-blue-600 transition-all duration-300 font-medium transform hover:scale-105"
+                >
+                  Join Our Community
+                </a>
+                <a
+                  href="https://github.com/gdgoc-iet-davv"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="border-2 border-gdsc-blue text-gdsc-blue px-8 py-4 rounded-lg hover:bg-gdsc-blue hover:text-white transition-all duration-300 font-medium transform hover:scale-105"
+                >
+                  Contribute on GitHub
+                </a>
+              </div>
             </div>
           </div>
         </section>

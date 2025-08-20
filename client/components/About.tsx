@@ -130,7 +130,7 @@ export default function About() {
         {/* Header with Enhanced Animation */}
         <div className="text-center mb-16">
           <div className="inline-block relative mb-6">
-            <h2 className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-gdsc-blue via-gdsc-red to-gdsc-green bg-clip-text text-transparent mb-4 animate-gradient-x">
+            <h2 className="text-3xl md:text-5xl font-bold text-black mb-4">
               About GDGoC IET DAVV
             </h2>
             {/* Decorative elements */}
@@ -253,7 +253,7 @@ export default function About() {
           </div>
 
           <div className="relative z-10">
-            <h3 className="text-2xl md:text-4xl font-bold bg-gradient-to-r from-gdsc-blue via-gdsc-red to-gdsc-green bg-clip-text text-transparent mb-8 animate-gradient-x">
+            <h3 className="text-2xl md:text-4xl font-bold text-black mb-8">
               Our Mission & Values
             </h3>
 
@@ -319,18 +319,16 @@ export default function About() {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
               <a
-                href="https://chat.whatsapp.com/CcTjDYXNfQMEoLUHzB3hwa"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group/btn relative overflow-hidden bg-gradient-to-r from-gdsc-blue to-blue-600 text-white px-8 py-4 rounded-xl hover:from-blue-600 hover:to-blue-700 transition-all duration-300 font-semibold transform hover:scale-105 shadow-lg hover:shadow-xl"
+                href="/team"
+                onClick={() => window.scrollTo(0, 0)}
+                className="bg-gdsc-blue text-white px-8 py-4 rounded-lg hover:bg-blue-600 transition-all duration-300 font-semibold transform hover:scale-105 shadow-lg hover:shadow-xl"
               >
-                <span className="relative z-10">Join Our Community</span>
-                <div className="absolute inset-0 bg-white/20 transform scale-x-0 group-hover/btn:scale-x-100 transition-transform duration-300 origin-left"></div>
+                Meet Our Team
               </a>
               <a
                 href="/events"
                 onClick={() => window.scrollTo(0, 0)}
-                className="relative overflow-hidden border-2 border-gdsc-blue text-gdsc-blue px-8 py-4 rounded-xl hover:bg-gdsc-blue hover:text-white transition-all duration-300 font-semibold transform hover:scale-105 shadow-lg hover:shadow-xl backdrop-blur-sm bg-white/20"
+                className="border-2 border-gdsc-blue text-gdsc-blue px-8 py-4 rounded-lg hover:bg-gdsc-blue hover:text-white transition-all duration-300 font-semibold transform hover:scale-105 shadow-lg hover:shadow-xl bg-white"
               >
                 Explore Events
               </a>
