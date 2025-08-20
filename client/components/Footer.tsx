@@ -70,16 +70,51 @@ export default function Footer() {
           <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-8 md:gap-12 mb-8 md:mb-12">
             {/* Logo and Description */}
             <div className="lg:col-span-2">
-              <Link to="/" className="flex items-center space-x-3 mb-6 group">
-                <img
-                  src="https://www.dscvit.com/newlogo.svg"
-                  alt="GDGoC IET DAVV Logo"
-                  className="w-10 h-10 md:w-12 md:h-12 group-hover:scale-110 transition-transform duration-300"
-                />
-                <span className="font-bold text-lg md:text-xl">
-                  GDGoC <span className="text-gdsc-blue">IET DAVV</span>
-                </span>
-              </Link>
+              <div className="relative group">
+                {/* Logo and text - slides left and fades out on hover */}
+                <Link to="/" className="flex items-center space-x-3 mb-6 transition-all duration-500 ease-out group-hover:opacity-0 group-hover:-translate-x-full">
+                  <img
+                    src="https://www.dscvit.com/newlogo.svg"
+                    alt="GDGoC IET DAVV Logo"
+                    className="w-10 h-10 md:w-12 md:h-12"
+                  />
+                  <span className="font-bold text-lg md:text-xl">
+                    GDGoC <span className="text-gdsc-blue">IET DAVV</span>
+                  </span>
+                </Link>
+                
+                {/* Developer Credits - slides in from right to replace logo */}
+                <div className="absolute left-0 top-0 flex items-center space-x-3 mb-6 transform translate-x-full opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-500 ease-out">
+                  <Link to="/">
+                    <img
+                      src="https://www.dscvit.com/newlogo.svg"
+                      alt="GDGoC IET DAVV Logo"
+                      className="w-10 h-10 md:w-12 md:h-12 hover:scale-110 transition-transform duration-300"
+                    />
+                  </Link>
+                  <span className="font-bold text-lg md:text-xl">
+                    Developed by <span className="text-gdsc-blue">
+                      <a
+                        href="https://www.linkedin.com/in/atharvgrg/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:text-blue-400 transition-colors duration-200"
+                      >
+                        Atharv Garg
+                      </a>
+                    </span> & <span className="text-gdsc-green">
+                      <a
+                        href="https://www.linkedin.com/in/darpan-porwal/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:text-green-400 transition-colors duration-200"
+                      >
+                        Darpan Porwal
+                      </a>
+                    </span>
+                  </span>
+                </div>
+              </div>
               <p className="text-gray-300 leading-relaxed max-w-md mb-6 text-sm md:text-base">
                 Building the future one developer at a time. Join our community
                 of passionate students learning and growing together through
