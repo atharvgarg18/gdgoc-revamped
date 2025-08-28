@@ -74,7 +74,10 @@ export default function EventsManager() {
           alert(`Error updating event: ${result.error}`);
         }
       } else {
-        const result = await createEvent(processedData);
+        const result = await createEvent({
+          ...processedData,
+          status: editingEvent?.status ?? "upcoming", // or set a default status as needed
+        });
         if (result.success) {
           await loadEvents();
           resetForm();
