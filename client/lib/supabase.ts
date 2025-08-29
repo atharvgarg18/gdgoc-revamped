@@ -62,7 +62,23 @@ export interface TeamMember {
   id: string;
   name: string;
   role: string;
-  profile_type: "Faculty Advisor" | "Mentor" | "Lead" | "Co-Lead" | "Core Member";
+  profile_type: "Lead" | "Co-Lead" | "Mentor";
+  image: string;
+  bio: string;
+  linkedin?: string;
+  github?: string;
+  twitter?: string;
+  instagram?: string;
+  display_order: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface FacultyAndAlumni {
+  id: string;
+  name: string;
+  role: string;
+  profile_type: "Faculty Mentor" | "Former Leads";
   image: string;
   bio: string;
   linkedin?: string;
@@ -226,18 +242,6 @@ const mockTeamMembers: TeamMember[] = [
   },
   {
     id: "4",
-    name: "Dr. Priya Singh",
-    role: "Faculty Advisor",
-    profile_type: "Faculty Advisor",
-    image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400",
-    bio: "Associate Professor with expertise in Computer Science and AI. Guides the community with academic excellence and industry insights.",
-    linkedin: "https://www.linkedin.com/company/gdgoc-iet-davv",
-    display_order: 4,
-    created_at: new Date().toISOString(),
-    updated_at: new Date().toISOString(),
-  },
-  {
-    id: "5",
     name: "Arjun Patel",
     role: "Senior Mentor",
     profile_type: "Mentor",
@@ -245,7 +249,73 @@ const mockTeamMembers: TeamMember[] = [
     bio: "Full-stack developer and open source contributor. Mentors students in web development and software engineering best practices.",
     linkedin: "https://www.linkedin.com/company/gdgoc-iet-davv",
     github: "https://github.com/gdgoc-iet-davv",
+    display_order: 4,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+  {
+    id: "5",
+    name: "Neha Gupta",
+    role: "Co-Lead",
+    profile_type: "Co-Lead",
+    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400",
+    bio: "Co-leading the community with focus on event management and partnerships. Expert in project coordination and team leadership.",
+    linkedin: "https://www.linkedin.com/company/gdgoc-iet-davv",
+    github: "https://github.com/gdgoc-iet-davv",
     display_order: 5,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+  {
+    id: "6",
+    name: "Ananya Reddy",
+    role: "Marketing Co-Lead",
+    profile_type: "Co-Lead",
+    image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400",
+    bio: "Passionate about digital marketing and community outreach. Leads our social media presence and marketing campaigns.",
+    linkedin: "https://www.linkedin.com/company/gdgoc-iet-davv",
+    github: "https://github.com/gdgoc-iet-davv",
+    display_order: 6,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+];
+
+const mockFacultyAndAlumni: FacultyAndAlumni[] = [
+  {
+    id: "fa1",
+    name: "Dr. Priya Singh",
+    role: "Faculty Advisor",
+    profile_type: "Faculty Mentor",
+    image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400",
+    bio: "Associate Professor with expertise in Computer Science and AI. Guides the community with academic excellence and industry insights.",
+    linkedin: "https://www.linkedin.com/company/gdgoc-iet-davv",
+    display_order: 1,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+  {
+    id: "fa2",
+    name: "Vikram Singh",
+    role: "Former Lead (2022-23)",
+    profile_type: "Former Leads",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400",
+    bio: "Former community leader who established the foundation of GDGoC IET DAVV. Now working as Software Engineer at Google.",
+    linkedin: "https://www.linkedin.com/company/gdgoc-iet-davv",
+    github: "https://github.com/gdgoc-iet-davv",
+    display_order: 2,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+  {
+    id: "fa3",
+    name: "Prof. Rajesh Kumar",
+    role: "Department Head",
+    profile_type: "Faculty Mentor",
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400",
+    bio: "Head of Computer Science Department. Provides strategic guidance and academic support to the GDGoC community.",
+    linkedin: "https://www.linkedin.com/company/gdgoc-iet-davv",
+    display_order: 3,
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
   },
@@ -343,6 +413,7 @@ const mockProjects: Project[] = [
 const STORAGE_KEYS = {
   events: "gdgoc-events-v2",
   teamMembers: "gdgoc-team-members-v2",
+  facultyAndAlumni: "gdgoc-faculty-alumni-v2",
   galleryItems: "gdgoc-gallery-items-v2",
   projects: "gdgoc-projects-v2",
   lastSync: "gdgoc-last-sync",
@@ -681,6 +752,124 @@ export const deleteTeamMember = async (id: string) => {
     },
     null,
     "Delete Team Member",
+  );
+};
+
+// Faculty and Alumni API
+export const getFacultyAndAlumni = async () => {
+  if (!supabase) {
+    const data = getFromStorage(STORAGE_KEYS.facultyAndAlumni, mockFacultyAndAlumni);
+    return {
+      success: true,
+      data: data.sort((a, b) => a.display_order - b.display_order),
+      fallback: true,
+    };
+  }
+
+  return withErrorHandling(
+    async () => {
+      const { data, error } = await supabase
+        .from("faculty_and_alumni")
+        .select("*")
+        .order("display_order", { ascending: true });
+      if (error) throw error;
+      return data;
+    },
+    getFromStorage(STORAGE_KEYS.facultyAndAlumni, mockFacultyAndAlumni),
+    "Get Faculty and Alumni",
+  );
+};
+
+export const createFacultyAndAlumni = async (
+  member: Omit<FacultyAndAlumni, "id" | "created_at" | "updated_at">,
+) => {
+  if (!supabase) {
+    const members = getFromStorage(STORAGE_KEYS.facultyAndAlumni, mockFacultyAndAlumni);
+    const newMember: FacultyAndAlumni = {
+      ...member,
+      id: `local_fa_${Date.now()}`,
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString(),
+    };
+    members.push(newMember);
+    saveToStorage(STORAGE_KEYS.facultyAndAlumni, members);
+    return { success: true, data: newMember, fallback: true };
+  }
+
+  return withErrorHandling(
+    async () => {
+      const { data, error } = await supabase
+        .from("faculty_and_alumni")
+        .insert([
+          {
+            ...member,
+            created_at: new Date().toISOString(),
+            updated_at: new Date().toISOString(),
+          },
+        ])
+        .select();
+
+      if (error) throw error;
+      return data?.[0] || data;
+    },
+    null,
+    "Create Faculty/Alumni Member",
+  );
+};
+
+export const updateFacultyAndAlumni = async (
+  id: string,
+  updates: Partial<FacultyAndAlumni>,
+) => {
+  if (!supabase) {
+    const members = getFromStorage(STORAGE_KEYS.facultyAndAlumni, mockFacultyAndAlumni);
+    const index = members.findIndex((m) => m.id === id);
+    if (index === -1) return { success: false, error: "Faculty/Alumni member not found" };
+
+    members[index] = {
+      ...members[index],
+      ...updates,
+      updated_at: new Date().toISOString(),
+    };
+    saveToStorage(STORAGE_KEYS.facultyAndAlumni, members);
+    return { success: true, data: members[index], fallback: true };
+  }
+
+  return withErrorHandling(
+    async () => {
+      const { data, error } = await supabase
+        .from("faculty_and_alumni")
+        .update({ ...updates, updated_at: new Date().toISOString() })
+        .eq("id", id)
+        .select();
+
+      if (error) throw error;
+      return data?.[0] || data;
+    },
+    null,
+    "Update Faculty/Alumni Member",
+  );
+};
+
+export const deleteFacultyAndAlumni = async (id: string) => {
+  if (!supabase) {
+    const members = getFromStorage(STORAGE_KEYS.facultyAndAlumni, mockFacultyAndAlumni);
+    const filtered = members.filter((m) => m.id !== id);
+    saveToStorage(STORAGE_KEYS.facultyAndAlumni, filtered);
+    return { success: true, fallback: true };
+  }
+
+  return withErrorHandling(
+    async () => {
+      const { error } = await supabase
+        .from("faculty_and_alumni")
+        .delete()
+        .eq("id", id);
+      if (error) throw error;
+      return true;
+    },
+    null,
+    "Delete Faculty/Alumni Member",
   );
 };
 

@@ -22,6 +22,8 @@ CREATE TABLE IF NOT EXISTS team_members (
   id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
   name TEXT NOT NULL,
   role TEXT NOT NULL,
+  profile_type TEXT NOT NULL DEFAULT 'Mentor'
+    CHECK (profile_type IN ('Lead', 'Co-Lead', 'Mentor', 'Faculty Mentor', 'Former Leads')),
   image TEXT NOT NULL,
   bio TEXT NOT NULL,
   linkedin TEXT,

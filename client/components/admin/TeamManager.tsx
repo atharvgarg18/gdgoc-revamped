@@ -1,23 +1,29 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
   getTeamMembers,
   createTeamMember,
   updateTeamMember,
   deleteTeamMember,
+  getFacultyAndAlumni,
+  createFacultyAndAlumni,
+  updateFacultyAndAlumni,
+  deleteFacultyAndAlumni,
   TeamMember,
+  FacultyAndAlumni,
 } from "@/lib/supabase";
 import { validateAndFormatUrl } from "@/lib/urlUtils";
 
 export default function TeamManager() {
   const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
+  const [facultyAndAlumni, setFacultyAndAlumni] = useState<FacultyAndAlumni[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
-  const [editingMember, setEditingMember] = useState<TeamMember | null>(null);
+  const [editingMember, setEditingMember] = useState<TeamMember | FacultyAndAlumni | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     role: "",
-    profile_type: "Lead" as "Faculty Advisor" | "Mentor" | "Lead" | "Co-Lead" | "Core Member",
+    profile_type: "Lead" as "Lead" | "Co-Lead" | "Mentor" | "Faculty Mentor" | "Former Leads",
     image: "",
     bio: "",
     linkedin: "",
@@ -29,6 +35,7 @@ export default function TeamManager() {
 
   useEffect(() => {
     loadTeamMembers();
+    loadFacultyAndAlumni();
   }, []);
 
   const loadTeamMembers = async () => {
@@ -36,6 +43,15 @@ export default function TeamManager() {
     const result = await getTeamMembers();
     if (result.success) {
       setTeamMembers(result.data);
+    }
+    setIsLoading(false);
+  };
+
+  const loadFacultyAndAlumni = async () => {
+    setIsLoading(true);
+    const result = await getFacultyAndAlumni();
+    if (result.success) {
+      setFacultyAndAlumni(result.data);
     }
     setIsLoading(false);
   };
@@ -80,21 +96,67 @@ export default function TeamManager() {
         return;
       }
 
+      // Determine which table to use based on profile type
+      const isFacultyOrAlumni = processedData.profile_type === "Faculty Mentor" || processedData.profile_type === "Former Leads";
+      console.log('🔍 Debug Info:', {
+        profile_type: processedData.profile_type,
+        isFacultyOrAlumni,
+        editingMember: !!editingMember,
+        data: processedData
+      });
+
       if (editingMember) {
-        const result = await updateTeamMember(editingMember.id, processedData);
+        let result;
+        if (isFacultyOrAlumni) {
+          const facultyAlumniData = {
+            ...processedData,
+            profile_type: processedData.profile_type as "Faculty Mentor" | "Former Leads"
+          };
+          console.log('🔄 Updating faculty/alumni:', facultyAlumniData);
+          result = await updateFacultyAndAlumni(editingMember.id, facultyAlumniData);
+        } else {
+          // Only pass valid TeamMember profile types
+          const teamMemberData = {
+            ...processedData,
+            profile_type: processedData.profile_type as "Lead" | "Co-Lead" | "Mentor"
+          };
+          console.log('🔄 Updating team member:', teamMemberData);
+          result = await updateTeamMember(editingMember.id, teamMemberData);
+        }
+        
+        console.log('✅ Update result:', result);
         if (result.success) {
           await loadTeamMembers();
+          await loadFacultyAndAlumni();
           resetForm();
         } else {
-          alert(`Error updating team member: ${result.error}`);
+          alert(`Error updating member: ${result.error}`);
         }
       } else {
-        const result = await createTeamMember(processedData);
+        let result;
+        if (isFacultyOrAlumni) {
+          const facultyAlumniData = {
+            ...processedData,
+            profile_type: processedData.profile_type as "Faculty Mentor" | "Former Leads"
+          };
+          console.log('➕ Creating faculty/alumni:', facultyAlumniData);
+          result = await createFacultyAndAlumni(facultyAlumniData);
+        } else {
+          const teamMemberData = {
+            ...processedData,
+            profile_type: processedData.profile_type as "Lead" | "Co-Lead" | "Mentor"
+          };
+          console.log('➕ Creating team member:', teamMemberData);
+          result = await createTeamMember(teamMemberData);
+        }
+        
+        console.log('✅ Create result:', result);
         if (result.success) {
           await loadTeamMembers();
+          await loadFacultyAndAlumni();
           resetForm();
         } else {
-          alert(`Error creating team member: ${result.error}`);
+          alert(`Error creating member: ${result.error}`);
         }
       }
     } catch (error) {
@@ -104,18 +166,28 @@ export default function TeamManager() {
     }
   };
 
-  const handleDelete = async (id: string) => {
+  const handleDelete = async (member: TeamMember | FacultyAndAlumni) => {
     if (!confirm("Are you sure you want to delete this team member?")) return;
 
-    const result = await deleteTeamMember(id);
-    if (result.success) {
-      await loadTeamMembers();
+    let result;
+    if (member.profile_type === "Faculty Mentor" || member.profile_type === "Former Leads") {
+      result = await deleteFacultyAndAlumni(member.id);
+      if (result.success) {
+        await loadFacultyAndAlumni();
+      }
     } else {
+      result = await deleteTeamMember(member.id);
+      if (result.success) {
+        await loadTeamMembers();
+      }
+    }
+
+    if (!result.success) {
       alert(`Error deleting team member: ${result.error}`);
     }
   };
 
-  const handleEdit = (member: TeamMember) => {
+  const handleEdit = (member: TeamMember | FacultyAndAlumni) => {
     setEditingMember(member);
     setFormData({
       name: member.name,
@@ -138,7 +210,7 @@ export default function TeamManager() {
     setFormData({
       name: "",
       role: "",
-      profile_type: "Lead" as "Faculty Advisor" | "Mentor" | "Lead" | "Co-Lead" | "Core Member",
+      profile_type: "Lead" as "Lead" | "Co-Lead" | "Mentor" | "Faculty Mentor" | "Former Leads",
       image: "",
       bio: "",
       linkedin: "",
@@ -185,7 +257,7 @@ export default function TeamManager() {
 
       {/* Team Members Grid */}
       <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        {teamMembers.map((member) => (
+        {[...teamMembers, ...facultyAndAlumni].map((member) => (
           <div
             key={member.id}
             className="bg-white rounded-lg shadow hover:shadow-lg transition-shadow"
@@ -248,7 +320,7 @@ export default function TeamManager() {
                     Edit
                   </button>
                   <button
-                    onClick={() => handleDelete(member.id)}
+                    onClick={() => handleDelete(member)}
                     className="text-red-600 hover:text-red-900 text-sm"
                   >
                     Delete
@@ -329,20 +401,20 @@ export default function TeamManager() {
                       setFormData({
                         ...formData,
                         profile_type: e.target.value as
-                          | "Faculty Advisor"
-                          | "Mentor"
                           | "Lead"
-                          | "Co-Lead"
-                          | "Core Member",
+                          | "Co-Lead" 
+                          | "Mentor"
+                          | "Faculty Mentor"
+                          | "Former Leads",
                       })
                     }
                     required
                   >
-                    <option value="Faculty Advisor">Faculty Advisor</option>
-                    <option value="Mentor">Mentor</option>
                     <option value="Lead">Lead</option>
                     <option value="Co-Lead">Co-Lead</option>
-                    <option value="Core Member">Core Member</option>
+                    <option value="Mentor">Mentor</option>
+                    <option value="Faculty Mentor">Faculty Mentor</option>
+                    <option value="Former Leads">Former Leads</option>
                   </select>
                 </div>
 

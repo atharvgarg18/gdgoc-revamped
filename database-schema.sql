@@ -31,6 +31,8 @@ CREATE TABLE team_members (
   id SERIAL PRIMARY KEY,
   name VARCHAR(255) NOT NULL,
   role VARCHAR(255),
+  profile_type VARCHAR(50) NOT NULL DEFAULT 'Mentor'
+    CHECK (profile_type IN ('Lead', 'Co-Lead', 'Mentor', 'Faculty Mentor', 'Former Leads')),
   bio TEXT,
   image VARCHAR(500),
   linkedin VARCHAR(500),

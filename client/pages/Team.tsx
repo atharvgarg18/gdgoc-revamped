@@ -3,22 +3,34 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SocialIcons from "@/components/SocialIcons";
 import SEO from "@/components/SEO";
-import { getTeamMembers, TeamMember } from "@/lib/supabase";
+import { getTeamMembers, TeamMember, getFacultyAndAlumni, FacultyAndAlumni } from "@/lib/supabase";
 import { scrollToTopInstant } from "@/lib/scrollUtils";
 
 export default function Team() {
   const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
+  const [facultyAndAlumni, setFacultyAndAlumni] = useState<FacultyAndAlumni[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [selectedType, setSelectedType] = useState("all");
   const sectionRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     scrollToTopInstant();
     loadTeamMembers();
+    loadFacultyAndAlumni();
   }, []);
 
-  // observe each card after members are loaded — add .is-visible class once per card
+  // observe each card after members are loaded or filtering changes
   useEffect(() => {
-    if (!teamMembers || teamMembers.length === 0) return;
+    if ((!teamMembers || teamMembers.length === 0) && (!facultyAndAlumni || facultyAndAlumni.length === 0)) return;
+
+    // Clear any existing visible classes and reset animations
+    const cards = document.querySelectorAll(".team-member-card");
+    cards.forEach((card) => {
+      if (card instanceof HTMLElement) {
+        card.classList.remove("is-visible");
+        card.style.transitionDelay = "0ms";
+      }
+    });
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -47,20 +59,22 @@ export default function Team() {
       { threshold: 0.05, rootMargin: "0px 0px -12% 0px" },
     );
 
-    const cards = document.querySelectorAll(".team-member-card");
-    cards.forEach((c) => {
-      if (c instanceof HTMLElement) observer.observe(c);
-    });
+    // Re-observe all cards after a short delay to ensure DOM is updated
+    setTimeout(() => {
+      const newCards = document.querySelectorAll(".team-member-card");
+      newCards.forEach((c) => {
+        if (c instanceof HTMLElement) observer.observe(c);
+      });
+    }, 100);
 
     return () => observer.disconnect();
-  }, [teamMembers]);
+  }, [teamMembers, facultyAndAlumni, selectedType]); // Add facultyAndAlumni as dependency
 
   const loadTeamMembers = async () => {
     try {
       const result = await getTeamMembers();
       if (result.success || result.data) {
         const members = result.data || [];
-        // optional: normalize profile_type values here if needed
         setTeamMembers(members);
         console.log("Loaded team members:", members);
       } else {
@@ -70,6 +84,23 @@ export default function Team() {
     } catch (error) {
       console.error("Error loading team members", error);
       setTeamMembers([]);
+    }
+  };
+
+  const loadFacultyAndAlumni = async () => {
+    try {
+      const result = await getFacultyAndAlumni();
+      if (result.success || result.data) {
+        const members = result.data || [];
+        setFacultyAndAlumni(members);
+        console.log("Loaded faculty and alumni:", members);
+      } else {
+        console.warn("getFacultyAndAlumni returned no data", result.error);
+        setFacultyAndAlumni([]);
+      }
+    } catch (error) {
+      console.error("Error loading faculty and alumni", error);
+      setFacultyAndAlumni([]);
     } finally {
       setIsLoading(false);
     }
@@ -79,20 +110,19 @@ export default function Team() {
     const colors: Record<string, string> = {
       Lead: "from-purple-600 to-blue-600",
       "Co-Lead": "from-purple-500 to-pink-500",
-      "Core Member": "from-gray-600 to-gray-800",
+      "Mentor": "from-teal-600 to-blue-600",
+      "Faculty Mentor": "from-indigo-600 to-purple-600",
+      "Former Leads": "from-gray-500 to-gray-700",
       "Technical Lead": "from-blue-600 to-green-600",
       "Design Lead": "from-green-600 to-yellow-600",
       "Marketing Lead": "from-yellow-600 to-red-600",
-      "Faculty Advisor": "from-indigo-600 to-purple-600",
-      "Senior Mentor": "from-teal-600 to-blue-600",
-      Mentor: "from-emerald-600 to-teal-600",
     };
     return colors[role] || "from-gray-600 to-gray-800";
   };
 
   const getProfileTypeIcon = (profileType: string): JSX.Element => {
     switch (profileType) {
-      case "Faculty Advisor":
+      case "Faculty Mentor":
         return (
           <svg
             className="w-10 h-10 text-indigo-600"
@@ -103,7 +133,7 @@ export default function Team() {
             role="img"
             aria-hidden={true}
           >
-            <title>Faculty Advisor</title>
+            <title>Faculty Mentor</title>
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -160,10 +190,10 @@ export default function Team() {
             />
           </svg>
         );
-      case "Core Member":
+      case "Former Leads":
         return (
           <svg
-            className="w-10 h-10 text-gray-700"
+            className="w-10 h-10 text-gray-600"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -171,19 +201,13 @@ export default function Team() {
             role="img"
             aria-hidden={true}
           >
-            <title>Core Members</title>
-            <circle
-              cx="12"
-              cy="8"
-              r="3"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
+            <title>Former Leads</title>
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
-              d="M5.5 20a6.5 6.5 0 0113 0"
+              d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2z"
             />
+            <circle cx="12" cy="12" r="10" strokeDasharray="5,5" strokeOpacity="0.5"/>
           </svg>
         );
       case "Mentor":
@@ -216,39 +240,61 @@ export default function Team() {
 
   const getProfileTypeColor = (profileType: string) => {
     const colors: Record<string, string> = {
-      "Faculty Advisor": "from-indigo-600 to-purple-600",
+      "Faculty Mentor": "from-indigo-600 to-purple-600",
       Lead: "from-purple-600 to-pink-600",
       "Co-Lead": "from-pink-500 to-purple-500",
-      "Core Member": "from-gray-400 to-gray-700",
+      "Former Leads": "from-gray-500 to-gray-700",
       Mentor: "from-teal-600 to-blue-600",
     };
     return colors[profileType] || "from-gray-600 to-gray-800";
   };
 
   const groupMembersByType = () => {
-    const grouped: Record<string, TeamMember[]> = {
-      "Faculty Advisor": [],
-      Lead: [],
-      "Co-Lead": [],
-      "Core Member": [],
-      Mentor: [],
+    // Create a combined type for both team members and faculty/alumni
+    type CombinedMember = (TeamMember | FacultyAndAlumni) & {
+      profile_type: "Lead" | "Co-Lead" | "Mentor" | "Faculty Mentor" | "Former Leads";
     };
 
+    const grouped: Record<string, CombinedMember[]> = {
+      "Lead": [],
+      "Co-Lead": [],
+      "Mentor": [],
+      "Faculty Mentor": [],
+      "Former Leads": [],
+    };
+
+    // Add team members
     teamMembers.forEach((member) => {
       const rawType = (member.profile_type || "").trim();
+      
       const type =
-        rawType === "Faculty Advisor" ||
         rawType === "Lead" ||
         rawType === "Co-Lead" ||
-        rawType === "Core Member" ||
         rawType === "Mentor"
           ? rawType
-          : "Core Member";
+          : "Mentor";
 
       if (grouped[type]) {
-        grouped[type].push(member);
+        grouped[type].push(member as CombinedMember);
       } else {
-        grouped["Core Member"].push(member);
+        grouped["Mentor"].push(member as CombinedMember);
+      }
+    });
+
+    // Add faculty and alumni
+    facultyAndAlumni.forEach((member) => {
+      const rawType = (member.profile_type || "").trim();
+      
+      const type =
+        rawType === "Faculty Mentor" ||
+        rawType === "Former Leads"
+          ? rawType
+          : "Faculty Mentor";
+
+      if (grouped[type]) {
+        grouped[type].push(member as CombinedMember);
+      } else {
+        grouped["Faculty Mentor"].push(member as CombinedMember);
       }
     });
 
@@ -257,12 +303,40 @@ export default function Team() {
 
   const groupedMembers = groupMembersByType();
   const profileOrder = [
-    "Faculty Advisor",
     "Lead",
-    "Co-Lead",
-    "Core Member",
+    "Co-Lead", 
     "Mentor",
+    "Faculty Mentor",
+    "Former Leads",
   ];
+
+  // Create combined list for filtering
+  const allMembers = [
+    ...teamMembers.map(m => ({ ...m, profile_type: m.profile_type as "Lead" | "Co-Lead" | "Mentor" | "Faculty Mentor" | "Former Leads" })),
+    ...facultyAndAlumni.map(m => ({ ...m, profile_type: m.profile_type as "Lead" | "Co-Lead" | "Mentor" | "Faculty Mentor" | "Former Leads" }))
+  ];
+
+  // Filter functionality similar to Events page
+  const filteredMembers = selectedType === "all" 
+    ? allMembers 
+    : allMembers.filter(member => member.profile_type === selectedType);
+
+  const filteredGroupedMembers = selectedType === "all" 
+    ? groupedMembers 
+    : { [selectedType]: groupedMembers[selectedType] || [] };
+
+  const filteredProfileOrder = selectedType === "all" 
+    ? profileOrder 
+    : [selectedType];
+
+  const profileTypes = [
+    { value: "all", label: "All Members", count: allMembers.length },
+    ...profileOrder.map((type) => ({
+      value: type,
+      label: type,
+      count: groupedMembers[type]?.length || 0,
+    })),
+  ].filter((type) => type.count > 0);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -318,7 +392,7 @@ export default function Team() {
               >
                 <div className="text-center">
                   <div className="text-3xl font-bold text-purple-600">
-                    {teamMembers.length}+
+                    {allMembers.length}+
                   </div>
                   <div className="text-gray-600">Team Members</div>
                 </div>
@@ -369,25 +443,71 @@ export default function Team() {
         <section
           ref={sectionRef}
           id="team-section"
-          className="py-16 md:py-20 bg-white relative overflow-hidden"
+          className="py-16 md:py-20 bg-gradient-to-br from-gray-50 via-white to-blue-50/30 relative overflow-hidden"
         >
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            {isLoading ? (
-              <div className="text-center py-12">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mx-auto mb-4" />
-                <p className="text-gray-600">Loading our amazing team...</p>
+          {/* Background decoration */}
+          <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute top-20 left-10 w-8 h-8 bg-gradient-to-r from-blue-400 to-green-400 rounded-full opacity-20 animate-float"></div>
+            <div className="absolute top-1/3 right-20 w-6 h-6 bg-yellow-400 rotate-45 opacity-25 animate-float" style={{ animationDelay: "1s" }}></div>
+            <div className="absolute bottom-40 left-20 w-4 h-4 bg-red-400 rounded-full opacity-30 animate-float" style={{ animationDelay: "2s" }}></div>
+          </div>
+
+          <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
+            {/* Filter Section */}
+            <div className="mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-center text-black mb-8">
+                Explore by Category
+              </h2>
+              <div className="flex flex-wrap gap-3 justify-center">
+                {profileTypes.map((type) => (
+                  <button
+                    key={type.value}
+                    onClick={() => setSelectedType(type.value)}
+                    className={`
+                      px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 transform hover:scale-105 backdrop-blur-sm
+                      ${
+                        selectedType === type.value
+                          ? "bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow-lg"
+                          : "bg-white/70 text-gray-700 hover:bg-white/90 hover:shadow-md border border-white/30"
+                      }
+                    `}
+                  >
+                    {type.label}
+                    <span className="ml-2 text-xs opacity-75">
+                      ({type.count})
+                    </span>
+                  </button>
+                ))}
               </div>
-            ) : teamMembers.length === 0 ? (
-              <div className="text-center py-12">
-                <p className="text-gray-600">
-                  No team members found. Please check the admin panel to add
-                  team members.
+            </div>
+
+            {/* Team Members Display */}
+            {isLoading ? (
+              <div className="text-center py-20 backdrop-blur-lg bg-white/60 rounded-2xl border border-white/30 shadow-xl">
+                <div className="flex justify-center mb-8">
+                  <div className="relative">
+                    <div className="animate-spin rounded-full h-12 w-12 border-4 border-purple-500/30 border-t-purple-500"></div>
+                    <div className="absolute inset-0 animate-spin rounded-full h-12 w-12 border-4 border-transparent border-t-blue-500" style={{ animationDirection: "reverse", animationDuration: "0.8s" }}></div>
+                  </div>
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900">
+                  Loading our amazing team...
+                </h3>
+              </div>
+            ) : allMembers.length === 0 ? (
+              <div className="text-center py-20 backdrop-blur-lg bg-white/70 rounded-3xl border border-white/30 shadow-2xl">
+                <div className="text-8xl mb-8 animate-bounce">👥</div>
+                <h3 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent mb-6">
+                  Amazing Team Coming Soon!
+                </h3>
+                <p className="text-gray-600 text-lg max-w-2xl mx-auto mb-8">
+                  We're building an incredible team of passionate individuals.
                 </p>
               </div>
             ) : (
               <div className="space-y-16">
-                {profileOrder.map((profileType) => {
-                  const members = groupedMembers[profileType] || [];
+                {filteredProfileOrder.map((profileType) => {
+                  const members = filteredGroupedMembers[profileType] || [];
                   if (members.length === 0) return null;
 
                   return (
@@ -399,7 +519,7 @@ export default function Team() {
                       </div>
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
                         {members.map((member, index) => {
-                          const globalIndex = teamMembers.findIndex(
+                          const globalIndex = allMembers.findIndex(
                             (m) => m.id === member.id,
                           );
                           return (

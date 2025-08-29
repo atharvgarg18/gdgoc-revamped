@@ -39,6 +39,8 @@ CREATE TABLE IF NOT EXISTS public.team_members (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     name VARCHAR(100) NOT NULL,
     role VARCHAR(100) NOT NULL,
+    profile_type VARCHAR(50) NOT NULL DEFAULT 'Mentor'
+        CHECK (profile_type IN ('Lead', 'Co-Lead', 'Mentor', 'Faculty Mentor', 'Former Leads')),
     bio TEXT NOT NULL,
     image TEXT NOT NULL,
     linkedin TEXT,
@@ -53,6 +55,7 @@ CREATE TABLE IF NOT EXISTS public.team_members (
 -- Add indexes
 CREATE INDEX IF NOT EXISTS idx_team_members_display_order ON public.team_members(display_order);
 CREATE INDEX IF NOT EXISTS idx_team_members_role ON public.team_members(role);
+CREATE INDEX IF NOT EXISTS idx_team_members_profile_type ON public.team_members(profile_type);
 
 -- ===================================================================
 -- GALLERY ITEMS TABLE

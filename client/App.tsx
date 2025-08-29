@@ -15,6 +15,7 @@ import ContactPage from "./pages/ContactPage";
 import GalleryPage from "./pages/GalleryPage";
 import AdminPage from "./pages/AdminPage";
 import NotFound from "./pages/NotFound";
+import DatabaseTest from "./components/DatabaseTest";
 
 const queryClient = new QueryClient();
 
@@ -33,6 +34,7 @@ const App = () => (
           <Route path="/gallery" element={<GalleryPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/admin" element={<AdminPage />} />
+          <Route path="/test-db" element={<DatabaseTest />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
