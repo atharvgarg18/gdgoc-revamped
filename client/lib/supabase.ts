@@ -135,7 +135,7 @@ const mockEvents: Event[] = [
   {
     id: "1",
     title: "Introduction to Machine Learning",
-    date: "Dec 15, 2024",
+    date: "Sep 15, 2025",
     time: "2:00 PM - 5:00 PM",
     type: "Workshop",
     description:
@@ -144,14 +144,14 @@ const mockEvents: Event[] = [
     attendees: 85,
     image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800",
     registration_link: "https://forms.gle/ml-workshop-2024",
-    status: getEventStatus("Dec 15, 2024"),
+    status: getEventStatus("Sep 15, 2025"),
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
   },
   {
     id: "2",
     title: "Android Development Bootcamp",
-    date: "Dec 20, 2024",
+    date: "Oct 20, 2025",
     time: "10:00 AM - 4:00 PM",
     type: "Bootcamp",
     description:
@@ -160,14 +160,14 @@ const mockEvents: Event[] = [
     attendees: 120,
     image: "https://images.unsplash.com/photo-1607252650355-f7fd0460ccdb?w=800",
     registration_link: "https://eventbrite.com/e/android-bootcamp-tickets",
-    status: getEventStatus("Dec 20, 2024"),
+    status: getEventStatus("Oct 20, 2025"),
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
   },
   {
     id: "3",
     title: "Web Development with React",
-    date: "Dec 25, 2024",
+    date: "Nov 25, 2025",
     time: "1:00 PM - 6:00 PM",
     type: "Workshop",
     description:
@@ -177,14 +177,14 @@ const mockEvents: Event[] = [
     image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800",
     registration_link:
       "https://docs.google.com/forms/d/e/1FAIpQLSeq9VLdS9fVQ1R6KjVuOcM7QQ7Q1Q8Q1Q8Q1Q8Q1Q8Q1Q8Q1Q/viewform",
-    status: getEventStatus("Dec 25, 2024"),
+    status: getEventStatus("Nov 25, 2025"),
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
   },
   {
     id: "4",
     title: "Cloud Computing with Google Cloud",
-    date: "Jan 5, 2025",
+    date: "Dec 5, 2025",
     time: "3:00 PM - 6:00 PM",
     type: "Workshop",
     description:
@@ -194,7 +194,39 @@ const mockEvents: Event[] = [
     image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800",
     registration_link:
       "https://docs.google.com/forms/d/e/1FAIpQLSeq9VLdS9fVQ1R6KjVuOcM7QQ7Q1Q8Q1Q8Q1Q8Q1Q8Q1Q8Q1Q/viewform",
-    status: getEventStatus("Jan 5, 2025"),
+    status: getEventStatus("Dec 5, 2025"),
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+  {
+    id: "5",
+    title: "AI & Machine Learning Summit",
+    date: "Sep 5, 2025",
+    time: "9:00 AM - 5:00 PM",
+    type: "Seminar",
+    description:
+      "A comprehensive seminar covering the latest trends in AI and machine learning technologies.",
+    color: "gdsc-blue",
+    attendees: 150,
+    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800",
+    registration_link: "https://forms.gle/ai-summit-2025",
+    status: getEventStatus("Sep 5, 2025"),
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+  {
+    id: "6",
+    title: "JavaScript Fundamentals Workshop",
+    date: "Aug 25, 2025",
+    time: "2:00 PM - 6:00 PM",
+    type: "Workshop",
+    description:
+      "Master JavaScript fundamentals with hands-on coding exercises and real-world projects.",
+    color: "gdsc-yellow",
+    attendees: 75,
+    image: "https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?w=800",
+    registration_link: "https://forms.gle/js-workshop-2025",
+    status: getEventStatus("Aug 25, 2025"),
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
   },
@@ -535,7 +567,7 @@ export const getEvents = async () => {
       const { data, error } = await supabase
         .from("events")
         .select("*")
-        .order("date", { ascending: true });
+        .order("date", { ascending: false });
 
       if (error) throw error;
       return data || [];
@@ -1002,7 +1034,7 @@ export const getProjects = async () => {
     const data = getFromStorage(STORAGE_KEYS.projects, mockProjects);
     return {
       success: true,
-      data: data.sort((a, b) => b.display_order - a.display_order),
+      data: data.sort((a, b) => a.display_order - b.display_order),
       fallback: true,
     };
   }
@@ -1012,7 +1044,7 @@ export const getProjects = async () => {
       const { data, error } = await supabase
         .from("projects")
         .select("*")
-        .order("display_order", { ascending: false });
+        .order("display_order", { ascending: true });
 
       if (error) throw error;
       return data || [];

@@ -41,7 +41,36 @@ export default function EventsPage() {
     try {
       const result = await getEvents();
       if (result.success || result.data) {
-        setEvents(result.data || []);
+        // Sort events: upcoming events first (by newest date), then completed events (by newest date)
+        const sortedEvents = (result.data || []).sort((a, b) => {
+          try {
+            const dateA = new Date(a.date);
+            const dateB = new Date(b.date);
+            
+            // Check if dates are valid
+            if (isNaN(dateA.getTime()) || isNaN(dateB.getTime())) {
+              // Fallback: sort by string comparison if date parsing fails
+              return b.date.localeCompare(a.date);
+            }
+            
+            // Check event completion status
+            const aCompleted = isEventCompleted(a.date);
+            const bCompleted = isEventCompleted(b.date);
+            
+            // Show upcoming events first, then completed events
+            if (aCompleted !== bCompleted) {
+              return aCompleted ? 1 : -1; // upcoming events first
+            }
+            
+            // Within the same category (upcoming or completed), sort by date (newest first)
+            return dateB.getTime() - dateA.getTime();
+          } catch (error) {
+            console.warn("Error parsing dates for events:", error);
+            // Fallback: sort by string comparison
+            return b.date.localeCompare(a.date);
+          }
+        });
+        setEvents(sortedEvents);
       } else {
         setEvents([]);
       }
