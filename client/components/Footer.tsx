@@ -129,7 +129,7 @@ export default function Footer() {
                     instagram: "https://www.instagram.com/gdgoc.ietdavv/?hl=en",
                     linkedin: "https://in.linkedin.com/company/gdgoc-iet-davv",
                     whatsapp:
-                      "https://chat.whatsapp.com/CcTjDYXNfQMEoLUHzB3hwa",
+                      "https://chat.whatsapp.com/DjVwm5za2GZIlSvr8OXS3M?mode=ems_copy_t",
                   }}
                   size="md"
                   variant="footer"
@@ -194,7 +194,7 @@ export default function Footer() {
               <ul className="space-y-3 mb-6">
                 <li>
                   <a
-                    href="https://chat.whatsapp.com/CcTjDYXNfQMEoLUHzB3hwa"
+                    href="https://chat.whatsapp.com/DjVwm5za2GZIlSvr8OXS3M?mode=ems_copy_t"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-gray-300 hover:text-white transition-colors duration-300 text-sm md:text-base hover:translate-x-1 transform inline-block"
@@ -234,7 +234,7 @@ export default function Footer() {
 
               {/* CTA Button */}
               <a
-                href="https://chat.whatsapp.com/CcTjDYXNfQMEoLUHzB3hwa"
+                href="https://chat.whatsapp.com/DjVwm5za2GZIlSvr8OXS3M?mode=ems_copy_t"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-animate inline-block bg-gdsc-blue text-white px-6 py-3 rounded-full text-sm font-semibold hover:bg-blue-600 transition-all duration-300 shadow-lg hover:shadow-xl"

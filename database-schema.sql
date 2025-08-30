@@ -50,6 +50,7 @@ CREATE TABLE gallery_items (
   title VARCHAR(255),
   description TEXT,
   image VARCHAR(500) NOT NULL,
+  images TEXT[] DEFAULT '{}',
   date VARCHAR(50),
   category VARCHAR(100) DEFAULT 'general',
   display_order INTEGER DEFAULT 1,

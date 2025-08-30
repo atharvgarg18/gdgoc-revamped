@@ -65,6 +65,7 @@ CREATE TABLE IF NOT EXISTS public.gallery_items (
     title VARCHAR(200) NOT NULL,
     description TEXT NOT NULL,
     image TEXT NOT NULL,
+    images TEXT[] DEFAULT '{}',
     date DATE NOT NULL,
     category VARCHAR(50) NOT NULL DEFAULT 'workshop'
         CHECK (category IN ('workshop', 'event', 'competition', 'community')),

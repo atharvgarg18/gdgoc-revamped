@@ -1,14 +1,17 @@
 import { useState, useEffect } from "react";
 import { getGalleryItems, GalleryItem } from "@/lib/supabase";
+import { useNavigate } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 
 export default function GalleryPage() {
+  const navigate = useNavigate();
   const [galleryItems, setGalleryItems] = useState<GalleryItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [visibleCards, setVisibleCards] = useState<Set<number>>(new Set());
+  const [gazingItem, setGazingItem] = useState<string | null>(null);
 
   useEffect(() => {
     loadGalleryItems();
@@ -93,6 +96,15 @@ export default function GalleryPage() {
       community: "🤝",
     };
     return icons[category as keyof typeof icons] || "📸";
+  };
+
+  const handleItemClick = (item: GalleryItem) => {
+    setGazingItem(item.id);
+    
+    // Start gazing animation
+    setTimeout(() => {
+      navigate(`/gallery/${item.id}`);
+    }, 800); // Wait for animation to complete
   };
 
   return (
@@ -196,7 +208,7 @@ export default function GalleryPage() {
                 style={{ animationDelay: "0.6s" }}
               >
                 <a
-                  href="https://chat.whatsapp.com/CcTjDYXNfQMEoLUHzB3hwa"
+                  href="https://chat.whatsapp.com/DjVwm5za2GZIlSvr8OXS3M?mode=ems_copy_t"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-animate bg-gradient-to-r from-pink-600 to-purple-600 text-white px-8 py-4 rounded-full hover:shadow-xl transition-all duration-300 font-medium transform hover:scale-105"
@@ -305,7 +317,7 @@ export default function GalleryPage() {
                   activities. Stay tuned for our photo gallery updates!
                 </p>
                 <a
-                  href="https://chat.whatsapp.com/CcTjDYXNfQMEoLUHzB3hwa"
+                  href="https://chat.whatsapp.com/DjVwm5za2GZIlSvr8OXS3M?mode=ems_copy_t"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-animate bg-gradient-to-r from-pink-600 to-purple-600 text-white px-8 py-4 rounded-full hover:shadow-xl transition-all duration-300 font-medium inline-block transform hover:scale-105"
@@ -314,21 +326,27 @@ export default function GalleryPage() {
                 </a>
               </div>
             ) : (
-              /* Gallery Grid - Masonry Style */
-              <div className="columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-6 space-y-6">
+              /* Gallery Grid - Masonry Style - Enlarged Cards */
+              <div className="columns-1 md:columns-2 lg:columns-2 xl:columns-3 gap-8 space-y-8">
                 {filteredItems.map((item, index) => (
                   <div
                     key={item.id}
                     data-index={index}
+                    onClick={() => handleItemClick(item)}
                     className={`
                       gallery-card group relative break-inside-avoid rounded-2xl shadow-lg hover:shadow-2xl 
                       transition-all duration-500 overflow-hidden border border-white/50 backdrop-blur-sm 
-                      transform hover:scale-105 hover:-translate-y-2 mb-6
+                      transform hover:scale-105 hover:-translate-y-2 mb-8 cursor-pointer
                       ${getCategoryBgColor(item.category)}
                       ${
                         visibleCards.has(index)
                           ? "animate-slide-up opacity-100"
                           : "opacity-0"
+                      }
+                      ${
+                        gazingItem === item.id
+                          ? "animate-gaze-zoom scale-110 z-50 pointer-events-none"
+                          : ""
                       }
                     `}
                     style={{ animationDelay: `${index * 0.1}s` }}
@@ -353,9 +371,9 @@ export default function GalleryPage() {
 
                       {/* Category Badge */}
                       <div
-                        className={`absolute top-4 left-4 inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r ${getCategoryColor(item.category)} text-white shadow-lg`}
+                        className={`absolute top-4 left-4 inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold bg-gradient-to-r ${getCategoryColor(item.category)} text-white shadow-lg`}
                       >
-                        <span className="mr-1">
+                        <span className="mr-2">
                           {getCategoryIcon(item.category)}
                         </span>
                         {item.category.charAt(0).toUpperCase() +
@@ -363,7 +381,7 @@ export default function GalleryPage() {
                       </div>
 
                       {/* Date Badge */}
-                      <div className="absolute top-4 right-4 px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full text-xs font-medium text-gray-700 shadow-lg">
+                      <div className="absolute top-4 right-4 px-4 py-2 bg-white/90 backdrop-blur-sm rounded-full text-sm font-medium text-gray-700 shadow-lg">
                         {new Date(item.date).toLocaleDateString("en-US", {
                           year: "numeric",
                           month: "short",
@@ -373,11 +391,11 @@ export default function GalleryPage() {
                     </div>
 
                     {/* Content */}
-                    <div className="p-6">
-                      <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors duration-300 line-clamp-2">
+                    <div className="p-8">
+                      <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-purple-600 transition-colors duration-300 line-clamp-2">
                         {item.title}
                       </h3>
-                      <p className="text-gray-600 text-sm leading-relaxed line-clamp-3">
+                      <p className="text-gray-600 text-base leading-relaxed line-clamp-3">
                         {item.description}
                       </p>
                     </div>
@@ -413,7 +431,7 @@ export default function GalleryPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
-                  href="https://chat.whatsapp.com/CcTjDYXNfQMEoLUHzB3hwa"
+                  href="https://chat.whatsapp.com/DjVwm5za2GZIlSvr8OXS3M?mode=ems_copy_t"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-gdsc-blue text-white px-8 py-4 rounded-lg hover:bg-blue-600 transition-all duration-300 font-medium transform hover:scale-105"

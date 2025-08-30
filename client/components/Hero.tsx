@@ -85,16 +85,19 @@ export default function Hero() {
           {/* CTA Buttons with better mobile layout */}
           <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center items-center px-4 sm:px-0">
             <a
-              href="https://chat.whatsapp.com/CcTjDYXNfQMEoLUHzB3hwa"
+              href="https://chat.whatsapp.com/DjVwm5za2GZIlSvr8OXS3M?mode=ems_copy_t"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-animate w-full sm:w-auto bg-gdsc-blue text-white px-6 md:px-8 py-3 md:py-4 rounded-full text-base md:text-lg font-semibold hover:bg-blue-600 transition-all duration-300 shadow-lg hover:shadow-xl text-center touch-target"
             >
               Join Our Community
             </a>
-            <button className="btn-animate w-full sm:w-auto border-2 border-gdsc-blue text-gdsc-blue px-6 md:px-8 py-3 md:py-4 rounded-full text-base md:text-lg font-semibold hover:bg-gdsc-blue hover:text-white transition-all duration-300 touch-target">
+            <a
+              href="/events"
+              className="btn-animate w-full sm:w-auto border-2 border-gdsc-blue text-gdsc-blue px-6 md:px-8 py-3 md:py-4 rounded-full text-base md:text-lg font-semibold hover:bg-gdsc-blue hover:text-white transition-all duration-300 touch-target"
+            >
               Explore Events
-            </button>
+            </a>
           </div>
 
           {/* Stats with responsive grid */}

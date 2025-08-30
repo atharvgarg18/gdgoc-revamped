@@ -13,6 +13,7 @@ import EventsPage from "./pages/EventsPage";
 import ProjectsPage from "./pages/ProjectsPage";
 import ContactPage from "./pages/ContactPage";
 import GalleryPage from "./pages/GalleryPage";
+import GalleryItemPage from "./pages/GalleryItemPage";
 import AdminPage from "./pages/AdminPage";
 import NotFound from "./pages/NotFound";
 import DatabaseTest from "./components/DatabaseTest";
@@ -32,6 +33,7 @@ const App = () => (
           <Route path="/team" element={<Team />} />
           <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/gallery" element={<GalleryPage />} />
+          <Route path="/gallery/:id" element={<GalleryItemPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/admin" element={<AdminPage />} />
           <Route path="/test-db" element={<DatabaseTest />} />

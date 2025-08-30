@@ -32,8 +32,37 @@ export default function Events() {
     try {
       const result = await getEvents();
       if (result.success || result.data) {
-        const eventsData = result.data || [];
-        setEvents(eventsData.slice(0, 4)); // Show only first 4 events on homepage
+        // Sort events: upcoming events first (by newest date), then completed events (by newest date)
+        const sortedEvents = (result.data || []).sort((a, b) => {
+          try {
+            const dateA = new Date(a.date);
+            const dateB = new Date(b.date);
+            
+            // Check if dates are valid
+            if (isNaN(dateA.getTime()) || isNaN(dateB.getTime())) {
+              // Fallback: sort by string comparison if date parsing fails
+              return b.date.localeCompare(a.date);
+            }
+            
+            // Check event completion status
+            const aCompleted = isEventCompleted(a.date);
+            const bCompleted = isEventCompleted(b.date);
+            
+            // Show upcoming events first, then completed events
+            if (aCompleted !== bCompleted) {
+              return aCompleted ? 1 : -1; // upcoming events first
+            }
+            
+            // Within the same category (upcoming or completed), sort by date (newest first)
+            return dateB.getTime() - dateA.getTime();
+          } catch (error) {
+            console.warn("Error parsing dates for events:", error);
+            // Fallback: sort by string comparison
+            return b.date.localeCompare(a.date);
+          }
+        });
+        
+        setEvents(sortedEvents.slice(0, 4)); // Show only first 4 events on homepage
       } else {
         setEvents([]);
       }
@@ -181,7 +210,7 @@ export default function Events() {
                 Join our WhatsApp group to be the first to know!
               </p>
               <a
-                href="https://chat.whatsapp.com/CcTjDYXNfQMEoLUHzB3hwa"
+                href="https://chat.whatsapp.com/DjVwm5za2GZIlSvr8OXS3M?mode=ems_copy_t"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="relative overflow-hidden bg-gradient-to-r from-gdsc-green to-green-600 text-white px-8 py-4 rounded-xl hover:from-green-600 hover:to-green-700 transition-all duration-300 font-semibold transform hover:scale-105 shadow-lg hover:shadow-xl inline-block group"
@@ -325,7 +354,7 @@ export default function Events() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="https://chat.whatsapp.com/CcTjDYXNfQMEoLUHzB3hwa"
+              href="https://chat.whatsapp.com/DjVwm5za2GZIlSvr8OXS3M?mode=ems_copy_t"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-gdsc-blue text-white px-8 py-4 rounded-lg hover:bg-blue-600 transition-all duration-300 font-medium transform hover:scale-105"

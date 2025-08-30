@@ -50,7 +50,7 @@ export default function ContactPage() {
     {
       id: "whatsapp",
       name: "WhatsApp",
-      href: "https://chat.whatsapp.com/CcTjDYXNfQMEoLUHzB3hwa",
+      href: "https://chat.whatsapp.com/DjVwm5za2GZIlSvr8OXS3M?mode=ems_copy_t",
       subtitle: "Join the main community",
       brandClass: "",
       icon: (
@@ -303,7 +303,7 @@ export default function ContactPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
-                  href="https://chat.whatsapp.com/CcTjDYXNfQMEoLUHzB3hwa"
+                  href="https://chat.whatsapp.com/DjVwm5za2GZIlSvr8OXS3M?mode=ems_copy_t"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-gdsc-blue text-white px-8 py-4 rounded-lg hover:bg-blue-600 transition-all duration-300 font-medium transform hover:scale-105"

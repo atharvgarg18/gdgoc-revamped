@@ -94,7 +94,8 @@ export interface GalleryItem {
   id: string;
   title: string;
   description: string;
-  image: string;
+  image: string; // Main/featured image
+  images: string[]; // Array of all images including the main one
   date: string;
   category: "workshop" | "event" | "competition" | "community";
   display_order: number;
@@ -360,6 +361,13 @@ const mockGalleryItems: GalleryItem[] = [
     description:
       "Students learning React and modern web technologies in our intensive workshop session.",
     image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800",
+    images: [
+      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200",
+      "https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?w=1200",
+      "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=1200",
+      "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1200",
+      "https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=1200",
+    ],
     date: "2024-11-15",
     category: "workshop",
     display_order: 3,
@@ -372,6 +380,12 @@ const mockGalleryItems: GalleryItem[] = [
     description:
       "Our monthly community gathering and networking event with industry professionals.",
     image: "https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=800",
+    images: [
+      "https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=1200",
+      "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200",
+      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200",
+      "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200",
+    ],
     date: "2024-11-20",
     category: "community",
     display_order: 2,
@@ -384,6 +398,14 @@ const mockGalleryItems: GalleryItem[] = [
     description:
       "Annual coding competition with exciting challenges and prizes for participants.",
     image: "https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?w=800",
+    images: [
+      "https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?w=1200",
+      "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1200",
+      "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=1200",
+      "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=1200",
+      "https://images.unsplash.com/photo-1542744094-24638eff58bb?w=1200",
+      "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1200",
+    ],
     date: "2024-10-25",
     category: "competition",
     display_order: 1,
@@ -909,9 +931,28 @@ export const deleteFacultyAndAlumni = async (id: string) => {
 export const getGalleryItems = async () => {
   if (!supabase) {
     const data = getFromStorage(STORAGE_KEYS.galleryItems, mockGalleryItems);
+    // Sort by date (newest first)
     return {
       success: true,
-      data: data.sort((a, b) => b.display_order - a.display_order),
+      data: data.sort((a, b) => {
+        try {
+          const dateA = new Date(a.date);
+          const dateB = new Date(b.date);
+          
+          // Check if dates are valid
+          if (isNaN(dateA.getTime()) || isNaN(dateB.getTime())) {
+            // Fallback: sort by string comparison if date parsing fails
+            return b.date.localeCompare(a.date);
+          }
+          
+          // Sort by date (newest first)
+          return dateB.getTime() - dateA.getTime();
+        } catch (error) {
+          console.warn("Error parsing dates for gallery items:", error);
+          // Fallback: sort by string comparison
+          return b.date.localeCompare(a.date);
+        }
+      }),
       fallback: true,
     };
   }
@@ -921,7 +962,7 @@ export const getGalleryItems = async () => {
       const { data, error } = await supabase
         .from("gallery_items")
         .select("*")
-        .order("display_order", { ascending: false });
+        .order("date", { ascending: false });
 
       if (error) throw error;
       return data || [];

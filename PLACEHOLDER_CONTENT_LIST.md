@@ -225,7 +225,7 @@ placeholder = "https://linkedin.com/in/username"; // Social URL format
 
 #### **Real, Working Links:**
 
-- WhatsApp community link: `https://chat.whatsapp.com/CcTjDYXNfQMEoLUHzB3hwa`
+- WhatsApp community link: `https://chat.whatsapp.com/DjVwm5za2GZIlSvr8OXS3M?mode=ems_copy_t`
 - Instagram: `https://www.instagram.com/gdgoc.ietdavv/?hl=en`
 - LinkedIn: `https://in.linkedin.com/company/gdgoc-iet-davv`
 - Logo URL: `https://www.dscvit.com/newlogo.svg`

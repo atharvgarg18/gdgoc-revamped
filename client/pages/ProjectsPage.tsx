@@ -243,7 +243,7 @@ export default function ProjectsPage() {
                   We're working on exciting projects that will showcase our community's talent and innovation. Stay tuned!
                 </p>
                 <a
-                  href="https://chat.whatsapp.com/CcTjDYXNfQMEoLUHzB3hwa"
+                  href="https://chat.whatsapp.com/DjVwm5za2GZIlSvr8OXS3M?mode=ems_copy_t"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-animate bg-gradient-to-r from-blue-600 to-green-600 text-white px-8 py-4 rounded-full hover:shadow-xl transition-all duration-300 font-medium inline-block transform hover:scale-105"
@@ -365,7 +365,7 @@ export default function ProjectsPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
-                  href="https://chat.whatsapp.com/CcTjDYXNfQMEoLUHzB3hwa"
+                  href="https://chat.whatsapp.com/DjVwm5za2GZIlSvr8OXS3M?mode=ems_copy_t"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-gdsc-blue text-white px-8 py-4 rounded-lg hover:bg-blue-600 transition-all duration-300 font-medium transform hover:scale-105"

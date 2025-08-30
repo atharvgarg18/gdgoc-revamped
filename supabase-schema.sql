@@ -41,6 +41,7 @@ CREATE TABLE IF NOT EXISTS gallery_items (
   title TEXT NOT NULL,
   description TEXT NOT NULL,
   image TEXT NOT NULL,
+  images TEXT[] DEFAULT '{}',
   date TEXT NOT NULL,
   category TEXT NOT NULL DEFAULT 'event',
   display_order INTEGER DEFAULT 0,

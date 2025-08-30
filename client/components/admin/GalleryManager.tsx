@@ -17,6 +17,7 @@ export default function GalleryManager() {
     title: "",
     description: "",
     image: "",
+    images: [] as string[],
     date: "",
     category: "workshop" as "workshop" | "event" | "competition" | "community",
     display_order: 1,
@@ -42,8 +43,16 @@ export default function GalleryManager() {
     setIsSubmitting(true);
 
     try {
+      // Prepare the data with images array
+      const submitData = {
+        ...formData,
+        images: useMultipleImages 
+          ? multipleImages.filter((img) => img.trim() !== "")
+          : formData.image ? [formData.image] : []
+      };
+
       if (editingItem) {
-        const result = await updateGalleryItem(editingItem.id, formData);
+        const result = await updateGalleryItem(editingItem.id, submitData);
         if (result.success) {
           await loadGalleryItems();
           resetForm();
@@ -51,31 +60,12 @@ export default function GalleryManager() {
           alert(`Error updating gallery item: ${result.error}`);
         }
       } else {
-        if (useMultipleImages) {
-          // Create multiple gallery items for each image
-          const validImages = multipleImages.filter((img) => img.trim() !== "");
-          for (let i = 0; i < validImages.length; i++) {
-            const itemData = {
-              ...formData,
-              image: validImages[i],
-              title:
-                validImages.length > 1
-                  ? `${formData.title} (${i + 1})`
-                  : formData.title,
-              display_order: formData.display_order + i,
-            };
-            await createGalleryItem(itemData);
-          }
+        const result = await createGalleryItem(submitData);
+        if (result.success) {
           await loadGalleryItems();
           resetForm();
         } else {
-          const result = await createGalleryItem(formData);
-          if (result.success) {
-            await loadGalleryItems();
-            resetForm();
-          } else {
-            alert(`Error creating gallery item: ${result.error}`);
-          }
+          alert(`Error creating gallery item: ${result.error}`);
         }
       }
     } catch (error) {
@@ -102,6 +92,7 @@ export default function GalleryManager() {
       title: item.title,
       description: item.description,
       image: item.image,
+      images: item.images || [],
       date: item.date,
       category: item.category as
         | "workshop"
@@ -110,6 +101,14 @@ export default function GalleryManager() {
         | "community",
       display_order: item.display_order,
     });
+    // Set up the multiple images interface if the item has multiple images
+    if (item.images && item.images.length > 0) {
+      setMultipleImages(item.images);
+      setUseMultipleImages(true);
+    } else {
+      setMultipleImages([""]);
+      setUseMultipleImages(false);
+    }
     setShowForm(true);
   };
 
@@ -122,6 +121,7 @@ export default function GalleryManager() {
       title: "",
       description: "",
       image: "",
+      images: [],
       date: new Date().toISOString().split("T")[0],
       category: "workshop",
       display_order: galleryItems.length + 1,
@@ -314,32 +314,29 @@ export default function GalleryManager() {
                 </div>
 
                 {/* Multiple Images Toggle */}
-                {!editingItem && (
-                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                    <div className="flex items-center space-x-3">
-                      <input
-                        type="checkbox"
-                        id="multipleImages"
-                        checked={useMultipleImages}
-                        onChange={(e) => setUseMultipleImages(e.target.checked)}
-                        className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                      />
-                      <label
-                        htmlFor="multipleImages"
-                        className="text-sm font-medium text-gray-700"
-                      >
-                        Add multiple images for this event/activity
-                      </label>
-                    </div>
-                    <p className="text-xs text-gray-600 mt-1">
-                      ✨ Perfect for showcasing multiple photos from the same
-                      event or activity
-                    </p>
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <div className="flex items-center space-x-3">
+                    <input
+                      type="checkbox"
+                      id="multipleImages"
+                      checked={useMultipleImages}
+                      onChange={(e) => setUseMultipleImages(e.target.checked)}
+                      className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                    />
+                    <label
+                      htmlFor="multipleImages"
+                      className="text-sm font-medium text-gray-700"
+                    >
+                      Add multiple images for this gallery item
+                    </label>
                   </div>
-                )}
+                  <p className="text-xs text-gray-600 mt-1">
+                    ✨ Perfect for creating a photo collection that shows multiple photos in the gallery detail page
+                  </p>
+                </div>
 
                 {/* Image URL(s) */}
-                {useMultipleImages && !editingItem ? (
+                {useMultipleImages ? (
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Image URLs * (Multiple Images)
@@ -377,8 +374,7 @@ export default function GalleryManager() {
                       </button>
                     </div>
                     <p className="text-xs text-gray-500 mt-2">
-                      💡 Each image will create a separate gallery item with
-                      numbered titles
+                      💡 All images will be shown in the photo collection of this single gallery item
                     </p>
                   </div>
                 ) : (
