@@ -22,6 +22,7 @@ CREATE TABLE events (
   attendees INTEGER DEFAULT 0,
   registration_link TEXT,
   image TEXT,
+  status VARCHAR(20) DEFAULT 'upcoming' CHECK (status IN ('upcoming', 'completed')),
   created_at TIMESTAMP DEFAULT NOW(),
   updated_at TIMESTAMP DEFAULT NOW()
 );

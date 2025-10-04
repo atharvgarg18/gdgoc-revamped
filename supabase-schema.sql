@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS events (
   attendees INTEGER DEFAULT 0,
   image TEXT,
   registration_link TEXT,
+  status TEXT DEFAULT 'upcoming' CHECK (status IN ('upcoming', 'completed')),
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );

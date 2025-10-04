@@ -23,6 +23,7 @@ CREATE TABLE IF NOT EXISTS public.events (
     attendees INTEGER DEFAULT 0 CHECK (attendees >= 0),
     image TEXT,
     registration_link TEXT,
+    status VARCHAR(20) DEFAULT 'upcoming' CHECK (status IN ('upcoming', 'completed')),
     created_at TIMESTAMPTZ DEFAULT NOW(),
     updated_at TIMESTAMPTZ DEFAULT NOW()
 );
