@@ -17,6 +17,7 @@ import GalleryItemPage from "./pages/GalleryItemPage";
 import AdminPage from "./pages/AdminPage";
 import NotFound from "./pages/NotFound";
 import DatabaseTest from "./components/DatabaseTest";
+import GdgChatPopup from "./components/GdgChatPopup";
 
 const queryClient = new QueryClient();
 
@@ -25,6 +26,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
+          <GdgChatPopup />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
