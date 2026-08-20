@@ -85,7 +85,7 @@ export default function Hero() {
           {/* CTA Buttons with better mobile layout */}
           <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center items-center px-4 sm:px-0">
             <a
-              href="https://chat.whatsapp.com/DjVwm5za2GZIlSvr8OXS3M?mode=ems_copy_t"
+              href="https://chat.whatsapp.com/DM8LKIHoTcnCp9MGWVwSgt?s=cl&p=a&ilr=1"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-animate w-full sm:w-auto bg-gdsc-blue text-white px-6 md:px-8 py-3 md:py-4 rounded-full text-base md:text-lg font-semibold hover:bg-blue-600 transition-all duration-300 shadow-lg hover:shadow-xl text-center touch-target"
