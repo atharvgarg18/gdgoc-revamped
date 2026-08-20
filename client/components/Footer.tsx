@@ -129,7 +129,7 @@ export default function Footer() {
                     instagram: "https://www.instagram.com/gdgoc.ietdavv/?hl=en",
                     linkedin: "https://in.linkedin.com/company/gdgoc-iet-davv",
                     whatsapp:
-                      "https://chat.whatsapp.com/DjVwm5za2GZIlSvr8OXS3M?mode=ems_copy_t",
+                      "https://chat.whatsapp.com/DM8LKIHoTcnCp9MGWVwSgt?s=cl&p=a&ilr=1",
                   }}
                   size="md"
                   variant="footer"
