@@ -234,7 +234,7 @@ export default function Footer() {
 
               {/* CTA Button */}
               <a
-                href="https://chat.whatsapp.com/DjVwm5za2GZIlSvr8OXS3M?mode=ems_copy_t"
+                href="https://chat.whatsapp.com/DM8LKIHoTcnCp9MGWVwSgt?s=cl&p=a&ilr=1"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-animate inline-block bg-gdsc-blue text-white px-6 py-3 rounded-full text-sm font-semibold hover:bg-blue-600 transition-all duration-300 shadow-lg hover:shadow-xl"
