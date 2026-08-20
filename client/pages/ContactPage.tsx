@@ -50,7 +50,7 @@ export default function ContactPage() {
     {
       id: "whatsapp",
       name: "WhatsApp",
-      href: "https://chat.whatsapp.com/DjVwm5za2GZIlSvr8OXS3M?mode=ems_copy_t",
+      href: "https://chat.whatsapp.com/DM8LKIHoTcnCp9MGWVwSgt?s=cl&p=a&ilr=1",
       subtitle: "Join the main community",
       brandClass: "",
       icon: (
@@ -92,7 +92,7 @@ export default function ContactPage() {
     {
       id: "x",
       name: "X",
-      href: "https://x.com/gdgoc_iet",
+      href: "https://x.com/GDGoC_IET_DAVV",
       subtitle: "Announcements & updates",
       brandClass: "",
       icon: (
