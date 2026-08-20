@@ -210,7 +210,7 @@ export default function Events() {
                 Join our WhatsApp group to be the first to know!
               </p>
               <a
-                href="https://chat.whatsapp.com/DjVwm5za2GZIlSvr8OXS3M?mode=ems_copy_t"
+                href="https://chat.whatsapp.com/DM8LKIHoTcnCp9MGWVwSgt?s=cl&p=a&ilr=1"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="relative overflow-hidden bg-gradient-to-r from-gdsc-green to-green-600 text-white px-8 py-4 rounded-xl hover:from-green-600 hover:to-green-700 transition-all duration-300 font-semibold transform hover:scale-105 shadow-lg hover:shadow-xl inline-block group"
@@ -354,7 +354,7 @@ export default function Events() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="https://chat.whatsapp.com/DjVwm5za2GZIlSvr8OXS3M?mode=ems_copy_t"
+              href="https://chat.whatsapp.com/DM8LKIHoTcnCp9MGWVwSgt?s=cl&p=a&ilr=1"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-gdsc-blue text-white px-8 py-4 rounded-lg hover:bg-blue-600 transition-all duration-300 font-medium transform hover:scale-105"
