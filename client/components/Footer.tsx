@@ -194,7 +194,7 @@ export default function Footer() {
               <ul className="space-y-3 mb-6">
                 <li>
                   <a
-                    href="https://chat.whatsapp.com/DjVwm5za2GZIlSvr8OXS3M?mode=ems_copy_t"
+                    href="https://chat.whatsapp.com/DM8LKIHoTcnCp9MGWVwSgt?s=cl&p=a&ilr=1"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-gray-300 hover:text-white transition-colors duration-300 text-sm md:text-base hover:translate-x-1 transform inline-block"
